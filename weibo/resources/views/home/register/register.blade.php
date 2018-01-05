@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <title>Document</title>
     <style type="text/css">
         *{
@@ -17,7 +17,7 @@
 
         }
         body{
-            background: url("./2.jpg");
+            background: url("/images/2.jpg");
         }
 
         .box1 {
@@ -104,7 +104,7 @@
             <div class="box4"><a href="#" style=" text-decoration: none;margin-left:335px;">忘记密码</a></div>
         </form>
         <div class="box3 text-center">
-            没有账号怎么办? 赶快<a href="register.html" style=" text-decoration: none;">注册</a>
+            已经拥有账号 赶快<a href="/user/login" style=" text-decoration: none;">登录</a>
 
         </div>
     </div>
