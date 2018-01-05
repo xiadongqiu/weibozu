@@ -17,7 +17,8 @@
 
         }
         body{
-            background: url("/images/2.jpg");
+            background: url("/images/2.jpg")no-repeat;
+
         }
 
         .box1 {
@@ -100,7 +101,7 @@
                 <input type="password" class="form-control" id="repassword" placeholder="确认密码">
             </div>
 
-            <button type="submit" class="btn btn-success form-control">登陆</button>
+            <button type="submit" class="btn btn-success form-control">注册</button>
             <div class="box4"><a href="#" style=" text-decoration: none;margin-left:335px;">忘记密码</a></div>
         </form>
         <div class="box3 text-center">
@@ -111,4 +112,8 @@
 
 </div>
 </body>
+<script type="text/javascript">
+
+
+</script>
 </html>

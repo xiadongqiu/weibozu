@@ -11,12 +11,15 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 //用于访问登录页面的和处理登录信息的路由
-Route::resource('/user/login','LoginController');
+Route::resource('/user/login','Home\LoginController');
+
 
 //用于访问注册页面和处理注册信息的路由
-Route::resource('/user/register','RegisterController');
+Route::resource('/user/register','Home\RegisterController');

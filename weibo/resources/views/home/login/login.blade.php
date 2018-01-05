@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
     <title>Document</title>
     <style type="text/css">
         *{
@@ -17,7 +18,7 @@
 
         }
         body{
-                background: url("/images/1.jpg");
+                background: url("/images/1.jpg")no-repeat;
              }
 
         .box1 {
@@ -78,10 +79,10 @@
 </head>
 <body>
     <div class="box1">
-
+        {{--<img src="/images/1.jpg" alt="图片丢失">--}}
         <div class="box2">
             <div class="box5 text-center">
-                <strong> 用户注册</strong>
+                <strong> 用户登录</strong>
             </div>
             <form>
                 <div class="form-group">
@@ -99,11 +100,16 @@
                 <div class="box4"><a href="#" style=" text-decoration: none;margin-left:330px;">忘记密码</a></div>
             </form>
             <div class="box3 text-center">
-                没有账号怎么办? 赶快<a href="/user/register" style=" text-decoration: none;">注册</a>
+                没有账号怎么办? 赶快<a href="/user/register" style=" text-decoration: none;" >注册</a>
 
             </div>
         </div>
 
     </div>
+
+<script type="text/javascript">
+
+
+</script>
 </body>
 </html>
