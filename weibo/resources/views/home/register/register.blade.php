@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
     <title>Document</title>
     <style type="text/css">
         *{
@@ -101,7 +102,7 @@
                 <input type="password" class="form-control" id="repassword" placeholder="确认密码">
             </div>
 
-            <button type="submit" class="btn btn-success form-control">注册</button>
+            <button type="submit" class="btn btn-success form-control" id="register">注册</button>
             <div class="box4"><a href="#" style=" text-decoration: none;margin-left:335px;">忘记密码</a></div>
         </form>
         <div class="box3 text-center">
@@ -113,7 +114,11 @@
 </div>
 </body>
 <script type="text/javascript">
+    $('#register').click(function(){
+        
+        
 
+    });
 
 </script>
 </html>
