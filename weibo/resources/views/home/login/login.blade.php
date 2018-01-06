@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="/homes/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/homes/layer/layer.js"></script>
     <title>Document</title>
     <style type="text/css">
         *{
@@ -18,7 +19,7 @@
 
         }
         body{
-                background: url("/images/1.jpg")no-repeat;
+                background: url("/homes/images/1.jpg")no-repeat;
              }
 
         .box1 {

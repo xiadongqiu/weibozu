@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Flc\Dysms\Client;
+use Flc\Dysms\Request\SendSms;
+use App\model\user_logins;
+
 class RegisterController extends Controller
 {
     /**
@@ -14,74 +18,60 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex()
     {
         return view('/home/register/register');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getCode(request $request)
     {
-        //
+        $phone = $request->input('phone');
+
+        //判断数据库中是否存在该phone
+       $res =  user_logins::where('username','=',$phone)->find(1);
+
+       if($res){
+           echo '0';
+       }else{
+           $config = [
+               'accessKeyId'    => 'LTAISVgfSkz22cc5',
+               'accessKeySecret' => 'cEWOlXuYOQd1KxI9gUwNYXBj6bkcq2',
+           ];
+
+           $client  = new Client($config);
+           $sendSms = new SendSms;
+           $sendSms->setPhoneNumbers($phone);
+           $sendSms->setSignName('陈明');
+           $sendSms->setTemplateCode('SMS_120365843');
+           $num = rand(100000, 999999);
+           $sendSms->setTemplateParam(['num' => $num]);
+           $sendSms->setOutId('demo');
+          
+           Session::put('code', $num);
+           dump($client->execute($sendSms));
+        echo '1';
+       }
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    //删除key
+//Session::forget('key');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function postRegister(request $request)
     {
-        //
-    }
+       $data = $request->except('_token','code');
+        $a = Session::get('key');
+        dump($a);
+       $code = $request->only('code');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+       $res = user_logins::insert($data);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+       if($res){
+           echo '1';
+       }else{
+           echo '0';
+       }
+
     }
 }
