@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*Route::get('/user', function () {
+    return view('Home.user');
+});
+
+Route::get('/detail', function () {
+    return view('Home.detail');
+});*/
+
+Route::resource('/index','Home\IndexController');
