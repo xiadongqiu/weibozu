@@ -35,7 +35,7 @@
 
 <script type="text/javascript" src="/admins/layer/layer.js"></script>
 
-<title>微博-admin</title>
+<title>@yield('title','微博-admin')</title>
 
 </head>
 
@@ -191,12 +191,12 @@
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        hello, 超级管理员
+                        hello, {{}}
                     </div>
                     <ul>
                         <li><a href="/admins/#" title="admin">用户</a></li>
                         <li><a href="/admins/#">修改密码</a></li>
-                        <li><a href="/admin/logoff" id="logoff">注销</a></li>
+                        <li><a href="/admin/loginout" id="logoff">注销</a></li>
                     </ul>
                 </div>
             </div>
@@ -239,24 +239,24 @@
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-list"></i> 用户管理</a>
-                        <ul>
-                            <li><a href="/admins/#">用户列表</a></li>
+                        <a href="admin/user/list"><i class="icon-users"></i> 用户管理</a>
+                        <ul style="display: none;" class="closed">
+                            <li><a href="/admin/user/list">用户列表</a></li>
                             <li><a href="/admins/#">用户添加</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-list"></i> 微博管理</a>
-                        <ul>
-                            <li><a href="/admins/#">微博列表</a></li>
+                        <a href="/admins/#"><i class="icon-comments-2"></i> 微博管理</a>
+                        <ul style="display: none;" class="closed">
+                            <li><a href="/admin/post">微博列表</a></li>
                             <li><a href="/admins/#">微博评论</a></li>
                             <li><a href="/admins/#">评论回复</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-cogs"></i> 举报管理</a>
+                        <a href="/admins/#"><i class="icon-exclamation-sign"></i> 举报管理</a>
                     </li>
 
                     <li>
@@ -272,7 +272,10 @@
         <div id="mws-container" class="clearfix">
         	<!-- 内容 -->
             <div class="container">
-                aaaa
+             @section('zhuti')
+                aaa 
+             @show
+            
             </div>
             <!-- 内容结束 -->
                        
@@ -321,7 +324,7 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
-
+    
 
 </body>
 </html>
