@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 
+
 Route::resource('/index','Home\IndexController');
 
 
@@ -32,6 +33,19 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 
     Route::controller('/user','UserController');
+
+});
+
+
+Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
+	Route::get('/login','LoginController@index');
+	Route::post('/login','LoginController@login');
+  
+		Route::group(['middleware' => 'login'], function () {
+   		Route::get('/','IndexController@index');
+    });
+
+
 
 });
 
