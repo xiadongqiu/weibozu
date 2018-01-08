@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 
+
 Route::resource('/index','Home\IndexController');
 
 
@@ -29,6 +30,19 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     //用于访问注册页面和处理注册信息的路由
 
     Route::controller('/register','RegisterController');
+
+
+});
+
+
+Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
+	Route::get('/login','LoginController@index');
+	Route::post('/login','LoginController@login');
+  
+		Route::group(['middleware' => 'login'], function () {
+   		Route::get('/','IndexController@index');
+    });
+
 
 
 });
