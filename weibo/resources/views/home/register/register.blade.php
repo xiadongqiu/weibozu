@@ -1,147 +1,172 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/homes/bootstrap/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<title>微博</title>
+	<meta name="keywords" content="微博">
+	<meta name="content" content="微博">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link type="text/css" rel="stylesheet" href="/homes/css/login.css">
     <script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/homes/layer/layer.js"></script>
-
-    <title>Document</title>
     <style type="text/css">
-        *{
-            margin:0px;
-            padding:0px;
+        .gray-bg{
+                disabled:disabled;
 
-        }
-        a{
+             }
 
-        }
-        body{
-            background: url("/homes/images/2.jpg")no-repeat;
 
-        }
-
-        .box1 {
-            width: 100%;
-            height:100%;
-            position: relative;
-        }
-        .box2{
-            width:500px;
-            height:500px;
-            position: absolute;
-            right:120px;
-            top:150px;
-            /*border:1px solid red;*/
-            background-color: rgba(255,255,255,.8);
-            padding:40px;
-            padding-top: 70px;
-            font-size: 20px;
-            border-radius:10px;
-
-        }
-        .box3
-        {
-            margin-top:30px;
-            font-size: 15px;
-        }
-
-        .box5
-        {
-            margin-top:-40px;
-            font-size: 25px;
-        }
-        .box4
-        {
-            margin-right:10px;
-            font-size: 18px;
-        }
-
-        .yan {
-            /*display: block;*/
-            width:40%;
-            height: 34px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.4285;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-left:120px;
-        }
-
-        .form-control
-        {
-            height:40px;
-        }
     </style>
 </head>
-<body>
-<div class="box1">
+<body class="login_bj" >
 
-    <div class="box2">
-        <div class="box5 text-center">
-           <strong> 用户注册</strong>
-      </div>
-        <form>
-            <div class="form-group">
-                <label for="phone">手机号</label>
-                <input type="text" class="form-control" id="phone" placeholder="手机号" name="phone">
+<div class="zhuce_body">
+	<div class="logo"><a href="#"><img src="/homes/images/logo.png" width="114" height="54" border="0"></a></div>
+    <div class="zhuce_kong">
+    	<div class="zc">
+        	<div class="bj_bai">
+            <h3>欢迎注册</h3>
+       	  	  <form action="" method="get">
+                <input name="phone" type="text" class="kuang_txt phone" placeholder="手机号"><i class='none1'></i>
+                <input name="yan" type="button" id="yan" value="点击获取验证码" class="btn_info">
+                <input name="code" type="text" class="btn_code" placeholder="验证码"><i class='none2'></i>
+                <input name="password" id="password" type="password" class="kuang_txt possword" placeholder="密码 6到18位"><i class='none3'></i>
+                <input name="" id="repassword" type="password" class="kuang_txt yanzm" placeholder="确认密码"><i class='none4'></i>
+                <div>
+               		<input name="" type="checkbox" value=""><span>已阅读并同意<a href="#" target="_blank"><span class="lan">《XXXXX使用协议》</span></a></span>
+                </div>
+                <input name="注册" id="register" type="button" class="btn_zhuce" value="注册">
+                
+                </form>
             </div>
-            <button type="button" id="yan" class="btn btn-info">点击获取验证码</button>
-            <input type="text" name="yanzheng" class="yan" placeholder="验证码"/>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+        	<div class="bj_right">
+            	<p>使用以下账号直接登录</p>
+                <a class="zhuce_qq">QQ注册</a>
+                <a class="zhuce_wx">支付宝</a>
+                <p>已有账号？<a href="/user/login">立即登录</a></p>
+            
             </div>
-            <div class="form-group">
-                <label for="repassword">确认密码</label>
-                <input type="password" class="form-control" id="repassword" name="repassword" placeholder="确认密码">
-            </div>
-
-            <button type="button" class="btn btn-success form-control" id="register">注册</button>
-            <div class="box4"><a href="#" style=" text-decoration: none;margin-left:335px;">忘记密码</a></div>
-        </form>
-        <div class="box3 text-center">
-            已经拥有账号 赶快<a href="/user/login" style=" text-decoration: none;">登录</a>
-
         </div>
+        <P>weibo.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎您注册微博</P>
     </div>
 
 </div>
-</body>
-<script type="text/javascript">
-    $('#yan').click(function(){
-        $.get('/user/register/code',{phone:$('#phone').val()},function(data){
-            if(data == '0'){
+    <script type="text/javascript">
 
-                layer.confirm('您的手机号已经注册是否前去登录?', {
-                    btn: ['登陆','取消'] //按钮
-                }, function(){
-                    location.href='/user/login';
-                });
+
+        $('.phone').blur(function(){
+
+            //设置一个判断手机号是否合法的正则表达式
+            var string = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
+
+            var res = $('.phone').val().match(string);
+
+            if(res == null){
+                $('i').eq(0).attr('class','wrong');
+                return false;
+            }else{
+                $('i').eq(0).attr('class','right');
+            }
+
+            $.get('/user/register/phone',{phone:$('.phone').val()},function(data){
+                if(data == '0'){
+                    layer.msg('您的手机号已经注册,请登录');
+                    $('i').eq(0).attr('class','wrong');
+                }
+            });
+        });
+
+        $('#password').blur(function(){
+
+            var string1 = '^[a-z0-9_-]{6,18}$';
+
+            var res1= $('.possword').val().match(string1);
+
+            if(res1 == null){
+                $('i').eq(2).attr('class','wrong');
+                return false;
+            }else{
+                $('i').eq(2).attr('class','right');
             }
 
         });
 
-    });
+        $('#repassword').blur(function(){
 
-    $('#register').click(function(){
+            if( $('#password').val() == ''|| $('#password').val() != $('#repassword').val()){
+                $('i').eq(3).attr('class','wrong');
+                return false;
+            }else{
+                $('i').eq(3).attr('class','right');
+            }
 
-         $.post('/user/register/register',{username:$('#phone').val(),password:$('#password').val(),code:$('.yan').val(),'_token':'{{csrf_token()}}'},function(data){
-                if(data == '1'){
-                    alert('注册成功');
-                }else{
-                    alert('注册失败');
-                }
+
         });
-    });
+
+       $('#yan').click(function () {
+           if (!$('.phone').val() || $('i').eq(0).attr('class')!= 'right') {
+               layer.msg('您未填写手机号 或手机号不正确');
+               $('i').eq(0).attr('class', 'wrong');
+           } else {
+               $.get('/user/register/code', {phone: $('.phone').val()}, function (data) {
+                   if (data == '0') {
+                       layer.msg('您的手机号已经注册,请登录');
+                       $('i').eq(0).attr('class', 'wrong');
+                   } else {
+                       chen();
+                   }
+               });
+           }
+       });
+
+         function chen() {
+             var timer = "";
+             var nums = 60;
+             var validCode = true;//定义该变量是为了处理后面的重复点击事件
+             $("#yan").on('click', function () {
+                 console.log("111");
+                 var code = $(this);
+                 if (validCode) {
+                     validCode = false;
+                     timer = setInterval(function () {
+                         if (nums > 0) {
+                             nums--;
+                             code.val(nums + "秒后重新发送");
+                             code.attr('disabled', 'disabled');
+                         }
+                         else {
+                             clearInterval(timer);
+                             nums = 60;//重置回去
+                             validCode = true;
+                             code.removeAttr('disabled');
+                             code.val("发送验证码");
+                         }
+                     }, 1000)
+                 }
+             })
+         }
+
+        $('#register').click(function(){
+            if($('i').eq(3).attr('class')!='right' || $('i').eq(2).attr('class')!='right' || $('i').eq(0).attr('class')!='right'){
+                layer.msg('您的注册信息有不正确的内容');
+            }else{
+                $.post('/user/register/register',{username:$('.phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
+                        if(data == '1'){
+                            layer.msg('恭喜，注册成功');
+                            local.herf = '/user/login';
+
+                        }else if(data == '2'){
+                            layer.msg('抱歉，手机验证码不正确');
+                        }
+                });
+            }
 
 
-</script>
+        });
+
+
+
+    </script>
+
+</body>
 </html>

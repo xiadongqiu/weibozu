@@ -1,116 +1,83 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/homes/bootstrap/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<title>微博</title>
+	<meta name="keywords" content="微博">
+	<meta name="content" content="微博">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <link type="text/css" rel="stylesheet" href="/homes/css/login.css">
     <script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/homes/layer/layer.js"></script>
-    <title>Document</title>
+
     <style type="text/css">
-        *{
-            margin:0px;
-            padding:0px;
-
-        }
-        a{
-
-        }
-        body{
-                background: url("/homes/images/1.jpg")no-repeat;
-             }
-
-        .box1 {
-            width: 100%;
-            height:100%;
-            position: relative;
-        }
-        .box2{
-            width:500px;
-            height:500px;
-            position: absolute;
-            right:120px;
-            top:150px;
-            /*border:1px solid red;*/
-            background-color: rgba(255,255,255,.8);
-            padding:40px;
-            padding-top: 100px;
-            font-size: 20px;
-            border-radius:10px;
-
-        }
-        .box3
-        {
-            margin-top:40px;
-            font-size: 15px;
-        }
-
-        .box5
-        {
-            margin-top:-40px;
-            font-size: 25px;
-        }
-        .box4
-        {
-            margin-right:10px;
-            font-size: 18px;
-        }
-        .yan {
-            /*display: block;*/
-            width:40%;
-            height: 40px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.4285;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-left:120px;
-        }
-
-        .form-control
-        {
-            height:40px;
+        .box1,.box2{
+                   display: none;
         }
     </style>
 </head>
-<body>
-    <div class="box1">
-        {{--<img src="/images/1.jpg" alt="图片丢失">--}}
-        <div class="box2">
-            <div class="box5 text-center">
-                <strong> 用户登录</strong>
+<body class="login_bj" width="">
+<div class="zhuce_body">
+	<div class="logo"><img src="/homes/images/logo.png"></div>
+    <div class="zhuce_kong login_kuang">
+    	<div class="zc">
+        	<div class="bj_bai">
+            <h3>登录</h3>
+       	  	  <form action="" method="get">
+                <input name="" type="text" id="phone" class="kuang_txt" placeholder="手机号">
+                <div class="box1">账号不存在</div>
+                <input name="" type="text" id="password" class="kuang_txt" placeholder="密码">
+                <div class="box2">密码错误</div>
+                <div>
+               		<a href="#">忘记密码？</a><input name="" type="checkbox" value="" checked><span>记住我</span> 
+                </div>
+                <input name="登录" type="button" class="btn_zhuce" value="登录">
+                
+                </form>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="phone">手机号</label>
-                    <input type="text" class="form-control" id="phone" placeholder="手机号">
-                </div>
-                    <button type="button" class="btn btn-info">点击获取验证码</button>
-                    <input type="text" name="yanzheng" class="yan" placeholder="验证码"/>
-                <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" placeholder="密码">
-                </div>
-
-                <button type="submit" class="btn btn-success form-control">登陆</button>
-                <div class="box4"><a href="#" style=" text-decoration: none;margin-left:330px;">忘记密码</a></div>
-            </form>
-            <div class="box3 text-center">
-                没有账号怎么办? 赶快<a href="/user/register" style=" text-decoration: none;" >注册</a>
-
+        	<div class="bj_right">
+            	<p>使用以下账号直接登录</p>
+                <a href="www.qq.com" class="zhuce_qq">QQ注册</a>
+                <a href="https://wx.qq.com/" class="zhuce_wx">微信注册</a>
+                <p>已有账号？<a href="/user/register">立即注册</a></p>
+            
             </div>
         </div>
-
+        <P>weibo.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎您登录微博</P>
     </div>
 
-<script type="text/javascript">
+</div>
+    <script type="text/javascript">
+        $('#phone').focus(function(){
 
+            //设置一个判断手机号是否合法的正则表达式
+            var string = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
 
-</script>
+            var res = $('#phone').val().match(string);
+
+            if(res == null){
+                $('.box1').text('手机号格式书写错误');
+                $('.box1').css({color:'red',display:'block'});
+            }else{
+                $('.box1').text('手机号格式书写正确');
+                $('.box1').css({color:'green',display:'block'});
+            }
+
+        });
+        $('#phone').blur(function() {
+
+            $.post('/user/login/phone', {phone: $('#phone').val(), '_token': '{{csrf_token()}}'}, function (data) {
+                if (data == '1') {
+                    $('.box1').text('该手机号可用');
+                    $('.box1').css({color: 'green', display: 'block'});
+                } else if (data == '0') {
+                    $('.box1').text('该手机号未注册');
+                    $('.box1').css({color: 'red', display: 'block'});
+                }
+            });
+
+        });
+    </script>
+
 </body>
 </html>
