@@ -44,7 +44,7 @@
 	line-height: 30px;font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="Homes/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="body">
 	@section('nav')

@@ -6,17 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\model\user;
 
-class IndexController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex(request $request)
     {
-        return view('Home.index.index');
+        $uid = $request->session()->get('home');
+        $res = user::find($uid);
+
+        return view('home/user/user',['res'=>$res]);
+
     }
 
     /**

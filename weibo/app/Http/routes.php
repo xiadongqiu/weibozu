@@ -37,6 +37,7 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
     Route::controller('/register','RegisterController');
 
+    Route::controller('/user','UserController');
 
 });
 
@@ -49,7 +50,9 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
   
 
 	Route::group(['middleware' => 'login'], function () {
-   		Route::get('/','IndexController@index');
+
+	    Route::get('/','IndexController@index');
+
     });
 
 	//Route::group(['middleware' => 'login'], function () {
