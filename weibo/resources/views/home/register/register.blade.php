@@ -53,7 +53,6 @@
 </div>
     <script type="text/javascript">
 
-
         $('.phone').blur(function(){
 
             //设置一个判断手机号是否合法的正则表达式
@@ -66,21 +65,22 @@
                 return false;
             }else{
                 $('i').eq(0).attr('class','right');
-            }
 
-            $.get('/user/register/phone',{phone:$('.phone').val()},function(data){
-                if(data == '0'){
-                    layer.msg('您的手机号已经注册,请登录');
-                    $('i').eq(0).attr('class','wrong');
-                }
-            });
-        });
+            }
+        //     $.get('/user/register/phone',{phone:$('.phone').val()},function(data){
+        //         if(data == '1'){
+        //             console.log('1');
+        //             layer.msg('您的手机号已经注册,请登录');
+        //             $('i').eq(0).attr('class','wrong');
+        //         }
+        //     });
+         });
 
         $('#password').blur(function(){
 
             var string1 = '^[a-z0-9_-]{6,18}$';
 
-            var res1= $('.possword').val().match(string1);
+            var res1= $('#password').val().match(string1);
 
             if(res1 == null){
                 $('i').eq(2).attr('class','wrong');
@@ -150,10 +150,10 @@
             if($('i').eq(3).attr('class')!='right' || $('i').eq(2).attr('class')!='right' || $('i').eq(0).attr('class')!='right'){
                 layer.msg('您的注册信息有不正确的内容');
             }else{
-                $.post('/user/register/register',{username:$('.phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
+                $.post('/user/register/register',{phone:$('.phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
                         if(data == '1'){
                             layer.msg('恭喜，注册成功');
-                            local.herf = '/user/login';
+                            location.herf = '/user/login';
 
                         }else if(data == '2'){
                             layer.msg('抱歉，手机验证码不正确');

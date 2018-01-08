@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
-use App\model\users;
+use App\model\user;
 class RegisterController extends Controller
 {
     /**
@@ -27,7 +27,7 @@ class RegisterController extends Controller
         $phone = $request->input('phone');
 
         //判断数据库中是否存在该phone
-       $res =  users::where('username','=',$phone)->find(1);
+       $res =  user::where('phone','=',$phone)->first();
 
        if($res){
            echo '0';
@@ -66,7 +66,7 @@ class RegisterController extends Controller
        $code = $request->only('code');
 
         if($code1 == $code['code']){
-            $res = users::insert($data);
+            $res = user::insert($data);
         }else{
             echo '2';
         }
@@ -85,12 +85,13 @@ class RegisterController extends Controller
         $phone = $request->input('phone');
 
         //判断数据库中是否存在该phone
-        $res =  users::where('username','=',$phone)->find(1);
-
-        if($res != null) {
+        $res =  user::where('phone','=',$phone)->first();
+        dump($res);
+        if($res == null) {
             echo '0';
         }else{
             echo '1';
         }
+
     }
 }

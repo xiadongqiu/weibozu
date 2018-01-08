@@ -24,14 +24,14 @@
         	<div class="bj_bai">
             <h3>登录</h3>
        	  	  <form action="" method="get">
-                <input name="" type="text" id="phone" class="kuang_txt" placeholder="手机号">
+                <input name="phone" type="text" id="phone" class="kuang_txt" placeholder="手机号">
                 <div class="box1">账号不存在</div>
-                <input name="" type="text" id="password" class="kuang_txt" placeholder="密码">
+                <input name="password" type="password" id="password" class="kuang_txt" placeholder="密码">
                 <div class="box2">密码错误</div>
                 <div>
                		<a href="#">忘记密码？</a><input name="" type="checkbox" value="" checked><span>记住我</span> 
                 </div>
-                <input name="登录" type="button" class="btn_zhuce" value="登录">
+                <input name="登录" type="button" class="btn_zhuce" value="登录" id="login">
                 
                 </form>
             </div>
@@ -61,15 +61,50 @@
             }else{
                 $('.box1').text('手机号格式书写正确');
                 $('.box1').css({color:'green',display:'block'});
-
                     $.post('/user/login/phone', {phone: $('#phone').val(), '_token': '{{csrf_token()}}'}, function (data) {
                         if (data == '1') {
                         } else if (data == '0') {
                             layer.msg('您的手机尚未注册,请先注册');
+                            $('.box1').text('手机号尚未注册');
+                            $('.box1').css({color:'red',display:'block'});
                         }
                     });
+            }
 
+        });
 
+        $('#password').blur(function(){
+
+            var string1 = '^[a-z0-9_-]{6,18}$';
+
+            var res1= $('#password').val().match(string1);
+
+            if(res1 == null){
+
+                $('.box2').text('密码格式书写错误');
+                $('.box2').css({color:'red',display:'block'});
+            }else{
+
+                $('.box2').text('密码格式书写正确');
+                $('.box2').css({color:'green',display:'block'});
+            }
+        });
+
+        $('#login').click(function(){
+            if(!$('#phone').val() || !$('#password').val()){
+                layer.msg('登录信息不能为空');
+            }else if($('.box2').text() =='密码格式书写错误' || $('.box1').text =='手机号格式书写错误' || $('.box1').text()== '手机号尚未注册'){
+                layer.msg('登录信息格式不正确');
+            }else{
+                $.post('/user/login/login',{phone:$('#phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
+                        if(data == '1'){
+
+                            location.href = '/user/user/';
+
+                        }else{
+                            layer.msg('密码错误');
+                        }
+                });
             }
 
         });
