@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">项目</div>
+                <a href="/user/login">登录</a>
             </div>
         </div>
     </body>
