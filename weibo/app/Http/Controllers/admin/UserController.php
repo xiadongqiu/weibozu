@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\weibo;
-
-class NotController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +16,7 @@ class NotController extends Controller
      */
     public function index()
     {
-
-        
-        $weibo = weibo::get();
-        return view('Home.index1.not',['data'=>$weibo]);
+        return view('admin.user.list');
     }
 
     /**

@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
-<link rel="stylesheet" type="text/css" href="Homes/css/index.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/head.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/foot.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/detail.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/user.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/bian_style.css"><script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Homes/css/index.css">
+<link rel="stylesheet" type="text/css" href="/Homes/css/head.css">
+<link rel="stylesheet" type="text/css" href="/Homes/css/foot.css">
+<link rel="stylesheet" type="text/css" href="/Homes/css/detail.css">
+<link rel="stylesheet" type="text/css" href="/Homes/css/user.css">
+<link rel="stylesheet" type="text/css" href="/Homes/css/bian_style.css"><script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
 <style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
@@ -36,6 +36,12 @@
 }
 .wei_replay,.weibo_gengduo{
 	/*display: none;*/
+}
+.xiangxia_show{
+	display: none;
+}
+.xiangxia_show ul li{
+	line-height: 30px;font-size: 12px;
 }
 </style>
 <script type="text/javascript" src="Homes/js/jquery-1.8.3.min.js"></script>

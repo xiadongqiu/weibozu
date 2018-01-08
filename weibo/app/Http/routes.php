@@ -41,15 +41,25 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 });
 
 
+//后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
 	Route::post('/login','LoginController@login');
+
   
 	Route::group(['middleware' => 'login'], function () {
    		Route::get('/','IndexController@index');
     });
 
 
+
+  		//判断是否登录的中间件
+		Route::group(['middleware' => 'login'], function () {
+   			Route::get('/','IndexController@index');
+   			Route::get('/index','IndexController@index');
+   			Route::get('/loginout','LoginController@loginout');
+   			Route::resource('/user/list','UserController');
+  	  	});
 
 });
 
