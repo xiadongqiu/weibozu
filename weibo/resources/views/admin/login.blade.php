@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
 
-<title>MWS Admin - Login Page</title>
+<title>后台登录</title>
 
 </head>
 
@@ -29,19 +29,20 @@
             <h1>Login - 登录</h1>
             <div class="mws-login-lock"><i class="icon-lock"></i></div>
             <div id="mws-login-form">
-                <form class="mws-form" action="admin/login" method="post">
+                <form class="mws-form" action="" method="post">
+                <?php echo csrf_field(); ?>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="text" name="username" class="mws-login-username required" placeholder="用户名">
+                            <input type="text" id="username" name="username" class="mws-login-username required" placeholder="用户名">
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="password" class="mws-login-password required" placeholder="密码">
+                            <input type="password" id="password" name="password" class="mws-login-password required" placeholder="密码">
                         </div>
                     </div>
                     <div class="mws-form-row">
-                        <input type="submit" value="登录" class="btn btn-success mws-login-button">
+                        <input type="button" id="login" value="登录" class="btn btn-success mws-login-button">
                     </div>
                 </form>
             </div>
@@ -61,6 +62,29 @@
 
     <!-- Login Script -->
     <script src="/admins/js/core/login.js"></script>
+    <script src="/admins/layer/layer.js"></script>
+    <script type="text/javascript">
+        $('#login').click(function(){
 
+            $.post('/admin/login',{phone:$('#username').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
+                switch(data){
+                    case "1":
+                        layer.msg('用户名密码不可以为空！');
+                        break;
+                    case "2":
+                        layer.msg('用户名或密码错误！');
+                        break;
+                    case "3":
+                        layer.msg('该用户没有登录权限！');
+                        break;
+                    case "4":
+                        location.href="/admin/index";
+                        break;
+                    default:
+                        layer.msg('登录失败！');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

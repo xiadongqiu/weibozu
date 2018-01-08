@@ -18,8 +18,7 @@ class LoginMiddleware
         if($request->session()->has('admin')){
             return $next($request);
         }else{
-            return view('admin/login');
-            // return redirect('admin/login');
+            return redirect('admin/login');
         }
     }
 }
