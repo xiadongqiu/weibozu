@@ -4,15 +4,16 @@
 	<!-- head end -->
 	<div style="height:30px;width:50px;"></div>
 	<div class="cen_top">
-		<div class="con_toppic"><img src="Homes/images/tou.png"></div>
-		<div class="con_topname">用户名</div>
-		<div class="con_topcon">一句话介绍自己，让别人更了解你</div>
+		<div class="con_toppic"><img src="/Homes/images/tou.png"></div>
+		<div class="con_topname">{{$res->detail->nickname}}</div>
+		<div class="con_topcon">{{$res->detail->abstract or '这个人很懒，什么都没有留下'}}</div>
 	</div>
+
 	<div class="cen_nav">
 		<ul>
 			<li>我的主页</li>
 			<li>我的相册</li>
-			<li>个人中心</li>
+			<li> 个人中心</li>
 		</ul>
 	</div>
 	<div style="clear: both;"></div>
@@ -38,19 +39,19 @@
 			<div class="cont_left_two">
 				<ul>
 					<li><a href="#">申请认证</a></li>
-					<li>已经成功认证&nbsp;&nbsp;<img src="Homes/images/huiyuan.png"></li>
+					<li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
 				</ul>
 				<div><a >详情请看个人中心</a></div>
 			</div>
 			<div class="cont_left_three">
 				<span style="border-bottom: 1px solid #F2F2F5;">相册</span>
-				<div><img src="Homes/images/tou.png"><img src="Homes/images/tou.png"></div>
+				<div><img src="/Homes/images/tou.png"><img src="/Homes/images/tou.png"></div>
 				<span style="border-top: 1px solid #F2F2F5;"><a href="#">查看个人相册</a></span>
 			</div>
 			<div class="cont_left_three" style="height:200px;">
 				<span style="border-bottom: 1px solid #F2F2F5;">赞</span>
 				<div id="wei_zan">
-					<img src="Homes/images/tou.png">
+					<img src="/Homes/images/tou.png">
 					<div>
 						<p><a href="#">用户名</a></p>
 						<p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
@@ -82,7 +83,7 @@
 				</div>
 
 				<div class="weibo_d1">
-					<img src="Homes/images/tou.png">
+					<img src="/Homes/images/tou.png">
 				</div>
 				<div class="weibo_d2">
 					<a href="#" class="wei_name">用户名</a>
@@ -90,14 +91,14 @@
 					<div class="wei_cont">
 						<p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
 						<ul class="wei_ul">
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
-							<li><img src="Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
+							<li><img src="/Homes/images/img1.jpg"></li>
 						</ul>
 					</div>
 				</div>
@@ -113,7 +114,7 @@
 				<!-- 回复内容 -->
 				<div class="wei_replay">
 					<div class="wei_ping">
-						<a href="#"><img width="30" height="30" src="Homes/images/tou.png"></a>
+						<a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
 						<form>
 							<input type="text" class="wei_pingcon">
 							<input type="submit" value="评论" class="wei_pinglun">
@@ -122,7 +123,7 @@
 					<div class="WB_ping">
 
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="Homes/images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -137,7 +138,7 @@
 							</ul>
 						</div>
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="Homes/images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -219,27 +220,27 @@
 
 	<!-- 相册开始 -->
 	<div style="clear: both;"></div>
-	<div class="xiangce" style="display:none;">
+	<div class="xiangce" style="display:block;">
 		<div class="xiangce_d1">
 			<b>相片墙</b>
 			<a href="上传照片">上传图片</a>
 		</div>
 		<div class="xiangce_pics">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
-			<img src="Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
+			<img src="/Homes/images/tou.png">
 		</div>
 		<div class="xiangce_page">分页</div>
 	</div>
 	<!-- 相册结束 -->
 
 	<!-- 个人中心 -->
-	<div class="zhu_center" style="display:none;">
+	<div class="zhu_center" style="display:block;">
 		<div class="xinxi_one"><span>基本信息</span></div>
 		<div class="xinxi_two">
 			<table>

@@ -46,6 +46,8 @@ class LoginController extends Controller
 
 
         if($password == $res['password']){
+            $request->session()->put('home', $res['id']);
+
             echo '1';
         }else{
             echo '0';
