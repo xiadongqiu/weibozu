@@ -23,7 +23,7 @@ class LoginController extends Controller
     public function postPhone(request $request)
     {
         $phone = $request->input('phone');
-        
+
         $res =  users::where('username','=',$phone)->find(1);
 
 

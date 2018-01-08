@@ -18,6 +18,10 @@ Route::get('/', function () {
 });
 
 
+
+Route::resource('/index','Home\IndexController');
+
+
 Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     //用于访问登录页面的和处理登录信息的路由
 
@@ -26,11 +30,8 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
     Route::controller('/register','RegisterController');
 
-    Route::controller('/index','IndexController');
-
-    Route::controller('/detail','DetailController');
 
     Route::controller('/user','UserController');
-});
 
+});
 
