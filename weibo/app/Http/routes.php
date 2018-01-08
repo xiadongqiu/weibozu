@@ -27,7 +27,7 @@ Route::resource('/index','Home\IndexController');
 
 Route::resource('/detail','Home\DetailController');
 
-//=====================================================
+//===================================================
 
 Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     //用于访问登录页面的和处理登录信息的路由
