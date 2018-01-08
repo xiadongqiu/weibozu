@@ -191,7 +191,11 @@
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
+
                         hello, aa
+
+                        hello, 
+
                     </div>
                     <ul>
                         <li><a href="/admins/#" title="">用户</a></li>
@@ -273,7 +277,11 @@
         	<!-- 内容 -->
             <div class="container">
              @section('zhuti')
+
                 
+
+                aaa 
+
              @show
             
             </div>

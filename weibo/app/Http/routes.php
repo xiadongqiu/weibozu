@@ -47,9 +47,16 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::post('/login','LoginController@login');
 
   
+
 	Route::group(['middleware' => 'login'], function () {
    		Route::get('/','IndexController@index');
     });
+
+	//Route::group(['middleware' => 'login'], function () {
+        Route::get('/','IndexController@index');
+        Route::resource('/post','PostController');
+           
+    // });
 
 
 
