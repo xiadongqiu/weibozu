@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
+	Route::get('/login','LoginController@index');
+	Route::post('/login','LoginController@login');
+   		Route::group(['middleware' => 'login'], function () {
+  	   		Route::get('/','IndexController@index');
+		});
+});
