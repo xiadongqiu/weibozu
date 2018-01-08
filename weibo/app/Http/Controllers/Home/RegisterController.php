@@ -49,7 +49,6 @@ class RegisterController extends Controller
            $request->session()->put('code', $num);
 
            dump($client->execute($sendSms));
-            echo '1';
        }
 
     }
@@ -69,9 +68,9 @@ class RegisterController extends Controller
 
             $res1 = user::where('phone','=',$phone)->first();
 
-            $id = $res['id'];
+            $arr = ['uid'=>$res1['id']];
 
-            detail::insert();
+            detail::insert($arr);
 
         }else{
             echo '2';
@@ -93,7 +92,7 @@ class RegisterController extends Controller
 
         //判断数据库中是否存在该phone
         $res =  user::where('phone','=',$phone)->first();
-        dump($res);
+
         if($res == null) {
             echo '0';
         }else{

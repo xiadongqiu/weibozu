@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+use App\Model\weibo;
+
+class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function index()
     {
-        return view('Home.index.index');
 
+        $data = weibo::get();
+
+        return view('Home.detail.detail',['data'=>$data]);
     }
 
     /**
