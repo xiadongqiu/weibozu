@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+use App\Model\weibo;
+
+class NotController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('Home.index.index');
+        $data = weibo::get();
+        return view('Home.index1.not',['data'=>$data]);
     }
 
     /**

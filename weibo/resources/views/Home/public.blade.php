@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="Homes/css/foot.css">
 <link rel="stylesheet" type="text/css" href="Homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="Homes/css/user.css">
-<link rel="stylesheet" type="text/css" href="Homes/css/bian_style.css">
+<link rel="stylesheet" type="text/css" href="Homes/css/bian_style.css"><script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
 <style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
@@ -31,11 +31,17 @@
 #myTab li a{
 	font-size: 14px;color: #333;
 }
-
+#WB_type{
+	display: inline-block;margin-left: 20px;width: 100px;margin-left: 20px;
+}
+.wei_replay,.weibo_gengduo{
+	/*display: none;*/
+}
 </style>
 <script type="text/javascript" src="Homes/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="body">
+	@section('nav')
 	<div class="top">
 		<div class="top_div">
 			<div class="WB_logo"><img height="35" src="/Homes/images/logo.png"></div>
@@ -55,6 +61,8 @@
 			</div>
 		</div>
 	</div>
+	@show
+
 	@section('content')
 	<!-- 主体 -->
 	
