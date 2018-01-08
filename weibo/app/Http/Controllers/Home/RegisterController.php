@@ -86,6 +86,7 @@ class RegisterController extends Controller
 
         //判断数据库中是否存在该phone
         $res =  users::where('username','=',$phone)->find(1);
+
         if($res != null) {
             echo '0';
         }else{

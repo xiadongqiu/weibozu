@@ -26,9 +26,11 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
     Route::controller('/register','RegisterController');
 
+    Route::controller('/index','IndexController');
 
+    Route::controller('/detail','DetailController');
 
-
+    Route::controller('/user','UserController');
 });
 
 

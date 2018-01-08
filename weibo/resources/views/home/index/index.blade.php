@@ -3,18 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>首页</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet" type="text/css" href="css/head.css">
-<link rel="stylesheet" type="text/css" href="css/foot.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/index.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/head.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/foot.css">
 </head>
 <body class="body">
 	<div class="top">
 		<div class="top_div">
-			<div class="WB_logo"><img height="35" src="./images/logo.png"></div>
+			<div class="WB_logo"><img height="35" src="/homes/images/logo.png"></div>
 			<div class="WB_sou">
 				<form action="">
 					<input type="text" style="width:400px;border:none;background:#F2F2F5;">
-					<input style="float:right;margin-right:10px" type="image" src="./images/fangdajing_1.png">
+					<input style="float:right;margin-right:10px" type="image" src="/homes/images/fangdajing_1.png">
 				</form>
 			</div>
 			<div class="WB_center">
@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="weibo_d1">
-					<img src="./images/tou.png">
+					<img src="/homes/images/tou.png">
 				</div>
 				<div class="weibo_d2">
 					<a href="#" class="wei_name">用户名</a>
@@ -72,14 +72,14 @@
 					<div class="wei_cont">
 						<p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
 						<ul class="wei_ul">
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
 						</ul>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 				<!-- 回复内容 -->
 				<div class="wei_replay">
 					<div class="wei_ping">
-						<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+						<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 						<form>
 							<input type="text" class="wei_pingcon">
 							<input type="submit" value="评论" class="wei_pinglun">
@@ -104,7 +104,7 @@
 					<div class="WB_ping">
 
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -119,7 +119,7 @@
 							</ul>
 						</div>
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -197,7 +197,7 @@
 				</div>
 
 				<div class="weibo_d1">
-					<img src="./images/tou.png">
+					<img src="/homes/images/tou.png">
 				</div>
 				<div class="weibo_d2">
 					<a href="#" class="wei_name">用户名</a>
@@ -205,14 +205,14 @@
 					<div class="wei_cont">
 						<p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
 						<ul class="wei_ul">
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
-							<li><img src="./images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
 						</ul>
 					</div>
 				</div>
@@ -228,7 +228,7 @@
 				<!-- 回复内容 -->
 				<div class="wei_replay">
 					<div class="wei_ping">
-						<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+						<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 						<form>
 							<input type="text" class="wei_pingcon">
 							<input type="submit" value="评论" class="wei_pinglun">
@@ -237,7 +237,7 @@
 					<div class="WB_ping">
 
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -252,7 +252,7 @@
 							</ul>
 						</div>
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -328,7 +328,7 @@
 		<div class="con_right">
 			<div class="conR_one">
 				<div class="conR_bg"></div>
-				<div class="conR_pic"><img src="./images/tou.png"></div>
+				<div class="conR_pic"><img src="/homes/images/tou.png"></div>
 				<div class="conR_name"><a class="name" href="#">用户名</a>&nbsp;&nbsp;<a href="#" class="level">LV14</a></div>
 				<ul class="conR_ul">
 					<li><a href="#">
@@ -368,52 +368,52 @@
 				<div class="friends">好友关注状态</div>
 				<ul class="friends_ul">
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./images/tou.png">
+						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
 						<div>
 							<a href="#">用户名</a>
 							<span>简单介绍</span>
 						</div>
-						<img style="float:right;margin-right:10px;" src="./images/guanzhu.png">
+						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
 					</li>
 				</ul>
 				<div class="conR_more"><a href="#">查看更多 ></a></div>

@@ -1,0 +1,23 @@
+.top{
+	width: 100%;height: 48px;background-color: #fff;border-top: 2px solid #FA7D3C;position: fixed;z-index: 999;border-bottom: 1px solid #dcdcdc;
+}
+.top_div{
+	width: 1240px;height: 27px;margin: 0 auto;padding-top: 10px;
+}
+.top_div>div{
+	float: left;
+}
+.WB_sou{
+	width: 470px;height: 25px;line-height: 25px;border: 1px solid #ccc;margin-left: 30px;background-color: #F2F2F5;
+}
+.WB_center{margin-left: 300px;}
+.WB_center ul li{float: left;}
+.WB_center ul li>a{font-family: '微软雅黑';font-size: 14px;color: #696E78;padding: 0 20px;height: 25px;line-height: 25px;}
+.WE_cen1{background:url(./../images/home.png) no-repeat 0px -2px;}
+.WE_cen1:hover{background:url(./../images/home_1.png) no-repeat 0px -2px;color: #FA7D3C;}
+.WE_cen2{background:url(./../images/faxian.png) no-repeat 0px 0px;}
+.WE_cen2:hover{background:url(./../images/faxian_1.png) no-repeat 0px 0px;color: #FA7D3C;}
+.WE_cen3{background:url(./../images/center.png) no-repeat 0px 0px;}
+.WE_cen3:hover{background:url(./../images/center_1.png) no-repeat 0px 0px;color: #FA7D3C;}
+.WE_cen4{background:url(./../images/shezhi.png) no-repeat 0px 0px;}
+.WE_cen4:hover{background:url(./../images/shezhi_1.png) no-repeat 0px 0px;color: #FA7D3C;}
