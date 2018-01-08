@@ -37,9 +37,14 @@ class LoginController extends Controller
     public function postLogin(request $request)
     {
         $data = $request->except('_token');
+
         $phone = $data['phone'];
+
         $password = $data['password'];
+
         $res = user::where('phone','=',$phone)->first();
+
+
         if($password == $res['password']){
             echo '1';
         }else{

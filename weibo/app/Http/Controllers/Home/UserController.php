@@ -16,6 +16,7 @@ class UserController extends Controller
      */
     public function getIndex()
     {
+
         return view('/home/user/user');
     }
 

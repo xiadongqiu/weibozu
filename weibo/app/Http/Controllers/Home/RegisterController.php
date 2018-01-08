@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use App\model\user;
+use App\model\detail;
 class RegisterController extends Controller
 {
     /**
@@ -45,30 +46,36 @@ class RegisterController extends Controller
            $num = rand(100000, 999999);
            $sendSms->setTemplateParam(['num' => $num]);
            $sendSms->setOutId('demo');
-
            $request->session()->put('code', $num);
+
            dump($client->execute($sendSms));
-        echo '1';
+            echo '1';
        }
 
     }
 
-    //删除key
-//Session::forget('key');
 
     public function postRegister(request $request)
     {
 
 
        $data = $request->except('_token','code');
-       $code1 =  $request->session()->get('key');
-
+       $code1 =  $request->session()->get('code');
+       $phone = $data['phone'];
        $code = $request->only('code');
 
         if($code1 == $code['code']){
             $res = user::insert($data);
+
+            $res1 = user::where('phone','=',$phone)->first();
+
+            $id = $res['id'];
+
+            detail::insert();
+
         }else{
             echo '2';
+            die;
         }
 
        if($res){

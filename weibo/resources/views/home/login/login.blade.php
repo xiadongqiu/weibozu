@@ -98,9 +98,7 @@
             }else{
                 $.post('/user/login/login',{phone:$('#phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
                         if(data == '1'){
-
                             location.href = '/user/user/';
-
                         }else{
                             layer.msg('密码错误');
                         }
