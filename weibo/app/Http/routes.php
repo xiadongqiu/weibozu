@@ -41,35 +41,29 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 });
 
-//lifan-------------------------------------------------------------------
 //后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
 	Route::post('/login','LoginController@login');
 
-  
-
-	Route::group(['middleware' => 'login'], function () {
-
-	    Route::get('/','IndexController@index');
-
-    });
-
 	//Route::group(['middleware' => 'login'], function () {
-        Route::get('/','IndexController@index');
         Route::resource('/post','PostController');
            
     // });
 
-
-
   		//判断是否登录的中间件
-		Route::group(['middleware' => 'login'], function () {
+		Route::group(['middleware' => 'adminlogin'], function () {
    			Route::get('/','IndexController@index');
    			Route::get('/index','IndexController@index');
    			Route::get('/loginout','LoginController@loginout');
+
+        //默认跳转到用户list
+        Route::get('/user',function(){return redirect('admin/user/list');});
    			Route::resource('/user/list','UserController');
+
+        //默认跳转到举报list
+        Route::get('/report',function(){return redirect('admin/report/list');});
+        Route::resource('/report/list','ReportController');
   	  	});
 
 });
-//------------------------------------------------------------------------
