@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\model\users;
+use App\model\user;
 class LoginController extends Controller
 {
     /**
@@ -24,12 +24,36 @@ class LoginController extends Controller
     {
         $phone = $request->input('phone');
 
-        $res =  users::where('username','=',$phone)->find(1);
+        $res =  user::where('phone','=',$phone)->first();
+
+
         if($res){
             echo '1';
         }else{
             echo '0';
         }
+    }
+
+    public function postLogin(request $request)
+    {
+        $data = $request->except('_token');
+
+        $phone = $data['phone'];
+
+        $password = $data['password'];
+
+        $res = user::where('phone','=',$phone)->first();
+
+
+        if($password == $res['password']){
+            $request->session()->put('home', $res['id']);
+
+            echo '1';
+        }else{
+            echo '0';
+        }
+
+
     }
 
 }

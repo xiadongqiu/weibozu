@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
-use App\model\users;
+use App\model\user;
+use App\model\detail;
 class RegisterController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class RegisterController extends Controller
         $phone = $request->input('phone');
 
         //判断数据库中是否存在该phone
-       $res =  users::where('username','=',$phone)->find(1);
+       $res =  user::where('phone','=',$phone)->first();
 
        if($res){
            echo '0';
@@ -45,30 +46,35 @@ class RegisterController extends Controller
            $num = rand(100000, 999999);
            $sendSms->setTemplateParam(['num' => $num]);
            $sendSms->setOutId('demo');
-
            $request->session()->put('code', $num);
+
            dump($client->execute($sendSms));
-        echo '1';
        }
 
     }
 
-    //删除key
-//Session::forget('key');
 
     public function postRegister(request $request)
     {
 
 
        $data = $request->except('_token','code');
-       $code1 =  $request->session()->get('key');
-
+       $code1 =  $request->session()->get('code');
+       $phone = $data['phone'];
        $code = $request->only('code');
 
         if($code1 == $code['code']){
-            $res = users::insert($data);
+            $res = user::insert($data);
+
+            $res1 = user::where('phone','=',$phone)->first();
+
+            $arr = ['uid'=>$res1['id']];
+
+            detail::insert($arr);
+
         }else{
             echo '2';
+            die;
         }
 
        if($res){
@@ -85,11 +91,13 @@ class RegisterController extends Controller
         $phone = $request->input('phone');
 
         //判断数据库中是否存在该phone
-        $res =  users::where('username','=',$phone)->find(1);
-        if($res != null) {
+        $res =  user::where('phone','=',$phone)->first();
+
+        if($res == null) {
             echo '0';
         }else{
             echo '1';
         }
+
     }
 }
