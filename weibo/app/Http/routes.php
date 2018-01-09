@@ -47,29 +47,21 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
 	Route::post('/login','LoginController@login');
 
-  
 
-	Route::group(['middleware' => 'login'], function () {
 
-	    Route::get('/','IndexController@index');
-
-    });
-
-	//Route::group(['middleware' => 'login'], function () {
-        Route::get('/','IndexController@index');
-        Route::resource('/post','PostController');
-           
-    // });
+    
 
 
 
   		//判断是否登录的中间件
-		Route::group(['middleware' => 'login'], function () {
+		// Route::group(['middleware' => 'login'], function () {
    			Route::get('/','IndexController@index');
    			Route::get('/index','IndexController@index');
    			Route::get('/loginout','LoginController@loginout');
    			Route::resource('/user/list','UserController');
-  	  	});
-
+  	  	// });
+        Route::resource('/post','PostController');
+        //后台网站配置路由
+        Route::get('/config','ConfigController@edit');
 });
 
