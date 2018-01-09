@@ -34,7 +34,7 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 });
 
-
+//lifan-------------------------------------------------------------------
 //后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
@@ -47,4 +47,4 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
    			Route::resource('/user/list','UserController');
   	  	});
 });
-
+//------------------------------------------------------------------------
