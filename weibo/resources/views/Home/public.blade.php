@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/Homes/css/foot.css">
 <link rel="stylesheet" type="text/css" href="/Homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/Homes/css/user.css">
+	<link rel="stylesheet" href="/homes/css/style.css" type="text/css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="/Homes/css/bian_style.css"><script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
 <style type="text/css">
 #content{
@@ -43,7 +44,32 @@
 .xiangxia_show ul li{
 	line-height: 30px;font-size: 12px;
 }
+
+.description{
+	position:fixed;
+	right:10px;
+	top:10px;
+	font-size:12px;
+	color:#888;
+}
+span.reference{
+	position:fixed;
+	left:10px;
+	bottom:10px;
+	font-size:12px;
+}
+span.reference a{
+	color:#888;
+	text-transform:uppercase;
+	text-decoration:none;
+	padding-right:20px;
+}
+span.reference a:hover{
+	color:#444;
+}
+
 </style>
+
 <script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="body">
