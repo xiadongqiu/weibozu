@@ -1,6 +1,7 @@
 @extends('Home.public')
 @section('title','用户中心')
 @section('content')
+
 	<!-- head end -->
 	<div style="height:30px;width:50px;"></div>
 	<div class="cen_top">
@@ -10,7 +11,7 @@
 	</div>
 
 	<div class="cen_nav">
-		<ul>
+		<ul class="cen_m">
 			<li>我的主页</li>
 			<li>我的相册</li>
 			<li> 个人中心</li>
@@ -19,6 +20,7 @@
 	<div style="clear: both;"></div>
 
 	<div class="zhu_cont">
+		<div class="content">
 		<div class="cont_left">
 			<div class="cont_left_one">
 				<ul>
@@ -72,16 +74,16 @@
 				</div>
 			</div>
 			<!-- 微博内容 -->
+            @foreach ($res->weibo as $k => $v)
 			<div class="weibo">
 				<a href="#" class="xiangxia"></a>
 				<div class="xiangxia_show">
 					<ul>
-						<li><a href="#">信息</a></li>
-						<li><a href="#">信息</a></li>
-						<li><a href="#">信息</a></li>
+						<li><a href="#">删除</a></li>
+						<li><a href="#">置顶</a></li>
+						<li><a href="#">加标签</a></li>
 					</ul>
 				</div>
-
 				<div class="weibo_d1">
 					<img src="/Homes/images/tou.png">
 				</div>
@@ -105,10 +107,10 @@
 				<p style="clear:both"></p>
 				<div class="wei_bottom">
 					<ul>
-						<li><a href="#">收藏</a><span>12345</span></li>
-						<li><a href="#">转发</a><span>12345</span></li>
-						<li><a href="#">评论</a><span>12345</span></li>
-						<li><a href="#">赞</a><span>12345</span></li>
+						<li><a href="javascript:void(0)">收藏</a><span>12345</span></li>
+						<li><a href="javascript:void(0)">转发</a><span>12345</span></li>
+						<li><a href="javascript:void(0)" class="pinglun">评论</a><span>12345</span></li>
+						<li><a href="javascript:void(0)">赞</a><span>12345</span></li>
 					</ul>
 				</div>
 				<!-- 回复内容 -->
@@ -206,7 +208,8 @@
 					<a href="#">查看更多 > </a>
 				</div>
 			</div>
-			<!-- 微博内容结束 -->
+            @endforeach
+			{{--<!-- 微博内容结束 -->--}}
 		</div>
 		<div class="cont_right">
 			<ul>
@@ -220,7 +223,7 @@
 
 	<!-- 相册开始 -->
 	<div style="clear: both;"></div>
-	<div class="xiangce" style="display:block;">
+	<div class="xiangce" style="display:none;">
 		<div class="xiangce_d1">
 			<b>相片墙</b>
 			<a href="上传照片">上传图片</a>
@@ -240,8 +243,9 @@
 	<!-- 相册结束 -->
 
 	<!-- 个人中心 -->
-	<div class="zhu_center" style="display:block;">
-		<div class="xinxi_one"><span>基本信息</span></div>
+	<div class="zhu_center" style="display:none;">
+		<div class="xinxi_one"><span>基本信息</span><button type="button" id="bianji" >编辑</button>
+		</div>
 		<div class="xinxi_two">
 			<table>
 				<tr>
@@ -302,7 +306,15 @@
 		<div class="xinxi_two">
 			<table>
 				<tr>
-					<td><span>登录名</span></td>
+					<td><span>邮箱</span></td>
+					<td><i></i>71***85@qq.com</td>
+				</tr>
+				<tr>
+					<td><span>QQ</span></td>
+					<td><i></i>71***85@qq.com</td>
+				</tr>
+				<tr>
+					<td><span>MSN</span></td>
 					<td><i></i>71***85@qq.com</td>
 				</tr>
 			</table>
@@ -311,11 +323,321 @@
 		<div class="xinxi_two">
 			<table>
 				<tr>
-					<td><span>登录名</span></td>
+					<td><span>职业信息</span></td>
 					<td><i></i>71***85@qq.com</td>
 				</tr>
 			</table>
 		</div>
 	</div>
+		<div class="zhu_center bianji" style="display:none;">
+			<div class="xinxi_one"><span>基本信息</span><button type="button" id="bianji" >编辑</button>
+			</div>
+			<div class="xinxi_two">
+				<table>
+					<tr>
+						<td><span>登录名</span></td>
+						<td><i></i>71***85@qq.com</td>
+					</tr>
+					<tr>
+						<td><span>昵  称</span></td>
+						<td><input type="text" name=""/></td>
+					</tr>
+					<tr>
+						<td><span>真实姓名</span></td>
+						<td><input type="text" name=""/></td>
+					</tr>
+					<tr>
+						<td><span>所在地</span></td>
+						<td>
+							<select id="province">
+
+								<option>----请选择省份----</option>
+
+								<option>北京</option>
+
+								<option>上海</option>
+
+								<option>江苏</option>
+
+								<option>河南</option>
+
+
+								<option>日本</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>----请选择城市----</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>东城</option>
+
+								<option>西城</option>
+
+								<option>崇文</option>
+
+								<option>宣武</option>
+
+								<option>朝阳</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>黄浦</option>
+
+								<option>卢湾</option>
+
+								<option>徐汇</option>
+
+								<option>长宁</option>
+
+								<option>静安</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>南京</option>
+
+								<option>镇江</option>
+
+								<option>苏州</option>
+
+								<option>南通</option>
+
+								<option>扬州</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>郑州</option>
+
+								<option>周口</option>
+
+								<option>洛阳</option>
+
+								<option>南阳</option>
+
+								<option>安阳</option>
+
+							</select>
+
+							<select class="city">
+
+								<option>大阪</option>
+
+								<option>秋叶原</option>
+
+								<option>东京</option>
+
+
+							</select>
+
+						</td>
+					</tr>
+					<tr>
+						<td><span>性  别</span></td>
+						<td><input type="radio" name=""/>男
+							<input type="radio" name=""/>女
+						</td>
+					</tr>
+					<tr>
+						<td><span>性取向</span></td>
+						<td><input type="checkbox" name=""/>男
+							<input type="checkbox" name=""/>女
+							<input type="checkbox" name=""/>双性  	此处可选多项
+						</td>
+
+					</tr>
+					<tr>
+						<td><span>感情状况</span></td>
+						<td><select name="" id="">
+								<option value="" selected>请选择</option>
+								<option value="">单身狗</option>
+								<option value="">暗恋中</option>
+								<option value="">暧昧中</option>
+								<option value="">恋爱中</option>
+								<option value="">已婚</option>
+								<option value="">订婚</option>
+								<option value="">分居</option>
+								<option value="">离异</option>
+								<option value="">丧偶</option>
+
+
+							</select></td>
+					</tr>
+					<tr>
+						<td><span>生日</span></td>
+						<td>
+							<div class="birthday">
+								<select name="year" id="year" onchange="getDays()"></select>
+								<select name="month" id="month" onchange="getDays()"></select>
+								<select name="day" id="day"></select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><span>血型</span></td>
+						<td>
+							<select name="" id="">
+							<option value="">AB</option>
+							<option value="">A</option>
+							<option value="">O</option>
+							<option value="">B</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><span>博客地址</span></td>
+						<td><input type="text" name="">
+						</td>
+					</tr>
+					<tr>
+						<td><span>个性域名</span></td>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<td><span>简介</span></td>
+						<td><textarea name="" id="" cols="20" rows="2"></textarea></td>
+					</tr>
+					<tr>
+						<td><span>注册时间</span></td>
+						<td><span>2013-11-06</span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="xinxi_one"><span>联系信息</span></div>
+			<div class="xinxi_two">
+				<table>
+					<tr>
+						<td><span>邮箱</span></td>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<td><span>QQ</span></td>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<td><span>MSN</span></td>
+						<td><input type="text" name=""></td>
+					</tr>
+				</table>
+			</div>/
+			<div class="xinxi_one"><span>职业信息</span></div>
+			<div class="xinxi_two">
+				<table>
+					<tr>
+						<td><span>职业信息</span></td>
+						<td><input type="text" name=""></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	<!-- 个人中心 -->
+	</div>
+	<script type="text/javascript">
+
+        $('.xiangxia').click(function(){
+            $(this).siblings().show();
+            return false;
+
+        })
+        $('body').click(function(){
+            $('.xiangxia_show').hide();
+        })
+
+		$('.cen_m').children().eq(0).click(function(){
+            $('.content').show();
+            $('.xiangce').hide();
+				$('.zhu_center').hide();
+				$('.weibo').show();
+		});
+
+        $('.cen_m').children().eq(1).click(function(){
+            $('.content').hide();
+            $('.xiangce').show();
+            $('.zhu_center').hide();
+            $('.weibo').hide();
+
+
+        });
+
+        $('.cen_m').children().eq(2).click(function(){
+			$('.content').hide();
+			$('.xiangce').hide();
+			$('.zhu_center').show();
+
+        });
+
+        $('#bianji').click(function(){
+            $('.zhu_center').hide();
+            $('.bianji').show();
+
+		});
+
+        var currentShowCity=0;
+        $(document).ready(function(){
+            $("#province").change(function(){
+                $("#province option").each(function(i,o){
+                    if($(this).attr("selected"))
+                    {
+                        $(".city").hide();
+
+                        $(".city").eq(i).show();
+
+                        currentShowCity=i;
+                    }
+                });
+            });
+            $("#province").change();
+        });
+
+        $(document).ready(function(){
+            var date=new Date();//创建日期对象
+            var year=date.getFullYear();//获取当前年份
+            for(var i=year-100;i<=year;i++){//在id为year的selector附加option选项
+                $("#year").append("<option value=\""+i+"\">"+i+"</option>");//append函数附加html到元素结尾处
+            }
+            for(var i=1;i<=12;i++){
+                $("#month").append("<option value=\""+i+"\">"+i+"</option>");//为Id为month的selector附加option选项
+            }
+            getDays($("#month").val(),$("#year").val());//执行函数getDays()，传参year和month，初始化day selector
+        });
+        function getDaysInMonth(month,year){//年月对应的日数算法
+            var days;
+            if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) {
+                days=31;//固定31
+            }else if (month==4 || month==6 || month==9 || month==11){
+                days=30;//固定30
+            }else{
+                if ((year%4 == 0 && year%100 != 0) || (year%400 == 0)) {     //排除百年，每四年一闰；每四百年一闰；
+                    days=29; //闰年29
+                }else {
+                    days=28; //平年28
+                }
+            }
+            return days;//返回该年月的日数
+        }
+        function getDays(){
+            var year = $("#year").val();//year selector onchange="getDays()"动态获取用户选择的year值
+            var month = $("#month").val();//month selector onchange="getDays()"动态获取用户选择的month值
+            var days = getDaysInMonth(month,year);//调用算法函数计算对应年月的日数
+            $("#day").empty();//调用empty()函数清空day selector options，然后再append函数往day selector添加options
+            for(var i=1;i<=days;i++){
+                $("#day").append("<option value=\""+i+"\">"+i+"</option>");
+            }
+        }
+
+
+
+
+	</script>
 @endsection('content')
+
+

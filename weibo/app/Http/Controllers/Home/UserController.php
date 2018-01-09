@@ -19,7 +19,6 @@ class UserController extends Controller
     {
         $uid = $request->session()->get('home');
         $res = user::find($uid);
-
         return view('home/user/user',['res'=>$res]);
 
     }

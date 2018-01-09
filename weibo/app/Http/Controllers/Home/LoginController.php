@@ -44,7 +44,6 @@ class LoginController extends Controller
 
         $res = user::where('phone','=',$phone)->first();
 
-
         if($password == $res['password']){
             $request->session()->put('home', $res['id']);
 
