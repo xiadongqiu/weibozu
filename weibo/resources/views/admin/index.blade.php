@@ -34,6 +34,10 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 043444e0ea33bdebb68b5e5a8c61dba099af6002
 <title>@yield('title','微博-admin')</title>
 
 </head>
@@ -251,7 +255,11 @@
                     </li>
 
                     <li>
+<<<<<<< HEAD
                         <a href="/admin/report"><i class="icon-warning-sign"></i> 举报管理</a>
+=======
+                        <a href="/admin/report/list"><i class="icon-warning-sign"></i> 举报管理</a>
+>>>>>>> 043444e0ea33bdebb68b5e5a8c61dba099af6002
                     </li>
 
                     <li>
@@ -307,11 +315,11 @@
             
         </div>
         <!-- 内容栏结束 -->
-        
-    </div>
 
-    <!-- JavaScript Plugins -->
+    </div>
     <script src="/admins/js/libs/jquery-1.8.3.min.js"></script>
+    <script src="/admins/layer/layer.js"></script>
+    <!-- JavaScript Plugins -->
     <script src="/admins/js/libs/jquery.mousewheel.min.js"></script>
     <script src="/admins/js/libs/jquery.placeholder.min.js"></script>
     <script src="/admins/custom-plugins/fileinput.js"></script>
@@ -327,9 +335,13 @@
     <script src="/admins/js/libs/excanvas.min.js"></script>
     <![endif]-->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 6287a6bc63536b21871ad645d552c855e0762dde
+=======
+   
+>>>>>>> 043444e0ea33bdebb68b5e5a8c61dba099af6002
     <script src="/admins/plugins/colorpicker/colorpicker-min.js"></script>
     <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
     <script src="/admins/custom-plugins/wizard/wizard.min.js"></script>
@@ -343,6 +355,14 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
+<<<<<<< HEAD
+=======
+    
+@section('js')
+
+
+@show
+>>>>>>> 043444e0ea33bdebb68b5e5a8c61dba099af6002
 
 	<script type="text/javascript" src="/admins/layer/layer.js"></script>
     @section('js')

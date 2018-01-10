@@ -87,6 +87,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-       dd($id);
+       
     }
 }

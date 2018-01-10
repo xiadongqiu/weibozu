@@ -117,15 +117,9 @@
                             {{$v['report']}}
                         </td>
 
-                        @if($v['hot']==0)
-                        <td >
-                            默认
-                        </td>
-                        @else
-                        <td >
-                            热门
-                        </td>
-                        @endif
+                       <td>
+                            {{$v->hot ? '热门' : '默认'}}
+                       </td>
                         <td >
                             {{$v['like']}}
                         </td>
@@ -134,11 +128,16 @@
                         </td>
                         <td >
                             <a href="#" class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
-                           
-                            <a href="#" class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
+                       
+                               
+                            <a onclick=del({{$v['id']}},$(this)) class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
+                       
                             
+                         
                         </td>
                     </tr>
+
+                    
                 @endforeach
                 </tbody>
             </table>
@@ -181,3 +180,18 @@
 </div>
 @stop
 
+@section('js')
+<script type="text/javascript">
+   function del(id,obj){
+        $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+           if(data == 1){
+               alert('删除成功');
+           } else if (data ==0){
+               alert('删除失败');
+           }
+                
+        });
+     
+    };
+</script>
+@stop
