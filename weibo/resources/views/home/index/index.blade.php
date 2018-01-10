@@ -1,4 +1,4 @@
-@extends('Home.public')
+@extends('home.public')
 @section('title','首页')
 @section('content')
 	<!-- 主体 -->
