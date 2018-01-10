@@ -3,12 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
+
 <link rel="stylesheet" type="text/css" href="/homes/css/index.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/head.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/foot.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/user.css">
-<link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css"><script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css">
+<link rel="stylesheet" href="/homes/css/style.css" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
 <style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
@@ -43,8 +47,32 @@
 .xiangxia_show ul li{
 	line-height: 30px;font-size: 12px;
 }
+
+.description{
+	position:fixed;
+	right:10px;
+	top:10px;
+	font-size:12px;
+	color:#888;
+}
+span.reference{
+	position:fixed;
+	left:10px;
+	bottom:10px;
+	font-size:12px;
+}
+span.reference a{
+	color:#888;
+	text-transform:uppercase;
+	text-decoration:none;
+	padding-right:20px;
+}
+span.reference a:hover{
+	color:#444;
+}
+
 </style>
-<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+
 </head>
 <body class="body">
 	@section('nav')

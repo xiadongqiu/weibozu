@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "flc/alidayu": "^2.0",
         "flc/dysms": "^1.0",
-        "gregwar/captcha": "^1.1"
+        "gregwar/captcha": "^1.1",
+        "gregwar/captcha-bundle": "^2.0"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

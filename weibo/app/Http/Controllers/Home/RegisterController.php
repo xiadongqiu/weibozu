@@ -64,20 +64,23 @@ class RegisterController extends Controller
        $code = $request->only('code');
 
         if($code1 == $code['code']){
+
             $res = user::insert($data);
 
             $res1 = user::where('phone','=',$phone)->first();
 
-            $arr = ['uid'=>$res1['id']];
+            $nick = '游客'.time();
 
-            detail::insert($arr);
+            $arr = ['uid'=>$res1['id'],'nickname'=>$nick,'registertime'=>time()];
+
+            $res3 = detail::insert($arr);
 
         }else{
             echo '2';
             die;
         }
 
-       if($res){
+       if($res && $res3){
            echo '1';
        }else{
            echo '0';
