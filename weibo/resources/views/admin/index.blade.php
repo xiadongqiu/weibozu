@@ -32,6 +32,7 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
+<link rel="shortcut icon" href="/admins/images/favicon.ico">
 
 <script type="text/javascript" src="/admins/layer/layer.js"></script>
 
@@ -97,89 +98,7 @@
         
         <!-- User Tools (notifications, logout, profile, change password) -->
         <div id="mws-user-tools" class="clearfix">
-        
-            <!-- 查看提示 -->
-            <div id="mws-user-notif" class="mws-dropdown-menu">
-                <a href="/admins/#" data-toggle="dropdown" class="mws-dropdown-trigger" title="举报"><i class="icon-exclamation-sign"></i></a>
-                
-                <!-- 消息提示 -->
-                <span class="mws-dropdown-notif">11</span>
-                
-                <!-- Notifications dropdown -->
-                <div class="mws-dropdown-box">
-                    <div class="mws-dropdown-content">
-                        <ul class="mws-notifications">
-                        <!-- 已阅读 -->
-                            <li class="read">
-                                <a href="/admins/#" title="已阅读">
-                                    <span class="message">
-                                        <b>微博标题...</b>
-                                    </span>
-                                    <span class="time">
-                                        色情低俗, 2018-01-03
-                                    </span>
-                                </a>
-                            </li>
-                            <!-- 未阅读 -->
-                            <li class="unread">
-                                <a href="/admins/#" title="未阅读">
-                                    <span class="message">
-                                        <b>微博标题...</b>
-                                    </span>
-                                    <span class="time">
-                                        违法暴力, 2018-01-03
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="mws-dropdown-viewall">
-                            <a href="/admins/#">查看全部</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Messages -->
-            <div id="mws-user-message" class="mws-dropdown-menu">
-                <a href="/admins/#" data-toggle="dropdown" class="mws-dropdown-trigger" title="留言"><i class="icon-envelope"></i></a>
-                
-                <!-- 邮件提示 -->
-                <span class="mws-dropdown-notif">3511</span>
-                
-                <!-- Messages dropdown -->
-                <div class="mws-dropdown-box">
-                    <div class="mws-dropdown-content">
-                        <ul class="mws-messages">
-                            <li class="read">
-                                <a href="/admins/#">
-                                    <span class="sender">John Doe</span>
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
-                                    </span>
-                                    <span class="time">
-                                        January 21, 2012
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="unread">
-                                <a href="/admins/#">
-                                    <span class="sender">John Doe</span>
-                                    <span class="message">
-                                        Lorem ipsum dolor sit amet
-                                    </span>
-                                    <span class="time">
-                                        January 21, 2012
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="mws-dropdown-viewall">
-                            <a href="/admins/#">查看全部</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+             <a href="">网站首页</a>
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
             
@@ -192,15 +111,13 @@
                 <div id="mws-user-functions">
                     <div id="mws-username">
 
-                        hello, aa
-
-                        hello, 
+                        hello, [ 管理员 ]
 
                     </div>
                     <ul>
-                        <li><a href="/admins/#" title="">用户</a></li>
+                        <li><a href="/admins/#" title="">用户：</a></li>
                         <li><a href="/admins/#">修改密码</a></li>
-                        <li><a href="/admin/loginout" id="logoff">注销</a></li>
+                        <li><a href="/admin/loginout" id="logoff" title="退出登录">注销</a></li>
                     </ul>
                 </div>
             </div>
@@ -260,7 +177,7 @@
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-exclamation-sign"></i> 举报管理</a>
+                        <a href="/admin/report/list"><i class="icon-exclamation-sign"></i> 举报管理</a>
                     </li>
 
                     <li>

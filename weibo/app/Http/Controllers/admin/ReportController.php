@@ -5,9 +5,10 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Model\user;
-class UserController extends Controller
+use App\Http\Controllers\Controller; 
+use App\Model\
+
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $res = user::get();
-        $auth = array('用户','管理员','超级管理员');
-        $status = array('开启','关闭');
-        return view('admin.user.list',['res' => $res,'auth' => $auth,'status' => $status]);
+
+        return view('admin.report.list');
     }
 
     /**

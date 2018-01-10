@@ -5,7 +5,7 @@
         <span style="font-weight:bold;">
             <i class="icon-table">
             </i>
-             - 用户列表
+             - 举报列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
@@ -50,35 +50,34 @@
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-                @foreach ($res as $k => $val)
+
                     <tr class="even" align="center">
                         <td class="">
-                            {{$val->id}}
+                           
                         </td>
                         <td class="">
-                           {{$val->detail->nickname}}
+                           
                         </td>
                         <td class=" sorting_1">
-                            {{$val->phone}}
+                            
                         </td>
                         <td class=" ">
-                            {{$status[$val->status]}}
+                           
                         </td>
                         <td class=" ">
-                            {{$auth[$val->auth]}}
+                          
                         </td>
                         <td class=" ">
-                            {{date('Y-m-d H:i:s',$val->lastlogin_time)}}
+                           
                         </td>
                         <td class=" ">
-                            @if ($val['auth']<=1)
                                 <a href="" style="color:#333;"><i class="icon-cog-3"></i>管理</a>
-                            @else
+                            
                                 <i class="icon-cog-2"></i>管理
-                            @endif
+                            
                         </td>
                     </tr>
-                @endforeach
+                
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
@@ -121,4 +120,4 @@
     </div>
 </div>  
 @stop
-@section('title','微博-用户')
+@section('title','微博-举报')
