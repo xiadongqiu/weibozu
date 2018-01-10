@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
-<link rel="stylesheet" type="text/css" href="/Homes/css/index.css">
-<link rel="stylesheet" type="text/css" href="/Homes/css/head.css">
-<link rel="stylesheet" type="text/css" href="/Homes/css/foot.css">
-<link rel="stylesheet" type="text/css" href="/Homes/css/detail.css">
-<link rel="stylesheet" type="text/css" href="/Homes/css/user.css">
-<link rel="stylesheet" type="text/css" href="/Homes/css/bian_style.css"><script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/homes/css/index.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/head.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/foot.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/detail.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/user.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css"><script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
 <style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
@@ -44,17 +44,17 @@
 	line-height: 30px;font-size: 12px;
 }
 </style>
-<script type="text/javascript" src="/Homes/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
 </head>
 <body class="body">
 	@section('nav')
 	<div class="top">
 		<div class="top_div">
-			<div class="WB_logo"><img height="35" src="/Homes/images/logo.png"></div>
+			<div class="WB_logo"><img height="35" src="/homes/images/logo.png"></div>
 			<div class="WB_sou">
 				<form action="">
 					<input type="text" style="width:400px;border:none;background:#F2F2F5;height:25px;outline:none;">
-					<input style="float:right;margin-right:10px" type="image" src="/Homes/images/fangdajing_1.png">
+					<input style="float:right;margin-right:10px" type="image" src="/homes/images/fangdajing_1.png">
 				</form>
 			</div>
 			<div class="WB_center">

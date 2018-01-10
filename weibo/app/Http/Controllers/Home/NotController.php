@@ -8,85 +8,42 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\weibo;
+use App\Model\comment;
 
 class NotController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 未登录首页微博信息
      */
-    public function index()
+    public function getIndex()
     {
-
-        
+        //dd(time());
         $weibo = weibo::get();
+        // echo json_encode($weibo);
         return view('Home.index1.not',['data'=>$weibo]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    *   ajax接收，查询评论信息
+    */
+    public function comment (Request $request)
     {
-        //
+        $id = $request->input('id');
+        $ping = comment::where('wid',$id)->get();
+        echo $ping;
+        // var_dump($id);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+   /**
+    *   ajax接收，查询回复信息
+    */
+    public function replay (Request $request)
     {
-        //
-    }
+        $id = $request->input('id');
+        $hui = comment::where('fid',$id)->get();
+        echo $hui;
+        // var_dump($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

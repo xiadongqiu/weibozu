@@ -20,7 +20,10 @@ Route::get('/', function () {
 
 
 // 夏冬秋路由==========================================
-Route::resource('/a','Home\NotController');
+Route::controller('/a','Home\NotController');
+
+Route::get('/comment','Home\NotController@comment');
+Route::get('/replay','Home\NotController@replay');
 
 
 Route::resource('/index','Home\IndexController');
@@ -63,7 +66,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 
 
-  		//判断是否登录的中间件
+  	//判断是否登录的中间件
 		Route::group(['middleware' => 'login'], function () {
    			Route::get('/','IndexController@index');
    			Route::get('/index','IndexController@index');

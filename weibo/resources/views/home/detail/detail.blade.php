@@ -1,4 +1,4 @@
-@extends('Home.public')
+@extends('home.public')
 @section('title','详情')
 @section('content')
 	
