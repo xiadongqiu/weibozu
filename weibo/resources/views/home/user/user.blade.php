@@ -218,6 +218,19 @@
                     </div>
                 @endforeach
                 {{--<!-- 微博内容结束 -->--}}
+                <script type="text/javascript">
+
+                    $('.xiangxia').click(function(){
+                        $(this).siblings().show();
+                        return false;
+
+                    })
+                    $('body').click(function(){
+                        $('.xiangxia_show').hide();
+                    })
+
+
+                </script>
             </div>
             <div class="cont_right">
                 <ul>
@@ -236,7 +249,31 @@
                 <b>相片墙</b>
                 <a href="上传照片">上传图片</a>
             </div>
-            <div id="im_wrapper" class="im_wrapper">
+            <div class="xiangce_pics">
+                <img src="/homes/touxiang/15518061306/thumbs/1.jpg">
+                <img src="/homes/touxiang/15518061306/thumbs/13.jpg">
+                <img src="/homes/touxiang/15518061306/thumbs/19.jpg">
+                <img src="./images/tou.png">
+                <img src="./images/tou.png">
+                <img src="./images/tou.png">
+                <img src="./images/tou.png">
+                <img src="./images/tou.png">
+            </div>
+            <script type="text/javascript">
+                $('.xiangce_pics').children().hover(function(){
+                    $(this).css({border:'1px solid red',boxSizing:'border-box'});
+                    $(this).click(function(){
+                      $('#im_wrapper').show();
+                    });
+                },function(){
+                    $(this).css({border:'1px'});
+                });
+                $('#im_bottom').click(function(){
+                    alert(1);
+                });
+
+            </script>
+            <div id="im_wrapper" class="im_wrapper" style="display: none;">
                 <div style="background-position:0px 0px;"><img src="/homes/touxiang/15518061306/thumbs/1.jpg" alt="" /></div>
                 <div style="background-position:-125px 0px;"><img src="/homes/touxiang/15518061306/thumbs/2.jpg" alt="" /></div>
                 <div style="background-position:-250px 0px;"><img src="/homes/touxiang/15518061306/thumbs/3.jpg" alt="" /></div>
@@ -264,6 +301,7 @@
                 <div style="background-position:-375px -375px;"><img src="/homes/touxiang/15518061306/thumbs/22.jpg" alt="" /></div>
                 <div style="background-position:-500px -375px;"><img src="/homes/touxiang/15518061306/thumbs/23.jpg" alt="" /></div>
                 <div style="background-position:-625px -375px;"><img src="/homes/touxiang/15518061306/thumbs/24.jpg" alt="" /></div>
+
             </div>
             <div id="im_loading" class="im_loading"></div>
             <div id="im_next" class="im_next"></div>
@@ -276,7 +314,7 @@
 
         <!-- 个人中心 -->
         <div class="zhu_center" style="display:none;">
-            <div class="xinxi_one"><span>基本信息</span><button type="button" id="bianji" >编辑</button>
+            <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
             </div>
             <div class="xinxi_two">
                 <table>
@@ -339,15 +377,15 @@
                 <table>
                     <tr>
                         <td><span>邮箱</span></td>
-                        <td><i></i>71***85@qq.com</td>
+                        <td><i></i>{{$res->detail->email}}</td>
                     </tr>
                     <tr>
                         <td><span>QQ</span></td>
-                        <td><i></i>71***85@qq.com</td>
+                        <td><i></i>{{$res->detail->qq}}</td>
                     </tr>
                     <tr>
                         <td><span>MSN</span></td>
-                        <td><i></i>71***85@qq.com</td>
+                        <td><i></i>{{$res->detail->MSN}}</td>
                     </tr>
                 </table>
             </div>
@@ -362,9 +400,10 @@
             </div>
         </div>
         <div class="zhu_center bianji" style="display:none;">
-            <div class="xinxi_one"><span>基本信息</span><button type="button" id="bianji" >编辑</button>
+            <div class="xinxi_one"><span>基本信息</span> <button id="baocun" type="button">保存</button>
             </div>
             <div class="xinxi_two">
+                <form action="" id="form">
                 <table>
                     <tr>
                         <td><span>登录名</span></td>
@@ -372,101 +411,100 @@
                     </tr>
                     <tr>
                         <td><span>昵  称</span></td>
-                        <td><input type="text" name=""/></td>
+                        <td><input type="text" value="" name="nickname" /></td>
                     </tr>
                     <tr>
                         <td><span>真实姓名</span></td>
-                        <td><input type="text" name=""/></td>
+                        <td><input type="text" name="name"/></td>
                     </tr>
                     <tr>
                         <td><span>所在地</span></td>
                         <td>
-                            <select id="province">
+                            <select name="adress" id="province">
 
-                                <option>----请选择省份----</option>
+                                <option>请选择省份</option>
 
-                                <option>北京</option>
+                                <option value="北京">北京</option>
 
-                                <option>上海</option>
+                                <option value="上海">上海</option>
 
-                                <option>江苏</option>
+                                <option value="江苏">江苏</option>
 
-                                <option>河南</option>
+                                <option value="河南">河南</option>
 
-
-                                <option>日本</option>
-
-                            </select>
-
-                            <select class="city">
-
-                                <option>----请选择城市----</option>
+                                <option value="日本">日本</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option>东城</option>
-
-                                <option>西城</option>
-
-                                <option>崇文</option>
-
-                                <option>宣武</option>
-
-                                <option>朝阳</option>
+                                <option>请选择城市</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option>黄浦</option>
+                                <option value="东城">东城</option>
 
-                                <option>卢湾</option>
+                                <option value="西城">西城</option>
 
-                                <option>徐汇</option>
+                                <option value="崇文">崇文</option>
 
-                                <option>长宁</option>
+                                <option value="宣武">宣武</option>
 
-                                <option>静安</option>
-
-                            </select>
-
-                            <select class="city">
-
-                                <option>南京</option>
-
-                                <option>镇江</option>
-
-                                <option>苏州</option>
-
-                                <option>南通</option>
-
-                                <option>扬州</option>
+                                <option value="朝阳">朝阳</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option>郑州</option>
+                                <option value="黄埔">黄浦</option>
 
-                                <option>周口</option>
+                                <option value="卢湾">卢湾</option>
 
-                                <option>洛阳</option>
+                                <option value="徐汇">徐汇</option>
 
-                                <option>南阳</option>
+                                <option value="常宁">长宁</option>
 
-                                <option>安阳</option>
+                                <option value="静安">静安</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option>大阪</option>
+                                <option value="南京">南京</option>
 
-                                <option>秋叶原</option>
+                                <option value="镇江">镇江</option>
 
-                                <option>东京</option>
+                                <option value="苏州">苏州</option>
+
+                                <option value="南通">南通</option>
+
+                                <option value="扬州">扬州</option>
+
+                            </select>
+
+                            <select class="city">
+
+                                <option value="郑州">郑州</option>
+
+                                <option value="周口">周口</option>
+
+                                <option value="洛阳">洛阳</option>
+
+                                <option value="南阳">南阳</option>
+
+                                <option value="安阳">安阳</option>
+
+                            </select>
+
+                            <select class="city">
+
+                                <option value="大阪">大阪</option>
+
+                                <option value="秋叶原">秋叶原</option>
+
+                                <option value="东京">东京</option>
 
 
                             </select>
@@ -475,31 +513,31 @@
                     </tr>
                     <tr>
                         <td><span>性  别</span></td>
-                        <td><input type="radio" name=""/>男
-                            <input type="radio" name=""/>女
+                        <td><input type="radio" name="sex" checked/>男
+                            <input type="radio" name="sex"/>女
                         </td>
                     </tr>
                     <tr>
                         <td><span>性取向</span></td>
-                        <td><input type="checkbox" name=""/>男
-                            <input type="checkbox" name=""/>女
-                            <input type="checkbox" name=""/>双性  	此处可选多项
+                        <td><input type="checkbox" name="sexual[]"/>男
+                            <input type="checkbox" name="sexual[]"/>女
+                            <input type="checkbox" name="sexual[]"/>双性  	此处可选多项
                         </td>
 
                     </tr>
                     <tr>
                         <td><span>感情状况</span></td>
                         <td><select name="" id="">
-                                <option value="" selected>请选择</option>
-                                <option value="">单身狗</option>
-                                <option value="">暗恋中</option>
-                                <option value="">暧昧中</option>
-                                <option value="">恋爱中</option>
-                                <option value="">已婚</option>
-                                <option value="">订婚</option>
-                                <option value="">分居</option>
-                                <option value="">离异</option>
-                                <option value="">丧偶</option>
+                                <option value="默认" selected>请选择</option>
+                                <option value="单身狗">单身狗</option>
+                                <option value="暗恋中">暗恋中</option>
+                                <option value="暧昧中">暧昧中</option>
+                                <option value="恋爱中">恋爱中</option>
+                                <option value="已婚">已婚</option>
+                                <option value="订婚">订婚</option>
+                                <option value="分居">分居</option>
+                                <option value="离异">离异</option>
+                                <option value="丧偶">丧偶</option>
 
 
                             </select></td>
@@ -517,11 +555,11 @@
                     <tr>
                         <td><span>血型</span></td>
                         <td>
-                            <select name="" id="">
-                                <option value="">AB</option>
-                                <option value="">A</option>
-                                <option value="">O</option>
-                                <option value="">B</option>
+                            <select name="blood" id="">
+                                <option value="AB">AB</option>
+                                <option value="A">A</option>
+                                <option value="O">O</option>
+                                <option value="B">B</option>
                             </select>
                         </td>
                     </tr>
@@ -532,15 +570,15 @@
                     </tr>
                     <tr>
                         <td><span>个性域名</span></td>
-                        <td><input type="text" name=""></td>
+                        <td><input type="text" name="domainname"></td>
                     </tr>
                     <tr>
                         <td><span>简介</span></td>
-                        <td><textarea name="" id="" cols="20" rows="2"></textarea></td>
+                        <td><textarea name="abstract" id="" cols="20" rows="2"></textarea></td>
                     </tr>
                     <tr>
                         <td><span>注册时间</span></td>
-                        <td><span>2013-11-06</span></td>
+                        <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
                     </tr>
                 </table>
             </div>
@@ -549,15 +587,15 @@
                 <table>
                     <tr>
                         <td><span>邮箱</span></td>
-                        <td><input type="text" name=""></td>
+                        <td><input type="text" name="email"></td>
                     </tr>
                     <tr>
                         <td><span>QQ</span></td>
-                        <td><input type="text" name=""></td>
+                        <td><input type="text" name="qq"></td>
                     </tr>
                     <tr>
                         <td><span>MSN</span></td>
-                        <td><input type="text" name=""></td>
+                        <td><input type="text" name="msn"></td>
                     </tr>
                 </table>
             </div>/
@@ -566,23 +604,17 @@
                 <table>
                     <tr>
                         <td><span>职业信息</span></td>
-                        <td><input type="text" name=""></td>
+                        <td><input type="text" name="job"></td>
                     </tr>
                 </table>
+                </form>
+
+
             </div>
         </div>
         <!-- 个人中心 -->
     </div>
     <script type="text/javascript">
-
-        $('.xiangxia').click(function(){
-            $(this).siblings().show();
-            return false;
-
-        })
-        $('body').click(function(){
-            $('.xiangxia_show').hide();
-        })
 
         $('.cen_m').children().eq(0).click(function(){
             $('.content').show();
@@ -607,12 +639,33 @@
             $('.bianji').hide();
         });
 
+
         $('#bianji').click(function(){
+            // alert(1);
+
             $('.zhu_center').hide();
             $('.bianji').show();
-
         });
 
+        $('#baocun').click(function(){
+            $('.zhu_center').show();
+            $('.bianji').hide();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/user/user/edit",
+                data: {'form':$('#form').serialize(),'_token':'{{csrf_token()}}'},
+                success: function (result) {
+                    if(data == 1){
+                        layer.msg('保存成功');
+                    }else{
+                        layer.msg('修改失败,请重试');
+                    }
+                },
+                contentType:'application/x-www-form-urlencoded; charset=UTF-8'
+            });
+
+        });
         var currentShowCity=0;
         $(document).ready(function(){
             $("#province").change(function(){
@@ -651,6 +704,7 @@
             }
             getDays($("#month").val(),$("#year").val());//执行函数getDays()，传参year和month，初始化day selector
         });
+
         function getDaysInMonth(month,year){//年月对应的日数算法
             var days;
             if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) {
