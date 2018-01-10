@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\weibo;
-
-class PostController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $data = weibo::get();
-        
-        return view('admin/post/list',['data'=>$data]);
+    {
+         return view('Home.index.index');
     }
 
     /**
@@ -87,6 +83,5 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-       dd($id);
     }
 }
