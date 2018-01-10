@@ -98,7 +98,87 @@
         
         <!-- User Tools (notifications, logout, profile, change password) -->
         <div id="mws-user-tools" class="clearfix">
+
              <a href="">网站首页</a>
+
+        
+            <!-- 查看提示 -->
+            <div id="mws-user-notif" class="mws-dropdown-menu">
+               
+                
+                <!-- Notifications dropdown -->
+                <div class="mws-dropdown-box">
+                    <div class="mws-dropdown-content">
+                        <ul class="mws-notifications">
+                        <!-- 已阅读 -->
+                            <li class="read">
+                                <a href="/admins/#" title="已阅读">
+                                    <span class="message">
+                                        <b>微博标题...</b>
+                                    </span>
+                                    <span class="time">
+                                        色情低俗, 2018-01-03
+                                    </span>
+                                </a>
+                            </li>
+                            <!-- 未阅读 -->
+                            <li class="unread">
+                                <a href="/admins/#" title="未阅读">
+                                    <span class="message">
+                                        <b>微博标题...</b>
+                                    </span>
+                                    <span class="time">
+                                        违法暴力, 2018-01-03
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="mws-dropdown-viewall">
+                            <a href="/admins/#">查看全部</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Messages -->
+            <div id="mws-user-message" class="mws-dropdown-menu">
+                
+                
+                <!-- Messages dropdown -->
+                <div class="mws-dropdown-box">
+                    <div class="mws-dropdown-content">
+                        <ul class="mws-messages">
+                            <li class="read">
+                                <a href="/admins/#">
+                                    <span class="sender">John Doe</span>
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="unread">
+                                <a href="/admins/#">
+                                    <span class="sender">John Doe</span>
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="mws-dropdown-viewall">
+                            <a href="/admins/#">查看全部</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
             
@@ -171,8 +251,8 @@
                         <a href="/admins/#"><i class="icon-comments-2"></i> 微博管理</a>
                         <ul style="display: none;" class="closed">
                             <li><a href="/admin/post">微博列表</a></li>
-                            <li><a href="/admins/#">微博评论</a></li>
-                            <li><a href="/admins/#">评论回复</a></li>
+                            <li><a href="/admin/comments">评论列表</a></li>
+                            
                         </ul>
                     </li>
 

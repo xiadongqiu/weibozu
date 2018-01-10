@@ -56,6 +56,7 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
 	Route::post('/login','LoginController@login');
+
 	Route::group(['middleware' => 'login'], function () {
 	    Route::get('/','IndexController@index');
 	});
@@ -74,6 +75,12 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
   		//判断是否登录的中间件
 		Route::group(['middleware' => 'adminlogin'], function () {
+
+
+
+  		//判断是否登录的中间件
+		// Route::group(['middleware' => 'login'], function () {
+
    			Route::get('/','IndexController@index');
    			Route::get('/index','IndexController@index');
    			Route::get('/loginout','LoginController@loginout');
@@ -82,9 +89,15 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
         Route::get('/user',function(){return redirect('admin/user/list');});
    			Route::resource('/user/list','UserController');
 
+
         //默认跳转到举报list
         Route::get('/report',function(){return redirect('admin/report/list');});
         Route::resource('/report/list','ReportController');
   	  	});
+
+
+  	  	// });
+  		Route::resource('/post','PostController');
+  		Route::resource('/comments','CommentsController');
 
 });

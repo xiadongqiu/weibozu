@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\weibo;
+use App\Model\comment;
 
-class PostController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $data = weibo::get();
-        
-        return view('admin/post/list',['data'=>$data]);
+        $res = comment::get();
+        // dd($res);
+        return view('admin/post/comments',['res'=>$res]);
     }
 
     /**
@@ -87,6 +87,5 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-       dd($id);
     }
 }

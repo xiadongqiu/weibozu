@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title','微博')
+@section('title','微博列表')
 @section('zhuti')
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
@@ -19,6 +19,9 @@
                     搜索:
                     <input type="text" aria-controls="DataTables_Table_1">
                 </label>
+                <button style="height:25px;background:#444;border:1px solid #666;color:#fff;border-radius:3px;">
+                <i class="icon-search"></i>
+                </button>
             </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
             aria-describedby="DataTables_Table_1_info">
@@ -77,47 +80,66 @@
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
+
+                @foreach($data as $k=>$v)
+                    
                     <tr class="odd">
                         <td class="  sorting_1">
-                            Gecko
+                          {{$v['id']}}
                         </td>
-                        <td class=" ">
-                            Firefox 1.0
+                        <td>
+                            {{$v['type']}}
                         </td>
-                        <td class=" ">
-                            Win 98+ / OSX.2+
+                        <td>
+                            {{$v['collect']}}
                         </td>
                        
-                        <td class=" ">
-                            A
+                        <td>
+                            {{$v['comment']}}
                         </td>
-                        <td class=" ">
-                            A
+                        <td>
+                            {{$v['transpond']}}
                         </td>
-                        <td class=" ">
-                            A
+                        <td>
+                            {{date('Y-m-d H:i:s',time($v['publish_time']))}}
                         </td>
-                        <td class=" ">
-                            A
+                        
+                        @if($v['status']==0)
+                        <td >
+                            显示    
                         </td>
-                        <td class=" ">
-                            A
+                        @else
+                        <td >
+                            已屏蔽   
                         </td>
-                        <td class=" ">
-                            A
+                        @endif
+                        <td >
+                            {{$v['report']}}
                         </td>
-                        <td class=" ">
-                            A
+
+                        @if($v['hot']==0)
+                        <td >
+                            默认
                         </td>
-                        <td class=" ">
-                            A
+                        @else
+                        <td >
+                            热门
                         </td>
-                        <td class=" ">
-                            <a href="#" class="btn btn-small"><i class="icon-search"></i></a>
-                            <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                        @endif
+                        <td >
+                            {{$v['like']}}
+                        </td>
+                        <td >
+                            {{$v->detail->nickname}}
+                        </td>
+                        <td >
+                            <a href="#" class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
+                           
+                            <a href="#" class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
+                            
                         </td>
                     </tr>
-                    
+                @endforeach
                 </tbody>
             </table>
             
