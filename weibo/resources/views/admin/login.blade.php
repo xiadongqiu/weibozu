@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/login.css" media="screen">
 
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
+<link rel="shortcut icon" href="/admins/images/favicon.ico">
 
 <title>后台登录</title>
 
@@ -65,7 +66,7 @@
     <script src="/admins/layer/layer.js"></script>
     <script type="text/javascript">
         $('#login').click(function(){
-
+        	
             $.post('/admin/login',{phone:$('#username').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
                 switch(data){
                     case "1":

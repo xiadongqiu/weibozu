@@ -2,7 +2,7 @@
 @section('zhuti')
     <div class="mws-panel grid_8">
     <div class="mws-panel-header">
-        <span>
+        <span style="font-weight:bold;">
             <i class="icon-table">
             </i>
              - 用户列表
@@ -11,228 +11,87 @@
     <div class="mws-panel-body no-padding">
         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
             <div id="DataTables_Table_1_length" class="dataTables_length">
+                <a href="" style="color:#333;font-weight:bold;line-height:30px;">
+                    <i class="icon-plus-sign"></i>
+                    添加用户
+                </a>
             </div>
             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                 <label>
-                    Search:
                     <input type="text" aria-controls="DataTables_Table_1">
+                    <button style="height:25px;background:#444;border:1px solid #666;color:#fff;border-radius:3px;"><i class="icon-search"></i></button>
                 </label>
             </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
             aria-describedby="DataTables_Table_1_info">
                 <thead>
                     <tr role="row">
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending"
-                        style="width: 182px;">
-                            Rendering engine
+                        <th style="width: 25px;">
+                            Id
                         </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-                        style="width: 245.889px;">
-                            Browser
+                        <th style="width: 130px;">
+                            昵称
                         </th>
-                        <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" aria-sort="descending" aria-label="Platform(s): activate to sort column ascending"
-                        style="width: 229.889px;">
-                            Platform(s)
+                        <th style="width: 170px;">
+                            账号
                         </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
-                        style="width: 155.889px;">
-                            Engine version
+                        <th style="width: 50px;">
+                            状态
                         </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                        style="width: 115.889px;">
-                            CSS grade
+                        <th style="width: 70px;">
+                            权限
+                        </th>
+                        <th style="width: 120px;">
+                            最后登录
+                        </th>
+                        <th style="width: 200px;">
+                            操作
                         </th>
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-                    <tr class="odd">
+                @foreach ($res as $k => $val)
+                    <tr class="even" align="center">
                         <td class="">
-                            Misc
+                            {{$val->id}}
                         </td>
                         <td class="">
-                            IE Mobile
+                           {{$val->detail->nickname}}
                         </td>
                         <td class=" sorting_1">
-                            Windows Mobile 6
+                            {{$val->phone}}
                         </td>
                         <td class=" ">
-                            -
+                            {{$status[$val->status]}}
                         </td>
                         <td class=" ">
-                            C
+                            {{$auth[$val->auth]}}
+                        </td>
+                        <td class=" ">
+                            {{date('Y-m-d H:i:s',$val->lastlogin_time)}}
+                        </td>
+                        <td class=" ">
+                            @if ($val['auth']<=1)
+                                <a href="" style="color:#333;"><i class="icon-cog-3"></i>管理</a>
+                            @else
+                                <i class="icon-cog-2"></i>管理
+                            @endif
                         </td>
                     </tr>
-                    <tr class="even">
-                        <td class="">
-                            Trident
-                        </td>
-                        <td class="">
-                            Internet Explorer 7
-                        </td>
-                        <td class=" sorting_1">
-                            Win XP SP2+
-                        </td>
-                        <td class=" ">
-                            7
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="odd">
-                        <td class="">
-                            Trident
-                        </td>
-                        <td class="">
-                            AOL browser (AOL desktop)
-                        </td>
-                        <td class=" sorting_1">
-                            Win XP
-                        </td>
-                        <td class=" ">
-                            6
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="even">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Netscape Browser 8
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98SE+
-                        </td>
-                        <td class=" ">
-                            1.7
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="odd">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Firefox 1.0
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.2+
-                        </td>
-                        <td class=" ">
-                            1.7
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="even">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Firefox 1.5
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.2+
-                        </td>
-                        <td class=" ">
-                            1.8
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="odd">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Firefox 2.0
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.2+
-                        </td>
-                        <td class=" ">
-                            1.8
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="even">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Netscape Navigator 9
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.2+
-                        </td>
-                        <td class=" ">
-                            1.8
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="odd">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Seamonkey 1.1
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.2+
-                        </td>
-                        <td class=" ">
-                            1.8
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
-                    <tr class="even">
-                        <td class="">
-                            Gecko
-                        </td>
-                        <td class="">
-                            Mozilla 1.7
-                        </td>
-                        <td class=" sorting_1">
-                            Win 98+ / OSX.1+
-                        </td>
-                        <td class=" ">
-                            1.7
-                        </td>
-                        <td class=" ">
-                            A
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
-                Showing 1 to 10 of 57 entries
+                共100条   10/页
             </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                 <a tabindex="0" class="first paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_first">
-                    First
+                    首页
                 </a>
                 <a tabindex="0" class="previous paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_previous">
-                    Previous
+                    上一页
                 </a>
                 <span>
                     <a tabindex="0" class="paginate_active">
@@ -252,14 +111,14 @@
                     </a>
                 </span>
                 <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
-                    Next
+                    下一页
                 </a>
                 <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
-                    Last
+                    尾页
                 </a>
             </div>
         </div>
     </div>
 </div>  
 @stop
-@section('title','微博-user')
+@section('title','微博-用户')

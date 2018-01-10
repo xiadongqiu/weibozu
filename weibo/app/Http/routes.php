@@ -20,7 +20,10 @@ Route::get('/', function () {
 
 
 // 夏冬秋路由==========================================
-Route::resource('/a','Home\NotController');
+Route::controller('/a','Home\NotController');
+
+Route::get('/comment','Home\NotController@comment');
+Route::get('/replay','Home\NotController@replay');
 
 
 Route::resource('/index','Home\IndexController');
@@ -29,6 +32,8 @@ Route::resource('/detail','Home\DetailController');
 
 //===================================================
 
+
+//陈明路由==================================================
 Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     //用于访问登录页面的和处理登录信息的路由
 
@@ -37,31 +42,55 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
     Route::controller('/register','RegisterController');
 
-    Route::controller('/user','UserController');
-
+    Route::group(['middleware'=>'home'],function(){
+        //用于展示个人中心以及处理数据
+        Route::controller('/user','UserController');
+    });
 });
+//===============================================================
 
 
 //后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
-	Route::get('/login','LoginController@index');
-	Route::post('/login','LoginController@login');
+
+  //跳转到登录页
+  Route::get('/login','LoginController@index');
+
+  //登录提交执行
+  Route::post('/login','LoginController@login');
+
+  //判断是否登录的中间件
+  Route::group(['middleware' => 'adminlogin'], function () {
+
+    //跳转到首页
+    Route::get('/','IndexController@index');
+    Route::get('/index','IndexController@index');
+
+    //退出登录
+    Route::get('/loginout','LoginController@loginout');
+
+     //默认跳转到用户list
+    Route::get('/user',function(){return redirect('admin/user/list');});
+    Route::resource('/user/list','UserController');
 
 
+    //默认跳转到举报list
+    Route::get('/report',function(){return redirect('admin/report/list');});
+    Route::resource('/report/list','ReportController');
+   });
+   
 
-    
+
+//吕明泽路由=====================================================================
+    Route::resource('/post','PostController');
+    Route::resource('/comments','CommentsController');
+//==============================================================================
 
 
-
-  		//判断是否登录的中间件
-		// Route::group(['middleware' => 'login'], function () {
-   			Route::get('/','IndexController@index');
-   			Route::get('/index','IndexController@index');
-   			Route::get('/loginout','LoginController@loginout');
-   			Route::resource('/user/list','UserController');
-  	  	// });
-        Route::resource('/post','PostController');
-        //后台网站配置路由
-        Route::get('/config','ConfigController@edit');
+//郑鑫路由=======================================================================
+    //后台网站配置路由
+     Route::get('/config','ConfigController@edit');
+//==============================================================================
 });
+      
 

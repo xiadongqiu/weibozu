@@ -10,9 +10,13 @@ use App\Model\user;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin/login');
+        if($request->session()->has('admin')){
+            return redirect('admin/index');
+        }else{
+            return view('admin/login');
+        }
     }
 
     public function login(Request $request)

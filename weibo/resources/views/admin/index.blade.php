@@ -32,8 +32,8 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
+<link rel="shortcut icon" href="/admins/images/favicon.ico">
 
-<script type="text/javascript" src="/admins/layer/layer.js"></script>
 
 <title>@yield('title','微博-admin')</title>
 
@@ -97,13 +97,13 @@
         
         <!-- User Tools (notifications, logout, profile, change password) -->
         <div id="mws-user-tools" class="clearfix">
+
+             <a href="">网站首页</a>
+
         
             <!-- 查看提示 -->
             <div id="mws-user-notif" class="mws-dropdown-menu">
-                <a href="/admins/#" data-toggle="dropdown" class="mws-dropdown-trigger" title="举报"><i class="icon-exclamation-sign"></i></a>
-                
-                <!-- 消息提示 -->
-                <span class="mws-dropdown-notif">11</span>
+               
                 
                 <!-- Notifications dropdown -->
                 <div class="mws-dropdown-box">
@@ -141,10 +141,7 @@
             
             <!-- Messages -->
             <div id="mws-user-message" class="mws-dropdown-menu">
-                <a href="/admins/#" data-toggle="dropdown" class="mws-dropdown-trigger" title="留言"><i class="icon-envelope"></i></a>
                 
-                <!-- 邮件提示 -->
-                <span class="mws-dropdown-notif">3511</span>
                 
                 <!-- Messages dropdown -->
                 <div class="mws-dropdown-box">
@@ -180,6 +177,7 @@
                 </div>
             </div>
             
+
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
             
@@ -192,15 +190,13 @@
                 <div id="mws-user-functions">
                     <div id="mws-username">
 
-                        hello, aa
-
-                        hello, 
+                        hello, [ 管理员 ]
 
                     </div>
                     <ul>
-                        <li><a href="/admins/#" title="">用户</a></li>
+                        <li><a href="/admins/#" title="">用户：</a></li>
                         <li><a href="/admins/#">修改密码</a></li>
-                        <li><a href="/admin/loginout" id="logoff">注销</a></li>
+                        <li><a href="/admin/loginout" id="logoff" title="退出登录">注销</a></li>
                     </ul>
                 </div>
             </div>
@@ -254,21 +250,13 @@
                         <a href="/admins/#"><i class="icon-comments-2"></i> 微博管理</a>
                         <ul style="display: none;" class="closed">
                             <li><a href="/admin/post">微博列表</a></li>
-                            <li><a href="/admins/#">微博评论</a></li>
-                            <li><a href="/admins/#">评论回复</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="/admins/#"><i class="icon-exclamation-sign"></i> 举报管理</a>
-                    </li>
-
-                    <li>
-                        <a href="/admins/#"><i class="icon-planet"></i>网站配置</a>
-                         <ul style="display: none;" class="closed">
-                            <li><a href="/admin/config">配置信息</a></li>
+                            <li><a href="/admin/comments">评论列表</a></li>
                             
                         </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admin/report/list"><i class="icon-warning-sign"></i> 举报管理</a>
                     </li>
 
                     <li>
@@ -285,6 +273,13 @@
                             <li><a href="/admin/#">公告添加</a></li>
                             <li><a href="/admins/#">公告修改</a></li>
                              <li><a href="/admins/#">公告列表</a></li>
+                        </ul>
+                    </li>
+
+                     <li>
+                        <a href="/admins/#"><i class="icon-planet"></i>网站配置</a>
+                         <ul style="display: none;" class="closed">
+                            <li><a href="/admin/config">配置信息</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -335,11 +330,6 @@
     <!--[if lt IE 9]>
     <script src="/admins/js/libs/excanvas.min.js"></script>
     <![endif]-->
-    <script src="/admins/plugins/flot/jquery.flot.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.tooltip.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.pie.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.stack.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.resize.min.js"></script>
     <script src="/admins/plugins/colorpicker/colorpicker-min.js"></script>
     <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
     <script src="/admins/custom-plugins/wizard/wizard.min.js"></script>
@@ -354,6 +344,7 @@
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
     
+<script type="text/javascript" src="/admins/layer/layer.js"></script>
 
 </body>
 </html>

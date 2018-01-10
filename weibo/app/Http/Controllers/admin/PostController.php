@@ -18,9 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {   
-        // $data = weibo::get();
-        // dump($data);
-        return view('admin/list');
+        $data = weibo::get();
+        
+        return view('admin/post/list',['data'=>$data]);
     }
 
     /**
@@ -87,5 +87,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+       dd($id);
     }
 }
