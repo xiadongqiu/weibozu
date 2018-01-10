@@ -90,7 +90,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 
   		//判断是否登录的中间件
-		// Route::group(['middleware' => 'login'], function () {
+		Route::group(['middleware' => 'login'], function () {
 
    			Route::get('/','IndexController@index');
    			Route::get('/index','IndexController@index');
