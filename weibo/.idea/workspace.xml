@@ -17,8 +17,8 @@
       <file leaf-file-name="user.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home/user/user.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="643" column="24" lean-forward="false" selection-start-line="643" selection-start-column="24" selection-end-line="643" selection-end-column="24" />
+            <state relative-caret-position="426">
+              <caret line="651" column="32" lean-forward="true" selection-start-line="651" selection-start-column="32" selection-end-line="651" selection-end-column="32" />
               <folding>
                 <marker date="1515596329413" expanded="true" signature="9:22" ph="..." />
                 <marker date="1515596329413" expanded="true" signature="33:47" ph="..." />
@@ -173,7 +173,28 @@
             <path>
               <item name="weibo" type="b2602c69:ProjectViewProjectNode" />
               <item name="weibo" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weibo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weibo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weibo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weibo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weibo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weibo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="user" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -219,12 +240,12 @@
       <workItem from="1515379853952" duration="35472000" />
       <workItem from="1515459867375" duration="36145000" />
       <workItem from="1515546348615" duration="17932000" />
-      <workItem from="1515576939041" duration="14692000" />
+      <workItem from="1515576939041" duration="14945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162584000" />
+    <option name="totallyTimeSpent" value="162837000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="230" y="157" width="1661" height="797" extended-state="0" />
@@ -652,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/user/user.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="643" column="24" lean-forward="false" selection-start-line="643" selection-start-column="24" selection-end-line="643" selection-end-column="24" />
+        <state relative-caret-position="426">
+          <caret line="651" column="32" lean-forward="true" selection-start-line="651" selection-start-column="32" selection-end-line="651" selection-end-column="32" />
           <folding>
             <marker date="1515596329413" expanded="true" signature="9:22" ph="..." />
             <marker date="1515596329413" expanded="true" signature="33:47" ph="..." />
