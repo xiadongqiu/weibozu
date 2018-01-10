@@ -67,7 +67,7 @@
                             {{date('Y-m-d H:i:s',time($v['comment_time']))}}
                         </td>
                         <td>
-                            {{$v['pid']}}
+                            {{$v['nickname']}}
                         </td>
                        
                         <td>
@@ -85,9 +85,9 @@
                         @endif
                       
                         <td >
-                            <a href="#" class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
+                            <a  class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
                            
-                            <a href="#" class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
+                            <a id="shanchu" class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
                             
                         </td>
                     </tr>
@@ -132,5 +132,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#shanchu').click(function(){
+        
+        alert('aaaaa');
+    });
+    
+</script>
 @stop
 

@@ -66,7 +66,7 @@
     <script src="/admins/layer/layer.js"></script>
     <script type="text/javascript">
         $('#login').click(function(){
-
+        	
             $.post('/admin/login',{phone:$('#username').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
                 switch(data){
                     case "1":

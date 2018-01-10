@@ -34,7 +34,6 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
-<script type="text/javascript" src="/admins/layer/layer.js"></script>
 
 <title>@yield('title','微博-admin')</title>
 
@@ -257,7 +256,7 @@
                     </li>
 
                     <li>
-                        <a href="/admin/report/list"><i class="icon-exclamation-sign"></i> 举报管理</a>
+                        <a href="/admin/report/list"><i class="icon-warning-sign"></i> 举报管理</a>
                     </li>
 
                     <li>
@@ -313,11 +312,11 @@
             
         </div>
         <!-- 内容栏结束 -->
-        
-    </div>
 
-    <!-- JavaScript Plugins -->
+    </div>
     <script src="/admins/js/libs/jquery-1.8.3.min.js"></script>
+    <script src="/admins/layer/layer.js"></script>
+    <!-- JavaScript Plugins -->
     <script src="/admins/js/libs/jquery.mousewheel.min.js"></script>
     <script src="/admins/js/libs/jquery.placeholder.min.js"></script>
     <script src="/admins/custom-plugins/fileinput.js"></script>
@@ -332,11 +331,7 @@
     <!--[if lt IE 9]>
     <script src="/admins/js/libs/excanvas.min.js"></script>
     <![endif]-->
-    <script src="/admins/plugins/flot/jquery.flot.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.tooltip.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.pie.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.stack.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.resize.min.js"></script>
+   
     <script src="/admins/plugins/colorpicker/colorpicker-min.js"></script>
     <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
     <script src="/admins/custom-plugins/wizard/wizard.min.js"></script>
@@ -351,6 +346,10 @@
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
     
+@section('js')
+
+
+@show
 
 </body>
 </html>
