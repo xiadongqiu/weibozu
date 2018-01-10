@@ -50,10 +50,6 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 });
 //===============================================================
-<<<<<<< HEAD
-=======
-
-
 //后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 	Route::get('/login','LoginController@index');
@@ -122,4 +118,4 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
   		Route::resource('/comments','CommentsController');
 
 });
->>>>>>> 8ca32ce3e9db674e1b53e54bb8578e89e751f053
+
