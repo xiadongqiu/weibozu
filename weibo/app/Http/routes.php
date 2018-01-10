@@ -50,7 +50,6 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 //===============================================================
 
 
-<<<<<<< HEAD
 //后台
 Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
@@ -94,5 +93,4 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 //==============================================================================
 });
       
-=======
->>>>>>> 595b6585c13782e1b1be5ab48237d6b1f977e968
+
