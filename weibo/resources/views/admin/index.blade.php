@@ -332,11 +332,7 @@
     <!--[if lt IE 9]>
     <script src="/admins/js/libs/excanvas.min.js"></script>
     <![endif]-->
-    <script src="/admins/plugins/flot/jquery.flot.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.tooltip.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.pie.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.stack.min.js"></script>
-    <script src="/admins/plugins/flot/plugins/jquery.flot.resize.min.js"></script>
+
     <script src="/admins/plugins/colorpicker/colorpicker-min.js"></script>
     <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
     <script src="/admins/custom-plugins/wizard/wizard.min.js"></script>

@@ -67,7 +67,7 @@
 							<a href="javascript:;">转发</a>
 							<span>{{ ($val->transpond) > 99999 ? round($val->transpond/10000).'万' :  $val->transpond}}</span>
 						</li>
-						<li id="Ping">
+						<li class="Ping">
 							<input type="hidden" value="{{$val->id}}">
 							<a href="javascript:;">评论</a>
 							<span>{{ ($val->comment) > 99999 ? round($val->comment/10000).'万' :  $val->comment}}</span>
@@ -102,7 +102,7 @@
 									<span class="WB_ping_onespan">
 										<a href="javascript:;">举报</a>
 										<a href="javascript:;">屏蔽</a>
-										<a href="javascript:;">回复</a>
+										<a class="" href="javascript:;">回复</a>
 										<i>11</i>
 									</span>
 								</li>
@@ -179,9 +179,6 @@
 			</div>
 			<!-- 微博内容结束 -->
 			
-
-
-
 			@endforeach
 
 		</div>
@@ -266,71 +263,72 @@
 		</div>
 	</div>
 <script type="text/javascript">
-var attr = $('.wei_bottom #Ping').attr('pre');
 
-$('.wei_bottom #Ping').live('click',function(){
-	if(attr == null){
+$('.wei_bottom').on("click",".Ping",function(){
+	if($(this).attr('pre') == null){
 		$(this).attr('pre','pre');
-		$.get('/comment',{id:$(this).find("input").val()}, function (data){		
+		$.get('/comment',{id:$(this).find("input").val()}, function (data){
 			if(data){
 				for(var i=0;i<3;i++){
-					// console.log(data[i]);
-					// $('li[pre=pre]').parent().parent().next().prepend("<div>123</div>");
 					if(data[i]['fid'] == 0){
-						$('li[pre=pre]').parent().parent().next().prepend("<div class='WB_ping'><div class='WB_ping_one'><a href='javascript:;'><img width='30' height='30' src='./Homes/images/tou.png'></a><ul class='WB_ping_oneul'><li><a href='javascript:;'>'"+data[i]['id']+"'</a>："+data[i]['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;' id='Hui'>回复</a><input type='hidden' value="+data[i]['id']+"><i>11</i></span></li></ul></div></div>");
+						$('li[pre=pre]').parent().parent().next().append("<div class='WB_ping'><div class='WB_ping_one'><a href='javascript:;'><img width='30' height='30' src='./Homes/images/tou.png'></a><ul class='WB_ping_oneul'><li><a href='javascript:;'>"+data[i]['nickname']+"</a>："+data[i]['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;' class='replays' onclick='replays(this)' param="+data[i]['id']+">回复</a><input type='hidden' value="+data[i]['id']+"><i>11</i></span></li></ul></div></div>");
+
 					}
 				}
 			}
+
 			$('li[pre=pre]').parent().parent().next().prepend("<div class='wei_ping'><a href='javascript:;'><img width='30' height='30' src='./Homes/images/tou.png'></a><form><input type='text' class='wei_pingcon'><input type='submit' value='评论' class='wei_pinglun'></form></div>");
-			$('.wei_replay').slideDown();
+			//$('li[pre=pre]').parent().parent().next().prepend("<div class='wei_ping'><a href='javascript:;'><img width='30' height='30' src='./Homes/images/tou.png'></a><form><input type='text' class='wei_pingcon'><input type='submit' value='评论' class='wei_pinglun'></form></div>");
+
+			//$('li[pre=pre]').parent().parent().next().after('<div class="weibo_gengduo"><a href="javascript:;">查看更多 > </a></div>');
+
+			$('li[pre=pre]').parent().parent().next().slideDown();
+			//$('.wei_replay').slideDown();
 		},"json");
 	}else{
-		$('.wei_replay').slideUp();
-		$('.wei_bottom #Ping').removeAttr('pre');
+		//$('.wei_replay').slideUp();
+		//$('.wei_replay').empty();
+		//$('.wei_bottom .Ping').removeAttr('pre');
+		$(this).parent().parent().next().slideUp();
+		$(this).parent().parent().next().empty();
+		// $(this).parent().parent().next().next().remove();
+		$(this).removeAttr('pre');
 	}
 	
 });
 
 
-		
 
 
-
-
-	/*function(){
-		
-	}*/
 // 回复==========================
-	/*$('#hui').toggle(function(){
-		$(this).attr('pre','pre');
-		$.get('/replay',{id:$(this).netx("input").val()}, function (data){
+function replays(obj){
+	var id = $(obj).attr('param');
+	if($(obj).attr('rep') == null){
+		$(obj).attr('rep','rep');
+		$.get('/replay',{id:$(obj).attr('param')}, function (data){
 			if(data){
-				//for(var i=0;i<3;i++){
-					if(data[i]['fid'] == 0){
-						$('a[pre=pre]').parent().parent().parent().parent().parent().next().prepend("<div>111</div>");
-					//}
+				$(obj).parent().parent().parent().parent().after('<div class="WB_ping_two"><form><input type="text" class="wei_hui"><input type="submit" value="评论" class="wei_huifu"></form></div>');
+				for(var i=0;i<3;i++){
+					$(obj).parent().parent().parent().parent().next().after("<div class='WB_ping_three'><ul class='WB_ping_three_ul'><li><a href='javascript:;'>"+data[i]['nickname']+"</a>:'"+data[i]['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;'>回复</a><i>11</i></span></li></ul></div>");
 				}
 			}
-			
+			$(obj).parent().parent().parent().parent().show();
 		},"json");
-	},function(){
 
-	})*/
+	}else{
+		$(obj).parent().parent().parent().parent().nextAll().hide();
+		$(obj).removeAttr('rep');
+		$(obj).parent().parent().parent().parent().nextAll().remove();
+	}
+}
 
-	$("#hui").live('click',function(){
-		alert(1);
-		$(this).attr('pre','pre');
-		$.get('/replay',{id:$(this).netx("input").val()}, function (data){
-			if(data){
-				//for(var i=0;i<3;i++){
-					if(data[i]['fid'] == 0){
-						$('a[pre=pre]').parent().parent().parent().parent().parent().next().prepend("<div>111</div>");
-					//}
-				}
-			}
-			
-		},"json");
-	})
+$('.wei_replay .replays').hover(function(){
+	$(this).css({'color':'#fa7d3c'});
+},function(){
+	$(this).css({'color':'#666'});
+});
+
+
 
 </script>
 
@@ -344,9 +342,7 @@ $('.wei_bottom #Ping').live('click',function(){
 		})
 		$('body').click(function(){
 			$('.xiangxia_show').hide();
-		})
-
-		
+		})	
 			
 	})
 </script>

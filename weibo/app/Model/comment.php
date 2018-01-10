@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class comment extends Model
 {
     //属于===评论属于微博
-    public function comment()
+    public function weibo()
     {
-        return $this->belongsTo('App\Model\comment','wid');
+        return $this->belongsTo('App\Model\weibo','wid');
     }
 }

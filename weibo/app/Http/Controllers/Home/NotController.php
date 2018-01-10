@@ -28,10 +28,10 @@ class NotController extends Controller
     */
     public function comment (Request $request)
     {
+        
         $id = $request->input('id');
-        $ping = comment::where('wid',$id)->get();
-        echo $ping;
-        // var_dump($id);
+        $comment = comment::where('wid',$id)->get();
+        echo json_encode($comment);
 
     }
 
@@ -42,7 +42,7 @@ class NotController extends Controller
     {
         $id = $request->input('id');
         $hui = comment::where('fid',$id)->get();
-        echo $hui;
+        echo json_encode($hui);
         // var_dump($id);
 
     }
