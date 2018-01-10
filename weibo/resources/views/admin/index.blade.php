@@ -261,7 +261,28 @@
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-cogs"></i> 网站配置</a>
+                        <a href="/admins/#"><i class="icon-planet"></i>网站配置</a>
+                         <ul style="display: none;" class="closed">
+                            <li><a href="/admin/config">配置信息</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
+                         <ul style="display: none;" class="closed">
+                            <li><a href="/admin/#">广告添加</a></li>
+                            <li><a href="/admins/#">广告修改</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admins/#"><i class="icon-sound"></i>系统公告</a>
+                         <ul style="display: none;" class="closed">
+                            <li><a href="/admin/#">公告添加</a></li>
+                            <li><a href="/admins/#">公告修改</a></li>
+                             <li><a href="/admins/#">公告列表</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
