@@ -2,7 +2,7 @@
 @section('zhuti')
     <div class="mws-panel grid_8">
     <div class="mws-panel-header">
-        <span style="font-weight:bold;">
+        <span>
             <i class="icon-table">
             </i>
              - 用户列表
@@ -11,15 +11,12 @@
     <div class="mws-panel-body no-padding">
         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
             <div id="DataTables_Table_1_length" class="dataTables_length">
-                <a href="" style="color:#333;font-weight:bold;line-height:30px;">
-                    <i class="icon-plus-sign"></i>
-                    添加用户
-                </a>
+                <!--  -->
             </div>
             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                 <label>
                     <input type="text" aria-controls="DataTables_Table_1">
-                    <button style="height:25px;background:#444;border:1px solid #666;color:#fff;border-radius:3px;"><i class="icon-search"></i></button>
+                    <button style="height:25px;background:#444;border:1px solid #333;color:#fff;border-radius:3px;"><i class="icon-search"></i></button>
                 </label>
             </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
@@ -71,11 +68,11 @@
                             {{date('Y-m-d H:i:s',$val->lastlogin_time)}}
                         </td>
                         <td class=" ">
-                            @if ($val['auth']<=1)
-                                <a href="" style="color:#333;"><i class="icon-cog-3"></i>管理</a>
-                            @else
-                                <i class="icon-cog-2"></i>管理
-                            @endif
+                                <a href="/admin/user/{{$val->id}}" style="color:#333;">查看详细</a>
+                                丨
+                                <a href="/admin/user/{{$val->id}}/edit" style="color:#333;font-size:15px;"><i class="icon-edit" title="编辑"></i></a>&nbsp;&nbsp;&nbsp;
+                                <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
+
                         </td>
                     </tr>
                 @endforeach

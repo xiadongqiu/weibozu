@@ -16,6 +16,6 @@ class IndexController extends Controller
     	$res = user::find($id);
     	$auth = array('普通用户','管理员','超级管理员');
     	$array = ['username'=>$res['phone']];
-        return view('admin.index');
+        return view('admin.index',['id'=>$id]);
     }
 }

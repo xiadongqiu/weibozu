@@ -34,8 +34,6 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
-<script type="text/javascript" src="/admins/layer/layer.js"></script>
-
 <title>@yield('title','微博-admin')</title>
 
 </head>
@@ -240,11 +238,7 @@
                     </li>
 
                     <li>
-                        <a href="admin/user/list"><i class="icon-users"></i> 用户管理</a>
-                        <ul style="display: none;" class="closed">
-                            <li><a href="/admin/user/list">用户列表</a></li>
-                            <li><a href="/admins/#">用户添加</a></li>
-                        </ul>
+                        <a href="/admin/user"><i class="icon-users"></i> 用户列表</a>
                     </li>
 
                     <li>
@@ -257,7 +251,7 @@
                     </li>
 
                     <li>
-                        <a href="/admin/report/list"><i class="icon-exclamation-sign"></i> 举报管理</a>
+                        <a href="/admin/report"><i class="icon-warning-sign"></i> 举报管理</a>
                     </li>
 
                     <li>
@@ -332,7 +326,10 @@
     <!--[if lt IE 9]>
     <script src="/admins/js/libs/excanvas.min.js"></script>
     <![endif]-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6287a6bc63536b21871ad645d552c855e0762dde
     <script src="/admins/plugins/colorpicker/colorpicker-min.js"></script>
     <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
     <script src="/admins/custom-plugins/wizard/wizard.min.js"></script>
@@ -346,7 +343,10 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
-    
 
+	<script type="text/javascript" src="/admins/layer/layer.js"></script>
+    @section('js')
+
+    @show
 </body>
 </html>
