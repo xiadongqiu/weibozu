@@ -37,21 +37,22 @@
                             评论/回复时间
                         </th>
                         <th 
-                        style="width: 120px;">
+                       
+                        <th 
+                        style="width: 50px;">
+                            被评论微博id
+                        </th>
+                        <th 
+                        style="width: 50px;">
+                            被回复评论id
+                        </th>
+                       
+                        <th 
+                        style="width: 100px;">
                             评论/回复人
                         </th>
-                        <th 
-                        style="width: 120px;">
-                            被评论/回复微博id
-                        </th>
-                       
-                       
-                        <th 
-                        style="width: 123px;">
-                            被回复人
-                        </th>
                         <th  
-                        style="width: 100px;">
+                        style="width: 200px;">
                             操作
                         </th>
                     </tr>
@@ -66,28 +67,23 @@
                         <td>
                             {{date('Y-m-d H:i:s',time($v['comment_time']))}}
                         </td>
-                        <td>
-                            {{$v['nickname']}}
-                        </td>
+                       
                        
                         <td>
                             {{$v['wid']}}
                         </td>
                         
-                        @if($v['fid']==0)
-                            <td>
-                                --
-                            </td>
-                        @else
-                            <td>
-                              {{$v['fid']}}
-                            </td>
-                        @endif
+                        <td>
+                            {{$v['fid'] ? $v['fid'] :'--'}}
+                        </td>
                       
+                        <td>
+                            {{$v['nickname']}}
+                        </td>
                         <td >
-                            <a  class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
-                           
-                            <a id="shanchu" class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
+                            <button type="button" class="btn btn-primary btn-small">详情</button>
+                            <button onclick=del({{$v['id']}},$(this)) type="button" class="btn btn-danger btn-small">删除</button>
+                            
                             
                         </td>
                     </tr>
@@ -133,12 +129,43 @@
     </div>
 </div>
 
+
+@stop
+
+@section('js')
 <script type="text/javascript">
-    $('#shanchu').click(function(){
-        
-        alert('aaaaa');
-    });
-    
+  function del(id,obj){
+       
+            layer.open({
+                title:'删除提示'
+                ,content: '真的要删除第'+id+'条吗？'
+                ,btn: ['删除', '取消']
+                ,yes: function(index,layero){
+                  //按钮【删除】的回调
+                  layer.close(index);
+                  layer.load(1);
+                //   location.reload();
+                   $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                       
+                        if(data == 1){
+                            layer.msg('删除成功', {icon: 1});
+                            location.reload();
+                            } else if (data ==0){
+                            layer.msg('删除失败', {icon: 2});
+                            location.reload();
+                            
+                            } 
+                            
+                    });
+                }
+                ,no: function(index, layero){
+                  //按钮【取消】的回调
+                 
+                }
+              });              
+       
+     
+    };
 </script>
 @stop
 
