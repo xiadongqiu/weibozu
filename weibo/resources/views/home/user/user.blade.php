@@ -5,23 +5,9 @@
     <div style="height:30px;width:50px;"></div>
     <div class="cen_top">
         <div class="con_toppic"><img src="/Homes/images/tou.png"></div>
-
-
-
-
-
         <div class="con_topname">{{$res->detail->nickname}}</div>
         <div class="con_topcon">{{$res->detail->abstract or '这个人很懒，什么都没有留下'}}</div>
-
-
     </div>
-
-
-
-
-
-
-
 
     <div class="cen_nav">
         <ul class="cen_m">
@@ -310,6 +296,10 @@
                     <tr>
                         <td><span>血型</span></td>
                         <td><i></i>{{$res->detail->blood or '马上填写自己的血型,可以被更多同血型的人找到哦'}}</td>
+                    </tr>
+                    <tr>
+                        <td><span>博客地址</span></td>
+                        <td><i></i>{{$res->detail->adress or '马上填写 自己的博客地址,让自己的心声被更多的人了解'}}</td>
                     </tr>
                     <tr>
                         <td><span>个性域名</span></td>
@@ -604,10 +594,7 @@
         <!-- 个人中心 -->
     </div>
     <script type="text/javascript" src="/homes/js/date.js"></script>
-    <script type="text/javascript">
 
-
-    </script>
     <script type="text/javascript">
 
         $('.cen_m').children().eq(0).click(function(){
@@ -679,8 +666,6 @@
         // $.ms_DatePicker().val();
 
     </script>
-
-
 @endsection('content')
 
 
