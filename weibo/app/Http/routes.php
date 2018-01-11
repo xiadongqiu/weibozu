@@ -86,7 +86,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
  		//默认跳转到举报list
  		Route::get('/report',function(){return redirect('admin/report/list');});
 		Route::resource('/report/list','ReportController');
-	 });
+	
 	 
 
 
@@ -100,6 +100,8 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 //郑鑫路由=======================================================================
  		//后台网站配置路由
 		 Route::get('/config','ConfigController@edit');
+		 // 网站公告资源路由
+		 Route::resource('/notice','NoticeController');
 //==============================================================================
-});
   		
+ });

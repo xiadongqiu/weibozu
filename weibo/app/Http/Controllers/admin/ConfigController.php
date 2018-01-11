@@ -11,6 +11,7 @@ class ConfigController extends Controller
 {
     public function edit()
     {
+
     	return view('admin/config/edit');
     	//
     }
