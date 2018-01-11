@@ -5,9 +5,23 @@
     <div style="height:30px;width:50px;"></div>
     <div class="cen_top">
         <div class="con_toppic"><img src="/Homes/images/tou.png"></div>
+
+
+
+
+
         <div class="con_topname">{{$res->detail->nickname}}</div>
         <div class="con_topcon">{{$res->detail->abstract or '这个人很懒，什么都没有留下'}}</div>
+
+
     </div>
+
+
+
+
+
+
+
 
     <div class="cen_nav">
         <ul class="cen_m">
