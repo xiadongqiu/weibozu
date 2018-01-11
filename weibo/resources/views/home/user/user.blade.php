@@ -1,15 +1,6 @@
 @extends('Home.public')
 @section('title','用户中心')
 @section('content')
-    <script type="text/javascript" src="/homes/js/jquery.min.js"></script>
-    <script src="/homes/js/jquery.transform-0.9.1.min.js"></script>
-    <script src="/homes/js/cufon-yui.js" type="text/javascript"></script>
-    <script src="/homes/js/ChunkFive_400.font.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        Cufon.replace('h1',{ textShadow: '1px 1px #fff'});
-        Cufon.replace('.description',{ textShadow: '1px 1px #fff'});
-        Cufon.replace('a',{ textShadow: '1px 1px #fff', hover : true});
-    </script>
     <!-- head end -->
     <div style="height:30px;width:50px;"></div>
     <div class="cen_top">
@@ -250,65 +241,17 @@
                 <a href="上传照片">上传图片</a>
             </div>
             <div class="xiangce_pics">
-                <img src="/homes/touxiang/15518061306/thumbs/1.jpg">
-                <img src="/homes/touxiang/15518061306/thumbs/13.jpg">
-                <img src="/homes/touxiang/15518061306/thumbs/19.jpg">
-                <img src="./images/tou.png">
-                <img src="./images/tou.png">
-                <img src="./images/tou.png">
-                <img src="./images/tou.png">
-                <img src="./images/tou.png">
+                <img src="/homes/touxiang/15518061306/1.jpg">
+                <img src="/homes/touxiang/15518061306/2.jpg">
+                <img src="/homes/touxiang/15518061306/3.jpg">
+                <img src="/homes/touxiang/15518061306/4.jpg">
+                <img src="/homes/touxiang/15518061306/5.jpg">
+                <img src="/homes/touxiang/15518061306/6.jpg">
+                <img src="/homes/touxiang/15518061306/4.jpg">
+                <img src="/homes/touxiang/15518061306/4.jpg">
             </div>
-            <script type="text/javascript">
-                $('.xiangce_pics').children().hover(function(){
-                    $(this).css({border:'1px solid red',boxSizing:'border-box'});
-                    $(this).click(function(){
-                      $('#im_wrapper').show();
-                    });
-                },function(){
-                    $(this).css({border:'1px'});
-                });
-                $('#im_bottom').click(function(){
-                    alert(1);
-                });
-
-            </script>
-            <div id="im_wrapper" class="im_wrapper" style="display: none;">
-                <div style="background-position:0px 0px;"><img src="/homes/touxiang/15518061306/thumbs/1.jpg" alt="" /></div>
-                <div style="background-position:-125px 0px;"><img src="/homes/touxiang/15518061306/thumbs/2.jpg" alt="" /></div>
-                <div style="background-position:-250px 0px;"><img src="/homes/touxiang/15518061306/thumbs/3.jpg" alt="" /></div>
-                <div style="background-position:-375px 0px;"><img src="/homes/touxiang/15518061306/thumbs/4.jpg" alt="" /></div>
-                <div style="background-position:-500px 0px;"><img src="/homes/touxiang/15518061306/thumbs/5.jpg" alt="" /></div>
-                <div style="background-position:-625px 0px;"><img src="/homes/touxiang/15518061306/thumbs/6.jpg" alt="" /></div>
-
-                <div style="background-position:0px -125px;"><img src="/homes/touxiang/15518061306/thumbs/7.jpg" alt="" /></div>
-                <div style="background-position:-125px -125px;"><img src="/homes/touxiang/15518061306/thumbs/8.jpg" alt="" /></div>
-                <div style="background-position:-250px -125px;"><img src="/homes/touxiang/15518061306/thumbs/9.jpg" alt="" /></div>
-                <div style="background-position:-375px -125px;"><img src="/homes/touxiang/15518061306/thumbs/10.jpg" alt="" /></div>
-                <div style="background-position:-500px -125px;"><img src="/homes/touxiang/15518061306/thumbs/11.jpg" alt="" /></div>
-                <div style="background-position:-625px -125px;"><img src="/homes/touxiang/15518061306/thumbs/12.jpg" alt="" /></div>
-
-                <div style="background-position:0px -250px;"><img src="/homes/touxiang/15518061306/thumbs/13.jpg" alt="" /></div>
-                <div style="background-position:-125px -250px;"><img src="/homes/touxiang/15518061306/thumbs/14.jpg" alt="" /></div>
-                <div style="background-position:-250px -250px;"><img src="/homes/touxiang/15518061306/thumbs/15.jpg" alt="" /></div>
-                <div style="background-position:-375px -250px;"><img src="/homes/touxiang/15518061306/thumbs/16.jpg" alt="" /></div>
-                <div style="background-position:-500px -250px;"><img src="/homes/touxiang/15518061306/thumbs/17.jpg" alt="" /></div>
-                <div style="background-position:-625px -250px;"><img src="/homes/touxiang/15518061306/thumbs/18.jpg" alt="" /></div>
-
-                <div style="background-position:0px -375px;"><img src="/homes/touxiang/15518061306/thumbs/19.jpg" alt="" /></div>
-                <div style="background-position:-125px -375px;"><img src="/homes/touxiang/15518061306/thumbs/20.jpg" alt="" /></div>
-                <div style="background-position:-250px -375px;"><img src="/homes/touxiang/15518061306/thumbs/21.jpg" alt="" /></div>
-                <div style="background-position:-375px -375px;"><img src="/homes/touxiang/15518061306/thumbs/22.jpg" alt="" /></div>
-                <div style="background-position:-500px -375px;"><img src="/homes/touxiang/15518061306/thumbs/23.jpg" alt="" /></div>
-                <div style="background-position:-625px -375px;"><img src="/homes/touxiang/15518061306/thumbs/24.jpg" alt="" /></div>
-
-            </div>
-            <div id="im_loading" class="im_loading"></div>
-            <div id="im_next" class="im_next"></div>
-            <div id="im_prev" class="im_prev"></div>
 
             <div class="xiangce_page">分页</div>
-            <script type="text/javascript" src="/homes/js/xiangce.js"></script>
         </div>
         <!-- 相册结束 -->
 
@@ -332,7 +275,7 @@
                     </tr>
                     <tr>
                         <td><span>所在地</span></td>
-                        <td><i></i>{{$res->detail->adress}}</td>
+                        <td><i></i>{{$adress[0].'省   '.$adress[1].'市'}}</td>
                     </tr>
                     <tr>
                         <td><span>性  别</span></td>
@@ -368,7 +311,7 @@
                     </tr>
                     <tr>
                         <td><span>注册时间</span></td>
-                        <td><span>{{$res->detail->registertime}}</span></td>
+                        <td><span>{{date('Y-m-d',$res->detail->registertime)}}</span></td>
                     </tr>
                 </table>
             </div>
@@ -385,7 +328,7 @@
                     </tr>
                     <tr>
                         <td><span>MSN</span></td>
-                        <td><i></i>{{$res->detail->MSN}}</td>
+                        <td><i></i>{{$res->detail->msn}}</td>
                     </tr>
                 </table>
             </div>
@@ -394,7 +337,7 @@
                 <table>
                     <tr>
                         <td><span>职业信息</span></td>
-                        <td><i></i>71***85@qq.com</td>
+                        <td><i></i>{{$res->detail->job}}</td>
                     </tr>
                 </table>
             </div>
@@ -407,137 +350,177 @@
                 <table>
                     <tr>
                         <td><span>登录名</span></td>
-                        <td><i></i>71***85@qq.com</td>
+                        <td><i></i>{{$res->phone}}</td>
                     </tr>
                     <tr>
                         <td><span>昵  称</span></td>
-                        <td><input type="text" value="" name="nickname" /></td>
+                        <td><input type="text" value="{{$res->detail->nickname}}" placeholder="请输入昵称" name="nickname" /></td>
                     </tr>
                     <tr>
                         <td><span>真实姓名</span></td>
-                        <td><input type="text" name="name"/></td>
+                        <td><input type="text" value="{{$res->detail->name}}" placeholder="请输入姓名" name="name"/></td>
                     </tr>
                     <tr>
                         <td><span>所在地</span></td>
                         <td>
-                            <select name="adress" id="province">
+
+                            <select  id="province">
 
                                 <option>请选择省份</option>
 
-                                <option value="北京">北京</option>
+                                <option value="北京" {{$adress[0]=='北京'?'selected':' '}}>北京</option>
 
-                                <option value="上海">上海</option>
+                                <option value="上海" {{$adress[0]=='上海'?'selected':' '}}>上海</option>
 
-                                <option value="江苏">江苏</option>
+                                <option value="江苏" {{$adress[0]=='江苏'?'selected':' '}}>江苏</option>
 
-                                <option value="河南">河南</option>
+                                <option value="河南" {{$adress[0]=='河南'?'selected':' '}}>河南</option>
 
-                                <option value="日本">日本</option>
+                                <option value="日本" {{$adress[0]=='日本'?'selected':' '}}>日本</option>
 
                             </select>
 
-                            <select class="city">
+                            <select class="city" >
 
                                 <option>请选择城市</option>
 
                             </select>
 
-                            <select class="city">
+                            <select class="city" >
 
-                                <option value="东城">东城</option>
+                                <option value="东城" {{$adress[1]=='东城'?'selected':' '}}>东城</option>
 
-                                <option value="西城">西城</option>
+                                <option value="西城" {{$adress[1]=='西城'?'selected':' '}}>西城</option>
 
-                                <option value="崇文">崇文</option>
+                                <option value="崇文" {{$adress[1]=='崇文'?'selected':' '}}>崇文</option>
 
-                                <option value="宣武">宣武</option>
+                                <option value="宣武" {{$adress[1]=='宣武'?'selected':' '}}>宣武</option>
 
-                                <option value="朝阳">朝阳</option>
-
-                            </select>
-
-                            <select class="city">
-
-                                <option value="黄埔">黄浦</option>
-
-                                <option value="卢湾">卢湾</option>
-
-                                <option value="徐汇">徐汇</option>
-
-                                <option value="常宁">长宁</option>
-
-                                <option value="静安">静安</option>
+                                <option value="朝阳" {{$adress[1]=='朝阳'?'selected':' '}}>朝阳</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option value="南京">南京</option>
+                                <option value="黄埔" {{$adress[1]=='黄浦'?'selected':' '}}>黄浦</option>
 
-                                <option value="镇江">镇江</option>
+                                <option value="卢湾" {{$adress[1]=='卢湾'?'selected':' '}}>卢湾</option>
 
-                                <option value="苏州">苏州</option>
+                                <option value="徐汇" {{$adress[1]=='徐汇'?'selected':' '}}>徐汇</option>
 
-                                <option value="南通">南通</option>
+                                <option value="常宁" {{$adress[1]=='长宁'?'selected':' '}}>长宁</option>
 
-                                <option value="扬州">扬州</option>
-
-                            </select>
-
-                            <select class="city">
-
-                                <option value="郑州">郑州</option>
-
-                                <option value="周口">周口</option>
-
-                                <option value="洛阳">洛阳</option>
-
-                                <option value="南阳">南阳</option>
-
-                                <option value="安阳">安阳</option>
+                                <option value="静安" {{$adress[1]=='静安'?'selected':' '}}>静安</option>
 
                             </select>
 
                             <select class="city">
 
-                                <option value="大阪">大阪</option>
+                                <option value="南京" {{$adress[1]=='静安'?'selected':' '}}>南京</option>
 
-                                <option value="秋叶原">秋叶原</option>
+                                <option value="镇江" {{$adress[1]=='镇江'?'selected':' '}}>镇江</option>
 
-                                <option value="东京">东京</option>
+                                <option value="苏州" {{$adress[1]=='苏州'?'selected':' '}}>苏州</option>
 
+                                <option value="南通" {{$adress[1]=='南通'?'selected':' '}}>南通</option>
+
+                                <option value="扬州" {{$adress[1]=='扬州'?'selected':' '}}>扬州</option>
 
                             </select>
 
+                            <select class="city">
+
+                                <option value="郑州" {{$adress[1]=='郑州'?'selected':' '}}>郑州</option>
+
+                                <option value="周口" {{$adress[1]=='周口'?'selected':' '}}>周口</option>
+
+                                <option value="洛阳" {{$adress[1]=='洛阳'?'selected':' '}}>洛阳</option>
+
+                                <option value="南阳" {{$adress[1]=='南阳'?'selected':' '}}>南阳</option>
+
+                                <option value="安阳" {{$adress[1]=='安阳'?'selected':' '}}>安阳</option>
+
+                            </select>
+
+                            <select class="city">
+
+                                <option value="大阪" {{$adress[1]=='大阪'?'selected':' '}}>大阪</option>
+
+                                <option value="秋叶原" {{$adress[1]=='秋叶原'?'selected':' '}}>秋叶原</option>
+
+                                <option value="东京" {{$adress[1]=='东京'?'selected':' '}}>东京</option>
+
+
+                            </select>
+                            <input type="hidden" name="adress" value="" id="adress">
+
+
+                            <script type="text/javascript">
+                                var currentShowCity=0;
+                                $(document).ready(function(){
+                                    $("#province").change(function(){
+                                        $("#province option").each(function(i,o){
+                                            if($(this).attr("selected"))
+                                            {
+                                                $(".city").hide();
+
+                                                $(".city").eq(i).show();
+
+                                                currentShowCity=i;
+                                            }
+                                        });
+                                    });
+                                    $("#province").change();
+                                });
+
+                            $('#form').change(function(){
+                                var sheng = $("#province").val();
+                                $(".city").each(function(i,o){
+                                    if(i == currentShowCity){
+                                        shi = $(".city").eq(i).val();
+                                    }
+                                });
+                                var adress = sheng +":"+shi;
+                                $('#adress').val(adress);
+
+                                var year = $('#date-sel-year').val();
+                                var month = $('#date-sel-month').val();
+                                var day = $('#date-sel-day').val();
+                                var date =  year+'-'+month+"-"+day;
+
+                                $('#birthday').val(date);
+                            });
+
+                            </script>
                         </td>
                     </tr>
                     <tr>
                         <td><span>性  别</span></td>
-                        <td><input type="radio" name="sex" checked/>男
-                            <input type="radio" name="sex"/>女
+                        <td><input type="radio" name="sex" value="男" {{($res->detail->sex == '男') ? 'checked':''}}/>男
+                            <input type="radio" name="sex" value="女" {{($res->detail->sex == '女') ? 'checked':''}}/>女
                         </td>
                     </tr>
                     <tr>
                         <td><span>性取向</span></td>
-                        <td><input type="checkbox" name="sexual[]"/>男
-                            <input type="checkbox" name="sexual[]"/>女
-                            <input type="checkbox" name="sexual[]"/>双性  	此处可选多项
+                        <td><input type="radio" name="sexual" value="男" {{($res->detail->sexual == '男') ? 'checked':''}}/>男
+                            <input type="radio" name="sexual" value="女" {{($res->detail->sexual == '女') ? 'checked':''}}/>女
+                            <input type="radio" name="sexual" value="双性" {{($res->detail->sexual == '双性') ? 'checked':''}}/>双性
                         </td>
 
                     </tr>
                     <tr>
                         <td><span>感情状况</span></td>
                         <td><select name="" id="">
-                                <option value="默认" selected>请选择</option>
-                                <option value="单身狗">单身狗</option>
-                                <option value="暗恋中">暗恋中</option>
-                                <option value="暧昧中">暧昧中</option>
-                                <option value="恋爱中">恋爱中</option>
-                                <option value="已婚">已婚</option>
-                                <option value="订婚">订婚</option>
-                                <option value="分居">分居</option>
-                                <option value="离异">离异</option>
-                                <option value="丧偶">丧偶</option>
+                                <option value="默认" {{($res->detail->emotion == ' ') ? 'selected':''}}>请选择</option>
+                                <option value="单身狗" {{($res->detail->emotion == '单身狗') ? 'selected':''}}>单身狗</option>
+                                <option value="暗恋中" {{($res->detail->emotion == '暗恋中') ? 'selected':''}}>暗恋中</option>
+                                <option value="暧昧中" {{($res->detail->emotion == '暧昧中') ? 'selected':''}}>暧昧中</option>
+                                <option value="恋爱中" {{($res->detail->emotion == '恋爱中') ? 'selected':''}}>恋爱中</option>
+                                <option value="已婚" {{($res->detail->emotion == '已婚') ? 'selected':''}}>已婚</option>
+                                <option value="订婚" {{($res->detail->emotion == '订婚') ? 'selected':''}}>订婚</option>
+                                <option value="分居" {{($res->detail->emotion == '分局') ? 'selected':''}}>分居</option>
+                                <option value="离异" {{($res->detail->emotion == '离异') ? 'selected':''}}>离异</option>
+                                <option value="丧偶" {{($res->detail->emotion == '丧偶') ? 'selected':''}}>丧偶</option>
 
 
                             </select></td>
@@ -545,36 +528,32 @@
                     <tr>
                         <td><span>生日</span></td>
                         <td>
-                            <div class="birthday">
-                                <select name="year" id="year" onchange="getDays()"></select>
-                                <select name="month" id="month" onchange="getDays()"></select>
-                                <select name="day" id="day"></select>
-                            </div>
+
+
+                            <select id="date-sel-year" rel=" {{date('Y',strtotime($res->detail->birthday))}}" ></select>年
+                            <select id="date-sel-month" rel="{{date('m',strtotime($res->detail->birthday))}}"></select>月
+                            <select id="date-sel-day" rel="{{date('d',strtotime($res->detail->birthday))}}"></select>日
+                            <input type="hidden" id="birthday" name="birthday">
                         </td>
                     </tr>
                     <tr>
                         <td><span>血型</span></td>
                         <td>
                             <select name="blood" id="">
-                                <option value="AB">AB</option>
-                                <option value="A">A</option>
-                                <option value="O">O</option>
-                                <option value="B">B</option>
+                                <option value="AB" {{($res->detail->blood == 'AB') ? 'selected':''}}>AB</option>
+                                <option value="A" {{($res->detail->blood == 'A') ? 'selected':''}}>A</option>
+                                <option value="O" {{($res->detail->blood == 'O') ? 'selected':''}}>O</option>
+                                <option value="B" {{($res->detail->blood == 'B') ? 'selected':''}}>B</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td><span>博客地址</span></td>
-                        <td><input type="text" name="">
-                        </td>
-                    </tr>
-                    <tr>
                         <td><span>个性域名</span></td>
-                        <td><input type="text" name="domainname"></td>
+                        <td><input type="text" name="domainname" value="{{ $res->detail->domainname }}" placeholder="请输入个人域名"> </td>
                     </tr>
                     <tr>
                         <td><span>简介</span></td>
-                        <td><textarea name="abstract" id="" cols="20" rows="2"></textarea></td>
+                        <td><textarea name="abstract" id="" cols="20" rows="2"  placeholder="请输个人简介">{{$res->detail->abstract}}</textarea></td>
                     </tr>
                     <tr>
                         <td><span>注册时间</span></td>
@@ -587,15 +566,15 @@
                 <table>
                     <tr>
                         <td><span>邮箱</span></td>
-                        <td><input type="text" name="email"></td>
+                        <td><input type="text" name="email" value="{{$res->detail->email}}" placeholder="请输入个人邮箱"></td>
                     </tr>
                     <tr>
                         <td><span>QQ</span></td>
-                        <td><input type="text" name="qq"></td>
+                        <td><input type="text" name="qq" value="{{$res->detail->qq}}" placeholder="请输入QQ"></td>
                     </tr>
                     <tr>
                         <td><span>MSN</span></td>
-                        <td><input type="text" name="msn"></td>
+                        <td><input type="text" name="msn" value="{{$res->detail->msn}}" placeholder="请输入MSN"></td>
                     </tr>
                 </table>
             </div>/
@@ -604,7 +583,7 @@
                 <table>
                     <tr>
                         <td><span>职业信息</span></td>
-                        <td><input type="text" name="job"></td>
+                        <td><input type="text" name="job" value="{{$res->detail->job}}" placeholder="请输入个人职业信息"></td>
                     </tr>
                 </table>
                 </form>
@@ -614,6 +593,8 @@
         </div>
         <!-- 个人中心 -->
     </div>
+    <script type="text/javascript" src="/homes/js/date.js"></script>
+
     <script type="text/javascript">
 
         $('.cen_m').children().eq(0).click(function(){
@@ -650,88 +631,39 @@
         $('#baocun').click(function(){
             $('.zhu_center').show();
             $('.bianji').hide();
+            var formData = new FormData($( "#form" )[0]);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
             $.ajax({
                 type: "post",
                 dataType: "json",
                 url: "/user/user/edit",
-                data: {'form':$('#form').serialize(),'_token':'{{csrf_token()}}'},
-                success: function (result) {
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
                     if(data == 1){
                         layer.msg('保存成功');
                     }else{
                         layer.msg('修改失败,请重试');
                     }
-                },
-                contentType:'application/x-www-form-urlencoded; charset=UTF-8'
-            });
-
-        });
-        var currentShowCity=0;
-        $(document).ready(function(){
-            $("#province").change(function(){
-                $("#province option").each(function(i,o){
-                    if($(this).attr("selected"))
-                    {
-                        $(".city").hide();
-
-                        $(".city").eq(i).show();
-
-                        currentShowCity=i;
-                    }
-                });
-            });
-            $("#province").change();
-        });
-
-        function getSelectValue(){
-            alert("1级="+$("#province").val());
-            $(".city").each(function(i,o){
-                if(i == currentShowCity){
-                    alert("2级="+$(".city").eq(i).val());
                 }
+
             });
 
-        }
-
-        $(document).ready(function(){
-            var date=new Date();//创建日期对象
-            var year=date.getFullYear();//获取当前年份
-            for(var i=year-100;i<=year;i++){//在id为year的selector附加option选项
-                $("#year").append("<option value=\""+i+"\">"+i+"</option>");//append函数附加html到元素结尾处
-            }
-            for(var i=1;i<=12;i++){
-                $("#month").append("<option value=\""+i+"\">"+i+"</option>");//为Id为month的selector附加option选项
-            }
-            getDays($("#month").val(),$("#year").val());//执行函数getDays()，传参year和month，初始化day selector
         });
 
-        function getDaysInMonth(month,year){//年月对应的日数算法
-            var days;
-            if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12) {
-                days=31;//固定31
-            }else if (month==4 || month==6 || month==9 || month==11){
-                days=30;//固定30
-            }else{
-                if ((year%4 == 0 && year%100 != 0) || (year%400 == 0)) {     //排除百年，每四年一闰；每四百年一闰；
-                    days=29; //闰年29
-                }else {
-                    days=28; //平年28
-                }
-            }
-            return days;//返回该年月的日数
-        }
-        function getDays(){
-            var year = $("#year").val();//year selector onchange="getDays()"动态获取用户选择的year值
-            var month = $("#month").val();//month selector onchange="getDays()"动态获取用户选择的month值
-            var days = getDaysInMonth(month,year);//调用算法函数计算对应年月的日数
-            $("#day").empty();//调用empty()函数清空day selector options，然后再append函数往day selector添加options
-            for(var i=1;i<=days;i++){
-                $("#day").append("<option value=\""+i+"\">"+i+"</option>");
-            }
-        }
-
-
-
+        $.date_picker({
+            YearSelector:  "#date-sel-year",
+            MonthSelector: "#date-sel-month",
+            DaySelector:   "#date-sel-day"
+        });
+        // $.ms_DatePicker().val();
 
     </script>
 @endsection('content')

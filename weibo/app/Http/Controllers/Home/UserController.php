@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
@@ -20,22 +19,19 @@ class UserController extends Controller
     {
         $uid = $request->session()->get('home');
         $res = user::find($uid);
-        return view('home/user/user',['res'=>$res]);
+        $arr = (explode(':',$res->detail->adress));
+        return view('home/user/user',['res'=>$res,'adress'=>$arr]);
 
     }
 
     public function postEdit(request $request)
     {
-        $form = $request->only('form');
-        $string = $form['form'];
-        $data = explode('&',$string);
-        $arr = [];
+        $form = $request->all();
+
+
         $id = $request->session()->get('home');
-        foreach($data as $k=>$v){
-            $array = explode('=',$v);
-            $arr[$array[0]] = $array[1];
-        }
-        $res = detail::where('id',$id)->update($arr);
+
+        $res = detail::where('id',$id)->update($form);
 
         if($res){
             echo 1;

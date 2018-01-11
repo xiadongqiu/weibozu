@@ -97,5 +97,3 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
  		//后台网站配置路由
 		 Route::get('/config','ConfigController@edit');
 //==============================================================================
-
-  		

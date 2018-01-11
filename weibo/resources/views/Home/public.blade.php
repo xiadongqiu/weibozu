@@ -3,17 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="/homes/css/index.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/head.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/foot.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/user.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css">
-<link rel="stylesheet" href="/homes/css/style.css" type="text/css" media="screen"/>
-
 <script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+
 	<script type="text/javascript" src="/homes/layer/layer.js"></script>
+
 <style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
