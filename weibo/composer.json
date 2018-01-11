@@ -10,7 +10,8 @@
         "flc/alidayu": "^2.0",
         "flc/dysms": "^1.0",
         "gregwar/captcha": "^1.1",
-        "gregwar/captcha-bundle": "^2.0"
+        "gregwar/captcha-bundle": "^2.0",
+        "zgldh/qiniu-laravel-storage": "^0.9.0"
 
     },
     "require-dev": {

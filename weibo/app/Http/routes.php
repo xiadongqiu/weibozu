@@ -22,11 +22,7 @@ Route::get('/', function () {
 // 夏冬秋路由==========================================
 Route::controller('/a','Home\NotController');
 
-Route::get('/comment','Home\NotController@comment');
-Route::get('/replay','Home\NotController@replay');
-
-
-Route::resource('/index','Home\IndexController');
+Route::controller('/index','Home\IndexController');
 
 Route::resource('/detail','Home\DetailController');
 
@@ -101,5 +97,5 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
  		//后台网站配置路由
 		 Route::get('/config','ConfigController@edit');
 //==============================================================================
-});
+
   		

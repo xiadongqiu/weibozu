@@ -15,18 +15,19 @@ class NotController extends Controller
     /**
      * 未登录首页微博信息
      */
-    public function getIndex()
+    public function getIndex (Request $Request)
     {
         //dd(time());
         $weibo = weibo::get();
         // echo json_encode($weibo);
-        return view('Home.index1.not',['data'=>$weibo]);
+        $hot = weibo::orderBy('like','desc')->take(8)->get();
+        return view('Home.index1.not',['data'=>$weibo,'hot'=>$hot]);
     }
 
     /**
     *   ajax接收，查询评论信息
     */
-    public function comment (Request $request)
+    public function getComment (Request $request)
     {
         
         $id = $request->input('id');
@@ -38,12 +39,20 @@ class NotController extends Controller
    /**
     *   ajax接收，查询回复信息
     */
-    public function replay (Request $request)
+    public function getReplay (Request $request)
     {
         $id = $request->input('id');
         $hui = comment::where('fid',$id)->get();
         echo json_encode($hui);
         // var_dump($id);
 
+    }
+    /**
+    *   ajax接收，换一批
+    */
+    public function getHuan()
+    {
+        $huan = weibo::orderBy(\DB::raw('RAND()'))->take(8)->get();
+        echo json_encode($huan);
     }
 }

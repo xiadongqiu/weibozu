@@ -9,8 +9,6 @@ class user extends Model
 
     public $timestamps = false;
 
-    //
-
     //一对多
     public function weibo()
     {
