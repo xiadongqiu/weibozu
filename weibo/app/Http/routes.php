@@ -70,23 +70,15 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		Route::get('/loginout','LoginController@loginout');
 
 
-    //跳转到用户
-    Route::resource('/user','UserController');
+		    //跳转到用户
+		    Route::resource('/user','UserController');
 
-    //跳转到举报
-    Route::resource('/report','ReportController');
-   });
-   
-
-		 //默认跳转到用户list
- 		Route::get('/user',function(){return redirect('admin/user/list');});
-		Route::resource('/user/list','UserController');
-
-
- 		//默认跳转到举报list
- 		Route::get('/report',function(){return redirect('admin/report/list');});
-		Route::resource('/report/list','ReportController');
-	 });
+		    //跳转到举报
+			Route::resource('/report','ReportController');
+			
+			
+		   });
+		   
 	 
 
 

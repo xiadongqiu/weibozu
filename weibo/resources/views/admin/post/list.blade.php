@@ -41,7 +41,7 @@
                             收藏次数
                         </th>
                         <th 
-                        style="width: 120px;">
+                        style="width: 50px;">
                             点赞次数
                         </th>
                         <th
@@ -74,7 +74,7 @@
                             发表人
                         </th>
                         <th  
-                        style="width: 100px;">
+                        style="width: 150px;">
                             操作
                         </th>
                     </tr>
@@ -127,11 +127,12 @@
                             {{$v->detail->nickname}}
                         </td>
                         <td >
-                            <a href="#" class="btn btn-small"><i title="查看详情" class="icon-search"></i></a>
+                           
                        
                                
-                            <a onclick=del({{$v['id']}},$(this)) class="btn btn-small"><i title="删除" class="icon-trash"></i></a>
-                       
+                            <button type="button" class="btn btn-primary btn-small">详情</button>
+
+                            <button  onclick=del({{$v['id']}},$(this)) type="button" class="btn btn-danger btn-small">删除</button>
                             
                          
                         </td>
@@ -182,15 +183,36 @@
 
 @section('js')
 <script type="text/javascript">
-   function del(id,obj){
-        $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
-           if(data == 1){
-               alert('删除成功');
-           } else if (data ==0){
-               alert('删除失败');
-           }
-                
-        });
+  function del(id,obj){
+       
+            layer.open({
+                title:'删除提示'
+                ,content: '真的要删除第'+id+'条吗？'
+                ,btn: ['删除', '取消']
+                ,yes: function(index,layero){
+                  //按钮【删除】的回调
+                  layer.close(index);
+                  layer.load(1);
+                //   location.reload();
+                   $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                       
+                        if(data == 1){
+                            layer.msg('删除成功', {icon: 1});
+                            location.reload();
+                            } else if (data ==0){
+                            layer.msg('删除失败', {icon: 2});
+                            location.reload();
+                            
+                            } 
+                            
+                    });
+                }
+                ,no: function(index, layero){
+                  //按钮【取消】的回调
+                 
+                }
+              });              
+       
      
     };
 </script>

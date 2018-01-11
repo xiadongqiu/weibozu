@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\weibo;
+use App\Model\comment;
+
 
 class PostController extends Controller
 {
@@ -87,6 +89,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-       
+    // dd($id);
+    $data = weibo::where('id',$id)->delete();
+    if($data){
+         $res = comment::where('wid',$id)->delete();
+        if($res){
+            echo 1;
+        } 
+    }else{
+        echo 0;
+    }
+     
     }
 }
