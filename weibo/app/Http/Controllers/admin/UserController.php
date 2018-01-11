@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\user;
+use App\Model\detail;
 class UserController extends Controller
 {
     /**
@@ -62,7 +63,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.user.edit');
+        $res = detail::where('uid','=',$id)->first();
+        $auth = array('用户','管理员','超级管理员');
+        $status = array('开启','关闭');        
+        return view('admin.user.edit',['res' => $res,'auth' => $auth,'status' => $status]);
     }
 
     /**
@@ -74,7 +78,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         dd($id);
     }
 
     /**
