@@ -68,11 +68,10 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		    //跳转到用户
 		    Route::resource('/user','UserController');
 
+
 		    //跳转到举报
 		    Route::resource('/report','ReportController');
 		});
-});
-	 
 
 
 
@@ -85,4 +84,8 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 //郑鑫路由=======================================================================
  		//后台网站配置路由
 		 Route::get('/config','ConfigController@edit');
+		 // 网站公告资源路由
+		 Route::resource('/notice','NoticeController');
 //==============================================================================
+
+});
