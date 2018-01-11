@@ -23,7 +23,7 @@
             aria-describedby="DataTables_Table_1_info">
                 <thead>
                     <tr role="row">
-                        <th style="width: 25px;">
+                        <th style="width: 30px;">
                             Id
                         </th>
                         <th style="width: 130px;">
@@ -38,10 +38,13 @@
                         <th style="width: 70px;">
                             权限
                         </th>
-                        <th style="width: 120px;">
+                        <th style="width: 80px;">
+                            注册时间
+                        </th>
+                        <th style="width: 130px;">
                             最后登录
                         </th>
-                        <th style="width: 200px;">
+                        <th style="width: 80px;">
                             操作
                         </th>
                     </tr>
@@ -65,28 +68,28 @@
                             {{$auth[$val->auth]}}
                         </td>
                         <td class=" ">
+                            {{date('Y-m-d',$val->detail->registertime)}}
+                        </td>
+                        <td class=" ">
                             {{date('Y-m-d H:i:s',$val->lastlogin_time)}}
                         </td>
                         <td class=" ">
-                                <a href="/admin/user/{{$val->id}}" style="color:#333;">查看详细</a>
-                                丨
-                                <a href="/admin/user/{{$val->id}}/edit" style="color:#333;font-size:15px;"><i class="icon-edit" title="编辑"></i></a>&nbsp;&nbsp;&nbsp;
-                                <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
-
+                            <a href="/admin/user/{{$val->id}}/edit" style="color:#333;font-size:15px;"><i class="icon-edit" title="编辑"></i></a>&nbsp;&nbsp;&nbsp;
+                            <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
-                共100条   10/页
+                共{{count($res)}}条&nbsp;&nbsp;&nbsp;10条/页
             </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                 <a tabindex="0" class="first paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_first">
                     首页
                 </a>
-                <a tabindex="0" class="previous paginate_button paginate_button_disabled"
+                <a tabindex="0" class="previoui-s paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_previous">
                     上一页
                 </a>

@@ -1,23 +1,23 @@
 @extends('admin.index')
 @section('zhuti')
-    <div class="mws-panel grid_5">
+    <div class="mws-panel grid_6" style="margin:0 5%;">
     <div class="mws-panel-header">
         <span style="font-weight:bold;">
-            用户管理
+            个人信息
         </span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="form_layouts.html">
+        <form class="mws-form" action="">
             <fieldset class="mws-form-inline">
                 <legend style="font-weight:bold;">
-                        个人信息
+                        修改信息
                 </legend>
                 <div class="mws-form-row bordered">
                     <label class="mws-form-label">
                         账号：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" readonly="readonly" value="10086">
+                        <input type="text" class="small" readonly="readonly" value="{{$res->user->phone}}">
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -25,7 +25,7 @@
                         昵称：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small">
+                        <input type="text" class="small" name="nickname" value="{{$res->nickname}}">
                     </div>                   
                 </div>
                 <div class="mws-form-row">
@@ -33,7 +33,16 @@
                         真实姓名：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="mini">
+                        <input type="text" class="mini" name="name" value="{{$res->name}}">
+                    </div>                   
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">
+                        性别：
+                    </label>
+                    <div class="mws-form-item">
+                        <input type="radio" class="mini" name="sex" checked> 男&nbsp;&nbsp;&nbsp;
+                        <input type="radio" class="mini" name="sex"> 女
                     </div>                   
                 </div>
                 <div class="mws-form-row">
@@ -41,7 +50,7 @@
                         年龄：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="xlarge">
+                        <input type="text" class="xlarge" name="age" value="{{$res->age}}">
                     </div>                   
                 </div>
                 <div class="mws-form-row">
@@ -57,12 +66,73 @@
                     </div>                   
                 </div>
                 <div class="mws-form-row">
-                <label class="mws-form-label">
-                        Textarea
+                    <label class="mws-form-label">
+                        qq：
                     </label>
                     <div class="mws-form-item">
-                        <textarea rows="" cols="" class="large">
+                        <input type="text" class="small" name="qq" value="{{$res->qq}}">
+                    </div>                   
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">
+                        邮箱：
+                    </label>
+                    <div class="mws-form-item">
+                        <input type="text" class="small" name="email" value="{{$res->email}}">
+                    </div>                   
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">
+                        个人域名：
+                    </label>
+                    <div class="mws-form-item">
+                        <input type="text" class="small" name="domainname" value="{{$res->domainname}}">
+                    </div>                   
+                </div>
+                <div class="mws-form-row">
+                <label class="mws-form-label">
+                        简介：
+                    </label>
+                    <div class="mws-form-item">
+                        <textarea rows="" cols="" name="abstract" class="large">
                         </textarea>
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">
+                            身份：
+                    </label>
+                    <div class="mws-form-item">
+                        <select class="xsmall" id="auth" name="auth">
+                        @if ($res->user->auth < 2)
+                            <option value="0" {{ ($res->user->auth == 0) ? 'selected' : '' }}>
+                                用户
+                            </option>
+                            <option value="1" {{ ($res->user->auth == 1) ? 'selected' : '' }}>
+                                管理员
+                            </option>
+                        @else
+                            <option value="2" selected>
+                                超级管理员
+                            </option>
+                        @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">
+                            账号状态：
+                    </label>
+                    <div class="mws-form-item">
+                        <select class="xsmall" id="status" name="status" rel="tooltip" data-placement="right"
+                        data-original-title="开启-允许登录 / 关闭-禁止登录">
+                            <option value="0" {{ ($res->user->status == 0) ? 'selected' : '' }}>
+                                开启
+                            </option>
+                            <option value="1" {{ ($res->user->status == 1) ? 'selected' : '' }}>
+                                关闭
+                            </option>
+                        </select>
                     </div>
                 </div>
             </fieldset>
@@ -96,54 +166,7 @@
         </form>
     </div>
     </div>
-    <!-- 用户权限 -->
-    <div class="mws-panel grid_3">
-    <div class="mws-panel-header">
-        <span style="font-weight:bold;">
-            个人权限
-        </span>
-    </div>
-    <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="form_layouts.html">
-            <fieldset class="mws-form-inline">
-               <div class="mws-form-row">
-                    <label class="mws-form-label">
-                            身份：
-                    </label>
-                    <div class="mws-form-item">
-                        <select class="large">
-                            <option>
-                                用户
-                            </option>
-                            <option>
-                                管理员
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="mws-form-row">
-                    <label class="mws-form-label">
-                            账号状态：
-                    </label>
-                    <div class="mws-form-item" rel="tooltip" data-placement="left"
-                        data-original-title="开启-允许登录 / 关闭-禁止登录">
-                        <select class="large">
-                            <option>
-                                开启
-                            </option>
-                            <option>
-                                关闭
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="mws-button-row">
-                <input type="submit" value="提交" class="btn btn-danger">
-            </div>
-        </form>
-    </div>
-</div>
+ 
 @stop
 @section('title','微博-用户')
 @section('js')
@@ -186,5 +209,10 @@ $(document).ready(function(){
                 $("#day").append("<option value=\""+i+"\">"+i+"</option>");
             }
         }
+    $('#alter').click(function(){
+    	$.post('/admin/user/{{$res->id}}',{auth:$('#auth').val(),status:$('#status').val(),'_token':'{{csrf_token()}}'},function(data){
+
+    	});
+    })
 </script>
 @stop
