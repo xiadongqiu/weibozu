@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller; 
-
+use App\Model\report;
 
 class ReportController extends Controller
 {
@@ -17,8 +17,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-
-        return view('admin.report.list');
+        $res = report::get();
+        return view('admin.report.list',['res'=>$res]);
     }
 
     /**

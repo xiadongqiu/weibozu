@@ -29,55 +29,47 @@
                         <th style="width: 25px;">
                             Id
                         </th>
-                        <th style="width: 130px;">
-                            昵称
-                        </th>
                         <th style="width: 170px;">
-                            账号
-                        </th>
-                        <th style="width: 50px;">
-                            状态
-                        </th>
-                        <th style="width: 70px;">
-                            权限
+                            举报原因
                         </th>
                         <th style="width: 120px;">
-                            最后登录
+                            举报人
+                        </th>
+                        <th style="width: 120px;">
+                            微博作者
                         </th>
                         <th style="width: 200px;">
+                            举报时间
+                        </th>
+                        <th style="width: 120px;">
                             操作
                         </th>
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-
+                @foreach ($res as $k => $val)
                     <tr class="even" align="center">
                         <td class="">
-                           
-                        </td>
-                        <td class="">
-                           
+                            {{$val->id}}
                         </td>
                         <td class=" sorting_1">
-                            
+                            {{$val->content}}
+                        </td>
+                        <td class="">
+                            {{$val->jid}}
                         </td>
                         <td class=" ">
-                           
+                            {{$val->uid}}
                         </td>
                         <td class=" ">
-                          
+                           {{date('Y-m-d H:i:s',$val->report_time)}}
                         </td>
                         <td class=" ">
-                           
-                        </td>
-                        <td class=" ">
-                                <a href="" style="color:#333;"><i class="icon-cog-3"></i>管理</a>
-                            
-                                <i class="icon-cog-2"></i>管理
-                            
+                            <a href="/admin/user/{{$val->id}}/edit" style="color:#333;">查看</a>&nbsp;&nbsp;&nbsp;
+                            <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>
-                
+                @endforeach
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
