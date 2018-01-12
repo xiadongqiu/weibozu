@@ -1,10 +1,7 @@
 .avatar-view {
   display: block;
-  width: 220px;
-  height: 220px;
-  border: 3px solid #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0,0,0,.15);
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   overflow: hidden;
 }
@@ -74,8 +71,8 @@
 }
 
 .preview-lg {
-  height: 184px;
-  width: 184px;
+  height: 150px;
+  width: 150px;
   margin-top: 15px;
 }
 
