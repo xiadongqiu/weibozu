@@ -1,72 +1,42 @@
 @extends('admin.index')
-@section('title','网站配置')
+@section('title','修改公告')
 @section('zhuti')
-	
-	<div class="mws-panel grid_8">
-                	<div class="mws-panel-header">
-                    	<span><i class="icon-magic"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 配置信息</font></font></span>
+<div class="mws-panel grid_8">
+                    <div class="mws-panel-header">
+                        <span><i class="icon-magic"></i>修改公告</span>
                     </div>
                     <div class="mws-panel-body no-padding">
-                        <div class="wizard-nav wizard-nav-horizontal"><ul><li data-wzd-id="wzd_1c3fh3aaugricat1bgu_0" class="current">
-                        <span>	<font style="vertical-align: inherit;"></font></span></li>
-                        <li data-wzd-id="wzd_1c3fh3aaugricat1bgu_1"><span><font style="vertical-align: inherit;">
-                        </font></span></li><li data-wzd-id="wzd_1c3fh3aaugricat1bgu_2">
-                        <span><font style="vertical-align: inherit;"></font></span></li></ul>
-                        <button type="button" class="btn responsive-prev-btn" disabled="disabled">	</button>
-                        <button type="button" class="btn responsive-next-btn"></button></div>
-                        <form class="mws-form wzd-default wizard-form wizard-form-horizontal">
+                        <div class="wizard-nav wizard-nav-horizontal">
+                        <ul>
+                            <li data-wzd-id="wzd_1c3k5ns514ltm5l1n81_0" class="current">
+                       <span>
+                       <i class=""></i></span></li>
+                       <li data-wzd-id="wzd_1c3k5ns514ltm5l1n81_1">
+                       <span><i class=""></i> </span></li>
+                       <li data-wzd-id="wzd_1c3k5ns514ltm5l1n81_2"><span>
+                       <i class=""></i></span></li></ul>
+                       <button type="button" class="btn responsive-prev-btn" disabled="disabled">
+                       <i class=""></i></button><button type="button" class="btn responsive-next-btn"><i class=""></i></button></div><form class="mws-form wzd-validate wizard-form wizard-form-horizontal" novalidate="novalidate">
                             
-                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3fh3aaugricat1bgu_0" style="display: block;">
+                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3k5ns514ltm5l1n81_0" style="display: block;">
                                 <legend class="wizard-label" style="display: none;"><i class="icol-accept"></i> Member Profile</legend>
                                 <div id="" class="mws-form-row">
-                                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">网站名称</font></font><span class="required"></span></label>
+                                    <label class="mws-form-label">标题</label>
                                     <div class="mws-form-item">
                                         <input type="text" name="fullname" class="required large">
                                     </div>
                                 </div>
+                               
                                 <div class="mws-form-row">
-                                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">网站标题</font></font><span class="required"></span></label>
-                                    <div class="mws-form-item">
-                                        <input type="text" name="email" class="required email large">
-                                    </div>
-                                </div>
-
-								  <div class="mws-form-row">
-                                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">网站版权</font></font><span class="required"></span></label>
-                                    <div class="mws-form-item">
-                                        <input type="text" name="email" class="required email large">
-                                    </div>
-                                </div>
-										
-								<div class="mws-form-row">
-    									<label class="mws-form-label">网站logo</label>
-    									<div class="mws-form-item">
-    									<input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="文件上传" name='profile'>
-    								</div>
-    							</div>
-
-
-
-                                <div class="mws-form-row">
-                                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">网站关键字</font></font><span class="required"></span></label>
+                                    <label class="mws-form-label">内容</label>
                                     <div class="mws-form-item">
                                         <textarea name="address" rows="" cols="" class="required large"></textarea>
                                     </div>
                                 </div>
-
-                                <div class="mws-form-row">
-    								<label class="mws-form-label">状态</label>
-    								<div class="mws-form-item clearfix">
-    								<ul class="mws-form-list inline">
-    								<li><input type="radio" name='status' value='1' checked> <label>开启</label></li>
-    								<li><input type="radio" name='status' value='0'> <label>禁止</label></li>
-    					</ul>
-    				</div>
-    			</div>
-                              
+                                
                             </fieldset>
                             
-                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3fh3aaugricat1bgu_1" style="display: none;">
+                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3k5ns514ltm5l1n81_1" style="display: none;">
                                 <legend class="wizard-label" style="display: none;"><i class="icol-delivery"></i> Membership Type</legend>
                                 <div id="" class="mws-form-row">
                                     <label class="mws-form-label">Membership Plan <span class="required">*</span></label>
@@ -100,7 +70,7 @@
                                 </div>
                             </fieldset>
                             
-                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3fh3aaugricat1bgu_2" style="display: none;">
+                            <fieldset class="wizard-step mws-form-inline" data-wzd-id="wzd_1c3k5ns514ltm5l1n81_2" style="display: none;">
                                 <legend class="wizard-label" style="display: none;"><i class="icol-user"></i> Confirmation</legend>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">Message <span class="required">*</span></label>
@@ -128,13 +98,7 @@
                                     </div>
                                 </div>
                             </fieldset>
-                        <div class="mws-button-row">
-    			
-    			<input type="submit" class="btn btn-danger" value="提交">
-    			
-    			
-    		</div>
+                        <div class="mws-button-row"><button type="button" class="btn">确认修改</button><button type="button" class="btn btn-primary pull-right" name="wizard-submit" style="display: none;">Submit</button></div></form>
+                    </div>
                 </div>
-
 @stop
-

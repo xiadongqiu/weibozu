@@ -10,7 +10,7 @@
                         <div id="DataTables_Table_1_length" class="dataTables_length">
                         
                       </div>
-                        <div class="dataTables_filter" id="DataTables_Table_1_filter">
+                        <div class="dataTables_filter" id="DataTables_Table_1_filter">  
                         <label><button>搜索:</button> <input type="text" aria-controls="DataTables_Table_1"></label></div>
                         <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
@@ -39,11 +39,13 @@
                                          {{date('Y-m-d H:i:s',time($v['announcement_time']))}}
                                     </td>
                                    <td class="">
-
+                                   <a href="/admin/notice/{{$v}}add">
+                                        <button class="layui-btn">增加</button>
+                                    </a>
                                     <a href="/admin/notice/{{$v['id']}}/edit">
-                                        <button class="btn btn-default">修改公告</button>
+                                        <button class="layui-btn ">修改</button>
                                      </a>
-                                       <a onclick=del({{$v['id']}},$(this)) class="btn btn-small">删除</a>
+                                       <button onclick=del({{$v['id']}},$(this)) type="button" class="btn btn-danger btn-small">删除</button>
                                     </td>
                                 </tr>
                         @endforeach
@@ -51,7 +53,7 @@
         	</table>
 
         <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-        <a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_1_first">First</a>
+        <a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_1_first">首页</a>
         <a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_1_previous">上一页</a>
         <span>
         	<a tabindex="0" class="paginate_active">1</a>
@@ -61,25 +63,45 @@
        	 	<a tabindex="0" class="paginate_button">5</a>
         </span>
         <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">下一页</a>
-        <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">返回</a>
+        <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">尾页</a>
         </div>
     </div>
     </div>
 </div>
 @stop
 
-
 @section('js')
 <script type="text/javascript">
-   function del(id,obj){
-        $.get("{{url('/admin/notice')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(res){   
-           if(res == 1){
-               alert('删除成功');
-           } else if (res ==0){
-               alert('删除失败');
-           }
-                
-        });
+  function del(id,obj){
+       
+            layer.open({
+                title:'删除提示'
+                ,content: '真的要删除第'+id+'条吗？'
+                ,btn: ['删除', '取消']
+                ,yes: function(index,layero){
+                  //按钮【删除】的回调
+                  layer.close(index);
+                  layer.load(1);
+                //   location.reload();
+                   $.post("{{url('/admin/index')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                       
+                        if(data == 1){
+                            layer.msg('删除成功', {icon: 1});
+                            location.reload();
+                            } else if (data ==0){
+                            layer.msg('删除失败', {icon: 2});
+                            location.reload();
+                            
+                            } 
+                            
+                    });
+                }
+                ,no: function(index, layero){
+                  //按钮【取消】的回调
+                 
+                }
+              });              
+       
      
     };
 </script>
