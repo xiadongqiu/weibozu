@@ -260,15 +260,14 @@
                         <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
                          <ul style="display: none;" class="closed">
                             <li><a href="/admin/#">广告添加</a></li>
-                            <li><a href="/admins/#">广告修改</a></li>
+                            <li><a href="/admins/#">广告列表</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="/admins/#"><i class="icon-sound"></i>系统公告</a>
                          <ul style="display: none;" class="closed">
-                            <li><a href="/admin/#">公告添加</a></li>
-                            <li><a href="/admins/#">公告修改</a></li>
+                            <li><a href="/admin/notice/create">公告添加</a></li>
                              <li><a href="/admin/notice">公告列表</a></li>
                         </ul>
                     </li>

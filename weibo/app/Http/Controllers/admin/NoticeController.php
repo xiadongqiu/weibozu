@@ -31,6 +31,7 @@ class NoticeController extends Controller
     public function create()
     {
         //
+        return view('admin/notice/add');
 
     }
 
@@ -42,7 +43,26 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //正则验证
+        $this->validate($request,[
+                'title' => 'required',
+                'content' => 'required',
+            ],[
+                'title' => '*公告标题不能为空*',
+                'content.required' => '*公告内容不能为空*'
+            ]);
+        // dd($this);
+        // 接收页面传过来的数据信息
+        $res = $request->except('_token');
+        //添加时间戳
+        $res['time']=time();
+        //将数据添加到数据库
+        if($data){
+            return redirect('admin/notice');
+        }else{
+            return back();
+        }
+
     }
 
     /**
@@ -65,6 +85,7 @@ class NoticeController extends Controller
     public function edit($id)
     {
         //
+        return view('admin/notice/edit');
     }
 
     /**
