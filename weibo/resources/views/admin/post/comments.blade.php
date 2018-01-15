@@ -95,11 +95,11 @@
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                 <a tabindex="0" class="first paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_first">
-                    First
+                    首页
                 </a>
                 <a tabindex="0" class="previous paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_previous">
-                    Previous
+                    上一页
                 </a>
                 <span>
                     <a tabindex="0" class="paginate_active">
@@ -119,10 +119,10 @@
                     </a>
                 </span>
                 <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
-                    Next
+                    下一页
                 </a>
                 <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
-                    Last
+                    尾页
                 </a>
             </div>
         </div>
@@ -145,7 +145,7 @@
                   layer.close(index);
                   layer.load(1);
                 //   location.reload();
-                   $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                   $.post("{{url('/admin/comments')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
                        
                         if(data == 1){
                             layer.msg('删除成功', {icon: 1});
