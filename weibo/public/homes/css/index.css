@@ -97,6 +97,9 @@ a{text-decoration: none;}
 .conC_two ul li{
 	float: left;font-size: 13px;line-height: 40px;margin: 0 15px;color: #555;
 }
+.conC_two ul li:hover{
+	color:#fa7d3c;cursor: pointer;
+}
 .weibo{
 	width: 620px;margin-top: 10px;padding: 10px;background-color: #fff;position: relative;
 }
@@ -250,9 +253,20 @@ a{text-decoration: none;}
 	color: #333;
 }
 .weibo_gengduo{
-	width: 640px;line-height: 40px;text-align: center;
+	width: 620px;line-height: 40px;text-align: center;display: none;
 }
 .weibo_gengduo a{
 	font-size: 14px;color: #333;
 }
-
+.page{
+	width: 640px;height: 40px;line-height: 40px;background: #fff;margin-top: 10px;text-align: center;
+}
+.page .pagination{
+	text-align: center;width: 640px;height: 40px;line-height: 40px;background: #fff;text-align: center;
+}
+.page ul li{
+	float: left;margin: 0 10px;padding: 0 10px;
+}
+.page ul .active{
+	border:none;color: #fa7d3c;
+}

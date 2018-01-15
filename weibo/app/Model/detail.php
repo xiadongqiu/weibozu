@@ -13,5 +13,6 @@ class detail extends Model
     {
         return $this->hasOne('App\Model\user','id');
     }
+    
 
 }

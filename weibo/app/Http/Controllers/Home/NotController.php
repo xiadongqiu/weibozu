@@ -18,10 +18,11 @@ class NotController extends Controller
     public function getIndex (Request $Request)
     {
         //dd(time());
-        $weibo = weibo::get();
+        // $users = App\User::paginate(15);
+        $weibo = weibo::paginate(5);
         // echo json_encode($weibo);
         $hot = weibo::orderBy('like','desc')->take(8)->get();
-        return view('Home.index1.not',['data'=>$weibo,'hot'=>$hot]);
+        return view('home.index1.not',['data'=>$weibo,'hot'=>$hot]);
     }
 
     /**

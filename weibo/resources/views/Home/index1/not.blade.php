@@ -189,7 +189,9 @@
 			
 			@endforeach
 
+			<div class="page">{!! $data->render() !!}</div>
 		</div>
+
 
 
 		<div class="con_right">
