@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 
 <!-- Viewport Metatag -->
+<meta name="_token" content="{{ csrf_token() }}"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admins/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/custom-plugins/wizard/wizard.css" media="screen">

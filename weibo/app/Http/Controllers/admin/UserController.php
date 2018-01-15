@@ -78,7 +78,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-         dd($id);
+        $data = $request->except(['_method','auth','status']);
+        $data1 = $request->only(['auth', 'status']);
+        $res = detail::where('id',$id)->update($data);
+        $res1 = user::where('id',$data['uid'])->update($data1);
+        if($res>0 || $res1>0){
+            echo 1;
+        }else{
+            echo 2;
+        }
+
     }
 
     /**
