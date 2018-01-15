@@ -17,7 +17,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $res = report::get();
+        $res = report::where('report','>',10)->paginate(10);
         return view('admin.report.list',['res'=>$res]);
     }
 

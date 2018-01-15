@@ -11,10 +11,6 @@
     <div class="mws-panel-body no-padding">
         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
             <div id="DataTables_Table_1_length" class="dataTables_length">
-                <a href="" style="color:#333;font-weight:bold;line-height:30px;">
-                    <i class="icon-plus-sign"></i>
-                    添加用户
-                </a>
             </div>
             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                 <label>
@@ -29,16 +25,19 @@
                         <th style="width: 25px;">
                             Id
                         </th>
-                        <th style="width: 170px;">
+                        <th style="width: 150px;">
                             举报原因
                         </th>
-                        <th style="width: 120px;">
+                        <th style="width: 130px;">
                             举报人
                         </th>
-                        <th style="width: 120px;">
+                        <th style="width: 130px;">
                             微博作者
                         </th>
-                        <th style="width: 200px;">
+                        <th style="width: 50px;">
+                            举报次数
+                        </th>
+                        <th style="width: 150px;">
                             举报时间
                         </th>
                         <th style="width: 120px;">
@@ -62,6 +61,9 @@
                             {{$val->uid}}
                         </td>
                         <td class=" ">
+                            {{$val->report}}
+                        </td>
+                        <td class=" ">
                            {{date('Y-m-d H:i:s',$val->report_time)}}
                         </td>
                         <td class=" ">
@@ -73,38 +75,30 @@
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
-                共100条   10/页
+                共{{$res->total()}}条&nbsp;&nbsp;&nbsp;10条/页
             </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                <a tabindex="0" class="first paginate_button paginate_button_disabled"
+                <a href="{{$res->url($res->hasMorePages())}}" tabindex="0" class="first paginate_button"
                 id="DataTables_Table_1_first">
                     首页
                 </a>
-                <a tabindex="0" class="previous paginate_button paginate_button_disabled"
+                <a href="{{$res->previousPageUrl()}}" tabindex="0" class="previous paginate_button"
                 id="DataTables_Table_1_previous">
                     上一页
                 </a>
                 <span>
-                    <a tabindex="0" class="paginate_active">
-                        1
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        2
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        3
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        4
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        5
-                    </a>
+                @for($i=1;$i<=$res->lastPage();$i++)
+                @if($i==$res->currentPage())
+                <a href="{{$res->url($i)}}" tabindex="0" class="paginate_active">{{$i}}</a>
+                @else
+                <a href="{{$res->url($i)}}" tabindex="0" class="paginate_button">{{$i}}</a>
+                @endif
+                @endfor
                 </span>
-                <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
+                <a href="{{$res->nextPageUrl()}}" tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
                     下一页
                 </a>
-                <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
+                <a href="{{$res->url($res->lastPage())}}" tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
                     尾页
                 </a>
             </div>

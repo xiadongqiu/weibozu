@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $res = user::get();
+        $res = user::paginate(10);
         $auth = array('用户','管理员','超级管理员');
         $status = array('开启','关闭');
         return view('admin.user.list',['res' => $res,'auth' => $auth,'status' => $status]);
