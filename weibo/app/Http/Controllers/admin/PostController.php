@@ -95,10 +95,11 @@ class PostController extends Controller
          $res = comment::where('wid',$id)->delete();
         if($res){
             echo 1;
-        } 
+        }else{
+            echo 1;
+        }
     }else{
         echo 0;
-    }
-     
+    }    
     }
 }

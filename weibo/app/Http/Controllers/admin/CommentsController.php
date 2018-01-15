@@ -86,16 +86,28 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        $data = comment::where('id',$id)->delete();
-        if($data){
-            $res = comment::where('fid',$id)->delete();
-            if($res){
-                echo 1;
-            }else{
-                echo 0;
-            }
+        // dd($id);
+        $date = comment::where('id',$id)->first();
+        if($date['attributes']['fid']==0){
+            $a = comment::where('id',$id)->delete();
+                if($a){
+                    $res = comment::where('fid',$id)->delete();
+                    if($res){
+                        echo 1;
+                    }else{
+                        echo 1;
+                    }
+                }else{
+                    echo 0;
+                }
         }else{
-            echo 0;
+            $b = comment::where('id',$id)->delete();
+                if($b){
+                    echo 1;
+                }else{
+                    echo 0;
+                }
         }
+        
     }
 }

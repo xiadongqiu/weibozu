@@ -144,36 +144,28 @@
             </table>
             
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                <a tabindex="0" class="first paginate_button paginate_button_disabled"
+                <a tabindex="0" class="first paginate_button"
                 id="DataTables_Table_1_first">
-                    First
+                    首页
                 </a>
                 <a tabindex="0" class="previous paginate_button paginate_button_disabled"
                 id="DataTables_Table_1_previous">
-                    Previous
+                    上一页
                 </a>
                 <span>
-                    <a tabindex="0" class="paginate_active">
+                    <a tabindex="0" class="paginate_button">
                         1
                     </a>
-                    <a tabindex="0" class="paginate_button">
+                    <a tabindex="0" class="paginate_active">
                         2
                     </a>
-                    <a tabindex="0" class="paginate_button">
-                        3
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        4
-                    </a>
-                    <a tabindex="0" class="paginate_button">
-                        5
-                    </a>
+                    
                 </span>
                 <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
-                    Next
+                    下一页
                 </a>
                 <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
-                    Last
+                    尾页
                 </a>
             </div>
         </div>
