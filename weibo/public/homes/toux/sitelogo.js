@@ -227,9 +227,13 @@
       var url = this.$avatarForm.attr('action'),
           data = new FormData(this.$avatarForm[0]),
           _this = this;
-
-      $.ajax(url, {
-        headers: {'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+      $.ajax({
+        url:'/user/user/photo',
         type: 'post',
         data: data,
         dataType: 'json',

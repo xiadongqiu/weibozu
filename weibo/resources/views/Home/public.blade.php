@@ -10,11 +10,24 @@
 <link rel="stylesheet" type="text/css" href="/homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/user.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css">
-<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+
+
+	<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
+
+	<script src="/homes/toux/jquery.min.js"></script>
+
+	<link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/homes/toux/cropper.css" rel="stylesheet">
+	<link href="/homes/toux/sitelogo.css" rel="stylesheet">
+
+	<script src="/homes/toux/cropper.js"></script>
+	<script src="/homes/toux/sitelogo.js"></script>
+	<script src="/homes/bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="/homes/layer/layer.js"></script>
 
-<style type="text/css">
+
+	<style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
 }

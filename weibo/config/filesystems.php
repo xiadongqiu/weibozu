@@ -84,17 +84,15 @@ return [
             'driver'  => 'qiniu',
             'domains' => [
                 'default'   => 'p2eagt3l7.bkt.clouddn.com', //你的七牛域名
-                //'https'     => 'dn-yourdomain.qbox.me',         //你的HTTPS域名
-                'custom'   => 'static.abc.com',                 //Useless 没啥用，请直接使用上面的 default 项
-             ],
+                'https'     => 'dn-yourdomain.qbox.me',         //你的HTTPS域名
+                'custom'    => 'static.abc.com',                //Useless 没啥用，请直接使用上面的 default 项
+            ],
             'access_key'=> 'qZVKY3NxBmeWR7lCNr-uH5UujlLGnVZHBMI_LS5f',  //AccessKey
             'secret_key'=> '1k1WsN_PHG1Uvs2nC_nq1urM6tzdWOFv1PW4ZLob',  //SecretKey
-            'bucket'    => 'weibo',  //Bucket名字
+            'bucket'    => 'weibo',  //Bucket名字，空间名
             'notify_url'=> '',  //持久化处理回调地址
             'access'    => 'private'  //空间访问控制 public 或 private
         ],
-
-
 
     ],
 

@@ -4,7 +4,64 @@
     <!-- head end -->
     <div style="height:30px;width:50px;"></div>
     <div class="cen_top">
-        <div class="con_toppic"><img src="/Homes/images/tou.png"></div>
+        <div class="con_toppic">
+
+            <div class="ibox-content">
+                <div class="row">
+                    <div id="crop-avatar" class="col-md-6">
+                        <div class="avatar-view" >
+                            <img src="/Homes/images/tou.png" alt="Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form class="avatar-form"  enctype="multipart/form-data" >
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                <h4 class="modal-title" id="avatar-modal-label">修改头像</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="avatar-body">
+                                    <div class="avatar-upload">
+                                        <input class="avatar-src" name="avatar_src" type="hidden">
+                                        <input class="avatar-data" name="avatar_data" type="hidden">
+                                        <label for="avatarInput">图片上传</label>
+                                        <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="avatar-wrapper"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="avatar-preview preview-md"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row avatar-btns">
+                                        <div class="col-md-9">
+                                            <div class="btn-group">
+                                                <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-success btn-block avatar-save" type="btn"><i class="fa fa-save"></i> 保存修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+        </div>
         <div class="con_topname">{{$res->detail->nickname}}</div>
         <div class="con_topcon">{{$res->detail->abstract or '这个人很懒，什么都没有留下'}}</div>
     </div>
@@ -63,18 +120,18 @@
                 </div>
             </div>
             <div class="cont_center">
-                <div class="wei_sou">
+                <div class="wei_sou" style="width: 640px;height: 60px;background: #fff;border-radius: 3px;">
                     <div class="wei_souall"><a href="#">全部</a></div>
                     <div class="wei_souinp">
                         <form>
-                            <input type="text">
+                            <input type="text" style="width:200px;height:25px">
                             <input id="sou" type="submit" value="搜索">
                         </form>
                     </div>
                 </div>
                 <!-- 微博内容 -->
                 @foreach ($res->weibo as $k => $v)
-                    <div class="weibo">
+                    <div class="weibo" style="padding:;">
                         <a href="#" class="xiangxia"></a>
                         <div class="xiangxia_show">
                             <ul>
@@ -238,7 +295,7 @@
         <div class="xiangce" style="display:none;">
             <div class="xiangce_d1">
                 <b>相片墙</b>
-                <a href="上传照片">上传图片</a>
+                <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
             </div>
             <div class="xiangce_pics">
                 <img src="/homes/touxiang/15518061306/1.jpg">
@@ -296,10 +353,6 @@
                     <tr>
                         <td><span>血型</span></td>
                         <td><i></i>{{$res->detail->blood or '马上填写自己的血型,可以被更多同血型的人找到哦'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>博客地址</span></td>
-                        <td><i></i>{{$res->detail->adress or '马上填写 自己的博客地址,让自己的心声被更多的人了解'}}</td>
                     </tr>
                     <tr>
                         <td><span>个性域名</span></td>
@@ -594,7 +647,22 @@
         <!-- 个人中心 -->
     </div>
     <script type="text/javascript" src="/homes/js/date.js"></script>
+    <script type="text/javascript">
 
+        $("#shang").click(function(){
+            layer.open({
+                type: 2,
+                title: '图片上传',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['60%', '60%'],
+                content: '/user/user/uploade'
+            });
+
+        });
+
+        // $('#ssi-upload').ssi_uploader({url:'#',maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
+    </script>
     <script type="text/javascript">
 
         $('.cen_m').children().eq(0).click(function(){
@@ -636,7 +704,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-        });
+             });
             $.ajax({
                 type: "post",
                 dataType: "json",
@@ -653,9 +721,7 @@
                         layer.msg('修改失败,请重试');
                     }
                 }
-
             });
-
         });
 
         $.date_picker({

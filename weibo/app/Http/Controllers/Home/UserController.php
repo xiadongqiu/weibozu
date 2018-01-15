@@ -40,4 +40,34 @@ class UserController extends Controller
         }
     }
 
+    public function postPhoto(request $request)
+    {
+        $pic = $request->file('avatar_file');
+        $id = $request->session()->get('home');
+        $disk = \Storage::disk('qiniu');
+        $pat = $pic->getClientOriginalExtension();
+        $fileName = md5(date('YmdHis',time())).'.'.$pat;
+        $path = $pic->getRealPath();
+        $disk -> put($fileName,fopen($path,'r+'));
+        $filepath =  $disk->getDriver()->downloadUrl($fileName);
+        $arr = ['portrait'=>$fileName];
+        detail::where('id',$id)->update($arr);
+        return Response()->json([
+            'filename' => $fileName,
+            'result' => $filepath,
+            'message' => ''
+        ]);
+
+
+    }
+
+    public function getUploade()
+    {
+        return view('home/user/uploade');
+    }
+
+    public function PostDate(request $request)
+    {
+        dd($request->all());
+    }
 }
