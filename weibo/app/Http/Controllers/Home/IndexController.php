@@ -10,6 +10,7 @@ use App\Model\user;
 use App\Model\attention;
 use App\Model\weibo;
 use App\Model\detail;
+use App\Model\comment;
 
 class IndexController extends Controller
 {
@@ -82,7 +83,7 @@ class IndexController extends Controller
 
         $weibo_data = [];
         foreach ($gids as $gidsk => $gidsv) {
-            $weidata = weibo::where('uid',$gidsv)->get();
+            $weidata = weibo::where('uid',$gidsv)->orderBy('publish_time','desc')->get();
             if($weidata != null){
                 $weibo_data[] = $weidata;
             }
@@ -116,8 +117,78 @@ class IndexController extends Controller
     //追加评论的ajax
     public function getPing(Request $Request)
     {
+        $uid = 2;
+        $detail = detail::where('id',$uid)->first();
+
+        $commdata = [];
+
         $content = $Request->input('pcont');
-        echo 'a';
+        $wid = $Request->input('wid');
+
+        $commdata['nickname'] =$detail['nickname'];
+        $commdata['content'] =$content;
+        $commdata['wid'] =$wid;
+        $commdata['pid'] =$uid;
+        $commdata['comment_time'] =time();
+
+        $res = comment::insertGetId($commdata);
+        if($res){
+            $new = comment::where('id',$res)->first();
+            echo json_encode($new);
+        }else{
+            echo 2;
+        }
+
+        //echo 'a';
     }
-    
+    //追加回复的ajax
+    public function getHuifu(Request $Request)
+    {
+        $uid = 2;
+        $detail = detail::where('id',$uid)->first();
+
+        $commdata = [];
+
+        $content = $Request->input('hcont');
+        $wid = $Request->input('wid');
+        $fid = $Request->input('fid');
+
+        $commdata['nickname'] =$detail['nickname'];
+        $commdata['content'] =$content;
+        $commdata['wid'] =$wid;
+        $commdata['fid'] =$fid;
+        $commdata['comment_time'] =time();
+
+        $res = comment::insertGetId($commdata);
+        if($res){
+            $new = comment::where('id',$res)->first();
+            echo json_encode($new);
+        }else{
+            echo 2;
+        }
+
+        //echo 'a';
+    }
+
+    //发布微博的ajax
+    public function getSend (Request $Request)
+    {
+        $data = [];
+        $uid = 2;
+        $nickname = detail::where('id',$uid)->first();
+
+        $content = $Request->input('content');
+        $data['uid'] = $uid;
+        $data['nickname'] = $nickname['nickname'];
+        $data['content'] = $content;
+        $data['publish_time'] = time();
+        //dump($content);
+        $res = weibo::insertGetId($data);
+        if($res){
+            $new = weibo::where('id',$res)->first();
+            echo json_encode($new);
+        }else{
+            echo '发布失败';
+        }
+    }
 }

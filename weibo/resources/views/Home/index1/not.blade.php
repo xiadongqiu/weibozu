@@ -111,7 +111,7 @@
 										<a href="javascript:;">举报</a>
 										<a href="javascript:;">屏蔽</a>
 										<a class="" href="javascript:;">回复</a>
-										<i>11</i>
+										<input type="hidden" value='pid'>
 									</span>
 								</li>
 							</ul>
@@ -126,6 +126,7 @@
 										<a href="javascript:;">举报</a>
 										<a href="javascript:;">屏蔽</a>
 										<a id='Hui' href="javascript:;">回复</a>
+										<input type="hidden" value='wid'>
 										<i>11</i>
 									</span>
 								</li>
@@ -134,40 +135,12 @@
 						<div class="WB_ping_two">
 							<form>
 								<input type="text" class="wei_hui">
-								<input type="submit" value="评论" class="wei_huifu">
+								<input type="button" onclick="huifu(this)" value="回复" class="wei_huifu">
 							</form>
 						</div>
 						<div class="WB_ping_three">
 							<ul class="WB_ping_three_ul">
 								<li><a href="javascript:;">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸.</li>
-								<li>
-									<span>今天 11:11</span>
-									<span class="WB_ping_onespan">
-										<a href="javascript:;">举报</a>
-										<a href="javascript:;">屏蔽</a>
-										<a href="javascript:;">回复</a>
-										<i>11</i>
-									</span>
-								</li>
-							</ul>
-						</div>
-						<div class="WB_ping_three">
-							<ul class="WB_ping_three_ul">
-								<li><a href="javascript:;">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸.</li>
-								<li>
-									<span>今天 11:11</span>
-									<span class="WB_ping_onespan">
-										<a href="javascript:;">举报</a>
-										<a href="javascript:;">屏蔽</a>
-										<a href="javascript:;">回复</a>
-										<i>11</i>
-									</span>
-								</li>
-							</ul>
-						</div>
-						<div class="WB_ping_three">
-							<ul class="WB_ping_three_ul">
-								<li><a href="javascript:;">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了。</li>
 								<li>
 									<span>今天 11:11</span>
 									<span class="WB_ping_onespan">
