@@ -11,7 +11,10 @@
 <link rel="stylesheet" type="text/css" href="/homes/css/user.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css">
 
+	<link rel="stylesheet" href="/homes/touxiang/baguettebox.min.css">
+	<link rel="stylesheet" href="/homes/touxiang/style.css">
 
+	<script type="text/javascript" src="/homes/touxiang/baguettebox.min.js"></script>
 	<script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
 
 	<script src="/homes/toux/jquery.min.js"></script>
@@ -61,7 +64,9 @@
 .xiangxia_show ul li{
 	line-height: 30px;font-size: 12px;
 }
-
+a{
+	text-decoration:none;
+}
 .description{
 	position:fixed;
 	right:10px;

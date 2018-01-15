@@ -21,17 +21,44 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>请选择上传的图片</h3>
-                <input type="file" multiple  id="ssi-upload"/>
+                <input type="file" name="uploadfiles" multiple id="ssi-upload"/>
+                <input type="hidden" class="imgFiles" name="imgvalue" value="" />
             </div>
         </div>
 
     </div>
+
 </div>
 
 <script type="text/javascript">
-    $('#ssi-upload').ssi_uploader({url:'#',maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    // var imgNum = 0;
+    // $('#ssi-upload').ssi_uploader({url:'/user/user/shang',onEachUpload:function(fileInfo,xhr){
+    //         console.log(xhr);
+    //         return;
+    //         imgNum++;
+    //         var jsondata = $('.imgFiles').val();
+    //         console.log(jsondata);
+    //         $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
+    //
+    //     },maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
 
+    var imgNum = 0;
+    $('#ssi-upload').ssi_uploader({url:'/user/user/shang',onEachUpload:function(fileInfo,xhr ){
+            //
+            // console.log(xhr);
+            //
+            // imgNum++;
+            // var jsondata = $('.imgFiles').val();
+            // console.log(jsondata);
+            // $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
+        }})
 </script>
 
 </body>
 </html>
+

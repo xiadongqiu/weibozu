@@ -73,7 +73,7 @@
 
         });
 
-        $('#password').blur(function(){
+        $('#password').change(function(){
 
             var string1 = '^[a-z0-9_-]{6,18}$';
 
