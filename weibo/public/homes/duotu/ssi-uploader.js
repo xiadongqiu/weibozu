@@ -27,9 +27,6 @@
         this.currentListLength = 0;
         this.init(element);
     };
-
-
-
     Ssi_upload.prototype.init = function (element) {
         $(element).addClass('ssi-uploadInput')
          .after(this.$element = $('<div class="ssi-uploader">'));
@@ -98,6 +95,7 @@
 
         $clearBtn.click(function () { //choose files completed and pending files
             thisS.clear();
+            $('#imgFiles').val('');
         });
 
         var $tooltip;
@@ -388,11 +386,6 @@
         }
 
     };
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     Ssi_upload.prototype.uploadFiles = function () {// upload the pending files
         if (this.pending > 0) {
             this.$element.find('#ssi-abortBtn').removeClass('ssi-hidden');
@@ -419,7 +412,7 @@
             while (this.toUpload[i] === null) { // do it until you find a file
                 i++;
             }
-            formData.append('files[]', thisS.toUpload[i]);//append the first file to the form data
+            formData.append('file', thisS.toUpload[i]);//append the first file to the form data
             $.each(this.options.data, function (key, value) {// append all extra data
                 formData.append(key, value);
             });
@@ -502,7 +495,7 @@
                         }
                     }
                 },
-                type: 'post',
+                type: 'POST',
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -599,7 +592,7 @@
                             name: thisS.toUpload[ii].name,
                             size: (thisS.toUpload[ii].size / 1024).toFixed(2),
                             type: thisS.toUpload[ii].type
-                        });
+                        }, responseData);
                     } catch (err) {
                         console.log('There is an error in onEachUpload callback');
                         console.log(err);
@@ -628,7 +621,7 @@
                 $.each(thisS.options.data, function (key, value) {
                     formData.append(key, value);
                 });
-                formData.append('files[]', thisS.toUpload[i]);
+                formData.append('file', thisS.toUpload[i]);
                 ajaxLoopRequest(formData, i);
             }
         }
@@ -749,15 +742,15 @@
 
     $.fn.ssi_uploader = function (opts) {
         var defaults = {
-            url: '',
-            data: {},
-            locale: 'en',
+            url: '',//上传地址
+            data: {},//上传的数据
+            locale: 'ch',//提示语言，这里我已经自己手动设置了中文语言包，有其他需要的可以在文件末尾自行添加
             preview: true,
             dropZone: true,
-            maxNumberOfFiles: '',
+            maxNumberOfFiles: '',//最大上传数量
             responseValidation: false,
-            maxFileSize: 2,
-            ajaxOptions: {},
+            maxFileSize: 2,//文件最大上传内存，单位M
+            ajaxOptions: {},//ajax参数
             onUpload: function () {
             },
             onEachUpload: function () {
@@ -766,7 +759,7 @@
             },
             beforeEachUpload: function () {
             },
-            allowed: ['jpg', 'jpeg', 'png', 'bmp', 'gif'],
+            allowed: ['jpg', 'jpeg', 'png', 'bmp', 'gif'],//上传文件格式
             errorHandler: {
                 method: function (msg) {
                     alert(msg);
@@ -775,7 +768,6 @@
                 error: 'error'
             }
         };
-
         var options = $.extend(true, defaults, opts);
         return this.each(function () {
             var $element = $(this);
@@ -827,21 +819,38 @@
 
     var locale = {
         en: {
-            success: '上传成功',
+            success: 'Success',
             sucUpload: 'Successful upload',
-            chooseFiles: '选择',
+            chooseFiles: 'Choose files',
             uploadFailed: 'Upload failed',
             serverError: 'Internal server error',
-            error: '上传失败',
-            abort: '退出',
+            error: 'Error',
+            abort: 'Abort',
             aborted: 'Aborted',
             files: 'files',
-            upload: '上传',
-            clear: '清除',
-            drag: '拖动删除',
+            upload: 'Upload',
+            clear: 'Clear',
+            drag: 'Drag n Drop',
             sizeError: '$1 exceed the size limit of $2',// $1=file name ,$2=max ie( example.jpg has has exceed the size limit of 2mb)
             extError: '$1 file types are not supported',//$1=file extension ie(exe files are not supported)
             someErrorsOccurred: 'Some errors occurred!'
+        },
+        ch: {
+            success: "成功",
+            sucUpload: "图片已上传",
+            chooseFiles: "添加图片",
+            uploadFailed: "图片上传失败",
+            serverError: "服务器错误，刷新后重试",
+            error: "上传失败",
+            abort: "Abort",
+            aborted: "失败信息",
+            files: "files",
+            upload: "上传",
+            clear: "清空",
+            drag: "可拖拽存入图片",
+            sizeError: "$1 超过最大图片限制 $2",
+            extError: "$1 类型图片暂不支持",
+            someErrorsOccurred: "出错了!"
         },
         gr: {
             success: 'Επιτυχία',

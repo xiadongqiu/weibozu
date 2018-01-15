@@ -10,7 +10,7 @@
                 <div class="row">
                     <div id="crop-avatar" class="col-md-6">
                         <div class="avatar-view" >
-                            <img src="/Homes/images/tou.png" alt="Logo">
+                            <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
     <div style="clear: both;"></div>
 
     <div class="zhu_cont">
-        <div class="content">
+        <div class="content"  style="display:{{$status['status'] == '1'?'none':'block'}}" >
             <div class="cont_left">
                 <div class="cont_left_one">
                     <ul>
@@ -298,22 +298,27 @@
                 <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
             </div>
             <div class="xiangce_pics">
-                <img src="/homes/touxiang/15518061306/1.jpg">
-                <img src="/homes/touxiang/15518061306/2.jpg">
-                <img src="/homes/touxiang/15518061306/3.jpg">
-                <img src="/homes/touxiang/15518061306/4.jpg">
-                <img src="/homes/touxiang/15518061306/5.jpg">
-                <img src="/homes/touxiang/15518061306/6.jpg">
-                <img src="/homes/touxiang/15518061306/4.jpg">
-                <img src="/homes/touxiang/15518061306/4.jpg">
+                    <div class="baguetteBoxOne gallery">
+                        @foreach (json_decode($res->detail->pics) as $key=>$v)
+
+                        <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片"><img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200"></a>
+
+                        @endforeach
+
+                    </div>
             </div>
 
-            <div class="xiangce_page">分页</div>
+            <script type="text/javascript">
+                baguetteBox.run('.baguetteBoxOne', {
+                    animation: 'fadeIn',
+                });
+            </script>
+
         </div>
         <!-- 相册结束 -->
 
         <!-- 个人中心 -->
-        <div class="zhu_center" style="display:none;">
+        <div class="zhu_center"  {{$status == 1?'style="display:block;"': 'style="display:none;"'}}>
             <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
             </div>
             <div class="xinxi_two">
@@ -332,11 +337,11 @@
                     </tr>
                     <tr>
                         <td><span>所在地</span></td>
-                        <td><i></i>{{$adress[0].'省   '.$adress[1].'市'}}</td>
+                        <td><i></i>{{$adress[0].'省   '.$adress[1].'市' }}</td>
                     </tr>
                     <tr>
                         <td><span>性  别</span></td>
-                        <td><i></i>{{$res->detail->sex}}</td>
+                        <td><i></i>{{$res->detail->sex }}</td>
                     </tr>
                     <tr>
                         <td><span>性取向</span></td>
@@ -438,7 +443,6 @@
                                 <option>请选择城市</option>
 
                             </select>
-
                             <select class="city" >
 
                                 <option value="东城" {{$adress[1]=='东城'?'selected':' '}}>东城</option>
@@ -509,8 +513,7 @@
 
 
                             <script type="text/javascript">
-                                var currentShowCity=0;
-                                $(document).ready(function(){
+                                $(function(){
                                     $("#province").change(function(){
                                         $("#province option").each(function(i,o){
                                             if($(this).attr("selected"))
@@ -526,13 +529,15 @@
                                     $("#province").change();
                                 });
 
-                            $('#form').change(function(){
+
+                                $('#form').change(function(){
                                 var sheng = $("#province").val();
                                 $(".city").each(function(i,o){
                                     if(i == currentShowCity){
                                         shi = $(".city").eq(i).val();
                                     }
                                 });
+
                                 var adress = sheng +":"+shi;
                                 $('#adress').val(adress);
 
@@ -563,7 +568,7 @@
                     </tr>
                     <tr>
                         <td><span>感情状况</span></td>
-                        <td><select name="" id="">
+                        <td><select name="emotion" id="">
                                 <option value="默认" {{($res->detail->emotion == ' ') ? 'selected':''}}>请选择</option>
                                 <option value="单身狗" {{($res->detail->emotion == '单身狗') ? 'selected':''}}>单身狗</option>
                                 <option value="暗恋中" {{($res->detail->emotion == '暗恋中') ? 'selected':''}}>暗恋中</option>
@@ -581,8 +586,6 @@
                     <tr>
                         <td><span>生日</span></td>
                         <td>
-
-
                             <select id="date-sel-year" rel=" {{date('Y',strtotime($res->detail->birthday))}}" ></select>年
                             <select id="date-sel-month" rel="{{date('m',strtotime($res->detail->birthday))}}"></select>月
                             <select id="date-sel-day" rel="{{date('d',strtotime($res->detail->birthday))}}"></select>日
@@ -716,12 +719,15 @@
                 processData: false,
                 success: function (data) {
                     if(data == 1){
-                        layer.msg('保存成功');
-                    }else{
-                        layer.msg('修改失败,请重试');
-                    }
+                    layer.msg('保存成功');
+                    location.href = '/user/user/index?status=1';
+                }else{
+                    layer.msg('修改失败,请重试');
+        }
                 }
             });
+
+
         });
 
         $.date_picker({
@@ -731,6 +737,9 @@
         });
         // $.ms_DatePicker().val();
 
+        $(function(){
+           $('a').css('text-decoration','none');
+        });
     </script>
 @endsection('content')
 
