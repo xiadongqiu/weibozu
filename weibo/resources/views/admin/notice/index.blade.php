@@ -39,7 +39,7 @@
                                          {{date('Y-m-d H:i:s',time($v['announcement_time']))}}
                                     </td>
                                    <td class="">
-                                   <a href="/admin/notice/{{$v}}add">
+                                   <a href="/admin/notice/create">
                                         <button class="layui-btn">增加</button>
                                     </a>
                                     <a href="/admin/notice/{{$v['id']}}/edit">
@@ -70,7 +70,9 @@
 </div>
 @stop
 
-@section('js')
+
+
+ @section('js')
 <script type="text/javascript">
   function del(id,obj){
        
@@ -83,7 +85,7 @@
                   layer.close(index);
                   layer.load(1);
                 //   location.reload();
-                   $.post("{{url('/admin/index')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                   $.post("{{url('/admin/notice')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
                        
                         if(data == 1){
                             layer.msg('删除成功', {icon: 1});
@@ -91,9 +93,7 @@
                             } else if (data ==0){
                             layer.msg('删除失败', {icon: 2});
                             location.reload();
-                            
                             } 
-                            
                     });
                 }
                 ,no: function(index, layero){
@@ -101,8 +101,6 @@
                  
                 }
               });              
-       
-     
     };
 </script>
-@stop
+@stop 

@@ -86,6 +86,8 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		 Route::get('/config','ConfigController@edit');
 		 // 网站公告资源路由
 		 Route::resource('/notice','NoticeController');
+		 
+
 //==============================================================================
 
 });

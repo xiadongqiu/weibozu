@@ -43,7 +43,9 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //正则验证
+        // dump($request);
+
+        // 正则验证
         $this->validate($request,[
                 'title' => 'required',
                 'content' => 'required',
@@ -54,16 +56,25 @@ class NoticeController extends Controller
         // dd($this);
         // 接收页面传过来的数据信息
         $res = $request->except('_token');
-        //添加时间戳
-        $res['time']=time();
-        //将数据添加到数据库
-        if($data){
-            return redirect('admin/notice');
-        }else{
-            return back();
-        }
+         
+        // 添加时间戳/
+        $res['announcement_time']=time();
+        // dd($res);
+        // 将数据添加到数据库
+        $data = notice::insert($res);
+         if($data){
+             return redirect('admin/notice');
+         } else {
+             return back();
+         }
+       // if($data){
+       //  alert('添加成功');
+       // }else{
+       //  alert('添加失败');
+       // }
 
-    }
+
+     }
 
     /**
      * Display the specified resource.
@@ -84,8 +95,9 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('admin/notice/edit');
+        //从notice表查到要修改的数据
+        $res = notice::where('id',$id)->first();
+        return view('/admin/notice/edit',['res'=>$res]);
     }
 
     /**
@@ -97,7 +109,25 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+         // 接收从页面发送的新值
+       $res = $request->except('_token','_method');
+
+       // 创建时间戳
+       $res['announcement_time']=time();
+       
+       //条件判断当前修改ID与新传的值ID一致更新数据库对应内容
+       $data = notice::where('id',$id)->update($res);
+
+        if ($data) {
+            //更新成功后返回列表页面
+            return redirect('/admin/notice/');
+        } else {
+
+            //不成功则返回修改页面
+            return back();
+        }
+
     }
 
     /**
@@ -109,5 +139,8 @@ class NoticeController extends Controller
     public function destroy($id)
     {
         //
+        // 条件判断当前ID与页面要删除的值ID一致删除对应ID数据
+        $data = notice::where('id',$id)->delete();
+        echo 1;
     }
 }
