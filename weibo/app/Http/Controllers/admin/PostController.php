@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $data = weibo::get();
+        $data = weibo::paginate(10);
         
         return view('admin/post/list',['data'=>$data]);
     }

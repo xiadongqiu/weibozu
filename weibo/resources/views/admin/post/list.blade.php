@@ -142,29 +142,32 @@
                 @endforeach
                 </tbody>
             </table>
-            
-            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                <a tabindex="0" class="first paginate_button"
+            <div class="dataTables_info" id="DataTables_Table_1_info">
+                共{{$data->total()}}条&nbsp;&nbsp;&nbsp;10条/页
+            </div>
+            <div  class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+                <a href='{{$data->url($data->hasMorePages())}}' tabindex="0" class="first paginate_button"
                 id="DataTables_Table_1_first">
                     首页
                 </a>
-                <a tabindex="0" class="previous paginate_button paginate_button_disabled"
+                <a href="{{$data->previousPageUrl()}}" tabindex="0" class="previous paginate_button"
                 id="DataTables_Table_1_previous">
                     上一页
                 </a>
                 <span>
-                    <a tabindex="0" class="paginate_button">
-                        1
-                    </a>
-                    <a tabindex="0" class="paginate_active">
-                        2
-                    </a>
+                @for($i=1;$i<=$data->lastPage();$i++)
+                @if($i==$data->currentPage())
+                <a href="{{$data->url($i)}}" tabindex="0" class="paginate_active">{{$i}}</a>
+                @else
+                <a href="{{$data->url($i)}}" tabindex="0" class="paginate_button">{{$i}}</a>
+                @endif
+                @endfor
                     
                 </span>
-                <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
+                <a href="{{$data->nextPageUrl()}}" tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
                     下一页
                 </a>
-                <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
+                <a href="{{$data->url($data->lastPage())}}" tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
                     尾页
                 </a>
             </div>

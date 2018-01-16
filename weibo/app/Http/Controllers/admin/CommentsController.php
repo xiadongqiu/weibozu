@@ -18,7 +18,7 @@ class CommentsController extends Controller
      */
     public function index()
     {   
-        $res = comment::get();
+        $res = comment::paginate(10);
         // dd($res);
         return view('admin/post/comments',['res'=>$res]);
     }

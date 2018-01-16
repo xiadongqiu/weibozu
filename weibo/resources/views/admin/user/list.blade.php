@@ -1,4 +1,4 @@
-@extends('admin.index')
+ @extends('admin.index')
 @section('zhuti')
     <div class="mws-panel grid_8">
     <div class="mws-panel-header">
