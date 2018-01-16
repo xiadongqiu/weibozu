@@ -32,7 +32,7 @@
 					<div class="wei_cont">
 						<p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
 						<ul class="wei_ul">
-							<li><img src="./Homes/images/img1.jpg"></li>
+							<li><img src="`Homes/images/img1.jpg"></li>
 							<li><img src="./Homes/images/img1.jpg"></li>
 							<li><img src="./Homes/images/img1.jpg"></li>
 							<li><img src="./Homes/images/img1.jpg"></li>

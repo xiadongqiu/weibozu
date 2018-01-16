@@ -74,14 +74,13 @@
         </ul>
     </div>
     <div style="clear: both;"></div>
-
     <div class="zhu_cont">
-        <div class="content"  style="display:{{$status['status'] == '1'?'none':'block'}}" >
+        <div class="content"  style="display:{{$status['status'] == null?'block':'none'}}" >
             <div class="cont_left">
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="#">12345</a>
+                            <a href="/user/user/attent">12345</a>
                             <span>关注</span>
                         </li>
                         <li>
@@ -99,12 +98,21 @@
                         <li><a href="#">申请认证</a></li>
                         <li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
                     </ul>
-                    <div><a >详情请看个人中心</a></div>
+                    <div><a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a></div>
                 </div>
                 <div class="cont_left_three">
                     <span style="border-bottom: 1px solid #F2F2F5;">相册</span>
-                    <div><img src="/Homes/images/tou.png"><img src="/Homes/images/tou.png"></div>
-                    <span style="border-top: 1px solid #F2F2F5;"><a href="#">查看个人相册</a></span>
+                    @if(count($pic)>=2)
+                        <div>
+                        @for($i=0;$i<=1;$i++)
+
+                            <img src="http://p2l4kajri.bkt.clouddn.com/{{$pic[$i]}}">
+                        @endfor
+                        </div>
+                    @else
+                        <div><img src="/Homes/images/tou.png"><img src="/Homes/images/tou.png"></div>
+                    @endif
+                    <span style="border-top: 1px solid #F2F2F5;"><a onclick="xiangce()" style="cursor:pointer">查看个人相册</a></span>
                 </div>
                 <div class="cont_left_three" style="height:200px;">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
@@ -282,7 +290,7 @@
             </div>
             <div class="cont_right">
                 <ul>
-                    <li><a href="#">类型一</a></li>
+                    <li><a href="#">远程</a></li>
                     <li><a href="#">类型一</a></li>
                     <li><a href="#">类型一</a></li>
                     <li><a href="#">类型一</a></li>
@@ -292,19 +300,24 @@
 
         <!-- 相册开始 -->
         <div style="clear: both;"></div>
-        <div class="xiangce" style="display:none;">
+        <div class="xiangce" style="display:{{$status['status'] == '2'?'block':'none'}}">
             <div class="xiangce_d1">
                 <b>相片墙</b>
                 <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
             </div>
             <div class="xiangce_pics">
                     <div class="baguetteBoxOne gallery">
-                        @foreach (json_decode($res->detail->pics) as $key=>$v)
 
-                        <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片"><img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200"></a>
-
-                        @endforeach
-
+                        @if($res->detail->pics !== '0')
+                            @foreach (json_decode($res->detail->pics) as $key=>$v)
+                        <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片">
+                            <img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200">
+                        </a>
+                            <button type="button" id="{{$key}}"  onclick="delpic(this)" class="btn-warning">删除</button>
+                            @endforeach
+                        @else
+                            <h4>您未添加任何图片 请去添加</h4>
+                        @endif
                     </div>
             </div>
 
@@ -312,13 +325,27 @@
                 baguetteBox.run('.baguetteBoxOne', {
                     animation: 'fadeIn',
                 });
+                function delpic(obj){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.post('/user/user/delpic',{pic:$(obj).attr('id')},function(data){
+                        if(data == 1){
+                            layer.msg('删除成功');
+                            location.href = '/user/user/index?status=2';
+
+                        }
+                    });
+                }
             </script>
 
         </div>
         <!-- 相册结束 -->
 
         <!-- 个人中心 -->
-        <div class="zhu_center"  {{$status == 1?'style="display:block;"': 'style="display:none;"'}}>
+        <div class="zhu_center" style="display:{{$status['status'] == '1'?'block':'none'}}">
             <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
             </div>
             <div class="xinxi_two">
@@ -400,7 +427,7 @@
                 </table>
             </div>
         </div>
-        <div class="zhu_center bianji" style="display:none;">
+        <div class="zhu_center bianji" style="display:{{$status['status'] == '3'?'block':'none'}}">
             <div class="xinxi_one"><span>基本信息</span> <button id="baocun" type="button">保存</button>
             </div>
             <div class="xinxi_two">
@@ -653,6 +680,7 @@
     <script type="text/javascript">
 
         $("#shang").click(function(){
+
             layer.open({
                 type: 2,
                 title: '图片上传',
@@ -662,6 +690,7 @@
                 content: '/user/user/uploade'
             });
 
+
         });
 
         // $('#ssi-upload').ssi_uploader({url:'#',maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
@@ -669,27 +698,40 @@
     <script type="text/javascript">
 
         $('.cen_m').children().eq(0).click(function(){
+            zhuye();
+        });
+
+        function zhuye(){
             $('.content').show();
             $('.xiangce').hide();
             $('.zhu_center').hide();
             $('.weibo').show();
-        });
+        }
+
+
 
         $('.cen_m').children().eq(1).click(function(){
+            xiangce();
+
+        });
+        function xiangce(){
+            location.href = '/user/user/index?status=2';
             $('.content').hide();
             $('.xiangce').show();
             $('.zhu_center').hide();
             $('.weibo').hide();
 
-
-        });
+        }
 
         $('.cen_m').children().eq(2).click(function(){
+            zhongxin()
+        });
+        function zhongxin(){
             $('.content').hide();
             $('.xiangce').hide();
             $('.zhu_center').show();
             $('.bianji').hide();
-        });
+        }
 
 
         $('#bianji').click(function(){

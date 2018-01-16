@@ -25,7 +25,9 @@ class UserController extends Controller
         $status = $request->only('status');
         $res = user::find($uid);
         $arr = (explode(':',$res->detail->adress));
-        return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status]);
+        $array = json_decode($res->detail->pics,true);
+        $array1 = array_values($array);
+        return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1]);
 
     }
 
@@ -87,20 +89,52 @@ class UserController extends Controller
         $disk -> put($fileName,fopen($path,'r+'));
         $res = detail::find($id);
         if($res->pics == '0'){
+            echo 1;
             $arr = array();
-            $arr[time()] = $fileName;
+            $arr[rand(00,1000).time()] = $fileName;
             $json = json_encode($arr);
             $array['pics'] = $json;
             detail::where('id',$id)->update($array);
         }else{
+
             $pics = $res->pics;
             $arr = json_decode($pics,true);
-            $arr[time()] = $fileName;
+            $arr[rand(00,1000).time()] = $fileName;
             $json = json_encode($arr);
             $array['pics'] = $json;
             detail::where('id',$id)->update($array);
 
         }
+    }
+
+    public function postDelpic(request $request)
+    {
+        $name = $request->only('pic');
+        $id = $request->session()->get('home');
+        $res = detail::find($id);
+        $pics = $res->pics;
+        $arr = json_decode($pics,true);
+        foreach($arr as $k=>$v){
+            if($k == $name['pic']){
+                unset($arr[$k]);
+            }
+        }
+        $json = json_encode($arr);
+        $array['pics'] = $json;
+        $res = detail::where('id',$id)->update($array);
+        echo 1;
+    }
+
+    public function getAttent(request $request)
+    {
+        $uid = $request->session()->get('home');
+        $status = $request->only('status');
+        $res = user::find($uid);
+        $arr = (explode(':',$res->detail->adress));
+        $array = json_decode($res->detail->pics,true);
+        $array1 = array_values($array);
+        return view('home/attent/index',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1]);
+
     }
 
 }
