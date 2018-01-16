@@ -36,16 +36,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    // var imgNum = 0;
-    // $('#ssi-upload').ssi_uploader({url:'/user/user/shang',onEachUpload:function(fileInfo,xhr){
-    //         console.log(xhr);
-    //         return;
-    //         imgNum++;
-    //         var jsondata = $('.imgFiles').val();
-    //         console.log(jsondata);
-    //         $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
-    //
-    //     },maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
 
     var imgNum = 0;
     $('#ssi-upload').ssi_uploader({url:'/user/user/shang',onEachUpload:function(fileInfo,xhr ){
@@ -56,8 +46,9 @@
             // var jsondata = $('.imgFiles').val();
             // console.log(jsondata);
             // $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
-        }
-    })
+
+        },maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']})
+
 </script>
 
 </body>

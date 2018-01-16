@@ -41,6 +41,7 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     Route::group(['middleware'=>'home'],function(){
         //用于展示个人中心以及处理数据
         Route::controller('/user','UserController');
+
     });
 });
 //===============================================================
