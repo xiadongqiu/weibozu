@@ -11,6 +11,8 @@ use App\Model\attention;
 use App\Model\weibo;
 use App\Model\detail;
 use App\Model\comment;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\JsonResponse;
 
 class IndexController extends Controller
 {
@@ -171,18 +173,36 @@ class IndexController extends Controller
     }
 
     //发布微博的ajax
-    public function getSend (Request $Request)
+    public function postSend (Request $Request)
     {
+
+        
+        //dump($Request->all());
         $data = [];
         $uid = 2;
         $nickname = detail::where('id',$uid)->first();
 
         $content = $Request->input('content');
+        $picture = $Request->input('picture');
         $data['uid'] = $uid;
         $data['nickname'] = $nickname['nickname'];
         $data['content'] = $content;
+        
+            $picture = rtrim($picture,',');
+            $picture = explode(',', $picture);
+            //dump($picture);
+
+            $pics = [];
+            foreach ($picture as $key => $value) {
+                $pics[rand(000,999)] = $value;
+            }
+            //dd($pics);
+
+            $picture = json_encode($pics);
+            //dd($picture);
+        $data['picture'] = $picture;
         $data['publish_time'] = time();
-        //dump($content);
+        //dump($data);
         $res = weibo::insertGetId($data);
         if($res){
             $new = weibo::where('id',$res)->first();
@@ -191,4 +211,30 @@ class IndexController extends Controller
             echo '发布失败';
         }
     }
+
+
+    public function postShang(request $request)
+    {
+        // echo 1;
+        // $aa = 1;
+        $file =  input::file('file');
+
+        $disk = \Storage::disk('qiniu');
+
+        $pat = $file->getClientOriginalExtension();
+        $fileName = md5(rand(0000,9999)).'.'.$pat;
+        $path = $file->getRealPath();
+
+        $disk -> put($fileName,fopen($path,'r+'));
+
+        $arr[rand(0000,9999)] = $fileName;
+
+        return $fileName;
+
+        $disk->delete($fileName);
+
+    }
+
+
+
 }

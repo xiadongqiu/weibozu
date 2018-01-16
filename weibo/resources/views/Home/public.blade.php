@@ -19,7 +19,8 @@
 
 	<script src="/homes/toux/jquery.min.js"></script>
 
-	<link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet">
+	@yield('bootstrap','<link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet">')
+	<!-- <link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
 	<link href="/homes/toux/cropper.css" rel="stylesheet">
 	<link href="/homes/toux/sitelogo.css" rel="stylesheet">
 
@@ -64,7 +65,7 @@
 .xiangxia_show ul li{
 	line-height: 30px;font-size: 12px;
 }
-a{
+body a{
 	text-decoration:none;
 }
 .description{
@@ -89,7 +90,12 @@ span.reference a{
 span.reference a:hover{
 	color:#444;
 }
-
+.row{
+	margin-right: 0px;margin-left: 0px;
+}
+.con_left>a {
+	color: #fff;
+}
 </style>
 
 </head>

@@ -240,6 +240,8 @@
 		</div>
 	</div>
 <script type="text/javascript">
+$('a').css('text-decoration','none');
+
 var pre = 0;
 $('.wei_bottom').on("click",".Ping",function(){
 	obj = $(this);

@@ -56,7 +56,8 @@
             // var jsondata = $('.imgFiles').val();
             // console.log(jsondata);
             // $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
-        }})
+        }
+    })
 </script>
 
 </body>
