@@ -18,10 +18,7 @@ class DetailController extends Controller
      */
     public function index()
     {
-
-        $data = weibo::get();
-
-        return view('Home.detail.detail',['data'=>$data]);
+        
     }
 
     /**
@@ -53,7 +50,11 @@ class DetailController extends Controller
      */
     public function show($id)
     {
-        //
+        //获取当前微博的类型
+        $weibo = weibo::where('id',$id)->first();
+        //通过单签微博类型查询类型相同的微博
+        $data = weibo::where('type',$weibo['type'])->where('id','!=',$id)->take(5)->get();
+        return view('Home.detail.detail',['data'=>$data]);
     }
 
     /**

@@ -24,7 +24,7 @@
 				</div>
 
 				<div class="weibo_d1">
-					<img src="./Homes/images/tou.png">
+					<img src="/homes/images/tou.png">
 				</div>
 				<div class="weibo_d2">
 					<a href="#" class="wei_name">用户名</a>
@@ -32,14 +32,14 @@
 					<div class="wei_cont">
 						<p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
 						<ul class="wei_ul">
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
-							<li><img src="./Homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
+							<li><img src="/homes/images/img1.jpg"></li>
 						</ul>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 				<!-- 回复内容 -->
 				<div class="wei_replay">
 					<div class="wei_ping">
-						<a href="#"><img width="30" height="30" src="./Homes/images/tou.png"></a>
+						<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 						<form>
 							<input type="text" class="wei_pingcon">
 							<input type="submit" value="评论" class="wei_pinglun">
@@ -63,7 +63,7 @@
 					</div>
 					<div class="WB_ping">
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./Homes/images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -122,7 +122,7 @@
 							</div>
 						</div>
 						<div class="WB_ping_one">
-							<a href="#"><img width="30" height="30" src="./Homes/images/tou.png"></a>
+							<a href="#"><img width="30" height="30" src="/homes/images/tou.png"></a>
 							<ul class="WB_ping_oneul">
 								<li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
 								<li>
@@ -198,37 +198,16 @@
 
 			<div class="det_cont_Rdiv" style="height:200px;">
 				<span style="border-bottom: 1px solid #F2F2F5;">相关推荐</span>
+				@foreach($data as $k => $v)
 				<div id="wei_zan">
-					<img src="./Homes/images/tou.png">
+					<img src="/homes/images/tou.png">
 					<div>
-						<p><a href="#">用户名</a></p>
-						<p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
+						<p><a href="#">{{$v->nickname}}</a></p>
+						<p>{{$v->content}}</p>
 					</div>
 				</div>
 				<div class="clear"></div>
-				<div id="wei_zan">
-					<img src="./Homes/images/tou.png">
-					<div>
-						<p><a href="#">用户名</a></p>
-						<p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-					</div>
-				</div>
-				<div class="clear"></div>
-				<div id="wei_zan">
-					<img src="./Homes/images/tou.png">
-					<div>
-						<p><a href="#">用户名</a></p>
-						<p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-					</div>
-				</div>
-				<div class="clear"></div>
-				<div id="wei_zan">
-					<img src="./Homes/images/tou.png">
-					<div>
-						<p><a href="#">用户名</a></p>
-						<p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-					</div>
-				</div>
+				@endforeach
 			</div>
 
 		</div>

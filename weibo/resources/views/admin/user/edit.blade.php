@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('zhuti')
-    <div class="mws-panel grid_6" style="margin:0 5%;">
+    <div class="mws-panel grid_6">
     <div class="mws-panel-header">
         <span style="font-weight:bold;">
             个人信息
