@@ -19,7 +19,7 @@
                         网站名称：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name="webname" value="">
+                        <input type="text" class="large" name="webname" value="">
                     </div>                   
                 </div>
                 <div class="mws-form-row">
@@ -27,7 +27,7 @@
                         网站关键字：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name="keywords" value="">
+                        <input type="text" class="large" name="keywords" value="">
                     </div>                   
                 </div>
                 
@@ -36,7 +36,7 @@
                         网站log：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name="logo" value="">
+                       <input type="file" name="logo" id="test20">
                     </div>                   
                 </div>
                 
@@ -45,7 +45,7 @@
                         网站版权：
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name="copyright" value="">
+                        <input type="text" class="large" name="copyright" value="">
                     </div>                   
                 </div>
                 
@@ -76,7 +76,6 @@
                     </div>
                 </div>
             </fieldset>
-           
             <div class="mws-button-row">
                 <input type="button" id="edit" value="提交" class="btn btn-danger">
             </div>

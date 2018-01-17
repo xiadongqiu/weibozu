@@ -88,7 +88,8 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		 // 网站公告资源路由
 		 Route::resource('/notice','NoticeController');
 		 
-
+		//后台广告管理资源路由
+		 Route::resource('/advert','AdvertController');
 //==============================================================================
 
 });
