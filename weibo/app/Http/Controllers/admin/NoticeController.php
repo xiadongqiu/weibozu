@@ -64,8 +64,10 @@ class NoticeController extends Controller
         $data = notice::insert($res);
          if($data){
              return redirect('admin/notice');
+              alert('添加成功');
          } else {
              return back();
+             alert('添加失败');
          }
        // if($data){
        //  alert('添加成功');
