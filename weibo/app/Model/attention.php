@@ -12,5 +12,7 @@ class attention extends Model
     public function detail()
     {
         return $this->belongsToMany('App\Model\detail','uid','gid');
+
     }
+
 }

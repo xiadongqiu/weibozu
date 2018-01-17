@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot(Request $request)
     {   
         // var_dump($request->all());
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $auth = array('普通用户','管理员','超级管理员');
         $res['auth'] = $auth[$res['auth']];
         view()->share('user',$res);
+        
     }
 
     /**

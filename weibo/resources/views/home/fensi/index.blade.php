@@ -1,14 +1,13 @@
 @extends('home.public')
 @section('title','用户中心')
 @section('content')
-
     <div style="height:30px;width:50px;"></div>
     <div class="cen_top">
         <div class="con_toppic">
 
             <div class="ibox-content">
                 <div class="row">
-                    <div id="crop-avatar" class="col-md-6" style="padding-left:0px">
+                    <div id="crop-avatar" class="col-md-6" style="padding-left: 0px;">
                         <div class="avatar-view" >
                             <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
                         </div>
@@ -74,10 +73,8 @@
         </ul>
     </div>
     <script type="text/javascript">
-        $('body').css({
-            font:'#333'
-        });
         $('.cen_m').children().eq(0).click(function () {
+            alert(1);
             location.href = '/user/user/index'
         })
 
@@ -97,15 +94,15 @@
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="/user/user/attent">{{$res->detail->attent}}</a>
+                            <a href="/user/user/attent">12345</a>
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="/user/user/fensi">{{$res->detail->fensi}}</a>
+                            <a href="/user/user/fensi">12345</a>
                             <span>粉丝</span>
                         </li>
                         <li>
-                            <a href="/user/user/index">{{count($res->weibo)}}</a>
+                            <a href="/user/user/index">12345</a>
                             <span>微博</span>
                         </li>
                     </ul>
@@ -154,13 +151,14 @@
                         </form>
                     </div>
                 </div>
+
             </div>
             <div class="weibo" style="left:20px">
                 <div class="wb_tab_a" style="">
                     <ul class="tab_ul clearfix">
                         <li class="tab_li" style="float: left;">
                             <a class="tab_item" bpfilter="page" href="#">
-                                <span class="W_f14 S_txt1" style="">关注 {{$res->detail->attent}}</span>
+                                <span class="W_f14 S_txt1" style="">粉丝 625</span>
                             </a>
                         </li>
                     </ul>
@@ -169,62 +167,59 @@
                 <div class="follow_box">
                     <div class="follow_inner">
                         <ul class="follow_list">
-                            @if($res->attention)
-                            @foreach($res->attention as $k=>$v)
+
                             <dl style="position: relative; border-bottom: 1px solid;border-color:rgb(242, 242, 245)">
                                 <dt class="mod_pic" style="float:left;position:relative">
                                     <a target="_blank" title="微博钱包" href="#">
-                                        <img  width="50" height="50" alt="微博钱包" src="http://p2l4kajri.bkt.clouddn.com/{{$v->detail->portrait}}" style="border-radius: 50%;width: 50px;height: 50px;">
+                                        <img  width="50" height="50" alt="微博钱包" src="http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}" style="border-radius: 50%;width: 50px;height: 50px;">
                                     </a>
                                 </dt>
                                 <dd class="mod_info S_line1" style="position:relative">
                                     <div class="info_name W_fb W_f14" style="font-size: 14px;font-weight: 700">
-                                        <a class="S_txt1" target="_blank"  href="#">{{$v->detail->nickname}}</a>
+                                        <a class="S_txt1" target="_blank"  href="#">微博钱包</a>
                                     </div>
                                     <div class="info_connect">
                                         <span class="conn_type">关注
                                             <em class="count">
-                                                <a target="_blank" href="#">{{$v->detail->attent}}</a>
+                                                <a target="_blank" href="#">132</a>
                                             </em>
                                         </span>
                                         <span class="conn_type W_vline S_line1">粉丝<em class="count">
-                                                <a target="_blank" href="#">{{$v->detail->fensi}}
+                                                <a target="_blank" href="#">22441818
                                                 </a></em>
                                         </span>
-                                        <span class="conn_type W_vline S_line1">微博<em class="count"><a target="_blank" href="#">{{count($v->weibo)}}</a>
+                                        <span class="conn_type W_vline S_line1">微博<em class="count"><a target="_blank" href="#">816</a>
                                             </em>
                                         </span>
 
                                     </div>
                                     <div class="info_add" style="line-height: 30px">
-                                        <em class="tit S_txt2">地址</em><span> {{(explode(':',$v->detail->adress))[0]}}</span>
+                                        <em class="tit S_txt2">地址</em> <span> 上海</span>
                                     </div>
-                                    <div class="info_intro" style="line-height: 30px"><span>{{$v->detail->abstract or '这个人很懒什么都没有留下'}}</span></div>
-
+                                    <div class="info_intro" style="line-height: 30px">简介 <span> 微博钱包官方微博</span></div>
+                                    <div class="info_from" style="line-height: 30px">
+                                        通过<a href="#" class="from">微博推荐</a>关注
+                                    </div>
                                 </dd>
                                 <dd class="opt_box" node-type="opt_box" style="position: absolute">
 			                        <span>
-									<a href="javascript:;" class="W_btn_b" id="{{$v->detail->id}}" onclick="quxiao(this)">
-					                    <em class="W_ficon ficon_add S_ficon" ></em>取消关注</a>
-					                    <em class="W_ficon ficon_add S_ficon" style="display:none">+</em>关注</a>
+									<a href="javascript:;" class="W_btn_b" >
+					                    <em class="W_ficon ficon_add S_ficon">+</em>关注</a>
 								    </span>
                                     <a href="javascript:;" class="W_btn_b" >举报
                                         <em class="W_ficon ficon_arrow_down_lite S_ficon" >g</em></a>
                                 </dd>
                             </dl>
-                            @endforeach
-                            @else
-                                <h1>您还未关注任何人</h1>
-                            @endif
+
                         </ul>
                     </div>
 
                 </div>
+
             </div>
         </div>
-        </div>
     </div>
-
+    </div>
     <script type="text/javascript">
         $('a').css({textDecoration: 'none'});
         $('.clear').css({
@@ -312,27 +307,6 @@
             marginLeft: '6px'
         });
 
-    </script>
-    <script type="text/javascript">
-        function quxiao(obj){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            layer.confirm('确定要取消关注吗?', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                $.post('/user/user/quxiao',{uid:$(obj).attr('id')},function(data){
-                    if(data == '1'){
-                        layer.msg('取消成功', {icon: 1});
-                        location.href='/user/user/attent';
-                    }
-                });
-            });
-
-        }
 
     </script>
 @endsection('content')
