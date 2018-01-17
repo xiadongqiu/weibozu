@@ -8,7 +8,7 @@
 
             <div class="ibox-content">
                 <div class="row">
-                    <div id="crop-avatar" class="col-md-6">
+                    <div id="crop-avatar" class="col-md-6" style="padding-left:0px">
                         <div class="avatar-view" >
                             <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
                         </div>
@@ -84,7 +84,7 @@
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="#">12345</a>
+                            <a href="/user/user/fensi">12345</a>
                             <span>粉丝</span>
                         </li>
                         <li>

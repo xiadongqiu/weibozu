@@ -21,5 +21,18 @@ class user extends Model
         return $this->hasOne('App\Model\detail','uid');
     }
 
+    //多对多
+    public function attention()
+    {
+        return $this->belongsToMany('App\Model\user','attentions','gid','uid');
+
+    }
+
+    //多对多
+    public function attentions()
+    {
+        return $this->belongsToMany('App\Model\user','attentions','uid','gid');
+
+    }
 
 }

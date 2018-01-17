@@ -9,7 +9,8 @@ use App\Model\user;
 use App\Model\detail;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
-
+use App\Model\weibo;
+use App\Model\attention;
 
 class UserController extends Controller
 {
@@ -21,6 +22,7 @@ class UserController extends Controller
     public static $i=0;
     public function getIndex(request $request)
     {
+
         $uid = $request->session()->get('home');
         $status = $request->only('status');
         $res = user::find($uid);
@@ -59,6 +61,8 @@ class UserController extends Controller
         $filepath =  $disk->getDriver()->downloadUrl($fileName);
         $arr = ['portrait'=>$fileName];
         detail::where('id',$id)->update($arr);
+        weibo::where('id',$id)->update($arr);
+
         return Response()->json([
             'filename' => $fileName,
             'result' => $filepath,
@@ -127,6 +131,7 @@ class UserController extends Controller
 
     public function getAttent(request $request)
     {
+
         $uid = $request->session()->get('home');
         $status = $request->only('status');
         $res = user::find($uid);
@@ -135,6 +140,34 @@ class UserController extends Controller
         $array1 = array_values($array);
         return view('home/attent/index',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1]);
 
+    }
+
+
+    public function getFensi(request $request)
+    {
+        $status = $request->only('status');
+        $uid = $request->session()->get('home');
+        $res = user::find($uid);
+        $array = json_decode($res->detail->pics,true);
+        $array1 = array_values($array);
+        return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1]);
+    }
+
+    public function postQuxiao(request $request)
+    {
+        $gid = $request->session()->get('home');
+        $uid = $request->only('uid');
+        $res = attention::where('gid',$gid)->where('uid',$uid['uid'])->first();
+        $bool = $res->delete();
+        if($bool){
+            $res1 = detail::find($gid);
+            $num = $res1->attent;
+            $arr['attent'] = $num - 1;
+            detail::where('id',$gid)->update($arr);
+            echo '1';
+        }else{
+            echo '2';
+        }
     }
 
 }

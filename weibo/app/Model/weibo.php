@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class weibo extends Model
 {
-    
+
+    public $timestamps = false;
     //属于===微博属于用户
     public function user()
     {
