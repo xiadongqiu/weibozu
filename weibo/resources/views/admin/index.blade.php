@@ -111,11 +111,11 @@
                 <div id="mws-user-functions">
                     <div id="mws-username">
 
-                        hello, [ 管理员 ]
+                        hello, [ {{$user->auth}} ]
 
                     </div>
                     <ul>
-                        <li><a href="/admins/#" title="">用户：</a></li>
+                        <li><a href="/admins/#" title="{{$user->detail->nickname}}">用户</a></li>
                         <li><a href="/admins/#">修改密码</a></li>
                         <li><a href="/admin/loginout" id="logoff" title="退出登录">注销</a></li>
                     </ul>

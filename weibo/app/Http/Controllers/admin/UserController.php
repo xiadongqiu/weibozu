@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         $res = detail::where('uid','=',$id)->first();
         $auth = array('用户','管理员','超级管理员');
-        $status = array('开启','关闭');        
+        $status = array('开启','关闭');
         return view('admin.user.edit',['res' => $res,'auth' => $auth,'status' => $status]);
     }
 
