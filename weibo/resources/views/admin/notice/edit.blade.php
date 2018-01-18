@@ -16,14 +16,14 @@
                                 <div id="" class="mws-form-row">
                                     <label class="mws-form-label">标题</label>    
                                     <div class="mws-form-item">
-                                        <input type="text" name="title" class="required large">
+                                        <input type="text" name="title" value='{{$res->title}}' class="required large">
                                     </div>
                                 </div>
                                
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">内容</label>
                                     <div class="mws-form-item">
-                                        <textarea name="content"  class="required large"></textarea>
+                                        <textarea name="content"  class="required large">{{$res->content}}</textarea>
                                     </div>
                                 </div>
                                 
