@@ -87,10 +87,6 @@
 					</ul>
 
 				</div>
-				<div class="wei_replay" >
-					
-					
-				</div>
 				<!-- 回复内容 -->
 		   <!-- <div class="wei_replay">
 					<div class="wei_ping">

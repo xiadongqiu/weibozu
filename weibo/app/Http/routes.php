@@ -22,15 +22,30 @@ Route::get('/', function () {
 // 夏冬秋路由==========================================
 Route::controller('/a','Home\NotController');
 
-Route::controller('/index','Home\IndexController');
+Route::group(['middleware'=>'home'],function(){
+	
+	Route::controller('/index','Home\IndexController');
 
-Route::resource('/detail','Home\DetailController');
+	Route::resource('/detail','Home\DetailController');
+
+});
+
+
+
 
 //===================================================
 
 
 //陈明路由==================================================
 Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
+
+
+	Route::controller('/index','IndexController');
+
+	Route::resource('/detail','DetailController');
+
+
+
     //用于访问登录页面的和处理登录信息的路由
 
     Route::controller('/login','LoginController');
@@ -41,6 +56,8 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     Route::group(['middleware'=>'home'],function(){
         //用于展示个人中心以及处理数据
         Route::controller('/user','UserController');
+
+
 
     });
 });
@@ -88,7 +105,8 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		 // 网站公告资源路由
 		 Route::resource('/notice','NoticeController');
 		 
-
+		//后台广告管理资源路由
+		 Route::resource('/advert','AdvertController');
 //==============================================================================
 
 });

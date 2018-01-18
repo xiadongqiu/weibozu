@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\user;
-use App\Model\detail;
-class UserController extends Controller
+use App\Model\advert;
+class AdvertController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $res = user::paginate(10);
-        $auth = array('用户','管理员','超级管理员');
-        $status = array('开启','关闭');
-        return view('admin.user.list',['res' => $res,'auth' => $auth,'status' => $status]);
+        
+        //查询数据库adverts表里所有的数据
+
+        return view('admin/advert/index');
     }
 
     /**
@@ -30,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -63,10 +62,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $res = detail::where('uid','=',$id)->first();
-        $auth = array('用户','管理员','超级管理员');
-        $status = array('开启','关闭');
-        return view('admin.user.edit',['res' => $res,'auth' => $auth,'status' => $status]);
+        //
     }
 
     /**
@@ -78,16 +74,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->except(['_method','auth','status']);
-        $data1 = $request->only(['auth', 'status']);
-        $res = detail::where('id',$id)->update($data);
-        $res1 = user::where('id',$data['uid'])->update($data1);
-        if($res>0 || $res1>0){
-            echo 1;
-        }else{
-            echo 2;
-        }
-
+        //
     }
 
     /**

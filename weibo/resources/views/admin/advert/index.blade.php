@@ -1,9 +1,9 @@
 @extends('admin.index')
-@section('title','公告列表')
+@section('title','广告列表')
 @section('zhuti')
 	<div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
-                    	<span><i class="icon-table"></i>公告列表</span>
+                    	<span><i class="icon-table"></i>广告列表</span>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
@@ -20,36 +20,45 @@
                             <thead>
                         <tr role="row">
                          <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 156px;">ID</th>
-                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 156px;">公告标题</th>
-                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 212px;">发布时间</th>
-                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">公告内容</th>
+                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 156px;">广告名称</th>
+                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">广告内容</th>
+                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 212px;">广告地址</th>
+                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">图片地址</th>
+                             <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">广告状态</th>
                              <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">操作</th>
                         </tr>
                             </thead>
                             
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                        @foreach($res as $k=>$v)
+                        
                         		<tr class="odd">
                         		<td class=" ">
-                                    {{$v['id']}}      
+                                    1      
                                 </td>
                                     <td class=" sorting_1">
-                                        {{$v['title']}}
+                                        名称
                                     </td>
                                     <td class=" ">
-                                        {{$v['content']}}
+                                       内容
                                     </td>
                                     <td class=" ">
-                                         {{date('Y-m-d H:i:s',time($v['announcement_time']))}}
+                                         广告地址
                                     </td>
-                                   <td class="">
-                                    <a href="/admin/notice/{{$v['id']}}/edit">
-                                        <button class="layui-btn ">修改</button>
+                                  
+                                   <td class=" ">
+                                         广告图片
+                                    </td>
+                                     <td class=" ">
+                                         状态
+                                    </td>
+                                    <td>
+                                    <a href="#">
+                                        <button  class="layui-btn ">修改</button>
                                      </a>
-                                       <button onclick=del({{$v['id']}},$(this)) type="button" class="btn-small">删除</button>
+                                       <button type="button" class="btn-small">删除</button>
                                     </td>
                                 </tr>
-                        @endforeach
+                        
         		</tbody>
         	</table>
 
@@ -70,38 +79,3 @@
     </div>
 </div>
 @stop
-
-
-
- @section('js')
-<script type="text/javascript">
-  function del(id,obj){
-       
-            layer.open({
-                title:'删除提示'
-                ,content: '真的要删除第'+id+'条吗？'
-                ,btn: ['删除', '取消']
-                ,yes: function(index,layero){
-                  //按钮【删除】的回调
-                  layer.close(index);
-                  layer.load(1);
-                //   location.reload();
-                   $.post("{{url('/admin/notice')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
-                       
-                        if(data == 1){
-                            layer.msg('删除成功', {icon: 1});
-                            location.reload();
-                            } else if (data ==0){
-                            layer.msg('删除失败', {icon: 2});
-                            location.reload();
-                            } 
-                    });
-                }
-                ,no: function(index, layero){
-                  //按钮【取消】的回调
-                 
-                }
-              });              
-    };
-</script>
-@stop 

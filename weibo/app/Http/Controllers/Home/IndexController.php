@@ -24,7 +24,7 @@ class IndexController extends Controller
     public function getIndex ()
     {
         
-        $uid = 2;
+        $uid = 7;
         //找出关注表中的所有关注的人的gid
         $gids = [];
         $gids[] = $uid;
@@ -73,7 +73,7 @@ class IndexController extends Controller
 
     public function getWei(Request $Request)
     {
-        $uid = 2;
+        $uid = 7;
         //找出关注表中的所有关注的人的gid
         $gids = [];
         $gids[] = $uid;
@@ -119,7 +119,7 @@ class IndexController extends Controller
     //追加评论的ajax
     public function getPing(Request $Request)
     {
-        $uid = 2;
+        $uid = 7;
         $detail = detail::where('id',$uid)->first();
 
         $commdata = [];
@@ -133,8 +133,16 @@ class IndexController extends Controller
         $commdata['pid'] =$uid;
         $commdata['comment_time'] =time();
 
+        //微博表中评论数量+1
+        //$comment = weibo::where('id',$wid)
+
+        //weibo::where('id',$wid)->update([]);
+
         $res = comment::insertGetId($commdata);
+
         if($res){
+            // weibo::where('id',$wid)->increment('comment', 1);
+            \DB::table('weibos')->where('id',$wid)->increment('comment', 1);
             $new = comment::where('id',$res)->first();
             echo json_encode($new);
         }else{
@@ -146,15 +154,15 @@ class IndexController extends Controller
     //追加回复的ajax
     public function getHuifu(Request $Request)
     {
-        $uid = 2;
+        $uid = 7;
         $detail = detail::where('id',$uid)->first();
 
         $commdata = [];
 
         $content = $Request->input('hcont');
-        $wid = $Request->input('wid');
         $fid = $Request->input('fid');
-
+        $wid = $Request->input('wid');
+        
         $commdata['nickname'] =$detail['nickname'];
         $commdata['content'] =$content;
         $commdata['wid'] =$wid;
@@ -179,26 +187,22 @@ class IndexController extends Controller
         
         //dump($Request->all());
         $data = [];
-        $uid = 2;
-        $nickname = detail::where('id',$uid)->first();
+        $uid = 7;
+        $detaildata = detail::where('id',$uid)->first();
 
+        $type = $Request->input('type');
         $content = $Request->input('content');
         $picture = $Request->input('picture');
         $data['uid'] = $uid;
-        $data['nickname'] = $nickname['nickname'];
+        $data['nickname'] = $detaildata['nickname'];
+        $data['portrait'] = $detaildata['portrait'];
         $data['content'] = $content;
+        $data['type'] = $type;
         
             $picture = rtrim($picture,',');
             $picture = explode(',', $picture);
-            //dump($picture);
 
-            $pics = [];
-            foreach ($picture as $key => $value) {
-                $pics[rand(000,999)] = $value;
-            }
-            //dd($pics);
-
-            $picture = json_encode($pics);
+            $picture = json_encode($picture);
             //dd($picture);
         $data['picture'] = $picture;
         $data['publish_time'] = time();
@@ -231,7 +235,7 @@ class IndexController extends Controller
 
         return $fileName;
 
-        $disk->delete($fileName);
+        // $disk->delete($fileName);
 
     }
 
