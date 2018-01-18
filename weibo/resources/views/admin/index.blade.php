@@ -35,7 +35,44 @@
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
 <title>@yield('title','微博-admin')</title>
+<style type="text/css">
+    .pagination{
+    list-style: none;
+    color: #ffffff;
+    float: right;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .pagination li{
+        float:left;
+        width:30px;
+        text-align: center;
+        line-height: 20px;
+        background: #444;
+        border-right: 1px solid #333;
+    }
+    .pagination li:last-child{
+        border-right:none;
+    }
+    .pagination li a{
+        display: block;
+font-size: 14px;
+        width:30px;
+        text-align: center;
+        height: 20px;
+    }
+    .pagination li span{
+        font-size: 14px;
+    }
 
+</style>
 </head>
 
 <body>
@@ -116,7 +153,7 @@
                     </div>
                     <ul>
                         <li><a href="/admins/#" title="{{$user->detail->nickname}}">用户</a></li>
-                        <li><a href="/admins/#">修改密码</a></li>
+                        <li><a href="/admin/pass">修改密码</a></li>
                         <li><a href="/admin/loginout" id="logoff" title="退出登录">注销</a></li>
                     </ul>
                 </div>
@@ -141,15 +178,6 @@
                 <span></span>
                 <span></span>
             </div>
-    
-        	<!-- 搜索 -->
-        	<div id="mws-searchbox" class="mws-inset">
-            	<form action="typography.html">
-                	<input type="text" class="mws-search-input" placeholder="搜索...">
-                    <button type="submit" class="mws-search-submit"><i class="icon-search"></i></button>
-                </form>
-            </div>
-            <!-- 搜索结束 -->
 
             <!-- 导航 -->
             <div id="mws-navigation">
@@ -160,16 +188,11 @@
                     </li>
 
                     <li>
-                        <a href="/admin/user"><i class="icon-users"></i> 用户列表</a>
+                        <a href="/admin/user"><i class="icon-users"></i> 用户管理</a>
                     </li>
 
                     <li>
-                        <a href="/admins/#"><i class="icon-comments-2"></i> 微博管理</a>
-                        <ul style="display: none;" class="closed">
-                            <li><a href="/admin/post">微博列表</a></li>
-                            <li><a href="/admin/comments">评论列表</a></li>
-                            
-                        </ul>
+                        <a href="/admin/post"><i class="icon-comments-2"></i> 微博管理</a>
                     </li>
 
                     <li>

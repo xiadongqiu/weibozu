@@ -15,12 +15,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $res = user::paginate(10);
+        $requestall = $request->all();
+        $data = user::paginate(10);
         $auth = array('用户','管理员','超级管理员');
         $status = array('开启','关闭');
-        return view('admin.user.list',['res' => $res,'auth' => $auth,'status' => $status]);
+        return view('admin.user.list',['data' => $data,'auth' => $auth,'status' => $status,'request'=>$requestall]);
     }
 
     /**
@@ -99,5 +100,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request)
+    {
+        $requestall = $request->all();
+        $res = user::where('phone','like','%'.$request->input('phone').'%');
+        $data = $res->paginate(10);
+        $auth = array('用户','管理员','超级管理员');
+        $status = array('开启','关闭');
+        return view('admin.user.list',['data' => $data,'auth' => $auth,'status' => $status,'request'=>$requestall]);
+    }
+
+    public function pass(Request $request)
+    {
+        $id = $request->session()->get('admin');
+        $data = user::find($id);
+        return view('admin.user.modify',['data'=>$data]);
     }
 }

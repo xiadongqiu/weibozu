@@ -18,11 +18,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
+        $requestall = $request->all();
         $data = weibo::paginate(10);
         
-        return view('admin/post/list',['data'=>$data]);
+        return view('admin/post/list',['data'=>$data,'request'=>$requestall]);
     }
 
     /**
@@ -101,5 +102,12 @@ class PostController extends Controller
     }else{
         echo 0;
     }    
+    }
+    public function search(Request $request)
+    {
+        $requestall = $request->all();
+        $res = weibo::where('nickname','like','%'.$request->input('nickname').'%');
+        $data = $res->paginate(10);
+        return view('admin/post/list',['data'=>$data,'request'=>$requestall]);
     }
 }

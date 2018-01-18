@@ -15,8 +15,11 @@
             </div>
             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                 <label>
-                    <input type="text" aria-controls="DataTables_Table_1">
-                    <button style="height:25px;background:#444;border:1px solid #333;color:#fff;border-radius:3px;"><i class="icon-search"></i></button>
+
+                    <form action="/admin/user/search/u" method="get">
+                        账号：<input type="text" name="phone" aria-controls="DataTables_Table_1">
+                        <input type="submit" style="height:25px;background:#444;border:1px solid #333;color:#fff;border-radius:3px;" value="搜索">
+                    </form>
                 </label>
             </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
@@ -50,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-                @foreach ($res as $k => $val)
+                @foreach ($data as $k => $val)
                     <tr class="even" align="center">
                         <td class="">
                             {{$val->id}}
@@ -82,32 +85,10 @@
                 </tbody>
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
-                共{{$res->total()}}条&nbsp;&nbsp;&nbsp;10条/页
+                共{{$data->total()}}条&nbsp;&nbsp;&nbsp;10条/页
             </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                <a href="{{$res->url($res->hasMorePages())}}" tabindex="0" class="first paginate_button"
-                id="DataTables_Table_1_first">
-                    首页
-                </a>
-                <a href="{{$res->previousPageUrl()}}" tabindex="0" class="previous paginate_button"
-                id="DataTables_Table_1_previous">
-                    上一页
-                </a>
-                <span>
-                @for($i=1;$i<=$res->lastPage();$i++)
-                @if($i==$res->currentPage())
-                <a href="{{$res->url($i)}}" tabindex="0" class="paginate_active">{{$i}}</a>
-                @else
-                <a href="{{$res->url($i)}}" tabindex="0" class="paginate_button">{{$i}}</a>
-                @endif
-                @endfor
-                </span>
-                <a href="{{$res->nextPageUrl()}}" tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
-                    下一页
-                </a>
-                <a href="{{$res->url($res->lastPage())}}" tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
-                    尾页
-                </a>
+               {!! $data->appends($request)->render() !!}
             </div>
         </div>
     </div>

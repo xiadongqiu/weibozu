@@ -16,11 +16,10 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,$id)
     {   
-        $res = comment::paginate(10);
-        // dd($res);
-        return view('admin/post/comments',['res'=>$res]);
+        $data = comment::where('wid',$id)->get();
+        return view('admin/post/comments',['data'=>$data]);
     }
 
     /**
@@ -86,28 +85,7 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
-        $date = comment::where('id',$id)->first();
-        if($date['attributes']['fid']==0){
-            $a = comment::where('id',$id)->delete();
-                if($a){
-                    $res = comment::where('fid',$id)->delete();
-                    if($res){
-                        echo 1;
-                    }else{
-                        echo 1;
-                    }
-                }else{
-                    echo 0;
-                }
-        }else{
-            $b = comment::where('id',$id)->delete();
-                if($b){
-                    echo 1;
-                }else{
-                    echo 0;
-                }
-        }
+        
         
     }
 }
