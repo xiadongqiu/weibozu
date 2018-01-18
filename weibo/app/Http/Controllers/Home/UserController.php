@@ -131,7 +131,6 @@ class UserController extends Controller
 
     public function getAttent(request $request)
     {
-
         $uid = $request->session()->get('home');
         $status = $request->only('status');
         $res = user::find($uid);
@@ -150,6 +149,20 @@ class UserController extends Controller
         $res = user::find($uid);
         $array = json_decode($res->detail->pics,true);
         $array1 = array_values($array);
+        $r = attention::where('uid',$uid)->get();
+        $r1 = attention::where('gid',$uid)->get();
+        $boo = true;
+        $u = array();
+        $g = array();
+         foreach($r as $k=>$v){
+             $u[] = $v->gid;
+         };
+        foreach($r1 as $k=>$v){
+             $g[] = $v->uid;
+        };
+        dump($u);
+        dump($g);
+
         return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1]);
     }
 
@@ -168,6 +181,51 @@ class UserController extends Controller
         }else{
             echo '2';
         }
+    }
+
+    public function postGuanzhu(request $request)
+    {
+        $uid = $request->only('uid');
+        $gid = $request->session()->get('home');
+        $array = array();
+        $array['gid'] = $gid;
+        $array['uid'] = $uid['uid'];
+        $array['attention_time'] = time();
+        $bool = attention::insert($array);
+        if ($bool){
+            $res = detail::find($gid);
+            $num = $res -> attent;
+            $arr['attent'] = $num + 1;
+            detail::where('id',$gid)->update($arr);
+            echo $uid['uid'];
+        }else{
+            echo 0;
+        }
+
+
+    }
+
+    public function getSearch(request $request)
+    {
+        $tiao = $request->only('tiao');
+        $gid = $request->session()->get('home');
+        $res = attention::where('gid',$gid)->get();
+        $arr = array();
+        foreach($res as $k=>$v){
+            $arr[] = $v->uid;
+        }
+        $array = array();
+        foreach($arr as $k=>$v){
+             $array[] = detail::where('nickname','like','%'.$tiao['tiao'].'%')->where('id','=',$v)->get();
+        }
+
+        $arr1 = array();
+        foreach($array as $k=>$v){
+            foreach($v as $kk=>$vv){
+               $arr1[] = $vv;
+            }
+        }
+      echo json_encode($arr1);
     }
 
 }
