@@ -21,14 +21,15 @@
                         <tr role="row">
                          <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 156px;">ID</th>
                             <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 156px;">公告标题</th>
-                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 212px;">发布时间</th>
+                            
                             <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">公告内容</th>
+                            <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 212px;">发布时间</th>
                              <th  role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 197px;">操作</th>
                         </tr>
                             </thead>
                             
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                        @foreach($res as $k=>$v)
+                        @foreach($data as $k=>$v)
                         		<tr class="odd">
                         		<td class=" ">
                                     {{$v['id']}}      
@@ -40,40 +41,31 @@
                                         {{$v['content']}}
                                     </td>
                                     <td class=" ">
-                                         {{date('Y-m-d H:i:s',time($v['announcement_time']))}}
+                                    {{
+                                    date('Y-m-d H:i:s',$v['announcement_time'])}}
                                     </td>
                                    <td class="">
                                     <a href="/admin/notice/{{$v['id']}}/edit">
-                                        <button class="layui-btn ">修改</button>
+                                        <button class="btn btn-primary layui-btn ">修改</button>
                                      </a>
-                                       <button onclick=del({{$v['id']}},$(this)) type="button" class="btn-small">删除</button>
+                                       <button onclick=del({{$v['id']}},$(this)) type="button" class="btn btn-danger btn-small">删除</button>
                                     </td>
                                 </tr>
                         @endforeach
         		</tbody>
         	</table>
-
-        <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-        <a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_1_first">首页</a>
-        <a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_1_previous">上一页</a>
-        <span>
-        	<a tabindex="0" class="paginate_active">1</a>
-        	<a tabindex="0" class="paginate_button">2</a>
-        	<a tabindex="0" class="paginate_button">3</a>
-        	<a tabindex="0" class="paginate_button">4</a>
-       	 	<a tabindex="0" class="paginate_button">5</a>
-        </span>
-        <a tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">下一页</a>
-        <a tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">尾页</a>
+         <div class="dataTables_info" id="DataTables_Table_1_info">
+                共{{$data->total()}}条&nbsp;&nbsp;&nbsp;5条/页
+            </div>
+            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+               {!! $data->appends($request)->render() !!}
+            </div>
         </div>
-    </div>
     </div>
 </div>
 @stop
 
-
-
- @section('js')
+@section('js')
 <script type="text/javascript">
   function del(id,obj){
        
@@ -85,23 +77,22 @@
                   //按钮【删除】的回调
                   layer.close(index);
                   layer.load(1);
-                //   location.reload();
+                //location.reload();
                    $.post("{{url('/admin/notice')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
                        
                         if(data == 1){
-                            layer.msg('删除成功', {icon: 1});
-                            location.reload();
+                               layer.msg('删除成功', {icon: 1});
+                              location.reload();
                             } else if (data ==0){
-                            layer.msg('删除失败', {icon: 2});
-                            location.reload();
-                            } 
+                               layer.msg('删除失败', {icon: 2});
+                                location.reload();
+                        } 
                     });
                 }
-                ,no: function(index, layero){
-                  //按钮【取消】的回调
-                 
-                }
-              });              
+                ,no:function(index, layero){
+                  //按钮【取消】的回调 
+             }
+        });              
     };
 </script>
 @stop 

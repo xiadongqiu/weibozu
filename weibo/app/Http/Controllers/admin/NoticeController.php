@@ -14,14 +14,20 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $requestall = $request->all();
+         $data = notice::paginate(5);
+
         //查询数据库notices表里所有的数据
-        $res = notice::get();
+        // $res = notice::get();
         // dd($res);
-         return view('admin/notice/index',['res' => $res]);
+         return view('admin/notice/index',['data' => $data,'request'=>$requestall]);
+
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +36,7 @@ class NoticeController extends Controller
      */
     public function create()
     {
-        //
+        
         return view('admin/notice/add');
 
     }
@@ -43,8 +49,7 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        // dump($request);
-
+      
         // 正则验证
         $this->validate($request,[
                 'title' => 'required',
@@ -53,28 +58,20 @@ class NoticeController extends Controller
                 'title' => '*公告标题不能为空*',
                 'content.required' => '*公告内容不能为空*'
             ]);
-        // dd($this);
+        
         // 接收页面传过来的数据信息
         $res = $request->except('_token');
          
         // 添加时间戳/
-        $res['announcement_time']=time();
-        // dd($res);
+        $res['announcement_time'] = time();
+        
         // 将数据添加到数据库
         $data = notice::insert($res);
          if($data){
              return redirect('admin/notice');
-              alert('添加成功');
          } else {
              return back();
-             alert('添加失败');
          }
-       // if($data){
-       //  alert('添加成功');
-       // }else{
-       //  alert('添加失败');
-       // }
-
 
      }
 
@@ -96,7 +93,7 @@ class NoticeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         //从notice表查到要修改的数据
         $res = notice::where('id',$id)->first();
         return view('/admin/notice/edit',['res'=>$res]);
@@ -116,7 +113,7 @@ class NoticeController extends Controller
        $res = $request->except('_token','_method');
 
        // 创建时间戳
-       $res['announcement_time']=time();
+       $res['announcement_time'] = time();
        
        //条件判断当前修改ID与新传的值ID一致更新数据库对应内容
        $data = notice::where('id',$id)->update($res);
