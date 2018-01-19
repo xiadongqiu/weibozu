@@ -16,65 +16,44 @@
           
             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                 <label>
-                    搜索:
-                    <input type="text" aria-controls="DataTables_Table_1">
+                    <form action="/admin/post/search/p" method="get">
+                        用户：<input type="text" name="nickname" aria-controls="DataTables_Table_1">
+                        <input type="submit" style="height:25px;background:#444;border:1px solid #333;color:#fff;border-radius:3px;" value="搜索">
+                    </form>
                 </label>
-                <button style="height:25px;background:#444;border:1px solid #666;color:#fff;border-radius:3px;">
-                <i class="icon-search"></i>
-                </button>
             </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
             aria-describedby="DataTables_Table_1_info">
                 <thead>
                     <tr role="row">
-                        <th 
-                        style="width: 10px;">
+                        <th style="width: 10px;">
                             ID
                         </th>
-                       
-                        <th 
-                        style="width: 50px;">
-                            类型
-                        </th>
-                        <th 
-                        style="width: 120px;">
-                            收藏次数
-                        </th>
-                        <th 
-                        style="width: 50px;">
-                            点赞次数
-                        </th>
-                        <th
-                        style="width: 100px;">
-                            评论次数
-                        </th>
-                       
-                        <th 
-                        style="width: 123px;">
-                            发表时间
-                        </th>
-                        <th 
-                        style="width: 50px;">
-                            状态
-                        </th>
-                        <th 
-                        style="width: 110px;">
-                            举报次数
-                        </th>
-                        <th 
-                        style="width: 50px;">
-                            热门
-                        </th>
-                        <th 
-                        style="width: 120px;">
-                            转发次数
-                        </th>
-                        <th 
-                        style="width: 100px;">
+                        <th style="width: 130px;">
                             发表人
                         </th>
-                        <th  
-                        style="width: 150px;">
+                        <th style="width: 80px;">
+                            话题
+                        </th>
+                        <th style="width: 50px;">
+                            评论
+                        </th>
+                        <th style="width: 50px;">
+                            点赞
+                        </th>
+                        <th style="width: 50px;">
+                            转发
+                        </th>
+                        <th style="width: 50px;">
+                            举报
+                        </th>
+                        <th style="width: 80px;">
+                            热门
+                        </th>
+                        <th style="width: 150px;">
+                            发布时间
+                        </th>
+                        <th style="width: 200px;">
                             操作
                         </th>
                     </tr>
@@ -83,58 +62,39 @@
 
                 @foreach($data as $k=>$v)
                     
-                    <tr class="odd">
-                        <td class="  sorting_1">
-                          {{$v['id']}}
+                    <tr class="odd" align="center">
+                        <td>
+                            {{$v->id}}
+                        </td>
+                        <td class="sorting_1">
+                            {{$v->nickname}}
                         </td>
                         <td>
-                            {{$v['type']}}
+                            {{$v->type}}
                         </td>
                         <td>
-                            {{$v['collect']}}
-                        </td>
-                       
-                        <td>
-                            {{$v['comment']}}
+                            {{$v->comment}}
                         </td>
                         <td>
-                            {{$v['transpond']}}
+                            {{$v->like}}
                         </td>
                         <td>
-                            {{date('Y-m-d H:i:s',time($v['publish_time']))}}
-                        </td>
-                        
-                        @if($v['status']==0)
-                        <td >
-                            显示    
-                        </td>
-                        @else
-                        <td >
-                            已屏蔽   
-                        </td>
-                        @endif
-                        <td >
-                            {{$v['report']}}
+                            {{$v->transpond}}
                         </td>
 
-                       <td>
-                            {{$v->hot ? '热门' : '默认'}}
-                       </td>
-                        <td >
-                            {{$v['like']}}
+                        <td>
+                            {{$v->report}}
                         </td>
                         <td >
-                            {{$v->detail->nickname}}
+                             {{$v->hot ? '热门' : '默认'}}
                         </td>
                         <td >
-                           
-                       
-                               
-                            <button type="button" class="btn btn-primary btn-small">详情</button>
-
-                            <button  onclick=del({{$v['id']}},$(this)) type="button" class="btn btn-danger btn-small">删除</button>
-                            
-                         
+                            {{date('Y-m-d H:i:s',time($v->publish_time))}}
+                        </td>
+                        <td >
+                            <a href="" style="color:#333;">微博</a>&nbsp;|&nbsp;
+                            <a href="/admin/comments/{{$v->id}}" style="color:#333;">查看评论</a>&nbsp;|&nbsp;
+                            <a onclick="del({{$v['id']}},$(this))" style="cursor:pointer;color:#333;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>
 
@@ -145,31 +105,8 @@
             <div class="dataTables_info" id="DataTables_Table_1_info">
                 共{{$data->total()}}条&nbsp;&nbsp;&nbsp;10条/页
             </div>
-            <div  class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                <a href='{{$data->url($data->hasMorePages())}}' tabindex="0" class="first paginate_button"
-                id="DataTables_Table_1_first">
-                    首页
-                </a>
-                <a href="{{$data->previousPageUrl()}}" tabindex="0" class="previous paginate_button"
-                id="DataTables_Table_1_previous">
-                    上一页
-                </a>
-                <span>
-                @for($i=1;$i<=$data->lastPage();$i++)
-                @if($i==$data->currentPage())
-                <a href="{{$data->url($i)}}" tabindex="0" class="paginate_active">{{$i}}</a>
-                @else
-                <a href="{{$data->url($i)}}" tabindex="0" class="paginate_button">{{$i}}</a>
-                @endif
-                @endfor
-                    
-                </span>
-                <a href="{{$data->nextPageUrl()}}" tabindex="0" class="next paginate_button" id="DataTables_Table_1_next">
-                    下一页
-                </a>
-                <a href="{{$data->url($data->lastPage())}}" tabindex="0" class="last paginate_button" id="DataTables_Table_1_last">
-                    尾页
-                </a>
+            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+               {!! $data->appends($request)->render() !!}
             </div>
         </div>
     </div>
@@ -181,7 +118,7 @@
   function del(id,obj){
        
             layer.open({
-                title:'删除提示'
+                title:'删除提示！'
                 ,content: '真的要删除第'+id+'条吗？'
                 ,btn: ['删除', '取消']
                 ,yes: function(index,layero){

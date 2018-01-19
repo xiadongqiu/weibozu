@@ -60,4 +60,6 @@ class LoginController extends Controller
     	$request->session()->forget('admin');
     	return redirect('admin/login');
     }
+
+    
 }

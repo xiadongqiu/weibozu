@@ -15,10 +15,11 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $res = report::where('report','>',10)->paginate(10);
-        return view('admin.report.list',['res'=>$res]);
+        $requestall = $request->all();
+        $data = report::where('report','>',10)->paginate(10);
+        return view('admin.report.list',['data'=>$data,'request'=>$requestall]);
     }
 
     /**

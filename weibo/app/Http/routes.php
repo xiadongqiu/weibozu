@@ -85,18 +85,19 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 		    //跳转到用户
 		    Route::resource('/user','UserController');
+		    Route::get('/user/search/{phone}','UserController@search'); 
 
+		    //修改密码
+			Route::get('/pass','UserController@pass');
 
 		    //跳转到举报
 		    Route::resource('/report','ReportController');
+
+		    //微博-名泽
+		    Route::resource('/post','PostController');
+		    Route::get('/post/search/{nickname}','PostController@search'); 
+			Route::resource('/comments/{id}','CommentsController');
 		});
-
-
-
-//吕明泽路由=====================================================================
-		Route::resource('/post','PostController');
-		Route::resource('/comments','CommentsController');
-//==============================================================================
 
 
 //郑鑫路由=======================================================================

@@ -11,4 +11,5 @@ class comment extends Model
     {
         return $this->belongsTo('App\Model\weibo','wid');
     }
+    
 }
