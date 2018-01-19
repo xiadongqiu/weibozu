@@ -21,10 +21,10 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex ()
+    public function getIndex (Request $Request)
     {
         
-        $uid = 7;
+        $uid = $Request->session()->get('home');
         //找出关注表中的所有关注的人的gid
         $gids = [];
         $gids[] = $uid;
@@ -62,18 +62,17 @@ class IndexController extends Controller
 
         //热门微博
         $hot = weibo::orderBy('like','desc')->take(8)->get();
-        //关注的好友
-        /*foreach ($gids as $gidsk => $gidsv) {
-            $att = detail::where('id',$gidsv)->get();
-        }*/
-       
+        //当前用户发微博数
+        $weires = weibo::where('uid',$uid)->get();
+        $weis = count($weires);
+
         $detail = detail::where('id',$uid)->first();
-        return view('home.index.index',['data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail]);
+        return view('home.index.index',['data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
     }
 
     public function getWei(Request $Request)
     {
-        $uid = 7;
+        $uid = $Request->session()->get('home');
         //找出关注表中的所有关注的人的gid
         $gids = [];
         $gids[] = $uid;
@@ -119,7 +118,7 @@ class IndexController extends Controller
     //追加评论的ajax
     public function getPing(Request $Request)
     {
-        $uid = 7;
+        $uid = $Request->session()->get('home');
         $detail = detail::where('id',$uid)->first();
 
         $commdata = [];
@@ -127,6 +126,7 @@ class IndexController extends Controller
         $content = $Request->input('pcont');
         $wid = $Request->input('wid');
 
+        $commdata['portrait'] =$detail['portrait'];
         $commdata['nickname'] =$detail['nickname'];
         $commdata['content'] =$content;
         $commdata['wid'] =$wid;
@@ -134,14 +134,10 @@ class IndexController extends Controller
         $commdata['comment_time'] =time();
 
         //微博表中评论数量+1
-        //$comment = weibo::where('id',$wid)
-
-        //weibo::where('id',$wid)->update([]);
 
         $res = comment::insertGetId($commdata);
 
         if($res){
-            // weibo::where('id',$wid)->increment('comment', 1);
             \DB::table('weibos')->where('id',$wid)->increment('comment', 1);
             $new = comment::where('id',$res)->first();
             echo json_encode($new);
@@ -154,7 +150,7 @@ class IndexController extends Controller
     //追加回复的ajax
     public function getHuifu(Request $Request)
     {
-        $uid = 7;
+        $uid = $Request->session()->get('home');
         $detail = detail::where('id',$uid)->first();
 
         $commdata = [];
@@ -187,7 +183,7 @@ class IndexController extends Controller
         
         //dump($Request->all());
         $data = [];
-        $uid = 7;
+        $uid = $Request->session()->get('home');
         $detaildata = detail::where('id',$uid)->first();
 
         $type = $Request->input('type');
@@ -239,6 +235,19 @@ class IndexController extends Controller
 
     }
 
+    //微博转发
+    public function getZhuanfa(request $request)
+    {
+        /*$zhuan = [];
+        $uid = $uid = $Request->session()->get('home');
+        //被转发微博的id
+        $wid = $Request->input('wid');
+        $data = weibo::where('id',$wid)->first();*/
+
+        $fid = 1;
+        $data = comment::where('id',$fid)->first();
+        echo json_decode($data['content']);
+    }
 
 
 }

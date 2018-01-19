@@ -20,6 +20,7 @@
 	<script src="/homes/toux/jquery.min.js"></script>
 
 	@yield('bootstrap','<link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet">')
+	
 	<!-- <link href="/homes/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
 	<link href="/homes/toux/cropper.css" rel="stylesheet">
 	<link href="/homes/toux/sitelogo.css" rel="stylesheet">
@@ -29,8 +30,8 @@
 	<script src="/homes/bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="/homes/layer/layer.js"></script>
-
-
+<!-- 评论回复的js -->
+<script type="text/javascript" src="/homes/js/myJS.js"></script>
 	<style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;

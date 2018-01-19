@@ -87,8 +87,64 @@
 					<li>萌宠</li>
 				</ul>
 			</div>
+			
+
 			<!-- 微博内容 -->
-			<div class="zuijia"></div>
+			<div class="zuijia">
+
+				<!-- 转发信息 -->
+				<div class="weibo" style="padding:;">
+					<a href="javascript:;" class="xiangxia"></a>
+					<div class="xiangxia_show">
+				                        <ul>
+				                            <li><a href="javascript:;">删除</a></li>
+				                            <li><a href="javascript:;">置顶</a></li>
+				                            <li><a href="javascript:;">加标签</a></li>
+				                        </ul>
+					</div>
+					<div class="weibo_d1">
+						<img src="/Homes/images/tou.png">
+					</div>
+					<div class="weibo_d2">
+				                        <a href="javascript:;" class="wei_name">用户名</a>
+				                        <div class="wei_time"><a href="javascript:;">47分钟前</a> 来自 微博 weibo.com</div>
+				                        <div class="wei_cont">
+				                            <p>微博内容微博内容微博内容微博内容</p>
+				                            <ul class="wei_ul">
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                            </ul>
+				                        </div>
+					</div>
+					<p style="clear:both"></p>
+					<div class="weibo_d3" >
+				                        <a href="javascript:;" class="wei_name">@用户名</a>
+				                        <div class="wei_cont">
+				                            <p>原微博内容原微博内容原微博内容</p>
+				                            <ul class="wei_ul">
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                                <li><img src="/Homes/images/img1.jpg"></li>
+				                            </ul>
+							<p style="clear:both"></p>
+				                        </div>
+					</div>
+					<p style="clear:both"></p>
+					<div class="wei_bottom">
+				                        <ul>
+				                            <li onclick="xiang(this)"><a href="/detail/'+'微博id'+'">查看详情</a><input type="hidden" value="'+wdata["comment"]+'" /></li>
+				                            <li onclick="zhuanfa(this)"><a href="javascript:void(0)">转发</a><span>12345</span></li>
+				                            <li onclick="Ping(this)" class="Ping" ><input type="hidden" value="微博id"><a href="javascript:void(0)" class="pinglun">评论</a><span>12345</span></li>
+				                            <li><a href="javascript:void(0)">赞</a><span>12345</span></li>
+				                        </ul>
+					</div>
+				</div>
+				<!-- 转发信息 -->
+
+			</div>
 
 			<div class="weizong">
 
@@ -113,19 +169,24 @@
 		<div class="con_right" style="height:auto">
 			<div class="conR_one">
 				<div class="conR_bg"></div>
-				<div class="conR_pic"><img src="/homes/images/tou.png"></div>
+				@if( $detail->portrait == 'default.jpg')
+					<div class="conR_pic"><img src="/homes/images/tou.png"></div>
+				@else
+					<div class="conR_pic"><img src="http://p2l4kajri.bkt.clouddn.com/{{$detail->portrait}}"></div>
+				@endif
+				
 				<div class="conR_name"><a class="name" href="javascript:;">{{$detail->nickname}}</a>&nbsp;&nbsp;<a href="javascript:;" class="level">LV14</a></div>
 				<ul class="conR_ul">
 					<li><a href="javascript:;">
-						<b>123</b>
+						<b>{{$detail->attent}}</b>
 						<span>关注</span>
 					</a></li>
 					<li><a href="javascript:;">
-						<b>11124</b>
+						<b>{{$detail->fensi}}</b>
 						<span>粉丝</span>
 					</a></li>
 					<li style="border:none;"><a href="javascript:;">
-						<b>1222</b>
+						<b id='weis'>{{$weis}}</b>
 						<span>微博</span>
 					</a></li>
 				</ul>
@@ -138,7 +199,7 @@
 				</div>
 				<ul >
 					@foreach($hot as $key=>$value)
-					<li style="overflow:hidden"><a href="javascript:;">{{ $value->content}}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
+					<li style="overflow:hidden"><a href="javascript:;">{{ html_entity_decode($value->content) }}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
 					@endforeach
 				</ul>
 				<div class="conR_more"><a class="more" href="javascript:;">查看更多 ></a></div>
@@ -162,7 +223,36 @@
 	</div>
 <div style="clear:both"></div>
 
+<!-- 转发输入框 -->
+<div class="zhuanfa">
+	<div class="zCont">
+		<input type="hidden" value="" id="zid">
+		<textarea id="border"></textarea>
+		<input type="button" value="转发" id="zhuan" onclick="zhuanfa">
+	</div>
+</div>
 <script type="text/javascript">
+		
+//转发微博
+function zhuanfa(obj){
+	$('.zhuanfa').css('display','block');
+	// $('body').prepend('<div>转发</div>');
+	var wid = $(obj).next().find('input[type=hidden]').val();
+	//获取被转发微博的id
+	var zid = $('#zid').val(wid);
+	alert($('#zid').val());
+	/*$.get('/index/zhuanfa',{wid:wid},function (zdata){
+		console.log(zdata);
+	});*/
+}
+
+</script>
+
+<script type="text/javascript">
+
+$(function(){
+	$('.body').css('position', 'relative');
+})
 $(function(){
 
 
@@ -205,7 +295,6 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-		
 
 
 $("#send").click(function(){
@@ -224,7 +313,7 @@ $("#send").click(function(){
 				}else{
 					var photo = '<img src="http://p2l4kajri.bkt.clouddn.com/'+wdata['portrait']+'" >';
 				}
-				obj.parent().parent().parent().next().next().prepend('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+'刚刚'+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata["id"]+'">查看详情</a><input type="hidden" value="'+wdata["comment"]+'" /></li><li><a href="javascript:;">转发</a><span>'+wdata["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata["id"]+'"><a href="javascript:;">评论</a><span>'+wdata["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
+				obj.parent().parent().parent().next().next().prepend('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+'刚刚'+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata["id"]+'">查看详情</a><input type="hidden" value="'+wdata["comment"]+'" /></li><li onclick="zhuanfa(this)"><a href="javascript:;">转发</a><span>'+wdata["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata["id"]+'"><a href="javascript:;">评论</a><span>'+wdata["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
 			}
 			wdata['picture'] = eval("(" + wdata['picture'] + ")");
 			
@@ -243,6 +332,11 @@ $("#send").click(function(){
 		layer.alert('请添加微博内容！');
 	}
 	$("#content").text('');
+
+	var weis = $("#weis").html();
+	parseInt(weis)+1;
+
+	$("#weis").html(parseInt(weis)+1);
 	
 })
 
@@ -284,10 +378,6 @@ $(".myEmoji img").each(function(){
 </script>
 
 
-
-
-
-
 <script type="text/javascript">
 
 $('.huan').click(function(){
@@ -326,16 +416,27 @@ $(function(){
 				var photo = '<img src="http://p2l4kajri.bkt.clouddn.com/'+wdata[i]['portrait']+'" >';
 			}
 
-			/*var time = Date.parse(new Date()) - wdata['publish_time'];
-			console.log(Date.parse(new Date()));
-			console.log(time);
-			if(time < 3600){
-				var date = date('')
-			}else{
+		
+		var time = wdata[i]['publish_time']*1000;
+		//console.log(time);
+		var date = new Date(time);
 
-			}*/
+		Y = date.getFullYear() + '-';
+		M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		D = date.getDate() + ' ';
+		h = date.getHours() + ':';
+		m = date.getMinutes() + ':';
+		s = date.getSeconds(); 
 
-			$('.weizong').append('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+wdata[i]["publish_time"]+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');		
+		//console.log(Y+M+D+h+m+s);
+		//console.log(Date.parse(new Date())-time);
+		if((Date.parse(new Date())-time)/1000 < 3600){
+			publish_time = h+m+s;
+		}else{
+			publish_time = Y+M+D;
+		}
+
+			$('.weizong').append('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+publish_time+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li onclick="zhuanfa(this)"><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');		
 		}
 
 		for (var j = 0; j<4; j++) {
@@ -379,13 +480,32 @@ $("#page").on('click',"input",function(){
 		$('.weizong').empty();
 		for(var i=0;i<4;i++){
 
+			var time = wdata[i]['publish_time']*1000;
+			//console.log(time);
+			var date = new Date(time);
+
+			Y = date.getFullYear() + '-';
+			M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+			D = date.getDate() + ' ';
+			h = date.getHours() + ':';
+			m = date.getMinutes() + ':';
+			s = date.getSeconds(); 
+
+			//console.log(Y+M+D+h+m+s);
+			//console.log(Date.parse(new Date())-time);
+			if((Date.parse(new Date())-time)/1000 < 3600){
+				publish_time = h+m+s;
+			}else{
+				publish_time = Y+M+D;
+			}
+
 			if(wdata[i]['portrait'] == 'default.jpg'){
 				photo = '<img src="/homes/images/tou.png">';
 			}else{
 				var photo = '<img src="http://p2l4kajri.bkt.clouddn.com/'+wdata[i]['portrait']+'" >';
 			}
 
-			$('.weizong').append('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+wdata[i]["publish_time"]+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
+			$('.weizong').append('<div class="weibo"  ><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li><li><a href="javascript:;">信息</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="javascript:;" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+publish_time+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li onclick="zhuanfa(this)"><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
 
 		}
 		for (var j = 0; j<4; j++) {
@@ -442,12 +562,38 @@ function Ping(obj){
 		$.get('/a/comment',{id:$(obj).find("input").val()}, function (data){
 			if(data){
 				for(var i in data){
+					if(data[i]['portrait'] == 'default.jpg'){
+						photo = '<img width="30" height="30" src="/homes/images/tou.png">';
+					}else{
+						var photo = '<img width="30" height="30"  src="http://p2l4kajri.bkt.clouddn.com/'+data[i]['portrait']+'" >';
+					}
+
+
+					var time = data[i]['comment_time']*1000;
+					//console.log(time);
+					var date = new Date(time);
+
+					Y = date.getFullYear() + '-';
+					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+					D = date.getDate() + ' ';
+					h = date.getHours() + ':';
+					m = date.getMinutes() + ':';
+					s = date.getSeconds(); 
+
+					//console.log(Y+M+D+h+m+s);
+					console.log(Date.parse(new Date())-time);
+					if((Date.parse(new Date())-time)/1000 < 3600){
+						comment_time = h+m+s;
+					}else{
+						comment_time = Y+M+D;
+					}
+
 					if(data[i]['fid'] == 0){
-						obj.parent().parent().next().append("<div class='WB_ping'><div class='WB_ping_one'><a href='javascript:;'><img width='30' height='30' src='/homes/images/tou.png'></a><ul class='WB_ping_oneul'><li><a href='javascript:;'>"+data[i]['nickname']+"</a>："+data[i]['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;' class='replays' onclick='replays(this)' param="+data[i]['id']+">回复</a><input type='hidden' class='wid' value="+data[i]['id']+"> </span></li></ul></div></div>");
+						obj.parent().parent().next().append("<div class='WB_ping'><div class='WB_ping_one'><a href='javascript:;'>"+photo+"</a><ul class='WB_ping_oneul'><li><a href='javascript:;'>"+data[i]['nickname']+"</a>："+data[i]['content']+"</li><li><span>"+comment_time+"</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;' class='replays' onclick='replays(this)' param="+data[i]['id']+">回复</a><input type='hidden' class='wid' value="+data[i]['id']+"> </span></li></ul></div></div>");
 					}
 				}
 			}
-			obj.parent().parent().next().prepend("<div class='wei_ping'><a href='javascript:;'><img width='30' height='30' src='/homes/images/tou.png'></a><form><input type='text' class='wei_pingcon'><input type='button' value='评论' onclick='ping(this)' class='wei_pinglun'></form></div>");
+			obj.parent().parent().next().prepend("<div class='wei_ping'><a href='javascript:;'><img width='30' height='30' src='/homes/images/comm.png'></a><form><input type='text' class='wei_pingcon'><input type='button' value='评论' onclick='ping(this)' class='wei_pinglun'></form></div>");
 			obj.parent().parent().next().after('<div class="weibo_gengduo" style="display:block"><a href="javascript:;">查看更多 > </a></div>');
 
 			obj.parent().parent().next().slideDown();
@@ -494,12 +640,16 @@ function ping(ping){
 			return false;
 		}
 	$.get('/index/ping',{pcont:$(ping).prev().val(),wid:wid},function (data){
-		//$(ping).parent().parent().after('<div>123</div>');
+		if(data['portrait'] == 'default.jpg'){
+			photo = '<img width="30" height="30" src="/homes/images/tou.png">';
+		}else{
+			var photo = '<img width="30" height="30"  src="http://p2l4kajri.bkt.clouddn.com/'+data['portrait']+'" >';
+		}
+
 		$(ping).prev().val('');
-		//alert( $(ping).parent().parent().next());
 
 		// $(ping).parent().next().after();
-		$(ping).parent().parent().after('<div class="WB_ping"><div class="WB_ping_one"><a href="javascript:;"><img width="30" height="30" src="/homes/images/tou.png"></a><ul class="WB_ping_oneul"><li><a href="javascript:;">'+data["nickname"]+'</a>：'+data["content"]+'</li><li><span>今天 11:11</span><span class="WB_ping_onespan"><a href="javascript:;">举报</a><a href="javascript:;">屏蔽</a><a class="" href="javascript:;">回复</a><input class="wid" type="hidden" value=' +data["wid"]+ '><input class="fid" type="hidden" value=' +data["id"]+ '> </span></li></ul></div></div>'+'<div class="WB_ping_two" style="display:block"><form><input type="text" class="wei_hui"><input type="button" onclick="huifu(this)" value="回复" class="wei_huifu"></form></div>');
+		$(ping).parent().parent().after('<div class="WB_ping"><div class="WB_ping_one"><a href="javascript:;">'+photo+'</a><ul class="WB_ping_oneul"><li><a href="javascript:;">'+data["nickname"]+'</a>：'+data["content"]+'</li><li><span>刚刚</span><span class="WB_ping_onespan"><a href="javascript:;">举报</a><a href="javascript:;">屏蔽</a><a class="" href="javascript:;">回复</a><input class="wid" type="hidden" value=' +data["wid"]+ '><input class="fid" type="hidden" value=' +data["id"]+ '> </span></li></ul></div></div>'+'<div class="WB_ping_two" style="display:block"><form><input type="text" class="wei_hui"><input type="button" onclick="huifu(this)" value="回复" class="wei_huifu"></form></div>');
 		//alert($(ping).parent().parent().parent().prev().find('span').html());
 
 		var com = $(ping).parent().parent().parent().prev().find('.Ping>span').html();
@@ -522,6 +672,7 @@ function huifu(huifu){
 	})
 	$(huifu).prev().val('');
 }
+
 </script>
 
 

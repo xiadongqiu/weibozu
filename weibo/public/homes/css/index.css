@@ -125,6 +125,9 @@ a{text-decoration: none;}
 .weibo_d2{
 	margin-left: 10px;width: 500px;
 }
+.weibo_d3{
+	margin-left: 10px;width: 470px;background: #F3F3F3;margin: 15px auto;padding-left: 30px;
+}
 .wei_name{
 	font-size: 14px;font-weight: bold;color: #333;line-height: 30px;
 }
@@ -269,4 +272,19 @@ a{text-decoration: none;}
 }
 .page ul .active{
 	border:none;color: #fa7d3c;
+}
+
+
+/*//===============转发*/
+.zhuanfa{
+	width:100%;height: 100%;background: #000;background-color:rgba(88,88,88,0.7);position: absolute;z-index: 999;top:0px;display: none;
+}
+.zCont{
+	width: 500px;height: 300px;background: #fff;border: 1px solid #ddd; position: absolute;top:30%;left:50%;margin-left: -250px;position: fixed;
+}
+#border{
+	width: 360px;height: 180px;margin: 40px 70px;border: 2px solid #fa7d3c;resize:none;
+}
+#zhuan{
+
 }

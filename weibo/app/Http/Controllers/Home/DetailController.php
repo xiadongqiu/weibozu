@@ -55,7 +55,11 @@ class DetailController extends Controller
         
         //通过单签微博类型查询类型相同的微博
         $data = weibo::where('type',$weibo['type'])->where('id','!=',$id)->take(5)->get();
-        return view('Home.detail.detail',['data'=>$data]);
+        
+        $pictrue = json_decode($weibo['picture'],true);
+        
+
+        return view('Home.detail.detail',['data'=>$data,'res'=>$weibo,'pictrue'=>$pictrue]);
     }
 
     /**

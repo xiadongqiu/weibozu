@@ -298,383 +298,383 @@
             </div>
         </div>
 
-        <!-- 相册开始 -->
-        <div style="clear: both;"></div>
-        <div class="xiangce" style="display:{{$status['status'] == '2'?'block':'none'}}">
-            <div class="xiangce_d1">
-                <b>相片墙</b>
-                <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
+<!--         相册开始
+<div style="clear: both;"></div>
+<div class="xiangce" style="display:{{$status['status'] == '2'?'block':'none'}}">
+    <div class="xiangce_d1">
+        <b>相片墙</b>
+        <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
+    </div>
+    <div class="xiangce_pics">
+            <div class="baguetteBoxOne gallery">
+
+                @if($res->detail->pics !== '0')
+                    @foreach (json_decode($res->detail->pics) as $key=>$v)
+                <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片">
+                    <img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200">
+                </a>
+                    <button type="button" id="{{$key}}"  onclick="delpic(this)" class="btn-warning">删除</button>
+                    @endforeach
+                @else
+                    <h4>您未添加任何图片 请去添加</h4>
+                @endif
             </div>
-            <div class="xiangce_pics">
-                    <div class="baguetteBoxOne gallery">
+    </div>
 
-                        @if($res->detail->pics !== '0')
-                            @foreach (json_decode($res->detail->pics) as $key=>$v)
-                        <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片">
-                            <img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200">
-                        </a>
-                            <button type="button" id="{{$key}}"  onclick="delpic(this)" class="btn-warning">删除</button>
-                            @endforeach
-                        @else
-                            <h4>您未添加任何图片 请去添加</h4>
-                        @endif
-                    </div>
-            </div>
-
-            <script type="text/javascript">
-                baguetteBox.run('.baguetteBoxOne', {
-                    animation: 'fadeIn',
-                });
-                function delpic(obj){
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.post('/user/user/delpic',{pic:$(obj).attr('id')},function(data){
-                        if(data == 1){
-                            layer.msg('删除成功');
-                            location.href = '/user/user/index?status=2';
-
-                        }
-                    });
+    <script type="text/javascript">
+        baguetteBox.run('.baguetteBoxOne', {
+            animation: 'fadeIn',
+        });
+        function delpic(obj){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            </script>
+            });
+            $.post('/user/user/delpic',{pic:$(obj).attr('id')},function(data){
+                if(data == 1){
+                    layer.msg('删除成功');
+                    location.href = '/user/user/index?status=2';
 
-        </div>
-        <!-- 相册结束 -->
+                }
+            });
+        }
+    </script>
 
-        <!-- 个人中心 -->
-        <div class="zhu_center" style="display:{{$status['status'] == '1'?'block':'none'}}">
-            <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
-            </div>
-            <div class="xinxi_two">
-                <table>
-                    <tr>
-                        <td><span>登录名</span></td>
-                        <td>{{$res->phone}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>昵  称</span></td>
-                        <td><i></i>{{$res->detail->nickname or '未填写昵称'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>真实姓名</span></td>
-                        <td><i></i>{{$res->detail->name or '马上填写自己的真实姓名'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>所在地</span></td>
-                        <td><i></i>{{$adress[0].'省   '.$adress[1].'市' }}</td>
-                    </tr>
-                    <tr>
-                        <td><span>性  别</span></td>
-                        <td><i></i>{{$res->detail->sex }}</td>
-                    </tr>
-                    <tr>
-                        <td><span>性取向</span></td>
-                        <td><i></i>{{$res->detail->sexual or '马上填写自己的性取向,让更多的人了解你'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>感情状况</span></td>
-                        <td><i></i>{{$res->detail->emotion or '马上填写自己的感情状况,让更多的人了解你'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>生日</span></td>
-                        <td><i></i>{{$res->detail->birthday}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>血型</span></td>
-                        <td><i></i>{{$res->detail->blood or '马上填写自己的血型,可以被更多同血型的人找到哦'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>个性域名</span></td>
-                        <td><i></i>{{$res->detail->domainname or '马上填写还没有个性域名和微号哦，现在就去申请吧~'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>简介</span></td>
-                        <td><i></i>{{$res->detail->abstract or '马上填写自己的个人介绍,让大家快速了解真实的你'}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>注册时间</span></td>
-                        <td><span>{{date('Y-m-d',$res->detail->registertime)}}</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="xinxi_one"><span>联系信息</span></div>
-            <div class="xinxi_two">
-                <table>
-                    <tr>
-                        <td><span>邮箱</span></td>
-                        <td><i></i>{{$res->detail->email}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>QQ</span></td>
-                        <td><i></i>{{$res->detail->qq}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>MSN</span></td>
-                        <td><i></i>{{$res->detail->msn}}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="xinxi_one"><span>职业信息</span></div>
-            <div class="xinxi_two">
-                <table>
-                    <tr>
-                        <td><span>职业信息</span></td>
-                        <td><i></i>{{$res->detail->job}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="zhu_center bianji" style="display:{{$status['status'] == '3'?'block':'none'}}">
-            <div class="xinxi_one"><span>基本信息</span> <button id="baocun" type="button">保存</button>
-            </div>
-            <div class="xinxi_two">
-                <form action="" id="form">
-                <table>
-                    <tr>
-                        <td><span>登录名</span></td>
-                        <td><i></i>{{$res->phone}}</td>
-                    </tr>
-                    <tr>
-                        <td><span>昵  称</span></td>
-                        <td><input type="text" value="{{$res->detail->nickname}}" placeholder="请输入昵称" name="nickname" /></td>
-                    </tr>
-                    <tr>
-                        <td><span>真实姓名</span></td>
-                        <td><input type="text" value="{{$res->detail->name}}" placeholder="请输入姓名" name="name"/></td>
-                    </tr>
-                    <tr>
-                        <td><span>所在地</span></td>
-                        <td>
+</div>
+相册结束
 
-                            <select  id="province">
+个人中心
+<div class="zhu_center" style="display:{{$status['status'] == '1'?'block':'none'}}">
+    <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
+    </div>
+    <div class="xinxi_two">
+        <table>
+            <tr>
+                <td><span>登录名</span></td>
+                <td>{{$res->phone}}</td>
+            </tr>
+            <tr>
+                <td><span>昵  称</span></td>
+                <td><i></i>{{$res->detail->nickname or '未填写昵称'}}</td>
+            </tr>
+            <tr>
+                <td><span>真实姓名</span></td>
+                <td><i></i>{{$res->detail->name or '马上填写自己的真实姓名'}}</td>
+            </tr>
+            <tr>
+                <td><span>所在地</span></td>
+                <td><i></i>{{$adress[0].'省   '.$adress[1].'市' }}</td>
+            </tr>
+            <tr>
+                <td><span>性  别</span></td>
+                <td><i></i>{{$res->detail->sex }}</td>
+            </tr>
+            <tr>
+                <td><span>性取向</span></td>
+                <td><i></i>{{$res->detail->sexual or '马上填写自己的性取向,让更多的人了解你'}}</td>
+            </tr>
+            <tr>
+                <td><span>感情状况</span></td>
+                <td><i></i>{{$res->detail->emotion or '马上填写自己的感情状况,让更多的人了解你'}}</td>
+            </tr>
+            <tr>
+                <td><span>生日</span></td>
+                <td><i></i>{{$res->detail->birthday}}</td>
+            </tr>
+            <tr>
+                <td><span>血型</span></td>
+                <td><i></i>{{$res->detail->blood or '马上填写自己的血型,可以被更多同血型的人找到哦'}}</td>
+            </tr>
+            <tr>
+                <td><span>个性域名</span></td>
+                <td><i></i>{{$res->detail->domainname or '马上填写还没有个性域名和微号哦，现在就去申请吧~'}}</td>
+            </tr>
+            <tr>
+                <td><span>简介</span></td>
+                <td><i></i>{{$res->detail->abstract or '马上填写自己的个人介绍,让大家快速了解真实的你'}}</td>
+            </tr>
+            <tr>
+                <td><span>注册时间</span></td>
+                <td><span>{{date('Y-m-d',$res->detail->registertime)}}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="xinxi_one"><span>联系信息</span></div>
+    <div class="xinxi_two">
+        <table>
+            <tr>
+                <td><span>邮箱</span></td>
+                <td><i></i>{{$res->detail->email}}</td>
+            </tr>
+            <tr>
+                <td><span>QQ</span></td>
+                <td><i></i>{{$res->detail->qq}}</td>
+            </tr>
+            <tr>
+                <td><span>MSN</span></td>
+                <td><i></i>{{$res->detail->msn}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="xinxi_one"><span>职业信息</span></div>
+    <div class="xinxi_two">
+        <table>
+            <tr>
+                <td><span>职业信息</span></td>
+                <td><i></i>{{$res->detail->job}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="zhu_center bianji" style="display:{{$status['status'] == '3'?'block':'none'}}">
+    <div class="xinxi_one"><span>基本信息</span> <button id="baocun" type="button">保存</button>
+    </div>
+    <div class="xinxi_two">
+        <form action="" id="form">
+        <table>
+            <tr>
+                <td><span>登录名</span></td>
+                <td><i></i>{{$res->phone}}</td>
+            </tr>
+            <tr>
+                <td><span>昵  称</span></td>
+                <td><input type="text" value="{{$res->detail->nickname}}" placeholder="请输入昵称" name="nickname" /></td>
+            </tr>
+            <tr>
+                <td><span>真实姓名</span></td>
+                <td><input type="text" value="{{$res->detail->name}}" placeholder="请输入姓名" name="name"/></td>
+            </tr>
+            <tr>
+                <td><span>所在地</span></td>
+                <td>
 
-                                <option>请选择省份</option>
+                    <select  id="province">
 
-                                <option value="北京" {{$adress[0]=='北京'?'selected':' '}}>北京</option>
+                        <option>请选择省份</option>
 
-                                <option value="上海" {{$adress[0]=='上海'?'selected':' '}}>上海</option>
+                        <option value="北京" {{$adress[0]=='北京'?'selected':' '}}>北京</option>
 
-                                <option value="江苏" {{$adress[0]=='江苏'?'selected':' '}}>江苏</option>
+                        <option value="上海" {{$adress[0]=='上海'?'selected':' '}}>上海</option>
 
-                                <option value="河南" {{$adress[0]=='河南'?'selected':' '}}>河南</option>
+                        <option value="江苏" {{$adress[0]=='江苏'?'selected':' '}}>江苏</option>
 
-                                <option value="日本" {{$adress[0]=='日本'?'selected':' '}}>日本</option>
+                        <option value="河南" {{$adress[0]=='河南'?'selected':' '}}>河南</option>
 
-                            </select>
+                        <option value="日本" {{$adress[0]=='日本'?'selected':' '}}>日本</option>
 
-                            <select class="city" >
+                    </select>
 
-                                <option>请选择城市</option>
+                    <select class="city" >
 
-                            </select>
-                            <select class="city" >
+                        <option>请选择城市</option>
 
-                                <option value="东城" {{$adress[1]=='东城'?'selected':' '}}>东城</option>
+                    </select>
+                    <select class="city" >
 
-                                <option value="西城" {{$adress[1]=='西城'?'selected':' '}}>西城</option>
+                        <option value="东城" {{$adress[1]=='东城'?'selected':' '}}>东城</option>
 
-                                <option value="崇文" {{$adress[1]=='崇文'?'selected':' '}}>崇文</option>
+                        <option value="西城" {{$adress[1]=='西城'?'selected':' '}}>西城</option>
 
-                                <option value="宣武" {{$adress[1]=='宣武'?'selected':' '}}>宣武</option>
+                        <option value="崇文" {{$adress[1]=='崇文'?'selected':' '}}>崇文</option>
 
-                                <option value="朝阳" {{$adress[1]=='朝阳'?'selected':' '}}>朝阳</option>
+                        <option value="宣武" {{$adress[1]=='宣武'?'selected':' '}}>宣武</option>
 
-                            </select>
+                        <option value="朝阳" {{$adress[1]=='朝阳'?'selected':' '}}>朝阳</option>
 
-                            <select class="city">
+                    </select>
 
-                                <option value="黄埔" {{$adress[1]=='黄浦'?'selected':' '}}>黄浦</option>
+                    <select class="city">
 
-                                <option value="卢湾" {{$adress[1]=='卢湾'?'selected':' '}}>卢湾</option>
+                        <option value="黄埔" {{$adress[1]=='黄浦'?'selected':' '}}>黄浦</option>
 
-                                <option value="徐汇" {{$adress[1]=='徐汇'?'selected':' '}}>徐汇</option>
+                        <option value="卢湾" {{$adress[1]=='卢湾'?'selected':' '}}>卢湾</option>
 
-                                <option value="常宁" {{$adress[1]=='长宁'?'selected':' '}}>长宁</option>
+                        <option value="徐汇" {{$adress[1]=='徐汇'?'selected':' '}}>徐汇</option>
 
-                                <option value="静安" {{$adress[1]=='静安'?'selected':' '}}>静安</option>
+                        <option value="常宁" {{$adress[1]=='长宁'?'selected':' '}}>长宁</option>
 
-                            </select>
+                        <option value="静安" {{$adress[1]=='静安'?'selected':' '}}>静安</option>
 
-                            <select class="city">
+                    </select>
 
-                                <option value="南京" {{$adress[1]=='静安'?'selected':' '}}>南京</option>
+                    <select class="city">
 
-                                <option value="镇江" {{$adress[1]=='镇江'?'selected':' '}}>镇江</option>
+                        <option value="南京" {{$adress[1]=='静安'?'selected':' '}}>南京</option>
 
-                                <option value="苏州" {{$adress[1]=='苏州'?'selected':' '}}>苏州</option>
+                        <option value="镇江" {{$adress[1]=='镇江'?'selected':' '}}>镇江</option>
 
-                                <option value="南通" {{$adress[1]=='南通'?'selected':' '}}>南通</option>
+                        <option value="苏州" {{$adress[1]=='苏州'?'selected':' '}}>苏州</option>
 
-                                <option value="扬州" {{$adress[1]=='扬州'?'selected':' '}}>扬州</option>
+                        <option value="南通" {{$adress[1]=='南通'?'selected':' '}}>南通</option>
 
-                            </select>
+                        <option value="扬州" {{$adress[1]=='扬州'?'selected':' '}}>扬州</option>
 
-                            <select class="city">
+                    </select>
 
-                                <option value="郑州" {{$adress[1]=='郑州'?'selected':' '}}>郑州</option>
+                    <select class="city">
 
-                                <option value="周口" {{$adress[1]=='周口'?'selected':' '}}>周口</option>
+                        <option value="郑州" {{$adress[1]=='郑州'?'selected':' '}}>郑州</option>
 
-                                <option value="洛阳" {{$adress[1]=='洛阳'?'selected':' '}}>洛阳</option>
+                        <option value="周口" {{$adress[1]=='周口'?'selected':' '}}>周口</option>
 
-                                <option value="南阳" {{$adress[1]=='南阳'?'selected':' '}}>南阳</option>
+                        <option value="洛阳" {{$adress[1]=='洛阳'?'selected':' '}}>洛阳</option>
 
-                                <option value="安阳" {{$adress[1]=='安阳'?'selected':' '}}>安阳</option>
+                        <option value="南阳" {{$adress[1]=='南阳'?'selected':' '}}>南阳</option>
 
-                            </select>
+                        <option value="安阳" {{$adress[1]=='安阳'?'selected':' '}}>安阳</option>
 
-                            <select class="city">
+                    </select>
 
-                                <option value="大阪" {{$adress[1]=='大阪'?'selected':' '}}>大阪</option>
+                    <select class="city">
 
-                                <option value="秋叶原" {{$adress[1]=='秋叶原'?'selected':' '}}>秋叶原</option>
+                        <option value="大阪" {{$adress[1]=='大阪'?'selected':' '}}>大阪</option>
 
-                                <option value="东京" {{$adress[1]=='东京'?'selected':' '}}>东京</option>
+                        <option value="秋叶原" {{$adress[1]=='秋叶原'?'selected':' '}}>秋叶原</option>
 
-
-                            </select>
-                            <input type="hidden" name="adress" value="" id="adress">
-
-
-                            <script type="text/javascript">
-                                $(function(){
-                                    $("#province").change(function(){
-                                        $("#province option").each(function(i,o){
-                                            if($(this).attr("selected"))
-                                            {
-                                                $(".city").hide();
-
-                                                $(".city").eq(i).show();
-
-                                                currentShowCity=i;
-                                            }
-                                        });
-                                    });
-                                    $("#province").change();
-                                });
+                        <option value="东京" {{$adress[1]=='东京'?'selected':' '}}>东京</option>
 
 
-                                $('#form').change(function(){
-                                var sheng = $("#province").val();
-                                $(".city").each(function(i,o){
-                                    if(i == currentShowCity){
-                                        shi = $(".city").eq(i).val();
+                    </select>
+                    <input type="hidden" name="adress" value="" id="adress">
+
+
+                    <script type="text/javascript">
+                        $(function(){
+                            $("#province").change(function(){
+                                $("#province option").each(function(i,o){
+                                    if($(this).attr("selected"))
+                                    {
+                                        $(".city").hide();
+
+                                        $(".city").eq(i).show();
+
+                                        currentShowCity=i;
                                     }
                                 });
-
-                                var adress = sheng +":"+shi;
-                                $('#adress').val(adress);
-
-                                var year = $('#date-sel-year').val();
-                                var month = $('#date-sel-month').val();
-                                var day = $('#date-sel-day').val();
-                                var date =  year+'-'+month+"-"+day;
-
-                                $('#birthday').val(date);
                             });
-
-                            </script>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><span>性  别</span></td>
-                        <td><input type="radio" name="sex" value="男" {{($res->detail->sex == '男') ? 'checked':''}}/>男
-                            <input type="radio" name="sex" value="女" {{($res->detail->sex == '女') ? 'checked':''}}/>女
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><span>性取向</span></td>
-                        <td><input type="radio" name="sexual" value="男" {{($res->detail->sexual == '男') ? 'checked':''}}/>男
-                            <input type="radio" name="sexual" value="女" {{($res->detail->sexual == '女') ? 'checked':''}}/>女
-                            <input type="radio" name="sexual" value="双性" {{($res->detail->sexual == '双性') ? 'checked':''}}/>双性
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td><span>感情状况</span></td>
-                        <td><select name="emotion" id="">
-                                <option value="默认" {{($res->detail->emotion == ' ') ? 'selected':''}}>请选择</option>
-                                <option value="单身狗" {{($res->detail->emotion == '单身狗') ? 'selected':''}}>单身狗</option>
-                                <option value="暗恋中" {{($res->detail->emotion == '暗恋中') ? 'selected':''}}>暗恋中</option>
-                                <option value="暧昧中" {{($res->detail->emotion == '暧昧中') ? 'selected':''}}>暧昧中</option>
-                                <option value="恋爱中" {{($res->detail->emotion == '恋爱中') ? 'selected':''}}>恋爱中</option>
-                                <option value="已婚" {{($res->detail->emotion == '已婚') ? 'selected':''}}>已婚</option>
-                                <option value="订婚" {{($res->detail->emotion == '订婚') ? 'selected':''}}>订婚</option>
-                                <option value="分居" {{($res->detail->emotion == '分局') ? 'selected':''}}>分居</option>
-                                <option value="离异" {{($res->detail->emotion == '离异') ? 'selected':''}}>离异</option>
-                                <option value="丧偶" {{($res->detail->emotion == '丧偶') ? 'selected':''}}>丧偶</option>
+                            $("#province").change();
+                        });
 
 
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td><span>生日</span></td>
-                        <td>
-                            <select id="date-sel-year" rel=" {{date('Y',strtotime($res->detail->birthday))}}" ></select>年
-                            <select id="date-sel-month" rel="{{date('m',strtotime($res->detail->birthday))}}"></select>月
-                            <select id="date-sel-day" rel="{{date('d',strtotime($res->detail->birthday))}}"></select>日
-                            <input type="hidden" id="birthday" name="birthday">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><span>血型</span></td>
-                        <td>
-                            <select name="blood" id="">
-                                <option value="AB" {{($res->detail->blood == 'AB') ? 'selected':''}}>AB</option>
-                                <option value="A" {{($res->detail->blood == 'A') ? 'selected':''}}>A</option>
-                                <option value="O" {{($res->detail->blood == 'O') ? 'selected':''}}>O</option>
-                                <option value="B" {{($res->detail->blood == 'B') ? 'selected':''}}>B</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><span>个性域名</span></td>
-                        <td><input type="text" name="domainname" value="{{ $res->detail->domainname }}" placeholder="请输入个人域名"> </td>
-                    </tr>
-                    <tr>
-                        <td><span>简介</span></td>
-                        <td><textarea name="abstract" id="" cols="20" rows="2"  placeholder="请输个人简介">{{$res->detail->abstract}}</textarea></td>
-                    </tr>
-                    <tr>
-                        <td><span>注册时间</span></td>
-                        <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="xinxi_one"><span>联系信息</span></div>
-            <div class="xinxi_two">
-                <table>
-                    <tr>
-                        <td><span>邮箱</span></td>
-                        <td><input type="text" name="email" value="{{$res->detail->email}}" placeholder="请输入个人邮箱"></td>
-                    </tr>
-                    <tr>
-                        <td><span>QQ</span></td>
-                        <td><input type="text" name="qq" value="{{$res->detail->qq}}" placeholder="请输入QQ"></td>
-                    </tr>
-                    <tr>
-                        <td><span>MSN</span></td>
-                        <td><input type="text" name="msn" value="{{$res->detail->msn}}" placeholder="请输入MSN"></td>
-                    </tr>
-                </table>
-            </div>/
-            <div class="xinxi_one"><span>职业信息</span></div>
-            <div class="xinxi_two">
-                <table>
-                    <tr>
-                        <td><span>职业信息</span></td>
-                        <td><input type="text" name="job" value="{{$res->detail->job}}" placeholder="请输入个人职业信息"></td>
-                    </tr>
-                </table>
-                </form>
+                        $('#form').change(function(){
+                        var sheng = $("#province").val();
+                        $(".city").each(function(i,o){
+                            if(i == currentShowCity){
+                                shi = $(".city").eq(i).val();
+                            }
+                        });
+
+                        var adress = sheng +":"+shi;
+                        $('#adress').val(adress);
+
+                        var year = $('#date-sel-year').val();
+                        var month = $('#date-sel-month').val();
+                        var day = $('#date-sel-day').val();
+                        var date =  year+'-'+month+"-"+day;
+
+                        $('#birthday').val(date);
+                    });
+
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td><span>性  别</span></td>
+                <td><input type="radio" name="sex" value="男" {{($res->detail->sex == '男') ? 'checked':''}}/>男
+                    <input type="radio" name="sex" value="女" {{($res->detail->sex == '女') ? 'checked':''}}/>女
+                </td>
+            </tr>
+            <tr>
+                <td><span>性取向</span></td>
+                <td><input type="radio" name="sexual" value="男" {{($res->detail->sexual == '男') ? 'checked':''}}/>男
+                    <input type="radio" name="sexual" value="女" {{($res->detail->sexual == '女') ? 'checked':''}}/>女
+                    <input type="radio" name="sexual" value="双性" {{($res->detail->sexual == '双性') ? 'checked':''}}/>双性
+                </td>
+
+            </tr>
+            <tr>
+                <td><span>感情状况</span></td>
+                <td><select name="emotion" id="">
+                        <option value="默认" {{($res->detail->emotion == ' ') ? 'selected':''}}>请选择</option>
+                        <option value="单身狗" {{($res->detail->emotion == '单身狗') ? 'selected':''}}>单身狗</option>
+                        <option value="暗恋中" {{($res->detail->emotion == '暗恋中') ? 'selected':''}}>暗恋中</option>
+                        <option value="暧昧中" {{($res->detail->emotion == '暧昧中') ? 'selected':''}}>暧昧中</option>
+                        <option value="恋爱中" {{($res->detail->emotion == '恋爱中') ? 'selected':''}}>恋爱中</option>
+                        <option value="已婚" {{($res->detail->emotion == '已婚') ? 'selected':''}}>已婚</option>
+                        <option value="订婚" {{($res->detail->emotion == '订婚') ? 'selected':''}}>订婚</option>
+                        <option value="分居" {{($res->detail->emotion == '分局') ? 'selected':''}}>分居</option>
+                        <option value="离异" {{($res->detail->emotion == '离异') ? 'selected':''}}>离异</option>
+                        <option value="丧偶" {{($res->detail->emotion == '丧偶') ? 'selected':''}}>丧偶</option>
 
 
-            </div>
-        </div>
-        <!-- 个人中心 -->
+                    </select></td>
+            </tr>
+            <tr>
+                <td><span>生日</span></td>
+                <td>
+                    <select id="date-sel-year" rel=" {{date('Y',strtotime($res->detail->birthday))}}" ></select>年
+                    <select id="date-sel-month" rel="{{date('m',strtotime($res->detail->birthday))}}"></select>月
+                    <select id="date-sel-day" rel="{{date('d',strtotime($res->detail->birthday))}}"></select>日
+                    <input type="hidden" id="birthday" name="birthday">
+                </td>
+            </tr>
+            <tr>
+                <td><span>血型</span></td>
+                <td>
+                    <select name="blood" id="">
+                        <option value="AB" {{($res->detail->blood == 'AB') ? 'selected':''}}>AB</option>
+                        <option value="A" {{($res->detail->blood == 'A') ? 'selected':''}}>A</option>
+                        <option value="O" {{($res->detail->blood == 'O') ? 'selected':''}}>O</option>
+                        <option value="B" {{($res->detail->blood == 'B') ? 'selected':''}}>B</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><span>个性域名</span></td>
+                <td><input type="text" name="domainname" value="{{ $res->detail->domainname }}" placeholder="请输入个人域名"> </td>
+            </tr>
+            <tr>
+                <td><span>简介</span></td>
+                <td><textarea name="abstract" id="" cols="20" rows="2"  placeholder="请输个人简介">{{$res->detail->abstract}}</textarea></td>
+            </tr>
+            <tr>
+                <td><span>注册时间</span></td>
+                <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="xinxi_one"><span>联系信息</span></div>
+    <div class="xinxi_two">
+        <table>
+            <tr>
+                <td><span>邮箱</span></td>
+                <td><input type="text" name="email" value="{{$res->detail->email}}" placeholder="请输入个人邮箱"></td>
+            </tr>
+            <tr>
+                <td><span>QQ</span></td>
+                <td><input type="text" name="qq" value="{{$res->detail->qq}}" placeholder="请输入QQ"></td>
+            </tr>
+            <tr>
+                <td><span>MSN</span></td>
+                <td><input type="text" name="msn" value="{{$res->detail->msn}}" placeholder="请输入MSN"></td>
+            </tr>
+        </table>
+    </div>/
+    <div class="xinxi_one"><span>职业信息</span></div>
+    <div class="xinxi_two">
+        <table>
+            <tr>
+                <td><span>职业信息</span></td>
+                <td><input type="text" name="job" value="{{$res->detail->job}}" placeholder="请输入个人职业信息"></td>
+            </tr>
+        </table>
+        </form>
+
+
+    </div>
+</div>
+个人中心 -->
     </div>
     <script type="text/javascript" src="/homes/js/date.js"></script>
     <script type="text/javascript">
