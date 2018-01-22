@@ -68,9 +68,17 @@
 
     <div class="cen_nav">
         <ul class="cen_m">
-            <li>我的主页</li>
-            <li>我的相册</li>
-            <li>个人中心</li>
+            @if($uid == session('home'))
+                <li>我的主页</li>
+                <li>我的相册</li>
+            @else
+                <li>她的主页</li>
+                <li>她的相册</li>
+            @endif
+
+            @if($uid ==session('home'))
+                <li>个人中心</li>
+            @endif
         </ul>
     </div>
     <div style="clear: both;"></div>
@@ -80,15 +88,15 @@
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="/user/user/attent">12345</a>
+                            <a href="/user/user/attent?id={{$uid or ''}}">{{$res->detail->attent}}</a>
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="/user/user/fensi">12345</a>
+                            <a href="/user/user/fensi?id={{$uid or ''}}">{{$res->detail->fensi}}</a>
                             <span>粉丝</span>
                         </li>
                         <li>
-                            <a href="#">12345</a>
+                            <a href="/user/user/index?id={{$uid or ''}}">{{count($res->weibo)}}</a>
                             <span>微博</span>
                         </li>
                     </ul>
@@ -98,7 +106,12 @@
                         <li><a href="#">申请认证</a></li>
                         <li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
                     </ul>
-                    <div><a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a></div>
+
+                    <div>
+                        @if($uid == session('home'))
+                        <a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a>
+                        @endif
+                    </div>
                 </div>
                 <div class="cont_left_three">
                     <span style="border-bottom: 1px solid #F2F2F5;">相册</span>
@@ -114,17 +127,18 @@
                     @endif
                     <span style="border-top: 1px solid #F2F2F5;"><a onclick="xiangce()" style="cursor:pointer">查看个人相册</a></span>
                 </div>
-                <div class="cont_left_three" style="height:200px;">
+                <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
                     <div id="wei_zan">
-                        <img src="/Homes/images/tou.png">
-                        <div>
+
+                            <img style="width: 60px;
+                                    height: 60px;
+                                    border-radius: 50%;" src="/Homes/images/tou.png">
                             <p><a href="#">用户名</a></p>
-                            <p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-                        </div>
+                            <div>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</div>
                     </div>
                     <div  style="clear:both"></div>
-                    <span style="border-top: 1px solid #F2F2F5;"><a href="#">查看更多</a></span>
+                    <span style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
                 </div>
             </div>
             <div class="cont_center">
@@ -139,7 +153,7 @@
                 </div>
                 <!-- 微博内容 -->
                 @foreach ($res->weibo as $k => $v)
-                    <div class="weibo" style="padding:;">
+                    <div class="weibo" style="">
                         <a href="#" class="xiangxia"></a>
                         <div class="xiangxia_show">
                             <ul>
@@ -298,22 +312,25 @@
             </div>
         </div>
 
-<!--         相册开始
+      {{--相册开始--}}
 <div style="clear: both;"></div>
 <div class="xiangce" style="display:{{$status['status'] == '2'?'block':'none'}}">
     <div class="xiangce_d1">
         <b>相片墙</b>
+        @if($uid == session('home'))
         <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
+        @endif
     </div>
     <div class="xiangce_pics">
             <div class="baguetteBoxOne gallery">
-
-                @if($res->detail->pics !== '0')
+                @if($res->detail->pics != '')
                     @foreach (json_decode($res->detail->pics) as $key=>$v)
                 <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片">
                     <img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200">
                 </a>
+                        @if($uid == session('home'))
                     <button type="button" id="{{$key}}"  onclick="delpic(this)" class="btn-warning">删除</button>
+                        @endif
                     @endforeach
                 @else
                     <h4>您未添加任何图片 请去添加</h4>
@@ -334,7 +351,7 @@
             $.post('/user/user/delpic',{pic:$(obj).attr('id')},function(data){
                 if(data == 1){
                     layer.msg('删除成功');
-                    location.href = '/user/user/index?status=2';
+                    location.href = '/user/user/index?status=2&id={{$uid or ''}}';
 
                 }
             });
@@ -342,9 +359,7 @@
     </script>
 
 </div>
-相册结束
 
-个人中心
 <div class="zhu_center" style="display:{{$status['status'] == '1'?'block':'none'}}">
     <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
     </div>
@@ -432,7 +447,7 @@
     </div>
     <div class="xinxi_two">
         <form action="" id="form">
-        <table>
+            <table>
             <tr>
                 <td><span>登录名</span></td>
                 <td><i></i>{{$res->phone}}</td>
@@ -643,6 +658,7 @@
                 <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
             </tr>
         </table>
+        </form>
     </div>
     <div class="xinxi_one"><span>联系信息</span></div>
     <div class="xinxi_two">
@@ -674,7 +690,7 @@
 
     </div>
 </div>
-个人中心 -->
+{{--个人中心--}}
     </div>
     <script type="text/javascript" src="/homes/js/date.js"></script>
     <script type="text/javascript">
@@ -715,7 +731,7 @@
 
         });
         function xiangce(){
-            location.href = '/user/user/index?status=2';
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}';
             $('.content').hide();
             $('.xiangce').show();
             $('.zhu_center').hide();
@@ -782,6 +798,23 @@
         $(function(){
            $('a').css('text-decoration','none');
         });
+    </script>
+    <script type="text/javascript">
+        function zan(obj){
+            $(obj).slideDown(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post('/user/user/like',{id:"{{$uid}}"},function(data){
+
+                });
+            });
+        }
+
+
     </script>
 @endsection('content')
 

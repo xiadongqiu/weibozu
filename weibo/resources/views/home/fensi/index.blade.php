@@ -67,23 +67,34 @@
 
     <div class="cen_nav">
         <ul class="cen_m">
-            <li>我的主页</li>
-            <li>我的相册</li>
-            <li>个人中心</li>
+            @if($uid == session('home'))
+                <li>我的主页</li>
+                <li>我的相册</li>
+            @else
+                <li>她的主页</li>
+                <li>她的相册</li>
+            @endif
+
+            @if($uid ==session('home'))
+                <li>个人中心</li>
+            @endif
         </ul>
     </div>
     <script type="text/javascript">
+        $('body').css({
+            font:'#333'
+        });
         $('.cen_m').children().eq(0).click(function () {
-            location.href = '/user/user/index'
-        })
+            location.href = '/user/user/index?id={{$uid or ''}}'
+        });
 
         $('.cen_m').children().eq(1).click(function () {
-            location.href = '/user/user/index?status=2'
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}'
         });
 
         $('.cen_m').children().eq(2).click(function () {
-            location.href = '/user/user/index?status=1'
-        })
+            location.href = '/user/user/index?status=1&id={{$uid or ''}}'
+        });
 
     </script>
     <div style="clear: both;"></div>
@@ -93,15 +104,15 @@
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="/user/user/attent">{{$res->detail->attent}}</a>
+                            <a href="/user/user/attent?id={{$uid or ''}}">{{$res->detail->attent}}</a>
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="/user/user/fensi">{{$res->detail->fensi}}</a>
+                            <a href="/user/user/fensi?id={{$uid or ''}}">{{$res->detail->fensi}}</a>
                             <span>粉丝</span>
                         </li>
                         <li>
-                            <a href="/user/user/index">{{count($res->weibo)}}</a>
+                            <a href="/user/user/index?id={{$uid or ''}}">{{count($res->weibo)}}</a>
                             <span>微博</span>
                         </li>
                     </ul>
@@ -111,11 +122,15 @@
                         <li><a href="#">申请认证</a></li>
                         <li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
                     </ul>
-                    <div><a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a></div>
+                    <div>
+                        @if($uid == session('home'))
+                            <a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a>
+                        @endif
+                    </div>
                 </div>
                 <div class="cont_left_three">
                     <span style="border-bottom: 1px solid #F2F2F5;">相册</span>
-                    @if($res->detail->pics !== '0')
+                    @if($res->detail->pics != '')
                         <div>
                             @for($i=0;$i<=1;$i++)
 
@@ -170,13 +185,13 @@
 
                             <dl style="position: relative; border-bottom: 1px solid;border-color:rgb(242, 242, 245)">
                                 <dt class="mod_pic" style="float:left;position:relative">
-                                    <a target="_blank" title="微博钱包" href="#">
+                                    <a target="_blank" title="微博钱包" href="/user/user/index?id={{$v->id}}">
                                         <img  width="50" height="50" alt="微博钱包" src="http://p2l4kajri.bkt.clouddn.com/{{$v->detail->portrait}}" style="border-radius: 50%;width: 50px;height: 50px;">
                                     </a>
                                 </dt>
                                 <dd class="mod_info S_line1" style="position:relative">
                                     <div class="info_name W_fb W_f14" style="font-size: 14px;font-weight: 700">
-                                        <a class="S_txt1" target="_blank"  href="#">{{$v->detail->nickname}}</a>
+                                        <a class="S_txt1" target="_blank"  href="/user/user/index?id={{$v->id}}">{{$v->detail->nickname}}</a>
                                     </div>
                                     <div class="info_connect">
                                         <span class="conn_type">关注
@@ -192,6 +207,8 @@
                                             </em>
                                         </span>
 
+
+
                                     </div>
                                     <div class="info_add" style="line-height: 30px">
                                         <em class="tit S_txt2">地址</em> <span>  {{(explode(':',$v->detail->adress))[0]}}</span>
@@ -199,15 +216,16 @@
                                     <div class="info_intro" style="line-height: 30px">简介 <span> {{$v->detail->abstract}}</span></div>
                                 </dd>
                                 <dd class="opt_box" node-type="opt_box" style="position: absolute">
-			                        <span>
-									<a href="javascript:;" class="W_btn_b" id="{{$v->detail->id}}" onclick="guanzhu(this)">
-					                    <em class="W_ficon ficon_add S_ficon" >+</em>
-                                        关注
 
-                                    </a>
+                                    @if($uid  == session('home'))
+                                    <span>
+                                            @if(in_array($v->detail->id,$arr))
+                                            <a href="javascript:;" class="W_btn_b" id="{{$v->detail->id}}" onclick="guanzhu(this)">{{'已互关注'}}</a>
+                                             @else
+                                            <a href="javascript:;" class="W_btn_b" id="{{$v->detail->id}}" onclick="guanzhu(this)">关注</a>
+                                             @endif
 								    </span>
-                                    <a href="javascript:;" class="W_btn_b" >举报
-                                        <em class="W_ficon ficon_arrow_down_lite S_ficon" >g</em></a>
+                                     @endif
                                 </dd>
                             </dl>
 
@@ -228,21 +246,38 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+                if($(obj).html() != '已互关注'){
+                    $.post('/user/user/guanzhu',{uid:$(obj).attr('id')},function(data){
 
+                        if(data){
+                            layer.msg('您已经关注成功');
+                            $('#'+data+'').html('已互关注');
+                            $('#'+data+'').removeAttr('onclick');
+                        }
+                    });
+                }else{
+                    layer.msg('您已经关注成功');
+                }
 
-                $.post('/user/user/guanzhu',{uid:$(obj).attr('id')},function(data){
-                    if(data){
-                        layer.msg('您已经关注成功');
-                        $('#'+data+'').html('已经互关');
-                        $('#'+data+'').removeAttr('onclick');
-
-                    }
-                });
 
 
         }
 
     </script>
+    <script type="text/javascript">
 
+        $('.cen_m').children().eq(1).click(function(){
+            xiangce();
+
+        });
+        function xiangce(){
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}';
+            $('.content').hide();
+            $('.xiangce').show();
+            $('.zhu_center').hide();
+            $('.weibo').hide();
+
+        }
+    </script>
 
 @endsection('content')
