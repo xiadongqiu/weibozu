@@ -67,7 +67,7 @@
                            {{date('Y-m-d H:i:s',$val->report_time)}}
                         </td>
                         <td class=" ">
-                            <a href="/admin/user/{{$val->id}}/edit" style="color:#333;">查看</a>&nbsp;&nbsp;&nbsp;
+                            <a href="/detail/{{$val->wid}}" style="color:#333;" target="_black">查看</a>&nbsp;&nbsp;&nbsp;
                             <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>

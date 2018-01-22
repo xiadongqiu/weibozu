@@ -51,6 +51,7 @@ class LoginController extends Controller
     	$res = user::where('phone','=',$username)->update(['lastlogin_time'=>time()]);
     	if($res){
     	$request->session()->put('admin',$id);
+        $request->session()->put('home',$id);
     	echo 4;
     	}
     }
@@ -58,6 +59,7 @@ class LoginController extends Controller
     public function loginout(Request $request)
     {
     	$request->session()->forget('admin');
+        $request->session()->forget('home');
     	return redirect('admin/login');
     }
 

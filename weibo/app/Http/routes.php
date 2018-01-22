@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		    //微博-名泽
 		    Route::resource('/post','PostController');
 		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments/{id}','CommentsController');
+			Route::resource('/comments','CommentsController');
 		});
 
 

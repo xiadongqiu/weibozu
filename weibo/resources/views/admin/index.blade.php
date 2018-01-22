@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
-<title>@yield('title','微博-admin')</title>
+<title>@yield('title','微博首页')</title>
 <style type="text/css">
     .pagination{
     list-style: none;
@@ -233,12 +233,10 @@ font-size: 14px;
         <div id="mws-container" class="clearfix">
         	<!-- 内容 -->
             <div class="container">
-             @section('zhuti')
-
-                
-
-                aaa 
-
+             @section('zhuti') 
+             <center> 
+                <h1 style="margin-top:20%;">欢迎来到后台首页！</h1>
+            </center>
              @show
             
             </div>
