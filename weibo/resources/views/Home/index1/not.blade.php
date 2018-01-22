@@ -44,10 +44,14 @@
 				</div>
 
 				<div class="weibo_d1">
-					<img src="./Homes/images/tou.png">
+					@if($val['portrait'] == 'default.jpg')
+					<img src="/homes/images/tou.png">
+					@else
+					<img src="http://p2l4kajri.bkt.clouddn.com/{{$val->portrait}}">
+					@endif
 				</div>
 				<div class="weibo_d2">
-					<a href="javascript:;" class="wei_name">{{$val->detail->nickname}}</a>
+					<a href="javascript:;" class="wei_name">{{$val->nickname}}</a>
 					<div class="wei_time"><a href="javascript:;">
 					@if( time()-($val->publish_time)<3600)
 						{{date("i",$val->publish_time) }}分钟前
@@ -60,7 +64,12 @@
 					<div class="wei_cont">
 						<p>{{ $val->content}} </p>
 						<ul class="wei_ul">
-							<!-- <li><img src="./Homes/images/img1.jpg"></li> -->
+						
+							@if( (json_decode($val->picture,true))[0] != '' )
+                                @foreach(json_decode($val->picture,true) as $v)
+                                <li><img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}"></li>
+                                @endforeach
+                            @endif   
 						</ul>
 					</div>
 				</div>

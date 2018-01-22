@@ -32,6 +32,7 @@
 	<script type="text/javascript" src="/homes/layer/layer.js"></script>
 <!-- 评论回复的js -->
 <script type="text/javascript" src="/homes/js/myJS.js"></script>
+
 	<style type="text/css">
 #content{
 	width: 610px;height: 96px;margin-left: 15px;font-size: 14px;color: #666;font-family: '微软雅黑';overflow: auto;
@@ -99,8 +100,15 @@ span.reference a:hover{
 }
 
 
-#wei_zan>div>p{
-	font-size: 12px;color: #666;
+.wei_zan>div>p{
+	font-size: 12px;color: #666;margin: 0px;
+}
+.wei_name a{
+	color: #333;
+}
+
+.W_zan{
+	
 }
 </style>
 

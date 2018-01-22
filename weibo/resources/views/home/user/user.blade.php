@@ -130,7 +130,15 @@
                 </div>
                 <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
-                    <div id="wei_zan">
+                    <div class="W_zan" style="border-bottom:1px solid #ddd;">
+                        <img style="width: 60px;
+                                height: 60px;
+                                border-radius: 50%;" src="/Homes/images/tou.png">
+                        <p><a href="#">用户名</a></p>
+                        <div>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</div>
+                    </div>
+                    <div  style="clear:both"></div>
+                    <div class="W_zan" style="border-bottom:1px solid #ddd;">
                         <img style="width: 60px;
                                 height: 60px;
                                 border-radius: 50%;" src="/Homes/images/tou.png">
@@ -177,11 +185,13 @@
                             @if(time()-$v->publish_time < 3600)
                             <a href="javascript:;">{{date('i',$v->publish_time)}}分钟前</a> 来自 微博 weibo.com</div>
                             @else
-                            <a href="javascript:;">{{date('Y-m-d',$v->publish_time)}}</a> 
+                            <a href="javascript:;">{{date('Y-m-d',$v->publish_time)}}</a> 来自 微博 weibo.com</div>
                             @endif
-                            来自 微博 weibo.com</div>
+                            
                             <div class="wei_cont">
-                                <p>{{$v->content}}</p>
+                                <div class="W_cont" >
+                                    <p style="">{{$v->content}}</p>
+                                </div>
                                 <ul class="wei_ul">
                                     @if( (json_decode($v->picture,true))[0] != '' )
                                         @foreach(json_decode($v->picture,true) as $val)
@@ -191,11 +201,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <p style="clear:both"></p>
+                        <div style="clear:both" style=""></div>
                         <div class="wei_bottom">
                             <ul>
                                 <li style="width:80px"></li>
-                                <li><a href="javascript:void(0)">转发</a><span>{{$v->transpond}}</span></li>
+                                <li onclick="xiang(this)">
+                                    <a href="/detail/{{$v->id}}">查看详情</a>
+                                </li>
                                 <li onclick="Ping(this)" class="Ping">
                                     <input type="hidden" value="{{$v->id}}">
                                     <a href="javascript:;">评论</a><span>{{$v->comment}}</span>

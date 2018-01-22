@@ -266,7 +266,7 @@ a{text-decoration: none;}
 	text-align: center;width: 640px;height: 40px;line-height: 40px;background: #fff;text-align: center;
 }
 .page ul li{
-	float: left;margin: 0 10px;padding: 0 10px;
+	float: left;
 }
 .page ul .active{
 	border:none;color: #fa7d3c;

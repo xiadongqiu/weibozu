@@ -277,9 +277,18 @@ class IndexController extends Controller
             echo 2;
         }
 
-       
-
     }
+
+    //举报
+    public function getReport(request $Request){
+        $id = $Request->input('id');
+        if($id){
+            $report = weibo::where('id',$id)->increment('report');
+        }
+        
+        echo 'ok';
+    }
+
 
 
 }

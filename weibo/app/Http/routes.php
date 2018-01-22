@@ -42,8 +42,6 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 	Route::controller('/index','IndexController');
 
-	Route::resource('/detail','DetailController');
-
     Route::group(['middleware'=>'homelogin'],function(){
         //用于访问登录页面的和处理登录信息的路由
 

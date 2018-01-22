@@ -26,7 +26,7 @@
 					
 				</div>
 				<div class="weibo_d2">
-					<a href="javascript:;" class="wei_name">{{$res->nickname}}</a>
+					<a href="/user/user" class="wei_name">{{$res->nickname}}</a>
 					<div class="wei_time">
                     @if(time()-$res->publish_time < 60)
                     <a href="javascript:;">{{ date('s',(time()-$res->publish_time)) }}秒前</a> 来自 微博 weibo.com</div>
@@ -52,7 +52,7 @@
 				<p style="clear:both"></p>
 				<div class="wei_bottom">
 					<ul>
-						<li><a href="javascript:;">收藏</a><span>{{$res->nickname}}</span></li>
+						<li style="width:80px;"></li>
 						<li><a href="javascript:;">转发</a><span>{{$res->transpond}}</span></li>
 						<li onclick="Ping(this)" class="Ping">
 							<input type="hidden" value="{{$res->id}}">
@@ -75,7 +75,7 @@
 			<div class="det_cont_Rdiv" style="height:200px;">
 				<span style="border-bottom: 1px solid #F2F2F5;">相关推荐</span>
 				@if(count($data) == '0')
-					<div id="wei_zan">
+					<div class="wei_zan">
 						<div>
 							<p>暂无内容</p>
 						</div>
@@ -83,7 +83,7 @@
 					<div class="clear"></div>
 				@else
 					@foreach($data as $k => $v)
-					<div id="wei_zan">
+					<div class="wei_zan">
 						@if($v->portrait =='default.jpg')
 						<img src="/homes/images/tou.png">
 						@else
@@ -103,11 +103,6 @@
 		</div>
 	</div>
 	<!-- 主体 -->
-
-<script type="text/javascript">
-
-
-</script>
 
 
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 	width: 300px;margin-top: 10px;background: #fff;border-radius: 3px;margin-left: 10px;
 }
 .det_cont_Rdiv>div>img{
-	width: 130px;height: 130px;margin: 10px;
+	width: 80px;height: 80px;margin: 10px;border-radius: 5px;
 }
 .det_cont_Rdiv>span{
 	height: 40px;line-height: 40px;padding-left: 20px;width: 280px;display: block;font-size: 14px;color: #333;
@@ -23,24 +23,24 @@
 .det_cont_Rdiv>span a:hover{
 	color: #FA7D3C;
 }
-#wei_zan>img{
+.wei_zan>img{
 	width: 100px;height: 100px;float: left;
 }
-#wei_zan>div{
+.wei_zan>div{
 	width: 170px;height: 100px;float: right; margin-right: 10px;margin-top: 10px;font-size: 13px;overflow: hidden;
 }
-#wei_zan>div p{
+.wei_zan>div p{
 	line-height: 25px;
 }
-#wei_zan>div p a{
+.wei_zan>div p a{
 	line-height: 30px;font-weight: bold;color: #333;
 }
-#wei_zan>div p a:hover{
+.wei_zan>div p a:hover{
 	color: #FA7D3C;
 }
 .clear{
 	clear: both;width: 300px;height: 1px;border-bottom: 1px solid #F2F2F5;
 }
-#wei_zan>div>p{
+.wei_zan>div>p{
 	font-size: 12px;color: #666;
 }

@@ -118,3 +118,8 @@ function huifu(huifu){
 }
 
 
+//的查看详情
+function xiang(obj){
+	var id = $(obj).find('input[type=hidden]').val();
+	// alert(id);
+}
