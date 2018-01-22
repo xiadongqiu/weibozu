@@ -68,9 +68,17 @@
 
     <div class="cen_nav">
         <ul class="cen_m">
-            <li>我的主页</li>
-            <li>我的相册</li>
-            <li>个人中心</li>
+            @if($uid == session('home'))
+                <li>我的主页</li>
+                <li>我的相册</li>
+            @else
+                <li>她的主页</li>
+                <li>她的相册</li>
+            @endif
+
+            @if($uid ==session('home'))
+                <li>个人中心</li>
+            @endif
         </ul>
     </div>
     <div style="clear: both;"></div>
@@ -80,25 +88,31 @@
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="/user/user/attent">12345</a>
+                            <a href="/user/user/attent?id={{$uid or ''}}">{{$res->detail->attent}}</a>
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="/user/user/fensi">12345</a>
+                            <a href="/user/user/fensi?id={{$uid or ''}}">{{$res->detail->fensi}}</a>
                             <span>粉丝</span>
                         </li>
                         <li>
-                            <a href="#">12345</a>
+                            <a href="/user/user/index?id={{$uid or ''}}">{{count($res->weibo)}}</a>
+
                             <span>微博</span>
                         </li>
                     </ul>
                 </div>
                 <div class="cont_left_two">
                     <ul>
-                        <li><a href="#">申请认证</a></li>
+                        <li><a href="javascript:;">申请认证</a></li>
                         <li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
                     </ul>
-                    <div><a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a></div>
+
+                    <div>
+                        @if($uid == session('home'))
+                        <a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a>
+                        @endif
+                    </div>
                 </div>
                 <div class="cont_left_three">
                     <span style="border-bottom: 1px solid #F2F2F5;">相册</span>
@@ -114,22 +128,23 @@
                     @endif
                     <span style="border-top: 1px solid #F2F2F5;"><a onclick="xiangce()" style="cursor:pointer">查看个人相册</a></span>
                 </div>
-                <div class="cont_left_three" style="height:200px;">
+                <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
                     <div id="wei_zan">
-                        <img src="/Homes/images/tou.png">
-                        <div>
-                            <p><a href="#">用户名</a></p>
-                            <p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-                        </div>
+                        <img style="width: 60px;
+                                height: 60px;
+                                border-radius: 50%;" src="/Homes/images/tou.png">
+                        <p><a href="#">用户名</a></p>
+                        <div>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</div>
                     </div>
                     <div  style="clear:both"></div>
-                    <span style="border-top: 1px solid #F2F2F5;"><a href="#">查看更多</a></span>
+                    <span style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
+
                 </div>
             </div>
             <div class="cont_center">
                 <div class="wei_sou" style="width: 640px;height: 60px;background: #fff;border-radius: 3px;">
-                    <div class="wei_souall"><a href="#">全部</a></div>
+                    <div class="wei_souall"><a href="javascript:;">全部</a></div>
                     <div class="wei_souinp">
                         <form>
                             <input type="text" style="width:200px;height:25px">
@@ -139,137 +154,61 @@
                 </div>
                 <!-- 微博内容 -->
                 @foreach ($res->weibo as $k => $v)
+
                     <div class="weibo" style="padding:;">
-                        <a href="#" class="xiangxia"></a>
+                        <a href="javascript:;" class="xiangxia"></a>
                         <div class="xiangxia_show">
                             <ul>
-                                <li><a href="#">删除</a></li>
-                                <li><a href="#">置顶</a></li>
-                                <li><a href="#">加标签</a></li>
+                                <li><a href="javascript:;">删除</a></li>
+                                <li><a href="javascript:;">置顶</a></li>
+                                <li><a href="javascript:;">加标签</a></li>
                             </ul>
                         </div>
                         <div class="weibo_d1">
-                            <img src="/Homes/images/tou.png">
+                            @if($v->portrait =='default.jpg')
+                            <img src="/homes/images/tou.png">
+                            @else
+                            <img src="http://p2l4kajri.bkt.clouddn.com/{{$v->portrait}}">
+                            @endif
                         </div>
                         <div class="weibo_d2">
-                            <a href="#" class="wei_name">用户名</a>
-                            <div class="wei_time"><a href="#">47分钟前</a> 来自 微博 weibo.com</div>
+                            <a href="javascript:;" class="wei_name">{{$v->nickname}}</a>
+                            <div class="wei_time">
+                            @if(time()-$v->publish_time < 3600)
+                            <a href="javascript:;">{{date('i',$v->publish_time)}}分钟前</a> 来自 微博 weibo.com</div>
+                            @else
+                            <a href="javascript:;">{{date('Y-m-d',$v->publish_time)}}</a> 
+                            @endif
+                            来自 微博 weibo.com</div>
                             <div class="wei_cont">
-                                <p>【新年第一乌龙！万人同迎新年，倒计时结束时钟秒回2017[允悲]】2017年12月31日，杭州某商场大屏在跨年时，倒计时出现失误，现场群众新年欢呼还没喊出口，本应跳至00:00的时钟又跳回了23:58，场面一度十分尴尬！[doge]大屏负责人：是机器出现了问题，在场的有好几万人。</p>
+                                <p>{{$v->content}}</p>
                                 <ul class="wei_ul">
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
-                                    <li><img src="/Homes/images/img1.jpg"></li>
+                                    @if( (json_decode($v->picture,true))[0] != '' )
+                                        @foreach(json_decode($v->picture,true) as $val)
+                                        <li><img src="http://p2l4kajri.bkt.clouddn.com/{{$val}}"></li>
+                                        @endforeach
+                                    @endif                                    
                                 </ul>
                             </div>
                         </div>
                         <p style="clear:both"></p>
                         <div class="wei_bottom">
                             <ul>
-                                <li><a href="javascript:void(0)">收藏</a><span>12345</span></li>
-                                <li><a href="javascript:void(0)">转发</a><span>12345</span></li>
-                                <li><a href="javascript:void(0)" class="pinglun">评论</a><span>12345</span></li>
-                                <li><a href="javascript:void(0)">赞</a><span>12345</span></li>
+                                <li style="width:80px"></li>
+                                <li><a href="javascript:void(0)">转发</a><span>{{$v->transpond}}</span></li>
+                                <li onclick="Ping(this)" class="Ping">
+                                    <input type="hidden" value="{{$v->id}}">
+                                    <a href="javascript:;">评论</a><span>{{$v->comment}}</span>
+                                </li>
+                                <li><a href="javascript:;">赞</a><span>{{$v->like}}</span></li>
                             </ul>
                         </div>
                         <!-- 回复内容 -->
                         <div class="wei_replay">
-                            <div class="wei_ping">
-                                <a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
-                                <form>
-                                    <input type="text" class="wei_pingcon">
-                                    <input type="submit" value="评论" class="wei_pinglun">
-                                </form>
-                            </div>
-                            <div class="WB_ping">
 
-                                <div class="WB_ping_one">
-                                    <a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
-                                    <ul class="WB_ping_oneul">
-                                        <li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
-                                        <li>
-                                            <span>今天 11:11</span>
-                                            <span class="WB_ping_onespan">
-										<a href="#">举报</a>
-										<a href="#">屏蔽</a>
-										<a href="#">回复</a>
-										<i>11</i>
-									</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="WB_ping_one">
-                                    <a href="#"><img width="30" height="30" src="/Homes/images/tou.png"></a>
-                                    <ul class="WB_ping_oneul">
-                                        <li><a href="#">永不放弃的温斯顿</a>：伊朗的封闭桎梏政教合一政权，必须结束了！</li>
-                                        <li>
-                                            <span>今天 11:11</span>
-                                            <span class="WB_ping_onespan">
-										<a href="#">举报</a>
-										<a href="#">屏蔽</a>
-										<a href="#">回复</a>
-										<i>11</i>
-									</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="WB_ping_two">
-                                    <form>
-                                        <input type="text" class="wei_hui">
-                                        <input type="submit" value="评论" class="wei_huifu">
-                                    </form>
-                                </div>
-                                <div class="WB_ping_three">
-                                    <ul class="WB_ping_three_ul">
-                                        <li><a href="#">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸.</li>
-                                        <li>
-                                            <span>今天 11:11</span>
-                                            <span class="WB_ping_onespan">
-										<a href="#">举报</a>
-										<a href="#">屏蔽</a>
-										<a href="#">回复</a>
-										<i>11</i>
-									</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="WB_ping_three">
-                                    <ul class="WB_ping_three_ul">
-                                        <li><a href="#">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了，这幅黑特朗普的嘴脸.</li>
-                                        <li>
-                                            <span>今天 11:11</span>
-                                            <span class="WB_ping_onespan">
-										<a href="#">举报</a>
-										<a href="#">屏蔽</a>
-										<a href="#">回复</a>
-										<i>11</i>
-									</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="WB_ping_three">
-                                    <ul class="WB_ping_three_ul">
-                                        <li><a href="#">永不放弃的温斯顿</a>:真是看不下去了，这幅黑特朗普的嘴脸真是看不下去了。</li>
-                                        <li>
-                                            <span>今天 11:11</span>
-                                            <span class="WB_ping_onespan">
-										<a href="#">举报</a>
-										<a href="#">屏蔽</a>
-										<a href="#">回复</a>
-										<i>11</i>
-									</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                         <div class="weibo_gengduo">
-                            <a href="#">查看更多 > </a>
+                            <a href="javascript:;">查看更多 > </a>
                         </div>
                     </div>
                 @endforeach
@@ -290,30 +229,35 @@
             </div>
             <div class="cont_right">
                 <ul>
-                    <li><a href="#">远程</a></li>
-                    <li><a href="#">类型一</a></li>
-                    <li><a href="#">类型一</a></li>
-                    <li><a href="#">类型一</a></li>
+                    <li><a href="javascript:;">远程</a></li>
+                    <li><a href="javascript:;">类型一</a></li>
+                    <li><a href="javascript:;">类型一</a></li>
+                    <li><a href="javascript:;">类型一</a></li>
                 </ul>
             </div>
         </div>
 
-<!--         相册开始
+
+<!--         相册开始 -->
+
 <div style="clear: both;"></div>
 <div class="xiangce" style="display:{{$status['status'] == '2'?'block':'none'}}">
     <div class="xiangce_d1">
         <b>相片墙</b>
+        @if($uid == session('home'))
         <a href="javascript:;" id="shang" style="text-decoration:none;">上传图片</a>
+        @endif
     </div>
     <div class="xiangce_pics">
             <div class="baguetteBoxOne gallery">
-
-                @if($res->detail->pics !== '0')
+                @if($res->detail->pics != '')
                     @foreach (json_decode($res->detail->pics) as $key=>$v)
                 <a href="http://p2l4kajri.bkt.clouddn.com/{{$v}}" title="第1张图片">
                     <img src="http://p2l4kajri.bkt.clouddn.com/{{$v}}?imageView2/2/w/200/h/200">
                 </a>
+                        @if($uid == session('home'))
                     <button type="button" id="{{$key}}"  onclick="delpic(this)" class="btn-warning">删除</button>
+                        @endif
                     @endforeach
                 @else
                     <h4>您未添加任何图片 请去添加</h4>
@@ -334,7 +278,7 @@
             $.post('/user/user/delpic',{pic:$(obj).attr('id')},function(data){
                 if(data == 1){
                     layer.msg('删除成功');
-                    location.href = '/user/user/index?status=2';
+                    location.href = '/user/user/index?status=2&id={{$uid or ''}}';
 
                 }
             });
@@ -342,9 +286,11 @@
     </script>
 
 </div>
-相册结束
 
-个人中心
+<!-- 相册结束 -->
+
+<!-- 个人中心 -->
+
 <div class="zhu_center" style="display:{{$status['status'] == '1'?'block':'none'}}">
     <div class="xinxi_one"><span>基本信息</span> <button type="button" id="bianji" >编辑</button>
     </div>
@@ -432,7 +378,7 @@
     </div>
     <div class="xinxi_two">
         <form action="" id="form">
-        <table>
+            <table>
             <tr>
                 <td><span>登录名</span></td>
                 <td><i></i>{{$res->phone}}</td>
@@ -643,6 +589,7 @@
                 <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
             </tr>
         </table>
+        </form>
     </div>
     <div class="xinxi_one"><span>联系信息</span></div>
     <div class="xinxi_two">
@@ -674,7 +621,9 @@
 
     </div>
 </div>
-个人中心 -->
+
+<!--   个人中心 -->
+
     </div>
     <script type="text/javascript" src="/homes/js/date.js"></script>
     <script type="text/javascript">
@@ -715,7 +664,7 @@
 
         });
         function xiangce(){
-            location.href = '/user/user/index?status=2';
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}';
             $('.content').hide();
             $('.xiangce').show();
             $('.zhu_center').hide();
@@ -782,6 +731,23 @@
         $(function(){
            $('a').css('text-decoration','none');
         });
+    </script>
+    <script type="text/javascript">
+        function zan(obj){
+            $(obj).slideDown(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post('/user/user/like',{id:"{{$uid}}"},function(data){
+
+                });
+            });
+        }
+
+
     </script>
 @endsection('content')
 

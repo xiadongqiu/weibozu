@@ -9,8 +9,8 @@
 			<div class="WB_logo"><img height="35" src="/Homes/images/logo.png"></div>
 			<div class="WB_center" style="margin-right:130px;float:right;">
 				<ul>
-					<li><a class="WE_cen5" href="javascript:;">&nbsp;&nbsp;登录</a></li>
-					<li><a class="WE_cen6" href="javascript:;">&nbsp;&nbsp;注册</a></li>
+					<li><a class="WE_cen5" href="/user/login">&nbsp;&nbsp;登录</a></li>
+					<li><a class="WE_cen6" href="/user/register">&nbsp;&nbsp;注册</a></li>
 				</ul>
 			</div>
 		</div>

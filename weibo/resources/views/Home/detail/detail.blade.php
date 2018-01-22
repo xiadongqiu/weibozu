@@ -8,14 +8,14 @@
 	<div class="det_cont">
 		<div class="det_cont_left">
 			<div class="weibo">
-				<a href="javascript:;" class="xiangxia"></a>
+				<!-- <a href="javascript:;" class="xiangxia"></a>
 				<div class="xiangxia_show">
 					<ul>
 						<li><a href="javascript:;">信息</a></li>
 						<li><a href="javascript:;">信息</a></li>
 						<li><a href="javascript:;">信息</a></li>
 					</ul>
-				</div>
+				</div> -->
 
 				<div class="weibo_d1">
 					@if($res->portrait =='default.jpg')
@@ -27,15 +27,24 @@
 				</div>
 				<div class="weibo_d2">
 					<a href="javascript:;" class="wei_name">{{$res->nickname}}</a>
-					<div class="wei_time"><a href="javascript:;">47分钟前</a> 来自 微博 weibo.com</div>
+					<div class="wei_time">
+                    @if(time()-$res->publish_time < 60)
+                    <a href="javascript:;">{{ date('s',(time()-$res->publish_time)) }}秒前</a> 来自 微博 weibo.com</div>
+                    @elseif(time()-$res->publish_time < 3600)
+                    <a href="javascript:;">{{ date('i',(time()-$res->publish_time)) }}分钟前</a> 来自 微博 weibo.com</div>
+                    @else
+                    <a href="javascript:;">{{date('Y-m-d',$res->publish_time)}}</a>  来自 微博 weibo.com</div>
+                    @endif
+                   
+
 					<div class="wei_cont">
-						<p>{{$res->content}}</p>
+						<p >{{$res->content}}</p>
 						<ul class="wei_ul">
-							@if($pictrue)
-								@foreach($pictrue as $val)
-								<li><img src="http://p2l4kajri.bkt.clouddn.com/{{$val}}"></li>
-								@endforeach
-							@endif
+							@if( (json_decode($res->picture,true))[0] != '' )
+                                @foreach(json_decode($res->picture,true) as $val)
+                                <li><img src="http://p2l4kajri.bkt.clouddn.com/{{$val}}"></li>
+                                @endforeach
+                            @endif   
 
 						</ul>
 					</div>
@@ -75,7 +84,11 @@
 				@else
 					@foreach($data as $k => $v)
 					<div id="wei_zan">
+						@if($v->portrait =='default.jpg')
 						<img src="/homes/images/tou.png">
+						@else
+						<img src="http://p2l4kajri.bkt.clouddn.com/{{$v->portrait}}">
+						@endif
 						<div>
 							<p><a href="javascript:;">{{$v->nickname}}</a></p>
 							<p>{{$v->content}}</p>

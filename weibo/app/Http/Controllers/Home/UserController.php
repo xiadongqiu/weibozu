@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
 use App\Model\weibo;
 use App\Model\attention;
-
+use App\Tool\Common;
+use App\Model\like;
 class UserController extends Controller
 {
     /**
@@ -22,14 +23,35 @@ class UserController extends Controller
     public static $i=0;
     public function getIndex(request $request)
     {
+        if (($request->only('id'))['id']  != null){
+            $uid = $request->only('id');
+            $status = $request->only('status');
+            $res = user::find($uid['id']);
+            $arr = (explode(':',$res->detail->adress));
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
+            dd(1);
+            return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid['id']]);
+        }else{
 
-        $uid = $request->session()->get('home');
-        $status = $request->only('status');
-        $res = user::find($uid);
-        $arr = (explode(':',$res->detail->adress));
-        $array = json_decode($res->detail->pics,true);
-        $array1 = array_values($array);
-        return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1]);
+            $uid = $request->session()->get('home');
+            $status = $request->only('status');
+            $res = user::find($uid);
+            $arr = (explode(':',$res->detail->adress));
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
+
+            return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid]);
+        }
+
 
     }
 
@@ -87,10 +109,13 @@ class UserController extends Controller
         $disk = \Storage::disk('qiniu');
 
         $pat = $file->getClientOriginalExtension();
+
         $fileName = md5(rand(00000000,99999999)).'.'.$pat;
+
         $path = $file->getRealPath();
 
         $disk -> put($fileName,fopen($path,'r+'));
+
         $res = detail::find($id);
         if($res->pics == '0'){
             echo 1;
@@ -131,39 +156,69 @@ class UserController extends Controller
 
     public function getAttent(request $request)
     {
-        $uid = $request->session()->get('home');
-        $status = $request->only('status');
-        $res = user::find($uid);
-        $arr = (explode(':',$res->detail->adress));
-        $array = json_decode($res->detail->pics,true);
-        $array1 = array_values($array);
-        return view('home/attent/index',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1]);
+        if (($request->only('id'))['id']  != null){
+            $uid = $request->only('id')['id'];
+            $status = $request->only('status');
+            $res = user::find($uid);
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
+            $arr = (explode(':',$res->detail->adress));
+            return view('home/attent/index',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid]);
+
+        }else{
+            $uid = $request->session()->get('home');
+            $status = $request->only('status');
+            $res = user::find($uid);
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
+            $arr = (explode(':',$res->detail->adress));
+            return view('home/attent/index',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid]);
+        }
+
 
     }
 
 
     public function getFensi(request $request)
     {
-        $status = $request->only('status');
-        $uid = $request->session()->get('home');
-        $res = user::find($uid);
-        $array = json_decode($res->detail->pics,true);
-        $array1 = array_values($array);
-        $r = attention::where('uid',$uid)->get();
-        $r1 = attention::where('gid',$uid)->get();
-        $boo = true;
-        $u = array();
-        $g = array();
-         foreach($r as $k=>$v){
-             $u[] = $v->gid;
-         };
-        foreach($r1 as $k=>$v){
-             $g[] = $v->uid;
-        };
-        dump($u);
-        dump($g);
+        if (($request->only('id'))['id']  != null){
+            $status = $request->only('status');
+            $uid = $request->only('id');
+            $res = user::find($uid['id']);
+            $array = json_decode($res->detail->pics,true);
+            $array1 = array_values($array);
+            $arr = array();
+            foreach($res->attent as $k=>$v){
+                foreach ($v['attributes'] as $kk=>$vv){
+                    $arr[] = $vv;
+                }
+            }
 
-        return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1]);
+            return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1,'arr'=>$arr,'uid'=>$uid['id']]);
+        }else{
+            $status = $request->only('status');
+            $uid = $request->session()->get('home');
+            $res = user::find($uid);
+            $array = json_decode($res->detail->pics,true);
+            $array1 = array_values($array);
+            $arr = array();
+            foreach($res->attent as $k=>$v){
+                foreach ($v['attributes'] as $kk=>$vv){
+                    $arr[] = $vv;
+                }
+            }
+
+            return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1,'arr'=>$arr,'uid'=>$uid]);
+        }
+
     }
 
     public function postQuxiao(request $request)
@@ -228,4 +283,27 @@ class UserController extends Controller
       echo json_encode($arr1);
     }
 
+    public function getLoginout(request $request)
+    {
+        $request->session()->put('home',null);
+
+        // $users = App\User::paginate(15);
+        $weibo = weibo::paginate(5);
+        // echo json_encode($weibo);
+        $hot = weibo::orderBy('like','desc')->take(8)->get();
+        return view('home.index1.not',['data'=>$weibo,'hot'=>$hot]);
+    }
+
+    public function postLike(request $request)
+    {
+        $id = ($request->only('id'))['id'];
+
+        $res = user::find($id);
+        $arr = array();
+        foreach($res->like as $k=>$v){
+            $arr[] = $v['attributes'];
+
+        }
+       return $arr;
+    }
 }

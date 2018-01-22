@@ -235,18 +235,50 @@ class IndexController extends Controller
 
     }
 
-    //微博转发
-    public function getZhuanfa(request $request)
-    {
-        /*$zhuan = [];
-        $uid = $uid = $Request->session()->get('home');
-        //被转发微博的id
-        $wid = $Request->input('wid');
-        $data = weibo::where('id',$wid)->first();*/
+    //查询出被转发微博
+    public function getBeiwei(request $Request){
+        //$bid被转发微博内容
+        $old = weibo::where('id',$bid)->first();
+        // echo json_encode($old);
+        //$oldcontent = $old['content'];
+        dd($old);
+        return view('home.index.index',['oldw'=>$old,'data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
+    }
 
-        $fid = 1;
-        $data = comment::where('id',$fid)->first();
-        echo json_decode($data['content']);
+
+    //微博转发
+    public function getZhuanfa(request $Request)
+    {
+        $zhuan = [];
+        $uid = $Request->session()->get('home');
+        //在详情表中查到用户昵称和头像
+        $detail = detail::where('uid',$uid)->first();
+        //被转发微博的id
+        $content = $Request->input('content');
+        $bid = $Request->input('bid');
+        //在微博表中查询出被转发的微博的内容和昵称
+        $weibo = weibo::where('id',$bid)->first();
+
+        $zhuan['bcontent'] = $weibo['content'];
+        $zhuan['bnickname'] = $weibo['nickname'];
+        $zhuan['nickname'] = $detail['nickname'];
+        $zhuan['portrait'] = $detail['portrait'];
+        $zhuan['bid'] = $bid;
+        $zhuan['content'] = $content;
+        $zhuan['uid'] = $uid;
+
+        $res = weibo::insertGetId($zhuan);
+        if($res){
+            $new = weibo::where('id',$res)->first();
+            //返回被转发微博信息
+            //$old = weibo::where('id',$bid)->first();
+            echo json_encode($old);
+        }else{
+            echo 2;
+        }
+
+       
+
     }
 
 

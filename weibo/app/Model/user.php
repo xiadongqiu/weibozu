@@ -21,6 +21,12 @@ class user extends Model
         return $this->hasOne('App\Model\detail','uid');
     }
 
+    public function like()
+    {
+        return $this->belongsToMany('App\Model\weibo','likes','lid','wid');
+
+    }
+
     //多对多
     public function attention()
     {
@@ -35,4 +41,13 @@ class user extends Model
 
     }
 
+    //一对多
+    public function attent()
+    {
+        return $this->hasMany('App\Model\attention','gid');
+    }
+
+
 }
+
+

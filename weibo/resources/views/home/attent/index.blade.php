@@ -68,9 +68,17 @@
 
     <div class="cen_nav">
         <ul class="cen_m">
-            <li>我的主页</li>
-            <li>我的相册</li>
-            <li>个人中心</li>
+            @if($uid == session('home'))
+                <li>我的主页</li>
+                <li>我的相册</li>
+            @else
+                <li>她的主页</li>
+                <li>她的相册</li>
+            @endif
+
+            @if($uid ==session('home'))
+                <li>个人中心</li>
+            @endif
         </ul>
     </div>
     <script type="text/javascript">
@@ -78,16 +86,16 @@
             font:'#333'
         });
         $('.cen_m').children().eq(0).click(function () {
-            location.href = '/user/user/index'
-        })
+            location.href = '/user/user/index?id={{$uid or ''}}'
+        });
 
         $('.cen_m').children().eq(1).click(function () {
-            location.href = '/user/user/index?status=2'
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}'
         });
 
         $('.cen_m').children().eq(2).click(function () {
-            location.href = '/user/user/index?status=1'
-        })
+            location.href = '/user/user/index?status=1&id={{$uid or ''}}'
+        });
 
     </script>
     <div style="clear: both;"></div>
@@ -97,15 +105,15 @@
                 <div class="cont_left_one">
                     <ul>
                         <li>
-                            <a href="/user/user/attent">{{$res->detail->attent}}</a>
+                            <a href="/user/user/attent?id={{$uid or ''}}">{{$res->detail->attent}}</a>
                             <span>关注</span>
                         </li>
                         <li>
-                            <a href="/user/user/fensi">{{$res->detail->fensi}}</a>
+                            <a href="/user/user/fensi?id={{$uid or ''}}">{{$res->detail->fensi}}</a>
                             <span>粉丝</span>
                         </li>
                         <li>
-                            <a href="/user/user/index">{{count($res->weibo)}}</a>
+                            <a href="/user/user/index?id={{$uid or ''}}">{{count($res->weibo)}}</a>
                             <span>微博</span>
                         </li>
                     </ul>
@@ -115,11 +123,15 @@
                         <li><a href="#">申请认证</a></li>
                         <li>已经成功认证&nbsp;&nbsp;<img src="/Homes/images/huiyuan.png"></li>
                     </ul>
-                    <div><a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a></div>
+                    <div>
+                        @if($uid == session('home'))
+                            <a onclick="zhongxin()" style="cursor:pointer">详情请看个人中心</a>
+                        @endif
+                    </div>
                 </div>
                 <div class="cont_left_three">
                     <span style="border-bottom: 1px solid #F2F2F5;">相册</span>
-                    @if($res->detail->pics !== '0')
+                    @if($res->detail->pics != '')
                         <div>
                             @for($i=0;$i<=1;$i++)
 
@@ -170,17 +182,17 @@
                     <div class="follow_box">
                         <div class="follow_inner">
                             <ul class="follow_list">
-                                @if($res->attention)
+                                @if(count($res->attention)>0)
                             @foreach($res->attention as $k=>$v)
                             <dl style="position: relative; border-bottom: 1px solid;border-color:rgb(242, 242, 245)">
                                 <dt class="mod_pic" style="float:left;position:relative">
-                                    <a target="_blank" title="微博钱包" href="#">
+                                    <a target="_blank" title="{{$v->detail->nickname}}" href="/user/user/index?id={{$v->id}}">
                                         <img  width="50" height="50" alt="微博钱包" src="http://p2l4kajri.bkt.clouddn.com/{{$v->detail->portrait}}" style="border-radius: 50%;width: 50px;height: 50px;">
                                     </a>
                                 </dt>
                                 <dd class="mod_info S_line1" style="position:relative">
                                     <div class="info_name W_fb W_f14" style="font-size: 14px;font-weight: 700">
-                                        <a class="S_txt1" target="_blank"  href="#">{{$v->detail->nickname}}</a>
+                                        <a class="S_txt1" target="_blank"  href="/user/user/index?id={{$v->id}}">{{$v->detail->nickname}}</a>
                                     </div>
                                     <div class="info_connect">
                                         <span class="conn_type">关注
@@ -203,14 +215,15 @@
                                     <div class="info_intro" style="line-height: 30px"><span>{{$v->detail->abstract or '这个人很懒什么都没有留下'}}</span></div>
 
                                 </dd>
+                                @if($uid  == session('home'))
                                 <dd class="opt_box" node-type="opt_box" style="position: absolute">
 			                        <span>
 									<a href="javascript:;" class="W_btn_b" id="{{$v->detail->id}}" onclick="quxiao(this)">
 					                    <em class="W_ficon ficon_add S_ficon" ></em>取消关注</a>
 								    </span>
-                                    <a href="javascript:;" class="W_btn_b" >举报
-                                        <em class="W_ficon ficon_arrow_down_lite S_ficon" >g</em></a>
+
                                 </dd>
+                                @endif
                             </dl>
                             @endforeach
                             @else
@@ -272,7 +285,7 @@
                             '                                                <a target="_blank" href="#">'+data[i]['fensi']+'\n' +
                             '                                                </a></em>\n' +
                             '                                        </span>\n' +
-                            '                                        <span class="conn_type W_vline S_line1">微博<em class="count"><a target="_blank" href="#">{{count($v->weibo)}}</a>\n' +
+                            '                                        <span class="conn_type W_vline S_line1">微博<em class="count"><a target="_blank" href="#"></a>\n' +
                             '                                            </em>\n' +
                             '                                        </span>\n' +
                             '\n' +
@@ -302,4 +315,19 @@
 
     </script>
 
+    <script type="text/javascript">
+
+        $('.cen_m').children().eq(1).click(function(){
+            xiangce();
+
+        });
+        function xiangce(){
+            location.href = '/user/user/index?status=2&id={{$uid or ''}}';
+            $('.content').hide();
+            $('.xiangce').show();
+            $('.zhu_center').hide();
+            $('.weibo').hide();
+
+        }
+    </script>
 @endsection('content')

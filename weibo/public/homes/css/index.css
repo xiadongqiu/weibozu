@@ -279,13 +279,16 @@ a{text-decoration: none;}
 	width:100%;height: 100%;background: #000;background-color:rgba(88,88,88,0.7);position: absolute;z-index: 999;top:0px;display: none;
 }
 .zCont{
-	width: 500px;height: 300px;background: #fff;border: 1px solid #ddd; position: absolute;top:30%;left:50%;margin-left: -250px;position: fixed;
+	width: 500px;height: 300px;background: #fff;border: 1px solid #ddd; position: absolute;top:30%;left:50%;margin-left: -250px;position: fixed;border-radius: 3px;
 }
 #border{
-	width: 360px;height: 180px;margin: 40px 70px;border: 2px solid #fa7d3c;resize:none;
+	width: 360px;height: 180px;margin: 40px 70px 0px;border: 2px solid #fa7d3c;resize:none;border-radius: 3px;
 }
 #zhuan{
-
+    float: right;width: 60px;height: 25px;line-height: 25px;background-color: #fa7d3c;text-align: center;color: #fff;border: none;border-radius: 3px;margin-top:20px;margin-right: 70px;cursor: pointer;
+}
+.close{
+	float: right;cursor: pointer;
 }
 
 /*来自二逼的怨念*/
