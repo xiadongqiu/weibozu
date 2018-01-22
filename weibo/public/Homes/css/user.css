@@ -97,19 +97,22 @@ a{text-decoration: none;}
 .cont_left_three>span a:hover{
 	color: #FA7D3C;
 }
-#wei_zan>img{
+.W_zan{
+	width: 300px;height: 120px;padding-top: 5px;
+}
+.W_zan>img{
 	width: 100px;height: 100px;float: left;
 }
-#wei_zan>div{
-	width: 200px;height: 100px;float: right; margin-right: 10px;margin-top: 10px;font-size: 13px;overflow: hidden;
+.W_zan>div{
+	width: 200px;height:75px;float: right; margin-right: 10px;margin-top: 10px;font-size: 13px;overflow: hidden;
 }
-#wei_zan>div p{
+.W_zan>div p{
 	line-height: 25px;
 }
-#wei_zan>div p a{
+.W_zan>div p a{
 	line-height: 30px;font-weight: bold;color: #333;
 }
-#wei_zan>div p a:hover{
+.W_zan>div p a:hover{
 	color: #FA7D3C;
 }
 .cont_right>ul>li>a{

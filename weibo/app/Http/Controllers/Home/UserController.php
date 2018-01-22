@@ -34,7 +34,7 @@ class UserController extends Controller
             }else{
                 $array1 = '0';
             }
-            dd(1);
+
             return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid['id']]);
         }else{
 
@@ -82,8 +82,10 @@ class UserController extends Controller
         $disk -> put($fileName,fopen($path,'r+'));
         $filepath =  $disk->getDriver()->downloadUrl($fileName);
         $arr = ['portrait'=>$fileName];
+
         detail::where('id',$id)->update($arr);
-        weibo::where('id',$id)->update($arr);
+
+        weibo::where('uid',$id)->update($arr);
 
         return Response()->json([
             'filename' => $fileName,
@@ -302,7 +304,6 @@ class UserController extends Controller
         $arr = array();
         foreach($res->like as $k=>$v){
             $arr[] = $v['attributes'];
-
         }
        return $arr;
     }

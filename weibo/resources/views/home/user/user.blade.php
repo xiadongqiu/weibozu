@@ -130,15 +130,16 @@
                 </div>
                 <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
-                    <div id="wei_zan">
+                    <div class="W_zan" style="border-bottom:1px solid #ddd;">
                         <img style="width: 60px;
                                 height: 60px;
-                                border-radius: 50%;" src="/Homes/images/tou.png">
+                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/{{($res->like[0])->portrait}}">
                         <p><a href="#">用户名</a></p>
                         <div>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</div>
                     </div>
                     <div  style="clear:both"></div>
-                    <span style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
+
+                    <span id="zhuijia" style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
 
                 </div>
             </div>
@@ -177,9 +178,10 @@
                             @if(time()-$v->publish_time < 3600)
                             <a href="javascript:;">{{date('i',$v->publish_time)}}分钟前</a> 来自 微博 weibo.com</div>
                             @else
-                            <a href="javascript:;">{{date('Y-m-d',$v->publish_time)}}</a> 
+                            <a href="javascript:;">{{date('Y-m-d',$v->publish_time)}}</a>
+                                来自 微博 weibo.com</div>
                             @endif
-                            来自 微博 weibo.com</div>
+
                             <div class="wei_cont">
                                 <p>{{$v->content}}</p>
                                 <ul class="wei_ul">
@@ -227,14 +229,7 @@
 
                 </script>
             </div>
-            <div class="cont_right">
-                <ul>
-                    <li><a href="javascript:;">远程</a></li>
-                    <li><a href="javascript:;">类型一</a></li>
-                    <li><a href="javascript:;">类型一</a></li>
-                    <li><a href="javascript:;">类型一</a></li>
-                </ul>
-            </div>
+
         </div>
 
 
@@ -741,7 +736,23 @@
                     }
                 });
 
+
                 $.post('/user/user/like',{id:"{{$uid}}"},function(data){
+                    console.log(data);
+                    if(data.length>=2){
+                        for(var i = 1;i<= data.length;i++) {
+                            $('#zhuijia').before('<div class="W_zan" style="border-bottom:1px solid #ddd;">\n' +
+                                '                        <img style="width: 60px;\n' +
+                                '                                height: 60px;\n' +
+                                '                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/'+data[i].portrait+'">\n' +
+                                '                        <p><a href="/user/user/index?id='+data[i].uid+'">'+data[i].nickname+'</a></p>\n' +
+                                '                        <div>'+data[i].content+'</div>\n' +
+                                '                    </div>\n' +
+                                '                    <div  style="clear:both"></div>');
+                        }
+                    }else{
+                        layer.msg('没有更多信息了');
+                    }
 
                 });
             });

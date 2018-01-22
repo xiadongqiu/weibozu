@@ -175,7 +175,7 @@
 					<div class="conR_pic"><img src="http://p2l4kajri.bkt.clouddn.com/{{$detail->portrait}}"></div>
 				@endif
 				
-				<div class="conR_name"><a class="name" href="javascript:;">{{$detail->nickname}}</a>&nbsp;&nbsp;<a href="javascript:;" class="level">LV14</a></div>
+				<div class="conR_name"><a class="name" href="/user/user/">{{$detail->nickname}}</a>&nbsp;&nbsp;<a href="javascript:;" class="level">LV14</a></div>
 				<ul class="conR_ul">
 					<li><a href="javascript:;">
 						<b>{{$detail->attent}}</b>

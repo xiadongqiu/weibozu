@@ -121,11 +121,21 @@ span.reference a:hover{
 					<li><a class="WE_cen1" href="/index">&nbsp;&nbsp;首页</a></li>
 					<li><a class="WE_cen2" href="#">&nbsp;&nbsp;发现</a></li>
 					<li><a class="WE_cen3" href="#">&nbsp;&nbsp;用户名</a></li>
-					<li><a class="WE_cen4" href="/user/user/loginout">注销</a></li>
+					<li><a class="WE_cen4" href="javascript:;" onclick="zhuxiao()">注销</a></li>
 				</ul>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function zhuxiao(){
+                layer.confirm('您是否要注销登录', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+					location.href ='/user/user/loginout';
+                    layer.msg('注销成功', {icon: 1});
+                });
+			}
 
+		</script>
 	</div>
 	@show
 
