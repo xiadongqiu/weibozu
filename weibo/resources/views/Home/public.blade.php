@@ -97,6 +97,11 @@ span.reference a:hover{
 .con_left>a {
 	color: #fff;
 }
+
+
+#wei_zan>div>p{
+	font-size: 12px;color: #666;
+}
 </style>
 
 </head>

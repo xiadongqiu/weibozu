@@ -35,7 +35,7 @@ a{text-decoration: none;}
 	width: 1080px;margin: 0 auto;margin-top: 10px;
 }
 .cont_left{
-	width: 300px;float: left;
+	width: 300px;float: left;margin-top: -10px;
 }
 .cont_center{
 	width: 650px;margin-left: 20px;float: left;

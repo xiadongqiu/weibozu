@@ -41,3 +41,6 @@
 .clear{
 	clear: both;width: 300px;height: 1px;border-bottom: 1px solid #F2F2F5;
 }
+#wei_zan>div>p{
+	font-size: 12px;color: #666;
+}
