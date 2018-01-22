@@ -19,6 +19,7 @@ class ConfigController extends Controller
     	return view('admin/config/edit',['config'=>$config]);  	
     }
 
+
     //执行修改功能
     public function update(Request $request)
     {

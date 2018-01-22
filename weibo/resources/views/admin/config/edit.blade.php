@@ -6,7 +6,7 @@
         <span>网站配置修改</span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form action="admin/config" class="mws-form" method="POST">
+        <form action="admin/config/update" class="mws-form" method="POST">
             <div class="mws-form-block">
                 <div class="mws-form-row">
                     <label class="mws-form-label">网站名称</label>
@@ -49,9 +49,6 @@
                  </select>
                  </label>
                 </div>
-
-                 
-
             
             <div class="mws-button-row">
                 {{csrf_field()}} 
@@ -62,3 +59,14 @@
     </div>
 </div>
 @stop
+
+
+@section('js')
+
+<script type="text/javascript">
+     // alert($);
+    
+   
+</script>
+
+@endsection
