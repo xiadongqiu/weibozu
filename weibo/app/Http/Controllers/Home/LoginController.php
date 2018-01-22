@@ -14,12 +14,16 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //加载登录页
     public function getIndex()
     {
 
         return view('home/login/login');
     }
 
+
+    //判断是否存在该手机号
     public function postPhone(request $request)
     {
         $phone = $request->input('phone');
@@ -34,6 +38,8 @@ class LoginController extends Controller
         }
     }
 
+
+    //执行登录动作
     public function postLogin(request $request)
     {
         $data = $request->except('_token');
@@ -55,9 +61,6 @@ class LoginController extends Controller
                 echo '0';
             }
         }
-
-
-
 
     }
 

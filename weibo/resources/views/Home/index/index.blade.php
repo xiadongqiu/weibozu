@@ -176,6 +176,7 @@
 				@endif
 				
 				<div class="conR_name"><a class="name" href="/user/user" >{{$detail->nickname}}</a>&nbsp;&nbsp;<a href="/user/user" class="level">LV14</a></div>
+
 				<ul class="conR_ul">
 					<li><a href="javascript:;">
 						<b>{{$detail->attent}}</b>

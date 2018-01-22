@@ -57,8 +57,6 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
         //用于展示个人中心以及处理数据
         Route::controller('/user','UserController');
 
-
-
     });
 });
 //===============================================================
@@ -95,6 +93,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 		    //微博-名泽
 		    Route::resource('/post','PostController');
+
 		    Route::get('/post/search/{nickname}','PostController@search'); 
 			Route::resource('/comments/{id}','CommentsController');
 
