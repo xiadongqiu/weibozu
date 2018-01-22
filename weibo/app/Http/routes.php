@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 		    //跳转到用户
 		    Route::resource('/user','UserController');
+
 		    Route::get('/user/search/{phone}','UserController@search'); 
 
 		    //修改密码
@@ -94,21 +95,20 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		    //微博-名泽
 		    Route::resource('/post','PostController');
 
-		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments/{id}','CommentsController');
+		    Route::get('/post/search/{nickname}','PostController@search');
 
-			//后台网站配置路由
-		 Route::get('/config','ConfigController@edit');
-		 // 网站公告资源路由
-		 Route::resource('/notice','NoticeController');
-		 
-		//后台广告管理资源路由
-		 Route::resource('/advert','AdvertController');
+			Route::resource('/comments','CommentsController');
 		});
 
 
 //郑鑫路由=======================================================================
- 		
+    //后台网站配置路由
+    Route::get('/config','ConfigController@edit');
+    // 网站公告资源路由
+    Route::resource('/notice','NoticeController');
+
+    //后台广告管理资源路由
+    Route::resource('/advert','AdvertController');
 //==============================================================================
 
 });

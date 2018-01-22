@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class comment extends Model
 {
+    public $timestamps = false;
     //属于===评论属于微博
     public function weibo()
     {

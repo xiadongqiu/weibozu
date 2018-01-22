@@ -241,11 +241,7 @@ function zhuanfa(obj){
 	//获取被转发微博的id
 	var zid = $('#zid').val(wid);
 	//alert($('#zid').val());
-
-	
 }
-
-	
 //点击转发
 function transpond(zhuan){
 	var bid = $('#zid').val();
@@ -714,7 +710,8 @@ function ping(ping){
 //追加回复============
 function huifu(huifu){
 	//找到被评论微博的id
-	var wid = $(huifu).parent().parent().parent().find('input[type=hidden]:first').val();
+	var wid = $(huifu).parent().parent().parent().parent().parent().find('input[type=hidden]:first').val();
+	console.log(wid);
 	var fid = $(huifu).parent().parent().parent().find('input[type=hidden]:last').val();
 	// $(huifu).parent().parent().parent().next().css('display','block');
 	$.get('/index/huifu',{hcont:$(huifu).prev().val(),fid:fid,wid:wid},function (msg){

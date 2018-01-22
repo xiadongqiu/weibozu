@@ -13,6 +13,8 @@ use App\Model\weibo;
 use App\Model\attention;
 use App\Tool\Common;
 use App\Model\like;
+use App\Model\comment;
+
 class UserController extends Controller
 {
     /**
@@ -86,6 +88,8 @@ class UserController extends Controller
         detail::where('id',$id)->update($arr);
 
         weibo::where('uid',$id)->update($arr);
+
+        comment::where('pid',$id)->update($arr);
 
         return Response()->json([
             'filename' => $fileName,
@@ -187,7 +191,6 @@ class UserController extends Controller
 
 
     }
-
 
     public function getFensi(request $request)
     {

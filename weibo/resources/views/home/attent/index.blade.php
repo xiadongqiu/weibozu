@@ -143,17 +143,20 @@
                     @endif
                     <span style="border-top: 1px solid #F2F2F5;"><a onclick="xiangce()" style="cursor:pointer">查看个人相册</a></span>
                 </div>
-                <div class="cont_left_three" style="height:200px;">
+                <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
-                    <div id="wei_zan">
-                        <img src="/Homes/images/tou.png">
-                        <div>
-                            <p><a href="#">用户名</a></p>
-                            <p>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</p>
-                        </div>
+                    <div class="W_zan" style="border-bottom:1px solid #ddd;">
+
+                        <img style="width: 60px;
+                                height: 60px;
+                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/{{($res->like[0])->portrait}}">
+                        <p><a href="#">{{$res->like[0]->nickname}}</a></p>
+                        <div>{{$res->like[0]->content}}</div>
                     </div>
                     <div  style="clear:both"></div>
-                    <span style="border-top: 1px solid #F2F2F5;"><a href="#">查看更多</a></span>
+
+                    <span id="zhuijia" style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
+
                 </div>
             </div>
             <div class="cont_center">
@@ -329,5 +332,45 @@
             $('.weibo').hide();
 
         }
+    </script>
+
+    <script type="text/javascript">
+        var ii =0;
+        function zan(obj){
+            $(obj).slideDown(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+
+                $.post('/user/user/like',{id:"{{$uid}}"},function(data){
+                    if(data.length>=2){
+                        if(ii<data.length-1){
+                            for(var i = 1 + ii;i< data.length;i++) {
+                                $('#zhuijia').before('<div class="W_zan" style="border-bottom:1px solid #ddd;">\n' +
+                                    '                        <img style="width: 60px;\n' +
+                                    '                                height: 60px;\n' +
+                                    '                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/'+data[i].portrait+'">\n' +
+                                    '                        <p><a href="/user/user/index?id='+data[i].uid+'">'+data[i].nickname+'</a></p>\n' +
+                                    '                        <div>'+data[i].content+'</div>\n' +
+                                    '                    </div>\n' +
+                                    '                    <div  style="clear:both"></div>');
+                                ii++;
+                            }
+                        }else{
+                            layer.msg('没有更多信息了');
+                        }
+
+                    }else{
+                        layer.msg('没有更多信息了');
+                    }
+
+                });
+            });
+        }
+
+
     </script>
 @endsection('content')

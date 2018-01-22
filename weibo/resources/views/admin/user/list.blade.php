@@ -78,7 +78,7 @@
                         </td>
                         <td class=" ">
                             <a href="/admin/user/{{$val->id}}/edit" style="color:#333;font-size:15px;"><i class="icon-edit" title="编辑"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
+                            <a href="javascript:;" onclick="delu(this)" id="{{$val->id}}" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -92,6 +92,19 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
+    <script type="text/javascript">
+        function delu(obj){
+            layer.confirm('确定要删除该用户吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("/admin/user/"+$(obj).attr('id'),{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
+                        layer.msg('123');
+                });
+
+            });
+        }
+
+    </script>
 @stop
 @section('title','微博用户')

@@ -8,6 +8,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\user;
 use App\Model\detail;
+use APP\Model\like;
+use APP\Model\comment;
+use APP\Model\weibo;
+use APP\Model\attention;
+
 class UserController extends Controller
 {
     /**
@@ -53,7 +58,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $res = attention::where('uid',$id)->delete();
+        $res1 = attention::where('gid',$id)->delete();
+        $res2 = like::where('lid',$id)->delete();
+        $res3 = like::where('uid',$id)->delete();
+        $res4 = weibo::where('uid',$id)->delete();
+        $res5 = comment::where('uid',$id)->delete();
     }
 
     /**
@@ -99,7 +109,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
     }
     public function search(Request $request)
     {

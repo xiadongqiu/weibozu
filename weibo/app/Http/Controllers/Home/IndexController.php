@@ -13,6 +13,7 @@ use App\Model\detail;
 use App\Model\comment;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
+use App\Model\like;
 
 class IndexController extends Controller
 {
@@ -289,6 +290,43 @@ class IndexController extends Controller
         echo 'ok';
     }
 
+    public function postZan(request $Request)
+    {
+        $wid = ($Request->all())['wei'];
+        $uid = ($Request->all())['uid'];
+        $lid = $Request->session()->get('home');
+        $res = like::where('wid',$wid)->first();
 
+        if($res){
+            echo '1';
+            die;
+        }
 
+        $arr = array();
+
+        $arr['lid'] = $lid;
+        $arr['wid'] = $wid;
+        $arr['uid'] = $uid;
+        $arr['like_time'] = time();
+
+        $res1 = like::insert($arr);
+
+        if($res1){
+            weibo::where('id',$wid)->increment('like');
+            echo '2';
+        }else{
+            echo '0';
+        }
+    }
+
+    public function postDelw(request $Request)
+    {
+
+        $wid = $Request->only('wid')['wid'];
+        $res = weibo::where('id',$wid)->delete();
+        $res1 = comment::where('wid',$wid)->delete();
+        $res2 = like::where('wid',$wid)->delete();
+        echo '1';
+
+    }
 }

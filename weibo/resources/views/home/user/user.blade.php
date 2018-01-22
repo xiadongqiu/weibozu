@@ -130,16 +130,18 @@
                 </div>
                 <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
+                    @if(count($res->like)>0)
                     <div class="W_zan" style="border-bottom:1px solid #ddd;">
-
                         <img style="width: 60px;
                                 height: 60px;
                                 border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/{{($res->like[0])->portrait}}">
-                        <p><a href="#">用户名</a></p>
-                        <div>微博内容微博内容微博内容微博内容微博内容微博内容微博内容微内容</div>
+                        <p><a href="#">{{$res->like[0]->nickname}}</a></p>
+                        <div>{{$res->like[0]->content}}</div>
                     </div>
                     <div  style="clear:both"></div>
-
+                    @else
+                        您未赞过任何微博
+                    @endif
                     <span id="zhuijia" style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
 
                 </div>
@@ -157,15 +159,17 @@
                 <!-- 微博内容 -->
                 @foreach ($res->weibo as $k => $v)
 
-                    <div class="weibo" style="padding:;">
+                    <div class="weibo" style="">
+                        @if($uid == session('home'))
+
                         <a href="javascript:;" class="xiangxia"></a>
-                        <div class="xiangxia_show">
+
+                        <div class="xiangxia_show" style="height: 37px;">
                             <ul>
-                                <li><a href="javascript:;">删除</a></li>
-                                <li><a href="javascript:;">置顶</a></li>
-                                <li><a href="javascript:;">加标签</a></li>
+                                <li><a href="javascript:;" id="{{$v->id}}" onclick="delw(this)">删除</a></li>
                             </ul>
                         </div>
+                        @endif
                         <div class="weibo_d1">
                             @if($v->portrait =='default.jpg')
                             <img src="/homes/images/tou.png">
@@ -205,15 +209,14 @@
                                     <input type="hidden" value="{{$v->id}}">
                                     <a href="javascript:;">评论</a><span>{{$v->comment}}</span>
                                 </li>
-                                <li><a href="javascript:;">赞</a><span>{{$v->like}}</span></li>
+                                <li onclick="zana(this)" class="zan" id="{{$v->uid}}">
+                                    <input type="hidden" value="{{$v->id}}">
+                                    <a href="javascript:;">赞</a><span>{{$v->like}}</span>
+                                </li>
                             </ul>
                         </div>
                         <!-- 回复内容 -->
                         <div class="wei_replay">
-
-                        </div>
-                        <div class="weibo_gengduo">
-                            <a href="javascript:;">查看更多 > </a>
                         </div>
                     </div>
                 @endforeach
@@ -223,12 +226,50 @@
                     $('.xiangxia').click(function(){
                         $(this).siblings().show();
                         return false;
-
-                    })
+                    });
                     $('body').click(function(){
                         $('.xiangxia_show').hide();
-                    })
+                    });
 
+                    function zana(obj){
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.post('/index/zan',{wei:$(obj).find('input[type=hidden]').val(),uid:$(obj).attr('id')},function(data){
+                            if(data == '1'){
+                                layer.msg('您已经赞过该帖子了');
+                            }else if(data == '2'){
+                               var zan = $(obj).find('span').html();
+                                zan = parseInt(zan);
+                                zan = zan+1;
+                                $(obj).find('span').html(zan);
+                            }else if(data == '0'){
+                                layer('失败，请重试');
+                            }
+                        });
+                    }
+                </script>
+                <script type="text/javascript">
+                    function delw(obj){
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        layer.confirm('确定要删除吗？', {
+                            btn: ['确认','取消'] //按钮
+                        }, function(){
+                            $.post('/index/delw',{wid:$(obj).attr('id')},function(data){
+                                if(data == '1'){
+                                    layer.msg('删除成功');
+                                    $(obj).parent().parent().parent().parent().remove();
+                                }
+                            });
+                        });
+
+                    }
 
                 </script>
             </div>
@@ -731,6 +772,7 @@
         });
     </script>
     <script type="text/javascript">
+        var ii =0;
         function zan(obj){
             $(obj).slideDown(function(){
                 $.ajaxSetup({
@@ -741,18 +783,23 @@
 
 
                 $.post('/user/user/like',{id:"{{$uid}}"},function(data){
-                    console.log(data);
                     if(data.length>=2){
-                        for(var i = 1;i<= data.length;i++) {
-                            $('#zhuijia').before('<div class="W_zan" style="border-bottom:1px solid #ddd;">\n' +
-                                '                        <img style="width: 60px;\n' +
-                                '                                height: 60px;\n' +
-                                '                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/'+data[i].portrait+'">\n' +
-                                '                        <p><a href="/user/user/index?id='+data[i].uid+'">'+data[i].nickname+'</a></p>\n' +
-                                '                        <div>'+data[i].content+'</div>\n' +
-                                '                    </div>\n' +
-                                '                    <div  style="clear:both"></div>');
+                        if(ii<data.length-1){
+                            for(var i = 1 + ii;i< data.length;i++) {
+                                $('#zhuijia').before('<div class="W_zan" style="border-bottom:1px solid #ddd;">\n' +
+                                    '                        <img style="width: 60px;\n' +
+                                    '                                height: 60px;\n' +
+                                    '                                border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/'+data[i].portrait+'">\n' +
+                                    '                        <p><a href="/user/user/index?id='+data[i].uid+'">'+data[i].nickname+'</a></p>\n' +
+                                    '                        <div>'+data[i].content+'</div>\n' +
+                                    '                    </div>\n' +
+                                    '                    <div  style="clear:both"></div>');
+                                ii++;
+                            }
+                        }else{
+                            layer.msg('没有更多信息了');
                         }
+
                     }else{
                         layer.msg('没有更多信息了');
                     }
