@@ -98,9 +98,11 @@
             }else{
                 $.post('/user/login/login',{phone:$('#phone').val(),password:$('#password').val(),'_token':'{{csrf_token()}}'},function(data){
                         if(data == '1'){
-                            location.href = '/user/user/';
-                        }else{
+                            location.href = '/user/index';
+                        }else if(data == '0'){
                             layer.msg('密码错误');
+                        }else if(data == '2'){
+                            layer.msg('您的账号被禁止登录,请联系管理员');
                         }
                 });
             }

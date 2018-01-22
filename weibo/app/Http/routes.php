@@ -44,11 +44,13 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 	Route::resource('/detail','DetailController');
 
+    Route::group(['middleware'=>'homelogin'],function(){
+        //用于访问登录页面的和处理登录信息的路由
+
+        Route::controller('/login','LoginController');
+    });
 
 
-    //用于访问登录页面的和处理登录信息的路由
-
-    Route::controller('/login','LoginController');
     //用于访问注册页面和处理注册信息的路由
 
     Route::controller('/register','RegisterController');
