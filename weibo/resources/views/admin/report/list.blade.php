@@ -5,7 +5,7 @@
         <span style="font-weight:bold;">
             <i class="icon-table">
             </i>
-             - 举报列表
+             举报列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
@@ -84,4 +84,4 @@
     </div>
 </div>  
 @stop
-@section('title','微博-举报')
+@section('title','微博举报')

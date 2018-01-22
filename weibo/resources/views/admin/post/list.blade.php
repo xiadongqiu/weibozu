@@ -92,8 +92,8 @@
                             {{date('Y-m-d H:i:s',time($v->publish_time))}}
                         </td>
                         <td >
-                            <a href="" style="color:#333;">微博</a>&nbsp;|&nbsp;
-                            <a href="/admin/comments/{{$v->id}}" style="color:#333;">查看评论</a>&nbsp;|&nbsp;
+                            <a href="/detail/{{$v->id}}" style="color:#333;" target="_black">微博</a>&nbsp;|&nbsp;
+                            <a href="/admin/comments/{{$v->id}}" style="color:#333;" target="_black">查看评论</a>&nbsp;|&nbsp;
                             <a onclick="del({{$v['id']}},$(this))" style="cursor:pointer;color:#333;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>

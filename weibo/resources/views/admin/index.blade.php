@@ -134,7 +134,7 @@ font-size: 14px;
         <!-- User Tools (notifications, logout, profile, change password) -->
         <div id="mws-user-tools" class="clearfix">
 
-             <a href="/index">网站首页</a>
+             <a href="/index" target="_black">网站首页</a>
 
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
@@ -205,7 +205,7 @@ font-size: 14px;
                         <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
                          <ul style="display: none;" class="closed">
                             <li><a href="/admin/#">广告添加</a></li>
-                            <li><a href="/admin/advert/">广告列表</a></li>
+                            <li><a href="/admin/advert">广告列表</a></li>
                         </ul>
                     </li>
 
