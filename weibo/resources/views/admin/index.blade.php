@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="shortcut icon" href="/admins/images/favicon.ico">
 
-<title>@yield('title','微博-admin')</title>
+<title>@yield('title','微博首页')</title>
 <style type="text/css">
     .pagination{
     list-style: none;
@@ -134,7 +134,7 @@ font-size: 14px;
         <!-- User Tools (notifications, logout, profile, change password) -->
         <div id="mws-user-tools" class="clearfix">
 
-             <a href="/index">网站首页</a>
+             <a href="/index" target="_black">网站首页</a>
 
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
@@ -205,7 +205,7 @@ font-size: 14px;
                         <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
                          <ul style="display: none;" class="closed">
                             <li><a href="/admin/#">广告添加</a></li>
-                            <li><a href="/admin/advert/">广告列表</a></li>
+                            <li><a href="/admin/advert">广告列表</a></li>
                         </ul>
                     </li>
 
@@ -233,12 +233,10 @@ font-size: 14px;
         <div id="mws-container" class="clearfix">
         	<!-- 内容 -->
             <div class="container">
-             @section('zhuti')
-
-                
-
-                aaa 
-
+             @section('zhuti') 
+             <center> 
+                <h1 style="margin-top:20%;">欢迎来到后台首页！</h1>
+            </center>
              @show
             
             </div>

@@ -34,7 +34,6 @@ class UserController extends Controller
             }else{
                 $array1 = '0';
             }
-            dd(1);
             return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid['id']]);
         }else{
 

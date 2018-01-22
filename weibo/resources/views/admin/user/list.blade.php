@@ -5,7 +5,7 @@
         <span>
             <i class="icon-table">
             </i>
-             - 用户列表
+             用户列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
@@ -94,4 +94,4 @@
     </div>
 </div>  
 @stop
-@section('title','微博-用户')
+@section('title','微博用户')
