@@ -34,8 +34,12 @@ class HomeloginMiddleware
             $status = $request->only('status');
             $res = user::find($uid);
             $arr = (explode(':',$res->detail->adress));
-            $array = json_decode($res->detail->pics,true);
-            $array1 = array_values($array);
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
             return view('home/user/user',['res'=>$res,'adress'=>$arr,'status'=>$status,'pic'=>$array1,'uid'=>$uid]);
 
         }else{

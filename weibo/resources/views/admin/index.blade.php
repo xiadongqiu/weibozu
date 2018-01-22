@@ -204,7 +204,7 @@ font-size: 14px;
                     <li>
                         <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
                          <ul style="display: none;" class="closed">
-                            <li><a href="/admin/#">广告添加</a></li>
+                            <li><a href="/admin/advert/create">广告添加</a></li>
                             <li><a href="/admin/advert/">广告列表</a></li>
                         </ul>
                     </li>

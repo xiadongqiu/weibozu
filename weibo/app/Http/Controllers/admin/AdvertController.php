@@ -14,12 +14,16 @@ class AdvertController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         
         //查询数据库adverts表里所有的数据
-
-        return view('admin/advert/index');
+        $requestall = $request->all();
+         $data = advert::paginate(5);
+        // $data = advert::get();
+         // dd($res);
+        return view('admin/advert/index',['data'=>$data,'request'=>$requestall]);   
+        
     }
 
     /**
@@ -30,6 +34,7 @@ class AdvertController extends Controller
     public function create()
     {
         //
+        return view("admin/advert/add");
     }
 
     /**
