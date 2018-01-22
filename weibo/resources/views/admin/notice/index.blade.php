@@ -10,12 +10,15 @@
                         <div id="DataTables_Table_1_length" class="dataTables_length">
                         
                       </div>
-                        <div class="dataTables_filter" id="DataTables_Table_1_filter">  
-                        <label>
-                                <button>搜索:</button> 
-                                 <input type="text" aria-controls="DataTables_Table_1">
-                         </label>
-                    </div>
+                        <div class="dataTables_filter" id="DataTables_Table_1_filter">
+                          <label>
+
+                            <form action="/admin/notice/search/t" method="get">
+                                公告：<input type="text" name="title" aria-controls="DataTables_Table_1">
+                                <input type="submit" style="height:25px;background:#444;border:1px solid #333;color:#fff;border-radius:3px;" value="搜索">
+                            </form>
+                          </label>
+                      </div>
                         <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
                         <tr role="row">

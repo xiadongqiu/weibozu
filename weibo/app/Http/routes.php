@@ -95,20 +95,20 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		    Route::resource('/post','PostController');
 
 		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments/{id}','CommentsController');
-
+			Route::resource('/comments','CommentsController');
 			//后台网站配置路由
-		 Route::get('/config','ConfigController@edit');
-		 // 网站公告资源路由
-		 Route::resource('/notice','NoticeController');
-		 
-		//后台广告管理资源路由
-		 Route::resource('/advert','AdvertController');
-		});
+		 	Route::controller('/config','ConfigController');
+		 	// 网站公告资源路由
+		 	Route::resource('/notice','NoticeController');
+		  	Route::get('/notice/search/{title}','NoticeController@search'); 
+			//后台广告管理资源路由
+		 	Route::resource('/advert','AdvertController');
+			
+			});
 
 
 //郑鑫路由=======================================================================
- 		
+ 			
 //==============================================================================
 
 });

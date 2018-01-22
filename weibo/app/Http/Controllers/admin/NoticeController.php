@@ -142,4 +142,11 @@ class NoticeController extends Controller
         $data = notice::where('id',$id)->delete();
         echo 1;
     }
+    public function search(Request $request)
+    {
+        $requestall = $request->all();
+        $res = notice::where('title','like','%'.$request->input('title').'%');
+        $data = $res->paginate(5);
+        return view('admin.notice.index',['data' => $data,'request'=>$requestall]);
+    }
 }
