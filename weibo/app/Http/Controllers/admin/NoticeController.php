@@ -17,7 +17,7 @@ class NoticeController extends Controller
     public function index(Request $request)
     {
         $requestall = $request->all();
-         $data = notice::paginate(5);
+         $data = notice::paginate(3);
 
         //查询数据库notices表里所有的数据
         // $res = notice::get();

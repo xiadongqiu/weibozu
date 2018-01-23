@@ -19,7 +19,7 @@ class FlinkController extends Controller
         // $res = flink::get();
         //  return view('admin/flink/index',['res'=>$res]);
         $requestall = $request->all();
-         $data = flink::paginate(5);
+         $data = flink::paginate(3);
        return view('admin/flink/index',['data' => $data,'request'=>$requestall]);
 
     }

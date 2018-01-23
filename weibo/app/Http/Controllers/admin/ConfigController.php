@@ -26,8 +26,22 @@ class ConfigController extends Controller
 
      public function postSte(Request $request)
     {
-        //
-        // echo 'store';
+        
+        //判断是否有修改图片
+        $pic = $request->only('logo')['logo'];
+        
+        if($pic != null){
+            // 获取文件的目录
+            $pic = $request->only('logo')['logo'];
+            // dd($pic);
+            $disk = \Storage::disk('qiniu');
+            $pat = $pic->getClientOriginalExtension();
+            $fileName = md5(rand(0000,9999)).'.'.$pat;
+            $path = $pic->getRealPath();
+            $disk -> put($fileName,fopen($path,'r+'));
+            $jieguo->logo  = $fileName;
+        }
+
         $config = $request->all();
         // dd($_FILES);
         // dd($config);
@@ -37,41 +51,9 @@ class ConfigController extends Controller
         $jieguo->keyword = $config['keyword'];
         $jieguo->copyright = $config['copyright'];
         $jieguo->status = $config['status'];
-       
-       //检测是否有文件logo
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-
-            // 获取文件的目录
-             // $url = public_path().'/uploads/'.date('Ymd');
-             $url = './uploads/logo/'.date('Ymd');
-
-             // 获取文件名字
-             $name = 'img'.date('YmdHis').rand(10000,99999);
-             $houzhui = $logo->getClientOriginalExtension('logo');
-             // dd($name);
-             $filename = $name.'.'.$houzhui;
-             // dd($filename);
-
-             // 执行上传到指定目录，并且重新命名
-            $data = $logo->move($url,$filename);
-
-            // 将文件的完整路径赋值给要更新的变量，数据库中的logo
-            $jieguo->logo = $url.'/'.$filename;
-
-            // dd($jieguo->logo);
-
-            if($data){
-                echo "<script>alert('上传成功');</script>";
-            }else{
-                echo "<script>alert('上传失败');</script>";
-
-            }
-        }
-
-
 
         $final = $jieguo->save();
+
         if($final){
             echo "<script>alert('恭喜，修改成功！');location.href='/admin/config'</script>";
         }else{

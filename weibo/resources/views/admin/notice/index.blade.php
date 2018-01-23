@@ -58,7 +58,7 @@
         		</tbody>
         	</table>
          <div class="dataTables_info" id="DataTables_Table_1_info">
-                共{{$data->total()}}条&nbsp;&nbsp;&nbsp;5条/页
+                共{{$data->total()}}条&nbsp;&nbsp;&nbsp;3条/页
             </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                {!! $data->appends($request)->render() !!}

@@ -8,15 +8,6 @@
 	<div class="det_cont">
 		<div class="det_cont_left">
 			<div class="weibo">
-				<!-- <a href="javascript:;" class="xiangxia"></a>
-				<div class="xiangxia_show">
-					<ul>
-						<li><a href="javascript:;">信息</a></li>
-						<li><a href="javascript:;">信息</a></li>
-						<li><a href="javascript:;">信息</a></li>
-					</ul>
-				</div> -->
-
 				<div class="weibo_d1">
 					@if($res->portrait =='default.jpg')
 					<img src="/homes/images/tou.png">
