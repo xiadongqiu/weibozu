@@ -191,7 +191,7 @@
 	                            @endif
                             <div class="wei_cont">
                                 <div class="W_cont" >
-                                    <p style="">{{$v->content}}</p>
+                                    <p style="">{!! $v->content !!}</p>
                                 </div>
                                 <ul class="wei_ul">
                                     @if( (json_decode($v->picture,true))[0] != '' )
@@ -328,7 +328,6 @@
                 if(data == 1){
                     layer.msg('删除成功');
                     location.href = '/user/user/index?status=2&id={{$uid or ''}}';
-
                 }
             });
         }

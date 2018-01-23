@@ -45,8 +45,28 @@ class AdvertController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        
+        $data = $request->except('_token','picture');
+        $pic = ($request->only('picture')['picture']);
+
+        $disk = \Storage::disk('qiniu');
+
+        $pat = $pic->getClientOriginalExtension();
+
+        $fileName = md5(rand(00000000,99999999)).'.'.$pat;
+
+        $path = $pic->getRealPath();
+
+        $disk -> put($fileName,fopen($path,'r+'));
+
+        $data['picture'] = $fileName;
+
+        $res = advert::insert($data);
+        if($res){
+            echo "<script type='text/javascript'>alert('添加成功');location.href='/admin/advert/'</script>";
+        }else{
+            echo "<script type='text/javascript'>alert('添加失败');location.href='/admin/advert/'</script>";
+        }
+
     }
 
     /**
@@ -85,7 +105,42 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->only('picture')['picture']){
+
+            $data = $request->except('_token','picture','_method');
+
+            $pic = $request->only('picture')['picture'];
+
+            $disk = \Storage::disk('qiniu');
+
+            $pat = $pic->getClientOriginalExtension();
+
+            $fileName = md5(rand(00000000,99999999)).'.'.$pat;
+
+            $path = $pic->getRealPath();
+
+            $disk -> put($fileName,fopen($path,'r+'));
+
+            $data['picture'] = $fileName;
+
+            $res = advert::where('id',$id)->update($data);
+
+            if($res){
+                echo "<script type='text/javascript'>alert('修改成功');location.href='/admin/advert/'</script>";
+            }else{
+                echo "<script type='text/javascript'>alert('修改失败');location.href='/admin/advert/'</script>";
+            }
+        }else{
+
+            $data = $request->except('_token','picture','_method');
+
+            $res = advert::where('id',$id)->update($data);
+            if($res){
+                echo "<script type='text/javascript'>alert('修改成功');location.href='/admin/advert/'</script>";
+            }else{
+                echo "<script type='text/javascript'>alert('修改失败');location.href='/admin/advert/'</script>";
+            }
+        }
     }
 
     /**

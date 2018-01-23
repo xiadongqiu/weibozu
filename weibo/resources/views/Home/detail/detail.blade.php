@@ -49,7 +49,10 @@
 							<input type="hidden" value="{{$res->id}}">
 							<a href="javascript:;">评论</a><span>{{$res->comment}}</span>
 						</li>
-						<li><a href="javascript:;">赞</a><span>{{$res->like}}</span></li>
+						<li onclick="zana(this)" class="zan" id="{{$res->uid}}">
+							<input type="hidden" value="{{$res->id}}">
+							<a href="javascript:;">赞</a><span>{{$res->like}}</span>
+						</li>
 					</ul>
 				</div>
 				<!-- 回复内容 -->
@@ -78,8 +81,8 @@
 						<img src="http://p2l4kajri.bkt.clouddn.com/{{$v->portrait}}">
 						@endif
 						<div>
-							<p><a href="/user/user">{{$v->nickname}}</a></p>
-							<p>{{$v->content}}</p>
+							<p><a href="/user/user/index?id={{$v->uid}}">{{$v->nickname}}</a></p>
+							<p>{!! $v->content  !!}</p>
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -106,6 +109,25 @@ $(function(){
 	})
 })
 
+function zana(obj){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.post('/index/zan',{wei:$(obj).find('input[type=hidden]').val(),uid:$(obj).attr('id')},function(data){
+        if(data == '1'){
+            layer.msg('您已经赞过该帖子了');
+        }else if(data == '2'){
+            var zan = $(obj).find('span').html();
+            zan = parseInt(zan);
+            zan = zan+1;
+            $(obj).find('span').html(zan);
+        }else if(data == '0'){
+            layer('失败，请重试');
+        }
+    });
+}
 
 </script>
 @endsection('content')

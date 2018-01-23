@@ -61,11 +61,10 @@ class UserController extends Controller
     public function postEdit(request $request)
     {
         $form = $request->all();
-        //dd($form);
         $id = $request->session()->get('home');
-
+        $arr['nickname'] = $form['nickname'];
+        $res1 = weibo::where('uid',$id)->update($arr);
         $res = detail::where('id',$id)->update($form);
-
         if($res){
             echo 1;
         }else{
