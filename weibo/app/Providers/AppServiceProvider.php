@@ -20,11 +20,11 @@ class AppServiceProvider extends ServiceProvider
     {   
         // var_dump($request->all());
         // $id = $request->session()->get('admin');
-        $res = user::find(2);
-        $auth = array('普通用户','管理员','超级管理员');
-        $res['auth'] = $auth[$res['auth']];
-        view()->share('user',$res);
-        
+//        $res = user::find(2);
+//        $auth = array('普通用户','管理员','超级管理员');
+//        $res['auth'] = $auth[$res['auth']];
+//        view()->share('user',$res);
+//
     }
 
     /**
