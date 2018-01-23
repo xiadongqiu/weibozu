@@ -58,14 +58,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $res = attention::where('uid',$id)->delete();
-        $res1 = attention::where('gid',$id)->delete();
-        $res2 = like::where('lid',$id)->delete();
-        $res3 = like::where('uid',$id)->delete();
-        $res4 = weibo::where('uid',$id)->delete();
-        $res5 = comment::where('pid',$id)->delete();
-        $res6 = detail::where('uid',$id)->delete();
-        $res6 = user::where('id',$id)->delete();
+        
 
     }
 
@@ -92,7 +85,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->input());
         $data = $request->except(['_method','auth','status']);
         $data1 = $request->only(['auth', 'status']);
         $res = detail::where('id',$id)->update($data);
@@ -113,8 +105,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
-
+        $res = attention::where('uid',$id)->delete();
+        $res1 = attention::where('gid',$id)->delete();
+        $res2 = like::where('lid',$id)->delete();
+        $res3 = like::where('uid',$id)->delete();
+        $res4 = weibo::where('uid',$id)->delete();
+        $res5 = comment::where('pid',$id)->delete();
+        $res6 = detail::where('uid',$id)->delete();
+        $res6 = user::where('id',$id)->delete();
     }
     public function search(Request $request)
     {
@@ -124,12 +122,5 @@ class UserController extends Controller
         $auth = array('用户','管理员','超级管理员');
         $status = array('开启','关闭');
         return view('admin.user.list',['data' => $data,'auth' => $auth,'status' => $status,'request'=>$requestall]);
-    }
-
-    public function pass(Request $request)
-    {
-        $id = $request->session()->get('admin');
-        $data = user::find($id);
-        return view('admin.user.modify',['data'=>$data]);
     }
 }

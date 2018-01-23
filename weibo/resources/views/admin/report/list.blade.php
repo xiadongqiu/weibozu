@@ -71,7 +71,7 @@
        
             layer.open({
                 title:'删除提示！'
-                ,content: '真的要删除第'+id+'条吗？'
+                ,content: '确定要删除微博吗？'
                 ,btn: ['删除', '取消']
                 ,yes: function(index,layero){
                   //按钮【删除】的回调
@@ -103,7 +103,7 @@
        
             layer.open({
                 title:'删除提示！'
-                ,content: '真的要删除第'+id+'条吗？'
+                ,content: '确定要删除当前举报吗？'
                 ,btn: ['删除', '取消']
                 ,yes: function(index,layero){
                   //按钮【删除】的回调
