@@ -61,7 +61,6 @@ class UserController extends Controller
     public function postEdit(request $request)
     {
         $form = $request->all();
-        dd($form);
         $id = $request->session()->get('home');
 
         $res = detail::where('id',$id)->update($form);

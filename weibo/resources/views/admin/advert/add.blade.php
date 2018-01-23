@@ -33,8 +33,6 @@
                         </div>
                     </div>
 
-        			
-
         			<div class="mws-form-row">
                         <div style="padding-bottom: 10px;">广告图片</div>
                         <div>
@@ -59,5 +57,4 @@
         	</form>
         </div>
     </div>
-
 @endsection
