@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery带预览可拖拽文件上传代码</title>
-
-
     <script type="text/javascript" src="/homes/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/homes/duotu/ssi-uploader.js"></script>
 
@@ -47,7 +45,7 @@
             // console.log(jsondata);
             // $('.imgFiles').val(jsondata + 'img'+imgNum+':'+xhr+',');
 
-        },maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']})
+        },maxFileSize:6,allowed:['jpg','gif','txt','png','pdf']});
 
 </script>
 
