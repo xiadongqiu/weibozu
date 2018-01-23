@@ -10,14 +10,6 @@
     </div>
     <div class="mws-panel-body no-padding">
         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
-            <div id="DataTables_Table_1_length" class="dataTables_length">
-            </div>
-            <div class="dataTables_filter" id="DataTables_Table_1_filter">
-                <label>
-                    <input type="text" aria-controls="DataTables_Table_1">
-                    <button style="height:25px;background:#444;border:1px solid #666;color:#fff;border-radius:3px;"><i class="icon-search"></i></button>
-                </label>
-            </div>
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
             aria-describedby="DataTables_Table_1_info">
                 <thead>
@@ -27,9 +19,6 @@
                         </th>
                         <th style="width: 150px;">
                             举报原因
-                        </th>
-                        <th style="width: 130px;">
-                            举报人
                         </th>
                         <th style="width: 130px;">
                             微博作者
@@ -54,11 +43,8 @@
                         <td class=" sorting_1">
                             {{$val->content}}
                         </td>
-                        <td class="">
-                            {{$val->jid}}
-                        </td>
                         <td class=" ">
-                            {{$val->uid}}
+                            {{$val->detail->nickname}}
                         </td>
                         <td class=" ">
                             {{$val->report}}
@@ -67,8 +53,8 @@
                            {{date('Y-m-d H:i:s',$val->report_time)}}
                         </td>
                         <td class=" ">
-                            <a href="/detail/{{$val->wid}}" style="color:#333;" target="_black">查看</a>&nbsp;&nbsp;&nbsp;
-                            <a href="" style="color:#333;font-size:15px;"><i class="icon-trash" title="删除"></i></a>
+                            <a href="/detail/{{$val->wid}}" style="color:#333;" target="_black">查看微博</a>&nbsp;&nbsp;&nbsp;
+                            <a onclick="del({{$val->wid}},$(this))" style="cursor:pointer;color:#333;">删除微博</a>
                         </td>
                     </tr>
                 @endforeach
@@ -83,5 +69,41 @@
         </div>
     </div>
 </div>  
+@stop
+@section('js')
+<script type="text/javascript">
+  function del(id,obj){
+       
+            layer.open({
+                title:'删除提示！'
+                ,content: '真的要删除第'+id+'条吗？'
+                ,btn: ['删除', '取消']
+                ,yes: function(index,layero){
+                  //按钮【删除】的回调
+                  layer.close(index);
+                  layer.load(1);
+                //   location.reload();
+                   $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                       
+                        if(data == 1){
+                            layer.msg('删除成功', {icon: 1});
+                            location.reload();
+                            } else if (data ==0){
+                            layer.msg('删除失败', {icon: 2});
+                            location.reload();
+                            
+                            } 
+                            
+                    });
+                }
+                ,no: function(index, layero){
+                  //按钮【取消】的回调
+                 
+                }
+              });              
+       
+     
+    };
+</script>
 @stop
 @section('title','微博举报')

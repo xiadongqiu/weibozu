@@ -42,6 +42,8 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
 
 	Route::controller('/index','IndexController');
 
+	Route::resource('/detail','DetailController');
+
     Route::group(['middleware'=>'homelogin'],function(){
         //用于访问登录页面的和处理登录信息的路由
 
@@ -56,6 +58,8 @@ Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
     Route::group(['middleware'=>'home'],function(){
         //用于展示个人中心以及处理数据
         Route::controller('/user','UserController');
+
+
 
     });
 });
@@ -90,20 +94,17 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 		    //跳转到举报
 		    Route::resource('/report','ReportController');
-
-		    //微博-名泽
-		    Route::resource('/post','PostController');
-
-		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments/{id}','CommentsController');
-
-			//后台网站配置路由
+		    //后台网站配置路由
 		 Route::get('/config','ConfigController@edit');
 		 // 网站公告资源路由
 		 Route::resource('/notice','NoticeController');
 		 
 		//后台广告管理资源路由
 		 Route::resource('/advert','AdvertController');
+		    //微博-名泽
+		    Route::resource('/post','PostController');
+		    Route::get('/post/search/{nickname}','PostController@search'); 
+			Route::resource('/comments','CommentsController');
 		});
 
 
