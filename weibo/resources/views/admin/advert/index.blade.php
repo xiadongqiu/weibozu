@@ -83,7 +83,7 @@
                                     <td class=" ">
                                         <center>
 
-                        <button class="btn btn-default" id="content{{$v->id}}"  onclick="advert_status({{$v->id}})">{{$v->status== 1 ? '广告上架':'广告下架'}}</button>
+                        
                                         </center>
                                     </td>        
 
@@ -92,7 +92,8 @@
 
                                             <a href="/admin/advert/{{$v->id}}/edit">
                                             <input type="submit" class="btn btn-default" value="修改"></a>
-
+                                            <button class="btn btn-default" id="content{{$v->id}}"  onclick="advert_status({{$v->id}})">{{$v->status== 1 ? '广告上架':'广告下架'}}</button>
+                                             
                                             <button class="btn btn-default" onclick="advert_delete({{$v->id}})">删除</button>
                                         </center>
                                     </td>

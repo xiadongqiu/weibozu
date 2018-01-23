@@ -19,6 +19,19 @@ use Illuminate\Http\JsonResponse;
 
 class IndexController extends Controller
 {
+
+
+
+
+    //将获取的type加入session
+    public function getType(Request $Request)
+    {
+        //$Request->session()->put('type',' ');
+
+        $type = $Request->input('type');
+        $Request->session()->put('type',$type);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +39,7 @@ class IndexController extends Controller
      */
     public function getIndex (Request $Request)
     {
+
         $type =  $Request->session()->get('type');
         //dump($type);
         $uid = $Request->session()->get('home');
@@ -130,13 +144,6 @@ class IndexController extends Controller
         }
     }
 
-    //将获取的type加入session
-    public function getType(Request $Request)
-    {
-        $type = $Request->input('type');
-        $Request->session()->put('type',$type);
-
-    }
 
     //追加评论的ajax
     public function getPing(Request $Request)

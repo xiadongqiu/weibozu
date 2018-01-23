@@ -17,9 +17,6 @@
                         <th style="width: 25px;">
                             Id
                         </th>
-                        <th style="width: 150px;">
-                            举报原因
-                        </th>
                         <th style="width: 130px;">
                             微博作者
                         </th>
@@ -40,10 +37,7 @@
                         <td class="">
                             {{$val->id}}
                         </td>
-                        <td class=" sorting_1">
-                            {{$val->content}}
-                        </td>
-                        <td class=" ">
+                        <td class="sorting_1">
                             {{$val->detail->nickname}}
                         </td>
                         <td class=" ">
@@ -54,7 +48,8 @@
                         </td>
                         <td class=" ">
                             <a href="/detail/{{$val->wid}}" style="color:#333;" target="_black">查看微博</a>&nbsp;&nbsp;&nbsp;
-                            <a onclick="del({{$val->wid}},$(this))" style="cursor:pointer;color:#333;">删除微博</a>
+                            <a onclick="del({{$val->wid}},$(this))" style="cursor:pointer;color:#333;">删除微博</a>&nbsp;&nbsp;&nbsp;
+                            <a onclick="dele({{$val->id}},$(this))" style="cursor:pointer;color:#333;"><i class="icon-trash" title="删除"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -84,6 +79,38 @@
                   layer.load(1);
                 //   location.reload();
                    $.post("{{url('/admin/post')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
+                       
+                        if(data == 1){
+                            layer.msg('删除成功', {icon: 1});
+                            location.reload();
+                            } else if (data ==0){
+                            layer.msg('删除失败', {icon: 2});
+                            location.reload();
+                            
+                            } 
+                            
+                    });
+                }
+                ,no: function(index, layero){
+                  //按钮【取消】的回调
+                 
+                }
+              });              
+       
+     
+    };
+    function dele(id,obj){
+       
+            layer.open({
+                title:'删除提示！'
+                ,content: '真的要删除第'+id+'条吗？'
+                ,btn: ['删除', '取消']
+                ,yes: function(index,layero){
+                  //按钮【删除】的回调
+                  layer.close(index);
+                  layer.load(1);
+                //   location.reload();
+                   $.post("{{url('/admin/report')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}','id':id},function(data){   
                        
                         if(data == 1){
                             layer.msg('删除成功', {icon: 1});

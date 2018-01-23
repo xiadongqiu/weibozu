@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 
 		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments','CommentsController');
+			Route::controller('/comments','CommentsController');
 			
 //郑鑫===================================================================
 			//后台网站配置路由
@@ -111,7 +111,9 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		  	Route::get('/notice/search/{title}','NoticeController@search'); 
 			//后台广告管理资源路由
 		 	Route::resource('/advert','AdvertController');
-
+		 	//后台友情链接资源路由
+			Route::resource('/flink','FlinkController');
+			Route::get('/flink/search/{title}','FlinkController@search'); 
 		});
 
 

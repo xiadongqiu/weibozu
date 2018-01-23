@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\user;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -37,7 +38,7 @@ class LoginController extends Controller
     	}
 		//获取到继续执行    	
     	$pass = $res['password'];
-    	if($password != $pass) {
+    	if(!Hash::check($password,$pass)) {
     		echo 2;
     		exit;
     	}

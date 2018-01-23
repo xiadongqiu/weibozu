@@ -23,22 +23,6 @@ class ConfigController extends Controller
     }
 
 
-    // //执行修改功能
-    // public function update(Request $request)
-    // {
-    // 	//获取修改后的信息
-    // 	$config = $request->except('_token');
-    // 	//修改数据库
-    // 	$data = config::where('id',1)->update($config);
-    	
-    // 	 if($data){
-    //         return redirect('/admin/config/')->with('msg','网站配置修改成功！');
-    //     } else {
-    //         return redirect('/admin/config/')->with('msg','网站配置修改失败！');
-
-    //     }  
-
-    // }
 
      public function postSte(Request $request)
     {

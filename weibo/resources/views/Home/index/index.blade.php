@@ -13,13 +13,13 @@
 	<div class="content">
 		
 		<div class="con_left">
-			<a href="javascript:;">首页</a>
-			<a href="javascript:;">我的收藏</a>
-			<a href="javascript:;">我的赞</a>
+			<a href="javascript:;">首　页</a>
+			<a href="javascript:;">个人中心</a>
+			<a href="javascript:;">我 的 赞</a>
 			<b></b>
-			<a href="javascript:;">微博类型</a>
-			<a href="javascript:;">微博类型</a>
-			<a href="javascript:;">微博类型</a>
+			<a href="javascript:;">默　认</a>
+			<a href="javascript:;">原　创</a>
+			<a href="javascript:;">搞　笑</a>
 		</div>
 
 		<div class="con_center">
@@ -78,7 +78,7 @@
 			</div>
 			<!-- 编辑器结束 -->
 
-			<div class="conC_two">
+			<!-- <div class="conC_two">
 				<ul class="type">
 					<li>全部</li>
 					<li>默认</li>
@@ -86,7 +86,7 @@
 					<li>搞笑</li>
 					<li>社会</li>
 				</ul>
-			</div>
+			</div> -->
 			
 
 			<!-- 微博内容 -->
@@ -199,25 +199,15 @@
 				</div>
 				<ul >
 					@foreach($hot as $key=>$value)
-					<li style="overflow:hidden"><a href="javascript:;">{{ html_entity_decode($value->content) }}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
+					<li style="overflow:hidden"><a href="/detail/{{$value->id}}" target="_blank">{{ html_entity_decode($value->content) }}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
 					@endforeach
 				</ul>
 				<div class="conR_more"><a class="more" href="javascript:;">查看更多 ></a></div>
 			</div>
 			<!-- 好友关注动态 -->
 			<div class="conR_three" style="height:auto;">
-				<div class="friends">好友关注状态</div>
-				<ul class="friends_ul">
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="/homes/images/tou.png">
-						<div>
-							<a href="javascript:;"></a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="/homes/images/guanzhu.png">
-					</li>
-				</ul>
-				<div class="conR_more"><a href="javascript:;">查看更多 ></a></div>
+				<img src="/homes/images/guanggao3.png">
+				<img src="/homes/images/guanggao4.png">
 			</div>
 		</div>
 	</div>
@@ -258,6 +248,7 @@
 $('.type li').click(function(){
 	
 	var type = $(this).html();
+	//alert(type);
 	$.get('/index/type',{type:type});
 	location.href='/index';
 })
@@ -497,7 +488,7 @@ $(function(){
 			//console.log(wdata[i]['bid']);
 
 			if(wdata[i]['bid'] > 0){
-				$('.weizong').append('<div class="weibo" style="padding:;"><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul> <li onclick="report(this)"><a href="javascript:;">举报</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="/user/user" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+publish_time+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="weibo_d3" ><a href="javascript:;" class="wei_name">@'+wdata[i]['bnickname']+'</a><div class="wei_cont"><p>'+wdata[i]['bcontent']+'</p><ul class="wei_ul"></ul><p style="clear:both"></p></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li onclick="zhuanfa(this)"><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li onclick="zana(this)" id="'+wdata[i]["uid"]+'"><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
+				$('.weizong').append('<div class="weibo" style="padding:;"><a href="javascript:;" onclick="xiangxia(this)" class="xiangxia"></a><div class="xiangxia_show"><ul> <li onclick="report(this)"><input type="hidden" value="'+wdata[i]['id']+'" /><a href="javascript:;">举报</a></li></ul></div><div class="weibo_d1">'+photo+'</div><div class="weibo_d2"><a href="/user/user" class="wei_name">'+wdata[i]['nickname']+'</a><div class="wei_time"><a href="javascript:;">'+publish_time+'</a> 来自 微博 weibo.com</div><div class="wei_cont"><p>'+wdata[i]['content']+'</p><ul class="wei_ul"></ul></div></div><p style="clear:both"></p><div class="weibo_d3" ><a href="javascript:;" class="wei_name">@'+wdata[i]['bnickname']+'</a><div class="wei_cont"><p>'+wdata[i]['bcontent']+'</p><ul class="wei_ul"></ul><p style="clear:both"></p></div></div><p style="clear:both"></p><div class="wei_bottom"><ul><li onclick="xiang(this)"><a href="/detail/'+wdata[i]["id"]+'">查看详情</a><input type="hidden" value="'+wdata[i]["id"]+'" /></li><li onclick="zhuanfa(this)"><a href="javascript:;">转发</a><span>'+wdata[i]["transpond"]+'</span></li><li onclick="Ping(this)" class="Ping" ><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">评论</a><span>'+wdata[i]["comment"]+'</span></li><li onclick="zana(this)" id="'+wdata[i]["uid"]+'"><input type="hidden" value="'+wdata[i]["id"]+'"><a href="javascript:;">赞</a><span>'+wdata[i]["like"]+'</span></li></ul></div><div class="wei_replay" ></div></div>');
 
 			}else{
 
@@ -634,6 +625,7 @@ function xiang(obj){
 
 //一级批评论、点击查看评论
 function Ping(obj){
+	var id = $(obj).find("input").val();
 	obj = $(obj);
 	if($(obj).attr('pre') == null){
 		$(obj).attr('pre','pre');
@@ -672,7 +664,7 @@ function Ping(obj){
 				}
 			}
 			obj.parent().parent().next().prepend("<div class='wei_ping'><a href='javascript:;'><img width='30' height='30' src='/homes/images/comm.png'></a><form><input type='text' class='wei_pingcon'><input type='button' value='评论' onclick='ping(this)' class='wei_pinglun'></form></div>");
-			obj.parent().parent().next().after('<div class="weibo_gengduo" style="display:block"><a href="javascript:;">查看更多 > </a></div>');
+			obj.parent().parent().next().after('<div class="weibo_gengduo" style="display:block"><a href="/detail/'+id+'" target="_blank">查看更多 > </a></div>');
 
 			obj.parent().parent().next().slideDown();
 		},"json");
@@ -800,8 +792,5 @@ $(function(){
 
 </script>
 
-<script type="text/javascript">
-
-</script>
 
 @endsection

@@ -17,16 +17,13 @@
                             ID
                         </th>
                         <th style="width: 130px;">
-                            评论人
+                            回复人
                         </th>
                         <th style="width: 480px;">
-                            评论内容
+                            回复内容
                         </th>
                         <th style="width: 150px;">
-                            评论时间
-                        </th>
-                        <th style="width: 150px;">
-                            查看回复
+                            回复时间
                         </th>
                         <th style="width: 50px;">
                             操作
@@ -51,11 +48,7 @@
                             {{date('Y-m-d H:i:s',$v->comment_time)}}
                         </td>
                         <td>
-                            <a href="/admin/comments/replay?fid={{$v->id}}" style="color:#333;" target="_black">查看回复</a>
-                        </td>
-
-                        <td>
-                            <a class="delete" id="{{$v->id}}" wid="{{$v->wid}}" href="javascript:;" style="color:#333;" target="_black">删除</a>
+                            <a class="del" href="javascript:;" id="{{$v->id}}" style="color:#333;" target="_black">删除回复</a>
                         </td>
                     </tr>
                 @endforeach
@@ -74,29 +67,32 @@ $(function(){
         }
     });
 
-    $('.delete').click(function(){
+    $('.del').click(function(){
         // alert(12);
         var id = $(this).attr('id');
-        var wid = $(this).attr('wid');
-        var del = $(this).parent().parent();        
+        var del = $(this).parent().parent();
+        // alert(id);
 
-        layer.confirm('确定要删除此条评论吗？', {
+        layer.confirm('确定要删除此条回复吗？', {
             btn: ['删除','取消'] //按钮
         }, function(){
-
-            $.post('/admin/comments/delping',{id:id,wid:wid,'_token':'{{csrf_token()}}'},function (data){
+            $.post('/admin/comments/delhui',{id:id,'_token':'{{csrf_token()}}'},function (data){
                 if(data == '1'){
-                    layer.msg('删除评论成功！', {icon: 1});
+                    
+                    layer.msg('删除回复成功！', {icon: 1});
                     del.remove();
                 }else{
-                    layer.alert('删除评论失败！');
+                    layer.alert('删除回复失败！');
                 }
-
             })
+            
 
+        }, function(){
+            
         });
 
 
+        
     })
     
 

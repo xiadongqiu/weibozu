@@ -85,8 +85,7 @@
                         简介：
                     </label>
                     <div class="mws-form-item">
-                        <textarea rows="" cols="" name="abstract" class="large">
-                        </textarea>
+                        <textarea rows=""  name="abstract" class="large">{{$res->abstract}}</textarea>
                     </div>
                 </div>
                 <div class="mws-form-row">
