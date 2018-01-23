@@ -90,9 +90,6 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 		    Route::get('/user/search/{phone}','UserController@search'); 
 
-		    //修改密码
-			Route::get('/pass','UserController@pass');
-
 		    //跳转到举报
 		    Route::resource('/report','ReportController');
 
