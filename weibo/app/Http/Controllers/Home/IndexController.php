@@ -11,6 +11,8 @@ use App\Model\attention;
 use App\Model\weibo;
 use App\Model\detail;
 use App\Model\comment;
+use App\Model\like;
+use App\Model\report;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
 
@@ -23,7 +25,8 @@ class IndexController extends Controller
      */
     public function getIndex (Request $Request)
     {
-        
+        $type =  $Request->session()->get('type');
+        //dump($type);
         $uid = $Request->session()->get('home');
         //找出关注表中的所有关注的人的gid
         $gids = [];
@@ -36,7 +39,12 @@ class IndexController extends Controller
 
         $weibo_data = [];
         foreach ($gids as $gidsk => $gidsv) {
-            $weidata = weibo::where('uid',$gidsv)->orderBy('publish_time','desc')->get();
+            if($type && $type != '全部'){
+                $weidata = weibo::where('uid',$gidsv)->where('type',$type)->orderBy('publish_time','desc')->get();
+            }else{
+                $weidata = weibo::where('uid',$gidsv)->orderBy('publish_time','desc')->get();
+            }
+            
             if($weidata != null){
                 $weibo_data[] = $weidata;
             }
@@ -72,6 +80,9 @@ class IndexController extends Controller
 
     public function getWei(Request $Request)
     {
+
+        $type =  $Request->session()->get('type');
+        //dump($type);
         $uid = $Request->session()->get('home');
         //找出关注表中的所有关注的人的gid
         $gids = [];
@@ -84,7 +95,11 @@ class IndexController extends Controller
 
         $weibo_data = [];
         foreach ($gids as $gidsk => $gidsv) {
-            $weidata = weibo::where('uid',$gidsv)->orderBy('publish_time','desc')->get();
+            if($type && $type != '全部'){
+                $weidata = weibo::where('uid',$gidsv)->where('type',$type)->orderBy('publish_time','desc')->get();
+            }else{
+                $weidata = weibo::where('uid',$gidsv)->orderBy('publish_time','desc')->get();
+            }
             if($weidata != null){
                 $weibo_data[] = $weidata;
             }
@@ -113,6 +128,14 @@ class IndexController extends Controller
             $data = array_slice($data,($aid-1)*$page,$aid*$page);
             echo json_encode($data);
         }
+    }
+
+    //将获取的type加入session
+    public function getType(Request $Request)
+    {
+        $type = $Request->input('type');
+        $Request->session()->put('type',$type);
+
     }
 
     //追加评论的ajax
@@ -235,16 +258,6 @@ class IndexController extends Controller
 
     }
 
-    //查询出被转发微博
-    public function getBeiwei(request $Request){
-        //$bid被转发微博内容
-        $old = weibo::where('id',$bid)->first();
-        // echo json_encode($old);
-        //$oldcontent = $old['content'];
-        dd($old);
-        return view('home.index.index',['oldw'=>$old,'data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
-    }
-
 
     //微博转发
     public function getZhuanfa(request $Request)
@@ -263,6 +276,7 @@ class IndexController extends Controller
         $zhuan['bnickname'] = $weibo['nickname'];
         $zhuan['nickname'] = $detail['nickname'];
         $zhuan['portrait'] = $detail['portrait'];
+        $zhuan['publish_time'] = time();
         $zhuan['bid'] = $bid;
         $zhuan['content'] = $content;
         $zhuan['uid'] = $uid;
@@ -272,7 +286,7 @@ class IndexController extends Controller
             $new = weibo::where('id',$res)->first();
             //返回被转发微博信息
             //$old = weibo::where('id',$bid)->first();
-            echo json_encode($old);
+            //echo json_encode($old);
         }else{
             echo 2;
         }
@@ -281,14 +295,62 @@ class IndexController extends Controller
 
     //举报
     public function getReport(request $Request){
+        $report = [];
+
         $id = $Request->input('id');
-        if($id){
-            $report = weibo::where('id',$id)->increment('report');
+
+        $wei = weibo::where('id',$id)->first();
+        weibo::where('id',$id)->increment('report');
+
+        //判断report表中是否有wid = $id,没有添加一条,有就report字段+1
+        $res = report::where('wid',$id)->first();
+        if($res){
+            report::where('wid',$id)->increment('report');
+            echo 'ok';
+        }else{
+            $report['wid'] = $id;
+            $report['uid'] = $wei['uid'];
+            $report['report_time'] = time();
+            $rid = report::insertGetId($report);
+            if($rid){
+
+                report::where('id',$rid)->increment('report');
+            }
+            echo 'ok';
         }
         
-        echo 'ok';
+
+        
     }
 
+    //点赞
+    public function postZan(request $Request)
+    {
+        $wid = ($Request->all())['wei'];
+        $uid = ($Request->all())['uid'];
+        $lid = $Request->session()->get('home');
+        $res = like::where('wid',$wid)->first();
 
+        if($res){
+            echo '1';
+            die;
+        }
+
+        $arr = array();
+
+        $arr['lid'] = $lid;
+        $arr['wid'] = $wid;
+        $arr['uid'] = $uid;
+        $arr['like_time'] = time();
+
+        $res1 = like::insert($arr);
+
+        if($res1){
+            weibo::where('id',$wid)->increment('like');
+            echo '2';
+        }else{
+            echo '0';
+        }
+    }
 
 }

@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 		    Route::resource('/post','PostController');
 
 		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments/{id}','CommentsController');
+			Route::resource('/comments','CommentsController');
 
 			//后台网站配置路由
 		 Route::get('/config','ConfigController@edit');

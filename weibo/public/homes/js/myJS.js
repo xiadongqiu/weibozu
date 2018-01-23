@@ -25,7 +25,7 @@ function Ping(obj){
 					s = date.getSeconds(); 
 
 					//console.log(Y+M+D+h+m+s);
-					console.log(Date.parse(new Date())-time);
+					//console.log(Date.parse(new Date())-time);
 					if((Date.parse(new Date())-time)/1000 < 3600){
 						comment_time = h+m+s;
 					}else{
@@ -93,7 +93,7 @@ function ping(ping){
 		$(ping).prev().val('');
 
 		// $(ping).parent().next().after();
-		$(ping).parent().parent().after('<div class="WB_ping"><div class="WB_ping_one"><a href="javascript:;">'+photo+'</a><ul class="WB_ping_oneul"><li><a href="javascript:;">'+data["nickname"]+'</a>：'+data["content"]+'</li><li><span>刚刚</span><span class="WB_ping_onespan"><a href="javascript:;">举报</a><a href="javascript:;">屏蔽</a><a class="" href="javascript:;">回复</a><input class="wid" type="hidden" value=' +data["wid"]+ '><input class="fid" type="hidden" value=' +data["id"]+ '> </span></li></ul></div></div>'+'<div class="WB_ping_two" style="display:block"><form><input type="text" class="wei_hui"><input type="button" onclick="huifu(this)" value="回复" class="wei_huifu"></form></div>');
+		$(ping).parent().parent().after('<div class="WB_ping"><div class="WB_ping_one"><a href="javascript:;">'+photo+'</a><ul class="WB_ping_oneul"><li><a href="/user/user">'+data["nickname"]+'</a>：'+data["content"]+'</li><li><span>刚刚</span><span class="WB_ping_onespan"><a href="javascript:;">举报</a><a href="javascript:;">屏蔽</a><a class="" href="javascript:;">回复</a><input class="wid" type="hidden" value=' +data["wid"]+ '><input class="fid" type="hidden" value=' +data["id"]+ '> </span></li></ul></div></div>'+'<div class="WB_ping_two" style="display:block"><form><input type="text" class="wei_hui"><input type="button" onclick="huifu(this)" value="回复" class="wei_huifu"></form></div>');
 		//alert($(ping).parent().parent().parent().prev().find('span').html());
 
 		var com = $(ping).parent().parent().parent().prev().find('.Ping>span').html();
@@ -105,21 +105,26 @@ function ping(ping){
 //追加回复============
 function huifu(huifu){
 	//找到被评论微博的id
-	var wid = $(huifu).parent().parent().parent().find('input[type=hidden]:first').val();
+	var wid = $(huifu).parent().parent().parent().parent().parent().find('input[type=hidden]:first').val();
 	var fid = $(huifu).parent().parent().parent().find('input[type=hidden]:last').val();
-	// $(huifu).parent().parent().parent().next().css('display','block');
+
+
 	$.get('/index/huifu',{hcont:$(huifu).prev().val(),fid:fid,wid:wid},function (msg){
 		msg = eval("(" + msg + ")");
 		if(msg){
 			$(huifu).parent().parent().after("<div class='WB_ping_three'><ul class='WB_ping_three_ul'><li><a href='javascript:;'>"+msg['nickname']+"</a>:"+msg['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a></span></li></ul></div>");
 		}
-	})
-	$(huifu).prev().val('');
+		$(huifu).prev().val('');
+
+	});
 }
-
-
+	
 //的查看详情
 function xiang(obj){
 	var id = $(obj).find('input[type=hidden]').val();
 	// alert(id);
 }
+
+
+
+
