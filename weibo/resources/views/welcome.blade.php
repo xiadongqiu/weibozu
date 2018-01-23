@@ -39,8 +39,12 @@
         <div class="container">
       <!--       <div class="content">
                 <div class="title">项目</div>
+<<<<<<< HEAD
                 <a href="/user/login">登录</a>
             </div> -->
+
+                <a href="/user/login">登录</a>
+            </div>
         </div>
     </body>
     <script type="text/javascript">

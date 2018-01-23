@@ -17,8 +17,8 @@
 	    </div>
 		@endif
 
-
         <form action="/admin/advert" class="mws-form" method="post" enctype="multipart/form-data">
+
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
         				<label class="mws-form-label">广告名称</label>
