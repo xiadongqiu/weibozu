@@ -199,7 +199,10 @@
 				</div>
 				<ul >
 					@foreach($hot as $key=>$value)
-					<li style="overflow:hidden"><a href="/detail/{{$value->id}}" target="_blank">{{ html_entity_decode($value->content) }}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
+					<li style="overflow:hidden">
+						<a class="cont" href="/detail/{{$value->id}}" target="_blank">{!! $value->content !!}</a>
+						<span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span>
+					</li>
 					@endforeach
 				</ul>
 				<div class="conR_more"><a class="more" href="javascript:;">查看更多 ></a></div>
@@ -436,7 +439,7 @@ $('.huan').click(function(){
 	$.get('/a/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
-			lis.parent().next().append('<li style="overflow:hidden"><a href="javascript:;">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
+			lis.parent().next().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
 		}
 		
 	},"json");
@@ -448,7 +451,7 @@ $('.more').click(function(){
 	$.get('/a/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
-			lis.parent().prev().append('<li style="overflow:hidden"><a href="javascript:;">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
+			lis.parent().prev().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
 		}
 		
 	},"json");

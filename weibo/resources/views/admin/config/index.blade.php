@@ -1,5 +1,5 @@
-  @extends('admin.index')
-  @section('title','网站配置')
+@extends('admin.index')
+@section('title','网站配置')
 @section('zhuti')
  <div class="mws-panel grid_8">
     <div class="mws-panel-header">
@@ -7,7 +7,7 @@
     </div>
     <div class="mws-panel-body no-padding">
 
-        <form action="/admin/config/ste" class="mws-form" method="POST">
+        <form action="/admin/config/ste" class="mws-form" method="POST"  enctype="multipart/form-data" >
             <div class="mws-form-block">
                 <div class="mws-form-row">
                     <label class="mws-form-label">网站名称</label>
@@ -33,7 +33,7 @@
                     <label class="mws-form-label">网站LOGO</label>
                     <div class="mws-form-item">
                         <input type="file" name="logo" size="18" />
-                        <img src="{{ ltrim($config->logo,'.') }}">
+                        <img src="http://p2l4kajri.bkt.clouddn.com/{{$config->logo}}">
                     </div>
             </div>
              <div class="mws-form-row">

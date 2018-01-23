@@ -174,18 +174,9 @@ span.reference a:hover{
 		<div class="footer_one"></div>
 		<div class="footer_two">
 			<div class="footer_three">
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
-				<a href="#">友情链接</a>
+			@foreach($flinks as $val)
+				<a href="{{ $val->url }}">{{$val->link_name}}</a>
+			@endforeach
 			</div>
 		</div>
 	</div>
