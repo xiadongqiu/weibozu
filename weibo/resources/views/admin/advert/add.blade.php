@@ -18,7 +18,7 @@
 		@endif
 
 
-        	<form action="/admin/advert/" class="mws-form" method="post" enctype="multipart/form-data">
+        	<form action="/admin/advert" class="mws-form" method="post" enctype="multipart/form-data">
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
         				<label class="mws-form-label">广告名称</label>
@@ -32,8 +32,6 @@
                             <textarea name="content" class="small" value="{{old('content')}}"></textarea>
                         </div>
                     </div>
-
-        			
 
         			<div class="mws-form-row">
                         <div style="padding-bottom: 10px;">广告图片</div>
