@@ -223,7 +223,6 @@ class UserController extends Controller
                     $arr[] = $vv;
                 }
             }
-
             return view('home/fensi/index',['res'=>$res,'status'=>$status,'pic'=>$array1,'arr'=>$arr,'uid'=>$uid]);
         }
 
@@ -254,13 +253,19 @@ class UserController extends Controller
         $array['gid'] = $gid;
         $array['uid'] = $uid['uid'];
         $array['attention_time'] = time();
+        $uid = $uid['uid'];
         $bool = attention::insert($array);
+
         if ($bool){
             $res = detail::find($gid);
+            $res1 = detail::find($uid);
             $num = $res -> attent;
+            $num1 = $res1 ->attents;
             $arr['attent'] = $num + 1;
+            $arr1['fensi'] = $num1 + 1;
             detail::where('id',$gid)->update($arr);
-            echo $uid['uid'];
+            detail::where('id',$uid)->update($arr1);
+            echo $uid;
         }else{
             echo 0;
         }

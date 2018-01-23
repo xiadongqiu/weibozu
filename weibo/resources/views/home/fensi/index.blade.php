@@ -268,9 +268,6 @@
                 }else{
                     layer.msg('您已经关注成功');
                 }
-
-
-
         }
 
     </script>

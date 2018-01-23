@@ -144,7 +144,6 @@ class IndexController extends Controller
         }
     }
 
-
     //追加评论的ajax
     public function getPing(Request $Request)
     {
@@ -242,7 +241,6 @@ class IndexController extends Controller
         }
     }
 
-
     public function postShang(request $request)
     {
         // echo 1;
@@ -264,7 +262,6 @@ class IndexController extends Controller
         // $disk->delete($fileName);
 
     }
-
 
     //微博转发
     public function getZhuanfa(request $Request)
@@ -337,12 +334,13 @@ class IndexController extends Controller
         $wid = ($Request->all())['wei'];
         $uid = ($Request->all())['uid'];
         $lid = $Request->session()->get('home');
-        $res = like::where('wid',$wid)->first();
+        $res = like::where('wid',$wid)->where('lid',$lid)->first();
 
         if($res){
             echo '1';
             die;
         }
+
         $arr = array();
         $arr['lid'] = $lid;
         $arr['wid'] = $wid;

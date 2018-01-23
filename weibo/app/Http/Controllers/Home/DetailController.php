@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Model\weibo;
+use App\Model\user;
 
 class DetailController extends Controller
 {
@@ -48,18 +48,27 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         //获取当前微博的类型
         $weibo = weibo::where('id',$id)->first();
-        
+
+        $uid = $request->session()->get('home');
+
+        $res = user::where('id',$uid)->first();
         //通过单签微博类型查询类型相同的微博
         $data = weibo::where('type',$weibo['type'])->where('id','!=',$id)->take(5)->get();
         
         $pictrue = json_decode($weibo['picture'],true);
-        
 
-        return view('Home.detail.detail',['data'=>$data,'res'=>$weibo,'pictrue'=>$pictrue]);
+        $arr = array();
+        foreach($res->attent as $k=>$v){
+            foreach ($v['attributes'] as $kk=>$vv){
+                $arr[] = $vv;
+            }
+        }
+
+        return view('Home.detail.detail',['data'=>$data,'res1'=>$res,'arr'=>$arr,'res'=>$weibo,'pictrue'=>$pictrue]);
     }
 
     /**

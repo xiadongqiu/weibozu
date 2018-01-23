@@ -22,8 +22,8 @@
 		
 		<div class="con_left" style="margin-top:10px;">
 			<a href="javascript:;">首页</a>
-			<a href="javascript:;">登录</a>
-			<a href="javascript:;">注册</a>
+			<a href="/user/login">登录</a>
+			<a href="/user/register">注册</a>
 			<b></b>
 			<a href="javascript:;">默认</a>
 			<a href="javascript:;">原创</a>
@@ -77,24 +77,32 @@
 				<div class="wei_bottom">
 					<ul>
 						<li>
-							<a href="javascript:;">收藏</a>
+							<a href="javascript:;" onclick="deng()">收藏</a>
 							<span >{{ ($val->collect) > 99999 ? round($val->collect/10000).'万' :  $val->collect}}</span>
 						</li>
 						<li>
-							<a href="javascript:;">转发</a>
+							<a href="javascript:;" onclick="deng()" >转发</a>
 							<span>{{ ($val->transpond) > 99999 ? round($val->transpond/10000).'万' :  $val->transpond}}</span>
 						</li>
 						<li class="Ping">
 							<input type="hidden" value="{{$val->id}}">
-							<a href="javascript:;">评论</a>
+							<a href="javascript:;" onclick="deng()" >评论</a>
 							<span>{{ ($val->comment) > 99999 ? round($val->comment/10000).'万' :  $val->comment}}</span>
 						</li>
 						<li>
-							<a href="javascript:;">赞</a>
+							<a href="javascript:;" onclick="deng()" >赞</a>
 							<span>{{ ($val->like) > 99999 ? round($val->like/10000).'万' :  $val->like}}</span>
 						</li>
 					</ul>
-
+					<script type="text/javascript">
+						function deng(){
+                            layer.confirm('您还未登录,请先登录查看', {
+                                btn: ['确定','取消'] //按钮
+                            }, function(){
+                                location.href = '/user/login';
+                            });
+						}
+					</script>
 				</div>
 				<!-- 回复内容 -->
 		   <!-- <div class="wei_replay">

@@ -8,6 +8,12 @@
 	<div class="det_cont">
 		<div class="det_cont_left">
 			<div class="weibo">
+				@if(in_array($res->uid,$arr) )
+					<a href="javascript:;" class="W_btn_b" id="{{$res->uid}}" onclick="guanzhu(this)">{{'已互关注'}}</a>
+				@elseif($res1->id == $res->uid)
+				@else
+					<a href="javascript:;" class="W_btn_b" id="{{$res->uid}}" onclick="guanzhu(this)">关注</a>
+				@endif
 				<div class="weibo_d1">
 					@if($res->portrait =='default.jpg')
 					<img src="/homes/images/tou.png">
@@ -17,17 +23,17 @@
 					
 				</div>
 				<div class="weibo_d2">
-					<a href="/user/user" class="wei_name">{{$res->nickname}}</a>
-					<div class="wei_time">
+					<a href="/user/user/index?id={{$res->uid}}" class="wei_name">{{$res->nickname}}</a>
+					<div class="wei_time">关注</button>
                     @if(time()-$res->publish_time < 60)
                     <a href="javascript:;">{{ date('s',(time()-$res->publish_time)) }}秒前</a> 来自 微博 weibo.com</div>
                     @elseif(time()-$res->publish_time < 3600)
                     <a href="javascript:;">{{ date('i',(time()-$res->publish_time)) }}分钟前</a> 来自 微博 weibo.com</div>
                     @else
-                    <a href="javascript:;">{{date('Y-m-d',$res->publish_time)}}</a>  来自 微博 weibo.com</div>
-                    @endif
-                   
+                    <a href="javascript:;">{{date('Y-m-d',$res->publish_time)}}</a>  来自 微博 weibo.com
 
+			    </div>
+                    @endif
 					<div class="wei_cont">
 						<p >{!! $res->content !!}</p>
 						<ul class="wei_ul">
@@ -129,5 +135,25 @@ function zana(obj){
     });
 }
 
+
+function guanzhu(obj){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    if($(obj).html() != '已互关注'){
+        $.post('/user/user/guanzhu',{uid:$(obj).attr('id')},function(data){
+
+            if(data){
+                layer.msg('您已经关注成功');
+                $('#'+data+'').html('已互关注');
+                $('#'+data+'').removeAttr('onclick');
+            }
+        });
+    }else{
+        layer.msg('您已经关注成功');
+    }
+}
 </script>
 @endsection('content')

@@ -31,7 +31,6 @@ class user extends Model
     public function attention()
     {
         return $this->belongsToMany('App\Model\user','attentions','gid','uid');
-
     }
 
     //多对多
@@ -47,6 +46,10 @@ class user extends Model
         return $this->hasMany('App\Model\attention','gid');
     }
 
+    public function attents()
+    {
+        return $this->hasMany('App\Model\attention','uid');
+    }
 
 }
 
