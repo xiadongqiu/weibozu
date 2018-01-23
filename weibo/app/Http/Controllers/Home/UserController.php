@@ -14,6 +14,7 @@ use App\Model\attention;
 use App\Tool\Common;
 use App\Model\like;
 use App\Model\comment;
+use Hash;
 
 class UserController extends Controller
 {
@@ -60,8 +61,7 @@ class UserController extends Controller
     public function postEdit(request $request)
     {
         $form = $request->all();
-
-
+        dd($form);
         $id = $request->session()->get('home');
 
         $res = detail::where('id',$id)->update($form);
@@ -198,8 +198,12 @@ class UserController extends Controller
             $status = $request->only('status');
             $uid = $request->only('id');
             $res = user::find($uid['id']);
-            $array = json_decode($res->detail->pics,true);
-            $array1 = array_values($array);
+            if($res->detail->pics!=null){
+                $array = json_decode($res->detail->pics,true);
+                $array1 = array_values($array);
+            }else{
+                $array1 = '0';
+            }
             $arr = array();
             foreach($res->attent as $k=>$v){
                 foreach ($v['attributes'] as $kk=>$vv){
@@ -302,12 +306,51 @@ class UserController extends Controller
     public function postLike(request $request)
     {
         $id = ($request->only('id'))['id'];
-
         $res = user::find($id);
         $arr = array();
         foreach($res->like as $k=>$v){
             $arr[] = $v['attributes'];
         }
        return $arr;
+    }
+
+    public function postPub(request $request)
+    {
+        $id = $request->session()->get('home');
+        $res = user::where('id',$id)->first();
+        return $res->detail;
+    }
+
+    public function getXiu(request $request)
+    {
+        return view('home/user/xiugai');
+    }
+
+    public function postGai(request $request)
+    {
+        $newpassword = $request->only('np')['np'];
+        $oldpassword = $request->only('op')['op'];
+        $id = $request->session()->get('home');
+        $res = user::where('id',$id)->first();
+            $bl = Hash::check($oldpassword,$res['password']);
+        if(!$bl){
+            echo '1';
+            die;
+        }
+
+        $password =  bcrypt($newpassword); //密码哈希加密
+
+        $arr['password'] = $password;
+
+        $res1 = user::where('id',$id)->update($arr);
+
+        if($res1){
+             echo '2';
+             $request ->session()->put('home',null);
+        }else{
+            echo '0';
+        }
+
+
     }
 }

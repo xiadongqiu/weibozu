@@ -8,10 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\user;
 use App\Model\detail;
-use APP\Model\like;
-use APP\Model\comment;
-use APP\Model\weibo;
-use APP\Model\attention;
+use App\Model\like;
+use App\Model\comment;
+use App\Model\weibo;
+use App\Model\attention;
 
 class UserController extends Controller
 {
@@ -63,7 +63,10 @@ class UserController extends Controller
         $res2 = like::where('lid',$id)->delete();
         $res3 = like::where('uid',$id)->delete();
         $res4 = weibo::where('uid',$id)->delete();
-        $res5 = comment::where('uid',$id)->delete();
+        $res5 = comment::where('pid',$id)->delete();
+        $res6 = detail::where('uid',$id)->delete();
+        $res6 = user::where('id',$id)->delete();
+
     }
 
     /**
@@ -89,6 +92,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->input());
         $data = $request->except(['_method','auth','status']);
         $data1 = $request->only(['auth', 'status']);
         $res = detail::where('id',$id)->update($data);

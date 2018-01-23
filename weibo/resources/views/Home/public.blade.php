@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/homes/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/user.css">
 <link rel="stylesheet" type="text/css" href="/homes/css/bian_style.css">
+<link rel="stylesheet" type="text/css" href="/homes/css/xiugai.css">
 
 	<link rel="stylesheet" href="/homes/touxiang/baguettebox.min.css">
 	<link rel="stylesheet" href="/homes/touxiang/style.css">
@@ -107,9 +108,10 @@ span.reference a:hover{
 	color: #333;
 }
 
-.W_zan{
-	
+.security_bd ul li {
+	color:#131313;
 }
+
 </style>
 
 </head>
@@ -124,12 +126,13 @@ span.reference a:hover{
 					<input style="float:right;margin-right:10px" type="image" src="/homes/images/fangdajing_1.png">
 				</form>
 			</div>
-			<div class="WB_center">
+			<div class="WB_center" style="float: right;margin-left: 0px">
 				<ul>
 					<li><a class="WE_cen1" href="/index">&nbsp;&nbsp;首页</a></li>
 					<li><a class="WE_cen2" href="#">&nbsp;&nbsp;发现</a></li>
-					<li><a class="WE_cen3" href="#">&nbsp;&nbsp;用户名</a></li>
+					<li><a class="WE_cen3" href="#" style="width:100px">&nbsp;&nbsp;用户名</a></li>
 					<li><a class="WE_cen4" href="javascript:;" onclick="zhuxiao()">注销</a></li>
+					<li><a class="WE_cen5" href="/user/user/xiu">修改密码</a></li>
 				</ul>
 			</div>
 		</div>
@@ -142,6 +145,20 @@ span.reference a:hover{
                     layer.msg('注销成功', {icon: 1});
                 });
 			}
+
+
+		</script>
+		<script type="text/javascript">
+			$(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post('/user/user/pub',function(data){
+                    $('.WE_cen3').html(data.nickname);
+				});
+            });
 
 		</script>
 	</div>

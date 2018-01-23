@@ -10,7 +10,11 @@
                 <div class="row">
                     <div id="crop-avatar" class="col-md-6" style="padding-left:0px">
                         <div class="avatar-view" >
-                            <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
+                            @if($res->detail->portrait == 'default.jpg')
+                                <img src='/Homes/images/tou.png' alt="Logo">
+                            @else
+                                <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -145,6 +149,7 @@
                 </div>
                 <div class="cont_left_three" style="">
                     <span style="border-bottom: 1px solid #F2F2F5;">赞</span>
+                    @if(count($res->like)>0)
                     <div class="W_zan" style="border-bottom:1px solid #ddd;">
 
                         <img style="width: 60px;
@@ -154,7 +159,9 @@
                         <div>{{$res->like[0]->content}}</div>
                     </div>
                     <div  style="clear:both"></div>
-
+                    @else
+                        您未赞过任何微博
+                    @endif
                     <span id="zhuijia" style="border-top: 1px solid #F2F2F5;"><a href="javascript:;" id="{{$res->id}}" onclick="zan(this)">查看更多</a></span>
 
                 </div>
