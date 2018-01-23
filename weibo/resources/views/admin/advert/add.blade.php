@@ -26,12 +26,15 @@
         					<input type="text" class="small" name="user" value="{{old('user')}}">
         				</div>
         			</div>
-        			<div class="mws-form-row">
-        				<label class="mws-form-label">广告内容</label>
-        				<div class="mws-form-item">
-        					<input type="text" class="small" name="link" value="{{old('link')}}" style="height: 100px">
-        				</div>
-        			</div>
+                    <div class="mws-form-row">
+                            <label class="mws-form-label">广告内容</label>
+                            <div class="mws-form-item">
+                            <textarea name="content" class="small" value="{{old('content')}}"></textarea>
+                        </div>
+                    </div>
+
+        			
+
         			<div class="mws-form-row">
                         <div style="padding-bottom: 10px;">广告图片</div>
                         <div>

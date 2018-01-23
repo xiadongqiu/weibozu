@@ -91,19 +91,14 @@
                                         <center>
 
                                             <a href="/admin/advert/{{$v->id}}/edit">
-
-
-
                                             <input type="submit" class="btn btn-default" value="修改"></a>
 
-                                            <button class="btn btn-default" onclick="">删除</button>
-
+                                            <button class="btn btn-default" onclick="advert_delete({{$v->id}})">删除</button>
                                         </center>
                                     </td>
                             </tr>
                     @endforeach
                 </tbody>
-
             </table>
              <div class="dataTables_info" id="DataTables_Table_1_info">
                 共{{$data->total()}}条&nbsp;&nbsp;&nbsp;5条/页
@@ -114,12 +109,50 @@
 
 
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-
-                
+ 
             </div>
         </div>
     </div>
 </div>
 
+@endsection
 
+@section('js')
+    <script type="text/javascript">
+        //删除广告
+        function advert_delete(id){
+
+            layer.confirm('您确定要删除此广告吗？', {
+                  btn: ['确定','取消'] //按钮
+                }, function(){
+
+                    $.ajax({
+                    type: "post",
+                    url: "/admin/advert/"+id,
+                    data: {id:id,_token:'{{csrf_token()}}',_method:'delete'},
+                    beforeSend:function(){
+                        //加载样式
+                        a = layer.load(0, {shade: false});
+                      },
+                    success: function(data) {
+
+                        //关闭加载样式
+                        layer.close(a)
+
+                        //移除标签
+                        $('#advert'+id).remove();
+
+                        layer.msg('广告删除成功:)', {icon: 1});
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                        layer.msg("广告删除失败，请检查网络后重试", {icon:2 ,})
+                    }
+                });
+
+                }, function(){
+
+                });
+        }
+    </script>
 @endsection

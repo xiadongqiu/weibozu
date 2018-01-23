@@ -18,7 +18,7 @@ class CommentsController extends Controller
      */
     public function index()
     {   
-    
+
     }
 
     /**
@@ -50,7 +50,9 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
+
         $data = comment::where('wid',$id)->get();
+
         return view('admin/post/comments',['data'=>$data]);
     }
 
