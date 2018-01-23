@@ -15,7 +15,6 @@ use App\Model\like;
 use App\Model\report;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
-use App\Model\like;
 
 class IndexController extends Controller
 {
