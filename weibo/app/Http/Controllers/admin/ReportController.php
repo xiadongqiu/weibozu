@@ -85,6 +85,12 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $data = report::where('id',$id)->delete();
+        if($data){
+            echo 1;
+        }else{
+            echo 0;
+        }    
     }
 }

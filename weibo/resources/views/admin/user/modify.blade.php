@@ -17,106 +17,29 @@
                         <input type="text" class="large" value="{{$data->phone}}" readonly>
                     </div>
                 </div>
+            </div>
+            <div class="mws-form-inline">
                 <div class="mws-form-row bordered">
                     <label class="mws-form-label">
-                        Textarea
+                        旧密码：
                     </label>
                     <div class="mws-form-item">
-                        <textarea rows="" cols="" class="large">
-                        </textarea>
+                        <input type="password" name="oldphone" class="large" value="">
                     </div>
                 </div>
+            </div>
+            <div class="mws-form-inline">
                 <div class="mws-form-row bordered">
                     <label class="mws-form-label">
-                        Dropdown List
+                        新密码：
                     </label>
                     <div class="mws-form-item">
-                        <select class="large">
-                            <option>
-                                Option 1
-                            </option>
-                            <option>
-                                Option 3
-                            </option>
-                            <option>
-                                Option 4
-                            </option>
-                            <option>
-                                Option 5
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="mws-form-row bordered">
-                    <label class="mws-form-label">
-                        Checkboxes
-                    </label>
-                    <div class="mws-form-item clearfix">
-                        <ul class="mws-form-list inline">
-                            <li>
-                                <input type="checkbox">
-                                <label>
-                                    Checkbox 1
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>
-                                    Checkbox 2
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>
-                                    Checkbox 3
-                                </label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>
-                                    Checkbox 4
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mws-form-row bordered">
-                    <label class="mws-form-label">
-                        Radio Buttons
-                    </label>
-                    <div class="mws-form-item clearfix">
-                        <ul class="mws-form-list inline">
-                            <li>
-                                <input type="radio">
-                                <label>
-                                    Radio 1
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio">
-                                <label>
-                                    Radio 1
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio">
-                                <label>
-                                    Radio 1
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio">
-                                <label>
-                                    Radio 1
-                                </label>
-                            </li>
-                        </ul>
+                        <input type="password" name="phone" class="large" value="">
                     </div>
                 </div>
             </div>
             <div class="mws-button-row">
-                <input type="submit" value="Submit" class="btn btn-danger">
-                <input type="reset" value="Reset" class="btn ">
+                <input type="submit" value="修改" class="btn btn-danger">
             </div>
         </form>
     </div>

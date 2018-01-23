@@ -147,13 +147,11 @@ font-size: 14px;
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-
                         hello, [ {{$user->auth}} ]
 
                     </div>
                     <ul>
-                        <li><a href="/admins/#" title="{{$user->detail->nickname}}">用户</a></li>
-                        <li><a href="/admin/pass">修改密码</a></li>
+                        <li><a href="/admin/user/{{$user->id}}/edit">用户：{{$user->detail->nickname}}</a></li>
                         <li><a href="/admin/loginout" id="logoff" title="退出登录">注销</a></li>
                     </ul>
                 </div>

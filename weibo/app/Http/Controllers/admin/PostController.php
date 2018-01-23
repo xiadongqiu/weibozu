@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Model\weibo;
 use App\Model\comment;
+use App\Model\report;
+use App\Model\like;
 
 
 class PostController extends Controller
@@ -89,11 +91,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
-    // dd($id);
     $data = weibo::where('id',$id)->delete();
     if($data){
          $res = comment::where('wid',$id)->delete();
+         $res = like::where('wid',$id)->delete();
+         $res = report::where('wid',$id)->delete();
         if($res){
             echo 1;
         }else{
