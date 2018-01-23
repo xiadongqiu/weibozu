@@ -72,7 +72,7 @@
                                         <center>{{$v->content}}</center>
                                     </td>
                                     <td class=" ">
-                                        <center>{{$v->picture}}<img src="#" style="width:100px;" id="img" >
+                                        <center><img src="http://p2l4kajri.bkt.clouddn.com/{{$v->picture}}" style="width:100px;" id="img" >
                                         </center>
                                     </td>
                                     

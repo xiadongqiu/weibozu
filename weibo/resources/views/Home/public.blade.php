@@ -130,7 +130,7 @@ span.reference a:hover{
 				<ul>
 					<li><a class="WE_cen1" href="/index">&nbsp;&nbsp;首页</a></li>
 					<li><a class="WE_cen2" href="#">&nbsp;&nbsp;发现</a></li>
-					<li><a class="WE_cen3" href="#" style="width:100px">&nbsp;&nbsp;用户名</a></li>
+					<li><a class="WE_cen3" href="/user/user" style="width:100px">&nbsp;&nbsp;用户名</a></li>
 					<li><a class="WE_cen4" href="javascript:;" onclick="zhuxiao()">注销</a></li>
 					<li><a class="WE_cen5" href="/user/user/xiu">修改密码</a></li>
 				</ul>

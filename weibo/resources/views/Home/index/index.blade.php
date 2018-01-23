@@ -199,7 +199,7 @@
 				</div>
 				<ul >
 					@foreach($hot as $key=>$value)
-					<li style="overflow:hidden"><a href="/detail/{{$value->id}}" target="_blank">{{ html_entity_decode($value->content) }}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
+					<li style="overflow:hidden"><a href="/detail/{{$value->id}}" target="_blank">{!! $value->content  !!} </a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
 					@endforeach
 				</ul>
 				<div class="conR_more"><a class="more" href="javascript:;">查看更多 ></a></div>

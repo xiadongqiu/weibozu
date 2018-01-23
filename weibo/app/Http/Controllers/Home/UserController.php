@@ -62,9 +62,9 @@ class UserController extends Controller
     {
         $form = $request->all();
         $id = $request->session()->get('home');
-
+        $arr['nickname'] = $form['nickname'];
+        $res1 = weibo::where('uid',$id)->update($arr);
         $res = detail::where('id',$id)->update($form);
-
         if($res){
             echo 1;
         }else{
