@@ -64,9 +64,6 @@
 				<!-- 回复内容 -->
 				<div class="wei_replay">
 				</div>
-				<div class="weibo_gengduo">
-					<a href="javascript:;">查看更多 > </a>
-				</div>
 			</div>
 			<!-- 微博内容结束 -->
 		</div>
@@ -90,7 +87,7 @@
 						<img src="http://p2l4kajri.bkt.clouddn.com/{{$v->portrait}}">
 						@endif
 						<div>
-							<p><a href="javascript:;">{{$v->nickname}}</a></p>
+							<p><a href="/user/user">{{$v->nickname}}</a></p>
 							<p>{{$v->content}}</p>
 						</div>
 					</div>

@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 
 
 		    Route::get('/post/search/{nickname}','PostController@search'); 
-			Route::resource('/comments','CommentsController');
+			Route::controller('/comments','CommentsController');
 			
 //郑鑫===================================================================
 			//后台网站配置路由

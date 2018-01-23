@@ -273,7 +273,10 @@
 
                 </script>
             </div>
-
+            <div class="cont_right">
+                <img src="/homes/images/guanggao1.png">
+                <img src="/homes/images/guanggao2.png">
+            </div>
         </div>
 
 
