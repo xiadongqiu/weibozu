@@ -1,0 +1,164 @@
+.security_bd {
+    width: 656px;
+    height: 514px;
+    margin: 40px auto 0;
+    background: #fff;
+    border-top: 2px #fa7d3c solid;
+    border-radius: 2px;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
+    font: 12px/1.3 'Arial','Microsoft YaHei';
+    margin-top:80px;
+}
+
+.security_bd .s_title {
+    height: 46px;
+    padding-left: 10px;
+    line-height: 46px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.security_bd .left_list {
+    width: 139px;
+    height: 457px;
+    padding: 10px 0 0 10px;
+    background: #f2f2f5;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.security_bd .left_list li {
+    width: 129px;
+    height: 32px;
+    padding-left: 10px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.security_bd .left_list li.on {
+    width: 130px;
+    padding-left: 9px;
+    background: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-right: 0;
+    border-color: #ddd;
+}
+
+.security_bd .right_mod {
+    width: 465px;
+    padding: 0 20px;
+}
+
+.W_fr{
+    float: right;
+}
+.security_bd .form_mod {
+    position: relative;
+    height: 447px;
+    padding-top: 20px;
+}
+
+.W_tips.tips_warn {
+    border: 1px solid #e4e7f8;
+    background: #f8f9fe;
+    line-height: 12px;
+    color: #808080;
+}
+.W_tips {
+    font-size: 12px;
+    overflow: hidden;
+    padding: 5px 7px 4px 10px;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+
+.W_tips .icon {
+    display: inline;
+    margin: 0 5px 0 0;
+    vertical-align: -3px;
+}
+
+.W_tips .txt {
+    display: inline;
+    line-height: 18px;
+    text-align: left;
+}
+
+.security_bd .form_mod .form_list {
+    margin-top: 15px;
+}
+ol, ul {
+    list-style: none;
+}
+
+.security_bd .form_mod .form_list .item {
+    line-height: 35px;
+    margin-bottom: 7px;
+}
+
+.security_bd .form_mod .form_list .tit {
+    display: inline-block;
+    width: 165px;
+    margin-right: 3px;
+    text-align: right;
+}
+
+.security_bd .form_mod .form_list .W_input {
+    width: 196px;
+    padding: 0 0 0 2px;
+}
+.security_bd .form_mod .form_list .WB_select, .security_bd .form_mod .form_list .W_input {
+    height: 33px;
+    line-height: 33px;
+}
+
+.security_bd .form_mod .form_prompt {
+    padding: 3px 0 2px 171px;
+    height: 17px;
+}
+
+.security_bd .form_mod .form_btn {
+    position: absolute;
+    bottom: 0;
+    width: 447px;
+    padding: 10px 0;
+    text-align: center;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.S_line2 {
+    border-color: #f2f2f5;
+}
+
+.security_bd .form_mod .form_btn .W_btn_a {
+    padding: 0 25px;
+}
+.btn_34px {
+    display: inline-block;
+    height: 34px;
+    line-height: 35px;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.W_btn_a {
+    background: #ff8140;
+    border: 1px solid #f77c3d;
+    color: #fff;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.25);
+}
+.W_btn_a, .W_btn_b, .W_btn_c, .W_btn_d {
+    padding: 0 10px 0 10px;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 2px;
+    height: 24px;
+    line-height: 25px;
+    text-decoration: none;
+    font-size: 12px;
+    min-width: 40px;
+    text-align: center;
+    outline: none;
+}

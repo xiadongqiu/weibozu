@@ -99,12 +99,12 @@
                 btn: ['确定','取消'] //按钮
             }, function(){
                 $.post("/admin/user/"+$(obj).attr('id'),{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
-                        layer.msg('123');
-                });
+                            layer.msg('删除成功');
+                            $(obj).parent().parent().remove();
 
+                });
             });
         }
-
     </script>
 @stop
 @section('title','微博用户')

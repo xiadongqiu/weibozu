@@ -11,6 +11,8 @@ use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use App\model\user;
 use App\model\detail;
+use Hash;
+
 class RegisterController extends Controller
 {
     /**
@@ -64,6 +66,11 @@ class RegisterController extends Controller
        $code = $request->only('code');
 
         if($code1 == $code['code']){
+            $password = $data['password'];
+
+            $password =  bcrypt($password); //密码哈希加密
+
+            $data['password'] = $password;
 
             $res = user::insert($data);
 

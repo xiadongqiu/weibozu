@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\model\user;
+use Hash;
+
 class LoginController extends Controller
 {
     /**
@@ -48,12 +50,15 @@ class LoginController extends Controller
 
         $password = $data['password'];
 
+
         $res = user::where('phone','=',$phone)->first();
 
         if($res['status'] != 0){
             echo '2';
         }else{
-            if($password == $res['password']){
+
+
+            if( Hash::check($password,$res['password'])){
                 $request->session()->put('home', $res['id']);
 
                 echo '1';

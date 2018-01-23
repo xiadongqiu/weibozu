@@ -16,6 +16,7 @@ use App\Model\report;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\JsonResponse;
 
+
 class IndexController extends Controller
 {
 
@@ -87,7 +88,6 @@ class IndexController extends Controller
         //当前用户发微博数
         $weires = weibo::where('uid',$uid)->get();
         $weis = count($weires);
-
         $detail = detail::where('id',$uid)->first();
         return view('home.index.index',['data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
     }
@@ -329,7 +329,6 @@ class IndexController extends Controller
 
         
     }
-
 
     //点赞
 

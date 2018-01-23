@@ -10,7 +10,11 @@
                 <div class="row">
                     <div id="crop-avatar" class="col-md-6" style="padding-left:0px">
                         <div class="avatar-view" >
+                            @if($res->detail->portrait == 'default.jpg')
+                            <img src='/Homes/images/tou.png' alt="Logo">
+                            @else
                             <img src='http://p2l4kajri.bkt.clouddn.com/{{$res->detail->portrait}}' alt="Logo">
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -157,8 +161,8 @@
                     </div>
                 </div>
                 <!-- 微博内容 -->
+                @if(count($res->weibo)>0)
                 @foreach ($res->weibo as $k => $v)
-
                     <div class="weibo" style="">
                         @if($uid == session('home'))
 
@@ -220,6 +224,9 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <div class="weibo">您未发布任何微博</div>
+                @endif
                 {{--<!-- 微博内容结束 -->--}}
                 <script type="text/javascript">
 
@@ -393,15 +400,15 @@
         <table>
             <tr>
                 <td><span>邮箱</span></td>
-                <td><i></i>{{$res->detail->email}}</td>
+                <td><i></i>{{$res->detail->email or '您未填写邮箱'}}</td>
             </tr>
             <tr>
                 <td><span>QQ</span></td>
-                <td><i></i>{{$res->detail->qq}}</td>
+                <td><i></i>{{$res->detail->qq or '您还未填写QQ'}}</td>
             </tr>
             <tr>
                 <td><span>MSN</span></td>
-                <td><i></i>{{$res->detail->msn}}</td>
+                <td><i></i>{{$res->detail->msn or '您还未填写MSN'}}</td>
             </tr>
         </table>
     </div>
@@ -410,16 +417,18 @@
         <table>
             <tr>
                 <td><span>职业信息</span></td>
-                <td><i></i>{{$res->detail->job}}</td>
+                <td><i></i>{{$res->detail->job or '请填写职业信息'}}</td>
             </tr>
         </table>
     </div>
 </div>
+
 <div class="zhu_center bianji" style="display:{{$status['status'] == '3'?'block':'none'}}">
+    <form action="" id="form">
     <div class="xinxi_one"><span>基本信息</span> <button id="baocun" type="button">保存</button>
     </div>
     <div class="xinxi_two">
-        <form action="" id="form">
+
             <table>
             <tr>
                 <td><span>登录名</span></td>
@@ -631,7 +640,7 @@
                 <td><span>{{date('Y/m/d H:i:s',$res->detail->registertime)}}</span></td>
             </tr>
         </table>
-        </form>
+
     </div>
     <div class="xinxi_one"><span>联系信息</span></div>
     <div class="xinxi_two">
@@ -658,10 +667,10 @@
                 <td><input type="text" name="job" value="{{$res->detail->job}}" placeholder="请输入个人职业信息"></td>
             </tr>
         </table>
-        </form>
 
 
     </div>
+    </form>
 </div>
 
 <!--   个人中心 -->
