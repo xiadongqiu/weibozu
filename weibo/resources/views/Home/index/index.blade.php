@@ -210,7 +210,6 @@
 			<!-- 好友关注动态 -->
 			<div class="conR_three" style="height:auto;">
 				<img src="/homes/images/guanggao3.png">
-				<img src="/homes/images/guanggao4.png">
 			</div>
 		</div>
 	</div>
@@ -436,7 +435,7 @@ $(".myEmoji img").each(function(){
 $('.huan').click(function(){
 	var lis = $(this);
 	lis.parent().next().empty();
-	$.get('/a/huan',function(data){
+	$.get('/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
 			lis.parent().next().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
@@ -448,7 +447,7 @@ $('.huan').click(function(){
 $('.more').click(function(){
 	var lis = $(this);
 	lis.parent().prev().empty();
-	$.get('/a/huan',function(data){
+	$.get('/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
 			lis.parent().prev().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');

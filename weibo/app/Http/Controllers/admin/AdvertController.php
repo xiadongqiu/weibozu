@@ -21,7 +21,7 @@ class AdvertController extends Controller
         $requestall = $request->all();
          $data = advert::paginate(5);
         // $data = advert::get();
-         // dd($res);
+         //dump($res);
         return view('admin/advert/index',['data'=>$data,'request'=>$requestall]);   
         
     }
@@ -105,7 +105,6 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if($request->only('picture')['picture']){
 
             $data = $request->except('_token','picture','_method');
@@ -142,7 +141,6 @@ class AdvertController extends Controller
                 echo "<script type='text/javascript'>alert('修改失败');location.href='/admin/advert/'</script>";
             }
         }
-
     }
 
     /**

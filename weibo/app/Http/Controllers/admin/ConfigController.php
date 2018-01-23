@@ -30,17 +30,7 @@ class ConfigController extends Controller
         //判断是否有修改图片
         $pic = $request->only('logo')['logo'];
         
-        if($pic != null){
-            // 获取文件的目录
-            $pic = $request->only('logo')['logo'];
-            // dd($pic);
-            $disk = \Storage::disk('qiniu');
-            $pat = $pic->getClientOriginalExtension();
-            $fileName = md5(rand(0000,9999)).'.'.$pat;
-            $path = $pic->getRealPath();
-            $disk -> put($fileName,fopen($path,'r+'));
-            $jieguo->logo  = $fileName;
-        }
+       
 
         $config = $request->all();
         // dd($_FILES);
@@ -51,6 +41,19 @@ class ConfigController extends Controller
         $jieguo->keyword = $config['keyword'];
         $jieguo->copyright = $config['copyright'];
         $jieguo->status = $config['status'];
+
+
+         if($pic != null){
+            // 获取文件的目录
+            $pic = $request->only('logo')['logo'];
+            //dd($pic);
+            $disk = \Storage::disk('qiniu');
+            $pat = $pic->getClientOriginalExtension();
+            $fileName = md5(rand(0000,9999)).'.'.$pat;
+            $path = $pic->getRealPath();
+            $disk -> put($fileName,fopen($path,'r+'));
+            $jieguo->logo  = $fileName;
+        }
 
         $final = $jieguo->save();
 

@@ -1,5 +1,5 @@
 @extends('home.public')
-@section('title','未登录首页')
+@section('title','未登录')
 @section('content')
 
 
@@ -62,7 +62,7 @@
 					@endif
 					</a> 来自 微博 weibo.com</div>
 					<div class="wei_cont">
-						<p>{{ $val->content}} </p>
+						<p>{!! $val->content !!} </p>
 						<ul class="wei_ul">
 						
 							@if( (json_decode($val->picture,true))[0] != '' )
@@ -182,69 +182,45 @@
 				</div>
 				<ul >
 					@foreach($hot as $key=>$value)
-					<li style="overflow:hidden"><a href="javascript:;">{{ $value->content}}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
+					<li style="overflow:hidden"><a href="javascript:;">{!! $value->content !!}</a><span>{{($value->like) > 9999 ? round($value->like/10000).'万' :  $value->like}}</span></li>
 					@endforeach
 				</ul>
-				<div class="conR_more"><a href="javascript:;">查看更多 ></a></div>
+				<div class="conR_more"><a class="more" href="javascript:;">查看更多 ></a></div>
 			</div>
 			<!-- 好友关注动态 -->
 			<div class="conR_three">
-				<div class="friends">好友关注状态</div>
-				<ul class="friends_ul">
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-					<li>
-						<img width="30" height="30" style="margin-left:10px;" src="./Homes/images/tou.png">
-						<div>
-							<a href="javascript:;">用户名</a>
-							<span>简单介绍</span>
-						</div>
-						<img style="float:right;margin-right:10px;" src="./Homes/images/guanzhu.png">
-					</li>
-				</ul>
-				<div class="conR_more"><a href="javascript:;">查看更多 ></a></div>
+				<img src="/homes/images/guanggao4.png">
+				<img src="/homes/images/guanggao3.png">
 			</div>
 		</div>
 	</div>
 <script type="text/javascript">
+$('.huan').click(function(){
+	var lis = $(this);
+	lis.parent().next().empty();
+	$.get('/huan',function(data){
+		for(var j=0;j<8;j++){
+			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
+			lis.parent().next().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
+		}
+		
+	},"json");
+})
+
+$('.more').click(function(){
+	var lis = $(this);
+	lis.parent().prev().empty();
+	$.get('/huan',function(data){
+		for(var j=0;j<8;j++){
+			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
+			lis.parent().prev().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
+		}
+		
+	},"json");
+})
+
+
+
 $('a').css('text-decoration','none');
 
 var pre = 0;
@@ -274,33 +250,7 @@ $('.wei_bottom').on("click",".Ping",function(){
 	
 });
 
-// 回复==========================
-function replays(obj){
-	var id = $(obj).attr('param');
-	if($(obj).attr('rep') == null){
-		$(obj).attr('rep','rep');
-		$.get('/a/replay',{id:$(obj).attr('param')}, function (data){
-			if(data){
-				$(obj).parent().parent().parent().parent().after('<div class="WB_ping_two"><form><input type="text" class="wei_hui"><input type="submit" value="评论" class="wei_huifu"></form></div>');
-				for(var i=0;i<3;i++){
-					$(obj).parent().parent().parent().parent().next().after("<div class='WB_ping_three'><ul class='WB_ping_three_ul'><li><a href='javascript:;'>"+data[i]['nickname']+"</a>:'"+data[i]['content']+"</li><li><span>今天 11:11</span><span class='WB_ping_onespan'><a href='javascript:;'>举报</a><a href='javascript:;'>屏蔽</a><a href='javascript:;'>回复</a><i>11</i></span></li></ul></div>");
-				}
-			}
-			$(obj).parent().parent().parent().parent().show();
-		},"json");
 
-	}else{
-		$(obj).parent().parent().parent().parent().nextAll().hide();
-		$(obj).removeAttr('rep');
-		$(obj).parent().parent().parent().parent().nextAll().remove();
-	}
-}
-
-$('.wei_replay .replays').hover(function(){
-	$(this).css({'color':'#fa7d3c'});
-},function(){
-	$(this).css({'color':'#666'});
-});
 
 </script>
 

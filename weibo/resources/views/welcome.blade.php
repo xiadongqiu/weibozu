@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Laravel</title>
-
+        <script type="text/javascript" src="/homes/js/jquery-1.8.3.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <style>
@@ -37,10 +37,15 @@
     </head>
     <body>
         <div class="container">
-            <div class="content">
+      <!--       <div class="content">
                 <div class="title">项目</div>
                 <a href="/user/login">登录</a>
-            </div>
+            </div> -->
         </div>
     </body>
+    <script type="text/javascript">
+        $(function(){
+            location.href = '/a';
+        })
+    </script>
 </html>

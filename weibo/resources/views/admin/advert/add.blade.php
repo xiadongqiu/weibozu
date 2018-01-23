@@ -18,11 +18,13 @@
 		@endif
 
 
-        	<form action="/admin/advert/" class="mws-form" method="post" enctype="multipart/form-data">
+        <form action="/admin/advert" class="mws-form" method="post" enctype="multipart/form-data">
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
         				<label class="mws-form-label">广告名称</label>
         				<div class="mws-form-item">
+
+                         {{csrf_field()}}
         					<input type="text" class="small" name="advertising" value="{{old('advertising')}}">
         				</div>
         			</div>
@@ -50,11 +52,10 @@
         		</div>
         		<div class="mws-button-row">
 
-        			{{csrf_field()}}
-
                     <input type="submit" class="btn btn-default" value="添加">
         		</div>
         	</form>
         </div>
     </div>
+
 @endsection

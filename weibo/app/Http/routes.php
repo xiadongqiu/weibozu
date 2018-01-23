@@ -37,7 +37,7 @@ Route::group(['middleware'=>'home'],function(){
 
 
 //陈明路由==================================================
-Route::group(['prefix'=>'user','namespace'=>'Home'],function(){
+Route::group(['prefix'=>'/user','namespace'=>'Home'],function(){
 
 
 	Route::controller('/index','IndexController');
