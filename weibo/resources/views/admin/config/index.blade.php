@@ -17,7 +17,7 @@
                 </div>
  
                 <div class="mws-form-row">
-                            <label class="mws-form-label">广告内容</label>
+                            <label class="mws-form-label">网站内容</label>
                             <div class="mws-form-item">
                             <textarea name="content" class="small" >{{$config->content}}</textarea>
                         </div>

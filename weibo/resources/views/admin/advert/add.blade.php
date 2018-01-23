@@ -23,7 +23,7 @@
         			<div class="mws-form-row">
         				<label class="mws-form-label">广告名称</label>
         				<div class="mws-form-item">
-        					<input type="text" class="small" name="user" value="{{old('user')}}">
+        					<input type="text" class="small" name="advertising" value="{{old('advertising')}}">
         				</div>
         			</div>
                     <div class="mws-form-row">
@@ -38,14 +38,14 @@
         			<div class="mws-form-row">
                         <div style="padding-bottom: 10px;">广告图片</div>
                         <div>
-                            <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="No file selected..." name="pic">
+                            <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="No file selected..." name="picture">
                         </div>
                     </div>
 
                     <div class="mws-form-row">
                         <label class="mws-form-label">广告地址</label>
                         <div class="mws-form-item">
-                            <input type="text" class="small" name="link" value="{{old('link')}}" >
+                            <input type="text" class="small" name="url" value="{{old('url')}}" >
                         </div>
                     </div>
 

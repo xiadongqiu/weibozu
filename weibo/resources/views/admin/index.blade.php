@@ -199,6 +199,16 @@ font-size: 14px;
 
                     </li>
 
+
+
+                     <li>
+                    <a href="#"><i class="icon-link"></i>友情链接</a>
+                        <ul class="closed">
+                            <li><a href="/admin/flink/create">链接添加</a></li>
+                            <li><a href="/admin/flink">链接列表</a></li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="/admins/#"><i class="icon-newspaper"></i>广告管理</a>
                          <ul style="display: none;" class="closed">
@@ -222,6 +232,7 @@ font-size: 14px;
                             <li><a href="/admin/config">配置信息</a></li>
                         </ul>
                     </li>
+
                 </ul>
             </div>
             <!-- 导航结束 -->

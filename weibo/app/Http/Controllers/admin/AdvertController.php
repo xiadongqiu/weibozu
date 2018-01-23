@@ -46,6 +46,7 @@ class AdvertController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
@@ -69,9 +70,9 @@ class AdvertController extends Controller
     {
         //
         //查询数据库单条信息
-        $res = advert::where('id',$id)->first();
+        $data = advert::where('id',$id)->first();
         //将数据传递到修改页面
-        return view('/admin/advert/edit',['res'=>$res]);
+        return view('/admin/advert/edit',['data'=>$data]);
         // return view('admin/advert/edit');
     }
 
@@ -96,16 +97,7 @@ class AdvertController extends Controller
     public function destroy($id)
     {
         
-        //获取数据库图片信息
-        $res = advert::where('id',$id)->value('picture');
-        //初始化七牛云
-        $disk = QiniuStorage::disk('qiniu');
-
-        //删除七牛云信息
-        $data = $disk->delete($res);
-        
-        //删除数据库指定id的信息
-        $info = advert::where('id',$id)->delete();
+    
 
         //删除数据库指定id的信息
         $info = advert::where('id',$id)->delete();

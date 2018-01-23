@@ -21,7 +21,7 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">广告名称</label>
                         <div class="mws-form-item">
-                            <input type="text" class="small" name="" value="{{old('advertising')}}">
+                            <input type="text" class="small" name="advertising" value="{{old('advertising')}}">
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -31,27 +31,31 @@
                         </div>
                     </div>
 
-                    
-
                     <div class="mws-form-row">
                         <div style="padding-bottom: 10px;">广告图片</div>
                         <div>
-                            <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="No file selected..." name="picture" value="picture">
+                            <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="No file selected..." name="picture" value="{{old('picture')}}">
                         </div>
                     </div>
 
                     <div class="mws-form-row">
                         <label class="mws-form-label">广告地址</label>
                         <div class="mws-form-item">
-                            <input type="text" class="small" name="link" value="{{old('url')}}" >
+                            <input type="text" class="small" name="url" value="{{old('url')}}" >
                         </div>
                     </div>
-
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">广告状态</label>
+                        <div class="mws-form-item clearfix">
+                            <ul class="mws-form-list inline">
+                                <li><input type="radio" name="status" value="0" <label>上线</label></li>
+                                <li><input type="radio" name="status" value="1" <label>下线</label></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="mws-button-row">
-
                     {{csrf_field()}}
-
                     <input type="submit" class="btn btn-default" value="确认修改">
                 </div>
             </form>
