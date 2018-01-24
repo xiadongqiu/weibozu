@@ -77,7 +77,18 @@ class AdvertController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = advert::where('id',$id)->first();
+
+        if($data->status == 0 ){
+            $data->status = 1;
+            $data->save();
+            echo 1;
+        }else if($data->status == 1){
+            $data->status = 0;
+            $data->save();
+            echo 0;
+        }
+
     }
 
     /**

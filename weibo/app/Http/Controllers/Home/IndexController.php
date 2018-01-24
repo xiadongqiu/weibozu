@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Model\advert;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -89,7 +90,10 @@ class IndexController extends Controller
         $weires = weibo::where('uid',$uid)->get();
         $weis = count($weires);
         $detail = detail::where('id',$uid)->first();
-        return view('home.index.index',['data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
+
+        //广告
+        $adverts = advert::where('status','1')->first();
+        return view('home.index.index',['adverts'=>$adverts,'data'=>$data,'page'=>$pages,'hot'=>$hot,'detail'=>$detail,'weis'=>$weis]);
     }
 
     public function getWei(Request $Request)

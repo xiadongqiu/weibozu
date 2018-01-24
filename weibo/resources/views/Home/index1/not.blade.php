@@ -206,7 +206,7 @@
 $('.huan').click(function(){
 	var lis = $(this);
 	lis.parent().next().empty();
-	$.get('/huan',function(data){
+	$.get('/a/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
 			lis.parent().next().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');
@@ -218,7 +218,7 @@ $('.huan').click(function(){
 $('.more').click(function(){
 	var lis = $(this);
 	lis.parent().prev().empty();
-	$.get('/huan',function(data){
+	$.get('/a/huan',function(data){
 		for(var j=0;j<8;j++){
 			var rr = data[j]['like'] > 9999 ? Math.round(data[j]['like']/10000)+'万' : data[j]['like'];
 			lis.parent().prev().append('<li style="overflow:hidden"><a href="/detail/'+data[j]['id']+'" target="_blank">'+data[j]['content']+'</a><span>'+ rr +'</span></li>');

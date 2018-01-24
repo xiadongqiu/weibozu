@@ -101,12 +101,6 @@ Route::group(['prefix' => 'admin','namespace' => 'admin'], function () {
 			Route::controller('/comments','CommentsController');
 
 
-
-
-
-
-
-
 //郑鑫===================================================================
 			//后台网站配置路由
 		 	Route::controller('/config','ConfigController');

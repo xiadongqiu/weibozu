@@ -39,8 +39,8 @@
                         <label class="mws-form-label">广告状态</label>
                         <div class="mws-form-item clearfix">
                             <ul class="mws-form-list inline">
-                                <li><input type="radio" name="status" {{$data->status == 0 ?'checked':''}}  value="0" ><label>上线</label></li>
-                                <li><input type="radio" name="status" {{$data->status == 1 ?'checked':''}} value="1" ><label>下线</label></li>
+                                <li><input type="radio" name="status" {{$data->status == 1 ?'checked':''}}  value="1" ><label>上线</label></li>
+                                <li><input type="radio" name="status" {{$data->status == 0 ?'checked':''}} value="0" ><label>下线</label></li>
                             </ul>
                         </div>
                     </div>

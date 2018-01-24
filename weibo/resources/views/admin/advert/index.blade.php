@@ -81,21 +81,20 @@
                                     </td>
                                     
                                     <td class=" ">
-                                        <center>
 
-                        
-                                        </center>
+                                            {{$v->status}}
+
                                     </td>        
 
                                     <td class=" ">
-                                        <center>
+
 
                                             <a href="/admin/advert/{{$v->id}}/edit">
                                             <input type="submit" class="btn btn-default" value="修改"></a>
-                                            <button class="btn btn-default" id="content{{$v->id}}"  onclick="advert_status({{$v->id}})">{{$v->status== 1 ? '广告上架':'广告下架'}}</button>
+                                            <button class="btn btn-default" id="{{$v->id}}"  onclick="status(this)">{{$v->status== 0 ? '广告上架':'广告下架'}}</button>
                                              
                                             <button class="btn btn-default" onclick="advert_delete({{$v->id}})">删除</button>
-                                        </center>
+
                                     </td>
                             </tr>
                     @endforeach
@@ -154,6 +153,22 @@
                 }, function(){
 
                 });
+        }
+    </script>
+    <script type="text/javascript">
+        function status(obj){
+            $.get('/admin/advert/'+$(obj).attr('id'),function(data){
+                    if(data == 1){
+                        layer.alert('修改成功');
+                        $(obj).html('广告下架');
+                        $(obj).parent().prev().html('1');
+                    }else if(data == 0){
+                        layer.alert('修改成功');
+                        $(obj).html('广告上架');
+
+                        $(obj).parent().prev().html('0');
+                    }
+            });
         }
     </script>
 @endsection

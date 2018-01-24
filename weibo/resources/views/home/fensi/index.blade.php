@@ -155,7 +155,7 @@
                                 height: 60px;
                                 border-radius: 50%;" src="http://p2l4kajri.bkt.clouddn.com/{{($res->like[0])->portrait}}">
                         <p><a href="#">{{$res->like[0]->nickname}}</a></p>
-                        <div>{{$res->like[0]->content}}</div>
+                        <div>{!! $res->like[0]->content !!}</div>
                     </div>
                     <div  style="clear:both"></div>
                     @else

@@ -70,7 +70,7 @@
                             {{$v->nickname}}
                         </td>
                         <td>
-                            {{$v->content}}
+                            {!! $v->content !!}
                         </td>
                         <td>
                             {{$v->comment}}

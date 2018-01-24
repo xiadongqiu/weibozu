@@ -173,10 +173,16 @@ span.reference a:hover{
 	<div class="footer">
 		<div class="footer_one"></div>
 		<div class="footer_two">
-			<div class="footer_three">
+			<div class="footer_three" style="height: 40px;">
 			@foreach($flinks as $val)
 				<a href="{{ $val->url }}">{{$val->link_name}}</a>
 			@endforeach
+			</div>
+			<div class="footer_three" style="height: 40px">
+				系统公告:
+				@foreach($notices as $v)
+					<a >{{$v->content}}</a>
+				@endforeach
 			</div>
 		</div>
 	</div>
